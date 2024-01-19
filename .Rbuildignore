@@ -16,3 +16,4 @@
 ^\.github$
 ^Rplots\.pdf$
 ^README\.Rmd$
+^data-raw$

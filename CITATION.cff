@@ -11,14 +11,84 @@ title: 'resmush: What the Package Does (One Line, Title Case)'
 version: 0.0.0.9000
 abstract: What the package does (one paragraph).
 authors:
-- family-names: Last
-  given-names: First
-  email: first.last@example.com
-  orcid: https://orcid.org/YOUR-ORCID-ID
+- family-names: Hernangómez
+  given-names: Diego
+  email: diego.hernangomezherrero@gmail.com
+  orcid: https://orcid.org/0000-0001-8457-4658
 repository-code: https://github.com/dieghernan/resmush
-url: https://github.com/dieghernan/resmush
+url: https://dieghernan.github.io/resmush/
 contact:
-- family-names: Last
-  given-names: First
-  email: first.last@example.com
-  orcid: https://orcid.org/YOUR-ORCID-ID
+- family-names: Hernangómez
+  given-names: Diego
+  email: diego.hernangomezherrero@gmail.com
+  orcid: https://orcid.org/0000-0001-8457-4658
+references:
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2024'
+  institution:
+    name: R Foundation for Statistical Computing
+  version: '>= 3.6.0'
+- type: software
+  title: cli
+  abstract: 'cli: Helpers for Developing Command Line Interfaces'
+  notes: Imports
+  url: https://cli.r-lib.org
+  repository: https://CRAN.R-project.org/package=cli
+  authors:
+  - family-names: Csárdi
+    given-names: Gábor
+    email: csardi.gabor@gmail.com
+  year: '2024'
+- type: software
+  title: curl
+  abstract: 'curl: A Modern and Flexible Web Client for R'
+  notes: Imports
+  url: https://jeroen.r-universe.dev/curl
+  repository: https://CRAN.R-project.org/package=curl
+  authors:
+  - family-names: Ooms
+    given-names: Jeroen
+    email: jeroen@berkeley.edu
+    orcid: https://orcid.org/0000-0002-4035-0289
+  year: '2024'
+- type: software
+  title: httr
+  abstract: 'httr: Tools for Working with URLs and HTTP'
+  notes: Imports
+  url: https://httr.r-lib.org/
+  repository: https://CRAN.R-project.org/package=httr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  year: '2024'
+- type: software
+  title: utils
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2024'
+  institution:
+    name: R Foundation for Statistical Computing
+- type: software
+  title: testthat
+  abstract: 'testthat: Unit Testing for R'
+  notes: Suggests
+  url: https://testthat.r-lib.org
+  repository: https://CRAN.R-project.org/package=testthat
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  year: '2024'
+  version: '>= 3.0.0'
