@@ -2,13 +2,16 @@
   "@context": "https://schema.org",
   "type": "SoftwareSourceCode",
   "author": {
-    "id": "https://orcid.org/YOUR-ORCID-ID",
-    "type": "Person",
-    "email": "first.last@example.com",
-    "familyName": "Last",
-    "givenName": "First"
+    "id": "https://orcid.org/0000-0001-8457-4658"
   },
   "codeRepository": "https://github.com/dieghernan/resmush",
+  "copyrightHolder": {
+    "id": "https://orcid.org/0000-0001-8457-4658",
+    "type": "Person",
+    "email": "diego.hernangomezherrero@gmail.com",
+    "familyName": "Hernangómez",
+    "givenName": "Diego"
+  },
   "description": "What the package does (one paragraph).",
   "license": "https://spdx.org/licenses/MIT",
   "name": "resmush: What the Package Does (One Line, Title Case)",
