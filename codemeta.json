@@ -4,6 +4,8 @@
   "identifier": "resmush",
   "description": "What the package does (one paragraph).",
   "name": "resmush: What the Package Does (One Line, Title Case)",
+  "codeRepository": "https://github.com/dieghernan/resmush",
+  "issueTracker": "https://github.com/dieghernan/resmush/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.0.0.9000",
   "programmingLanguage": {
@@ -33,5 +35,5 @@
   "softwareRequirements": {
     "SystemRequirements": null
   },
-  "fileSize": "0.467KB"
+  "fileSize": "1.79KB"
 }

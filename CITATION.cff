@@ -15,6 +15,8 @@ authors:
   given-names: First
   email: first.last@example.com
   orcid: https://orcid.org/YOUR-ORCID-ID
+repository-code: https://github.com/dieghernan/resmush
+url: https://github.com/dieghernan/resmush
 contact:
 - family-names: Last
   given-names: First

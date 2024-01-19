@@ -8,6 +8,7 @@
     "familyName": "Last",
     "givenName": "First"
   },
+  "codeRepository": "https://github.com/dieghernan/resmush",
   "description": "What the package does (one paragraph).",
   "license": "https://spdx.org/licenses/MIT",
   "name": "resmush: What the Package Does (One Line, Title Case)",
