@@ -107,8 +107,9 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "358.803KB",
+  "fileSize": "359.423KB",
   "releaseNotes": "https://github.com/dieghernan/resmush/blob/master/NEWS.md",
   "readme": "https://github.com/dieghernan/resmush/blob/main/README.md",
+  "contIntegration": ["https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/dieghernan/resmush"],
   "developmentStatus": "https://www.repostatus.org/#wip"
 }
