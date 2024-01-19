@@ -1,0 +1,22 @@
+# -----------------------------------------------------------
+# CITATION file created with {cffr} R package, v0.5.0
+# See also: https://docs.ropensci.org/cffr/
+# -----------------------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "resmush" in publications use:'
+type: software
+license: MIT
+title: 'resmush: What the Package Does (One Line, Title Case)'
+version: 0.0.0.9000
+abstract: What the package does (one paragraph).
+authors:
+- family-names: Last
+  given-names: First
+  email: first.last@example.com
+  orcid: https://orcid.org/YOUR-ORCID-ID
+contact:
+- family-names: Last
+  given-names: First
+  email: first.last@example.com
+  orcid: https://orcid.org/YOUR-ORCID-ID

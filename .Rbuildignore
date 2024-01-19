@@ -1,0 +1,17 @@
+^resmush\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^revdep$
+^codemeta\.json$
+^CITATION\.cff$
+^CRAN-SUBMISSION$
+^cran-comments\.md$
+^pkgdown$
+^pkgdown\.yaml$
+^pkgdown\.yml$
+^\.imgbotconfig$
+^\.lintr$
+^CODE_OF_CONDUCT\.md$
+^CONTRIBUTING\.md$
+^\.github$
+^Rplots\.pdf$

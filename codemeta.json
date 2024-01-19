@@ -1,0 +1,37 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "resmush",
+  "description": "What the package does (one paragraph).",
+  "name": "resmush: What the Package Does (One Line, Title Case)",
+  "license": "https://spdx.org/licenses/MIT",
+  "version": "0.0.0.9000",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 4.3.2 (2023-10-31 ucrt)",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "First",
+      "familyName": "Last",
+      "email": "first.last@example.com",
+      "@id": "https://orcid.org/YOUR-ORCID-ID"
+    }
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "First",
+      "familyName": "Last",
+      "email": "first.last@example.com",
+      "@id": "https://orcid.org/YOUR-ORCID-ID"
+    }
+  ],
+  "softwareRequirements": {
+    "SystemRequirements": null
+  },
+  "fileSize": "0.467KB"
+}
