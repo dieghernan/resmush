@@ -107,7 +107,8 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "358.539KB",
+  "fileSize": "358.803KB",
   "releaseNotes": "https://github.com/dieghernan/resmush/blob/master/NEWS.md",
-  "readme": "https://github.com/dieghernan/resmush/blob/main/README.md"
+  "readme": "https://github.com/dieghernan/resmush/blob/main/README.md",
+  "developmentStatus": "https://www.repostatus.org/#wip"
 }
