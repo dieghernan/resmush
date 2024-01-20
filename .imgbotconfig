@@ -1,6 +1,7 @@
 {
     "ignoredFiles": [
         "/tests/testthat/_snaps/*",
+		"/tests/testthat/*",
         "/man/figures/lifecycle*",
         "inst/*"
     ],

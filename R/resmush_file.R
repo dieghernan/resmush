@@ -59,7 +59,9 @@ resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE) {
   )
 
   # Check access
-  if (!curl::has_internet()) {
+  # Internal option, for checking purposes only
+  test <- getOption("resmush_test_offline", FALSE)
+  if (any(isFALSE(curl::has_internet()), test)) {
     cli::cli_alert_warning("Offline")
     res$notes <- "Offline"
     return(invisible(res))
@@ -101,6 +103,7 @@ resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE) {
     return(invisible(res))
   }
 
+  # nocov start
   if (!"dest" %in% names(res_post)) {
     cli::cli_alert_warning(
       "API Not responding, check {.href https://resmush.it/status}"
@@ -108,6 +111,7 @@ resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE) {
     res$notes <- "API Not responding, check https://resmush.it/status}"
     return(invisible(res))
   }
+  # nocov end
 
   ##  2. Download from dest ----
   dwn_opt <- httr::GET(
@@ -115,6 +119,8 @@ resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE) {
     httr::write_disk(outfile, overwrite = TRUE)
   )
 
+  # Corner case
+  # nocov start
   if (httr::status_code(dwn_opt) != 200) {
     cli::cli_alert_warning(
       "API Not responding, check {.href https://resmush.it/status}"
@@ -122,7 +128,7 @@ resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE) {
     res$notes <- "API Not responding, check https://resmush.it/status}"
     return(invisible(res))
   }
-
+  # nocov end
   # Finally
   res$dest_img <- outfile
 
@@ -141,6 +147,7 @@ resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE) {
       "{.file {file}} optimized: {res$src_size}",
       " => {res$dest_size} ({res$compress_ratio})"
     ))
+    cli::cli_alert_info("Check output: {.file {outfile}}")
   }
   return(invisible(res))
 }
