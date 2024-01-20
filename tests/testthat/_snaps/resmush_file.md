@@ -24,10 +24,10 @@
 # Not valid file
 
     Code
-      dm[, -c(1, 2)]
+      dm[, -c(1, 3)]
     Output
-        src_size dest_size compress_ratio
-      1 21 bytes        NA             NA
+        dest_img dest_size compress_ratio
+      1       NA        NA             NA
                                                                             notes
       1 403: Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF, WEBP
 

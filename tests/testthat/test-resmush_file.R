@@ -57,7 +57,7 @@ test_that("Not valid file", {
   )
 
   expect_s3_class(dm, "data.frame")
-  expect_snapshot(dm[, -c(1, 2)])
+  expect_snapshot(dm[, -c(1, 3)])
   expect_false(is.na(dm$src_img))
   expect_equal(dm$src_img, fl)
 })
