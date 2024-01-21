@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# resmush
+# resmush <a href="https://dieghernan.github.io/resmush/"><img src="man/figures/logo.png" alt="resmush website" align="right" height="139"/></a>
 
 <!-- badges: start -->
 
@@ -35,3 +35,12 @@ This is a basic example which shows you how to solve a common problem:
 library(resmush)
 ## basic example code
 ```
+
+## Attributions
+
+Logo uses:
+
+- [The great wave of Kanagawa icons created by Freepik -
+  Flaticons](https://www.flaticon.com/free-icons/the-great-wave-of-kanagawa "the great wave of kanagawa icons")
+- [Compression icons created by MansyGraphics -
+  Flaticon](https://www.flaticon.com/free-icons/compression "compression icons")

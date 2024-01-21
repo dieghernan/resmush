@@ -21,6 +21,30 @@ test_that("Test offline", {
   expect_false("resmush_test_offline" %in% names(options()))
 })
 
+test_that("Test corner", {
+  skip_on_cran()
+  test_png <- load_inst_to_temp("example.png")
+  expect_true(file.exists(test_png))
+
+  # Options for testing
+  ops <- options()
+  options(resmush_test_corner = TRUE)
+
+  expect_true("resmush_test_corner" %in% names(options()))
+
+  expect_snapshot(dm <- resmush_file(test_png))
+
+  expect_s3_class(dm, "data.frame")
+  expect_snapshot(dm[, -c(1, 3)])
+
+  expect_equal(dm$src_img, test_png)
+
+  # Reset ops
+  options(resmush_test_corner = NULL)
+  expect_false("resmush_test_corner" %in% names(options()))
+})
+
+
 test_that("Test not provided file", {
   skip_on_cran()
   skip_if_offline()
@@ -117,5 +141,43 @@ test_that("Test opts with png", {
 test_that("Test qlty par with jpg", {
   skip_on_cran()
   skip_if_offline()
-  skip("TODO: Finish tests")
+
+  test_jpg <- load_inst_to_temp("example.jpg")
+  expect_true(file.exists(test_jpg))
+  outf <- tempfile(fileext = ".jpg")
+  expect_false(file.exists(outf))
+  expect_message(
+    dm <- resmush_file(test_jpg,
+      outf,
+      verbose = TRUE
+    ),
+    "optimized:"
+  )
+
+  expect_true(file.exists(outf))
+  expect_s3_class(dm, "data.frame")
+  expect_false(any(is.na(dm)))
+  expect_equal(dm$src_img, test_jpg)
+  expect_equal(dm$dest_img, outf)
+
+  ins <- file.size(test_jpg)
+  outs <- file.size(outf)
+  expect_lt(outs, ins)
+
+  # Check units
+  unts <- make_object_size(ins)
+  anobj <- object.size(unts)
+  expect_s3_class(unts, class(unts))
+  fmrted <- format(unts, "auto")
+
+  expect_identical(dm$src_size, fmrted)
+
+  # Use qlty
+  outf2 <- tempfile(fileext = ".jpg")
+  dm2 <- resmush_file(test_jpg, outf2, qlty = 30)
+
+  expect_true(file.exists(outf2))
+  out2s <- file.size(outf2)
+
+  expect_lt(out2s, outs)
 })

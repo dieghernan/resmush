@@ -120,15 +120,16 @@ resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE) {
   )
 
   # Corner case
-  # nocov start
-  if (httr::status_code(dwn_opt) != 200) {
+  # Internal option, for checking purposes only
+  test_corner <- getOption("resmush_test_corner", FALSE)
+  if (any(httr::status_code(dwn_opt) != 200, test_corner)) {
     cli::cli_alert_warning(
       "API Not responding, check {.href https://resmush.it/status}"
     )
     res$notes <- "API Not responding, check https://resmush.it/status}"
     return(invisible(res))
   }
-  # nocov end
+
   # Finally
   res$dest_img <- outfile
 

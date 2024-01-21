@@ -13,6 +13,23 @@
         dest_img src_size dest_size compress_ratio   notes
       1       NA       NA        NA             NA Offline
 
+# Test corner
+
+    Code
+      dm <- resmush_file(test_png)
+    Message
+      ! API Not responding, check <https://resmush.it/status>
+
+---
+
+    Code
+      dm[, -c(1, 3)]
+    Output
+        dest_img dest_size compress_ratio
+      1       NA        NA             NA
+                                                       notes
+      1 API Not responding, check https://resmush.it/status}
+
 # Test not provided file
 
     Code
