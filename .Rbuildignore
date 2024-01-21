@@ -17,3 +17,5 @@
 ^Rplots\.pdf$
 ^README\.Rmd$
 ^data-raw$
+^docs$
+^dev$

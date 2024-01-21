@@ -31,7 +31,7 @@ In any case, a (invisibly) data frame with a summary of the process is
 returned as well.
 }
 \description{
-Optimize a local images using the \href{https://resmush.it/}{reSmush.it API}.
+Optimize local images using the \href{https://resmush.it/}{reSmush.it API}.
 
 \strong{Note that} the default parameters of the function \code{outfile = file}
 \strong{overwrites} the local file. See \strong{Examples}.
@@ -42,7 +42,7 @@ Optimize a local images using the \href{https://resmush.it/}{reSmush.it API}.
 \donttest{
 png_file <- system.file("extimg/example.png", package = "resmush")
 
-# For example, writes to a temp file
+# For example, write to a temp file
 tmp_png <- tempfile(fileext = ".png")
 
 # Silently returns a data frame
@@ -63,4 +63,6 @@ resmush_file(jpg_file, outfile = tmp_jpg, verbose = TRUE, qlty = 10)
 }
 \seealso{
 \href{https://resmush.it/api}{reSmush.it API} docs.
+
+\code{\link[=resmush_url]{resmush_url()}}
 }

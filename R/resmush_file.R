@@ -1,7 +1,7 @@
 #' Optimize a local file
 #'
 #' @description
-#' Optimize a local images using the [reSmush.it API](https://resmush.it/).
+#' Optimize local images using the [reSmush.it API](https://resmush.it/).
 #'
 #' **Note that** the default parameters of the function `outfile = file`
 #' **overwrites** the local file. See **Examples**.
@@ -27,6 +27,7 @@
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api) docs.
 #'
+#' [resmush_url()]
 #' @export
 #'
 #' @examplesIf curl::has_internet()
@@ -34,7 +35,7 @@
 #' \donttest{
 #' png_file <- system.file("extimg/example.png", package = "resmush")
 #'
-#' # For example, writes to a temp file
+#' # For example, write to a temp file
 #' tmp_png <- tempfile(fileext = ".png")
 #'
 #' # Silently returns a data frame
