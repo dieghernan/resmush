@@ -8,7 +8,8 @@ resmush_url(
   url,
   outfile = file.path(tempdir(), basename(url)),
   qlty = 92,
-  verbose = FALSE
+  verbose = FALSE,
+  exif_preserve = FALSE
 )
 }
 \arguments{
@@ -30,6 +31,10 @@ the file provided in url would be created.}
 the optimization level. For optimal results use vales above 90.}
 
 \item{verbose}{Logical. If \code{TRUE} displays a summary of the results.}
+
+\item{exif_preserve}{Logical. Should be the
+\href{https://en.wikipedia.org/wiki/Exif}{Exif} information removed as well?
+Default is to remove (i.e. \code{exif_preserve = FALSE}).}
 }
 \value{
 Writes on disk the optimized file if the API call is successful.

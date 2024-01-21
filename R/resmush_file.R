@@ -18,7 +18,9 @@
 #' @param qlty Only affects `jpg` files. Integer between 0 and 100 indicating
 #' the optimization level. For optimal results use vales above 90.
 #' @param verbose Logical. If `TRUE` displays a summary of the results.
-#'
+#' @param exif_preserve Logical. Should be the
+#'   [Exif](https://en.wikipedia.org/wiki/Exif) information removed as well?
+#'   Default is to remove (i.e. `exif_preserve = FALSE`).
 #' @return
 #' Writes on disk the optimized file if the API call is successful.
 #' In any case, a (invisibly) data frame with a summary of the process is
@@ -52,7 +54,8 @@
 #' resmush_file(jpg_file, outfile = tmp_jpg, verbose = TRUE)
 #' resmush_file(jpg_file, outfile = tmp_jpg, verbose = TRUE, qlty = 10)
 #' }
-resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE) {
+resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE,
+                         exif_preserve = FALSE) {
   # Master table with results
   res <- data.frame(
     src_img = file, dest_img = NA, src_size = NA,
@@ -89,8 +92,14 @@ resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE) {
   file_post$name <- basename(file)
 
   # Send to reSmusht
+  # Make logical
+  exif_preserve <- isTRUE(exif_preserve)
+
   api_post <- httr::POST(
-    paste0("http://api.resmush.it/?qlty=", qlty),
+    paste0(
+      "http://api.resmush.it/?qlty=", qlty,
+      "&exif=", exif_preserve
+    ),
     body = list(files = file_post)
   )
 

@@ -49,7 +49,7 @@
 #' resmush_url(jpg_url, verbose = TRUE, qlty = 10)
 #' }
 resmush_url <- function(url, outfile = file.path(tempdir(), basename(url)),
-                        qlty = 92, verbose = FALSE) {
+                        qlty = 92, verbose = FALSE, exif_preserve = FALSE) {
   # Master table with results
   res <- data.frame(
     src_img = url, dest_img = NA, src_size = NA,
@@ -67,7 +67,7 @@ resmush_url <- function(url, outfile = file.path(tempdir(), basename(url)),
 
   # API Calls -----
 
-  res_get <- smush_from_url(url, qlty, n_rep = 3)
+  res_get <- smush_from_url(url, qlty, exif_preserve, n_rep = 3)
 
   if ("error" %in% names(res_get)) {
     cli::cli_alert_warning("API Error for {.href {url}}")
@@ -139,12 +139,16 @@ resmush_url <- function(url, outfile = file.path(tempdir(), basename(url)),
 
 # Helper function for retrying the call
 # Useful for some cases e.g imgur
-smush_from_url <- function(url, qlty, n_rep = 3) {
+smush_from_url <- function(url, qlty, exif_preserve = TRUE, n_rep = 3) {
+  # Make logical
+  exif_preserve <- isTRUE(exif_preserve)
+
   for (i in seq(1, n_rep)) {
     api_get <- httr::GET(
       paste0(
         "http://api.resmush.it/ws.php?qlty=", qlty,
-        "&img=", url
+        "&img=", url,
+        "&exif=", exif_preserve
       )
     )
 
