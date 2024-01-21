@@ -116,7 +116,7 @@ test_that("Test opts with png", {
       outf,
       verbose = TRUE
     ),
-    "optimized:"
+    "Optimizing"
   )
 
   expect_true(file.exists(outf))
@@ -151,7 +151,7 @@ test_that("Test qlty par with jpg", {
       outf,
       verbose = TRUE
     ),
-    "optimized:"
+    "Optimizing"
   )
 
   expect_true(file.exists(outf))

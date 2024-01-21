@@ -56,8 +56,8 @@ jpg_file <- system.file("extimg/example.jpg", package = "resmush")
 tmp_jpg <- tempfile(fileext = ".jpg")
 
 # Silently returns a data frame
-resmush_file(jpg_file, outfile = tmp_png, verbose = TRUE)
-resmush_file(jpg_file, outfile = tmp_png, verbose = TRUE, qlty = 10)
+resmush_file(jpg_file, outfile = tmp_jpg, verbose = TRUE)
+resmush_file(jpg_file, outfile = tmp_jpg, verbose = TRUE, qlty = 10)
 }
 \dontshow{\}) # examplesIf}
 }

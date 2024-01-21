@@ -48,8 +48,8 @@
 #' tmp_jpg <- tempfile(fileext = ".jpg")
 #'
 #' # Silently returns a data frame
-#' resmush_file(jpg_file, outfile = tmp_png, verbose = TRUE)
-#' resmush_file(jpg_file, outfile = tmp_png, verbose = TRUE, qlty = 10)
+#' resmush_file(jpg_file, outfile = tmp_jpg, verbose = TRUE)
+#' resmush_file(jpg_file, outfile = tmp_jpg, verbose = TRUE, qlty = 10)
 #' }
 resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE) {
   # Master table with results
@@ -139,16 +139,18 @@ resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE) {
 
   res$dest_size <- out_size_pretty
   # Reduction ratio
-  red_ratio <- as.integer(out_size) / as.integer(src_size)
+  red_ratio <- 1 - as.integer(out_size) / as.integer(src_size)
   res$compress_ratio <- sprintf("%0.1f%%", red_ratio * 100)
   res$notes <- "OK ;)"
 
   if (verbose) {
-    cli::cli_alert_success(paste0(
-      "{.file {file}} optimized: {res$src_size}",
-      " => {res$dest_size} ({res$compress_ratio})"
+    cli::cli_alert_success("Optimizing {.file {file}}:")
+
+    cli::cli_bullets(c(
+      "i" = "Effective compression ratio: {res$compress_ratio}",
+      "i" = "Current size: {res$dest_size} (was {res$src_size})",
+      "i" = "Output: {.file {outfile}}"
     ))
-    cli::cli_alert_info("Check output: {.file {outfile}}")
   }
   return(invisible(res))
 }

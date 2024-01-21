@@ -107,7 +107,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "444.818KB",
+  "fileSize": "444.88KB",
   "releaseNotes": "https://github.com/dieghernan/resmush/blob/master/NEWS.md",
   "readme": "https://github.com/dieghernan/resmush/blob/main/README.md",
   "contIntegration": ["https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/dieghernan/resmush"],
