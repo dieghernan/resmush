@@ -114,7 +114,7 @@ returned as well.</p>
 <span class="r-in"><span><span class="va">png_res</span> <span class="op">&lt;-</span> <span class="fu">resmush_file</span><span class="op">(</span><span class="va">png_file</span>, outfile <span class="op">=</span> <span class="va">tmp_png</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">png_res</span><span class="op">[</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   src_size dest_size compress_ratio notes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 239.9 Kb   70.7 Kb          29.5% OK ;)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 239.9 Kb   70.7 Kb          70.5% OK ;)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Use with jpg and parameters</span></span></span>
 <span class="r-in"><span><span class="va">jpg_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extimg/example.jpg"</span>, package <span class="op">=</span> <span class="st">"resmush"</span><span class="op">)</span></span></span>
@@ -123,12 +123,16 @@ returned as well.</p>
 <span class="r-in"><span><span class="va">tmp_jpg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".jpg"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Silently returns a data frame</span></span></span>
-<span class="r-in"><span><span class="fu">resmush_file</span><span class="op">(</span><span class="va">jpg_file</span>, outfile <span class="op">=</span> <span class="va">tmp_png</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">D:/a/_temp/Library/resmush/extimg/example.jpg</span> optimized: 100.4 Kb =&gt; 83.2 Kb (82.8%)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Check output: <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\Rtmp6lT1nG\file64011845cda.png</span></span>
-<span class="r-in"><span><span class="fu">resmush_file</span><span class="op">(</span><span class="va">jpg_file</span>, outfile <span class="op">=</span> <span class="va">tmp_png</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span>, qlty <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">D:/a/_temp/Library/resmush/extimg/example.jpg</span> optimized: 100.4 Kb =&gt; 6.4 Kb (6.4%)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Check output: <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\Rtmp6lT1nG\file64011845cda.png</span></span>
+<span class="r-in"><span><span class="fu">resmush_file</span><span class="op">(</span><span class="va">jpg_file</span>, outfile <span class="op">=</span> <span class="va">tmp_jpg</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">D:/a/_temp/Library/resmush/extimg/example.jpg</span>:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Effective compression ratio: 17.2%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Current size: 83.2 Kb (was 100.4 Kb)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output: <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpEDnCuO\filebf8402e60b8.jpg</span></span>
+<span class="r-in"><span><span class="fu">resmush_file</span><span class="op">(</span><span class="va">jpg_file</span>, outfile <span class="op">=</span> <span class="va">tmp_jpg</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span>, qlty <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">D:/a/_temp/Library/resmush/extimg/example.jpg</span>:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Effective compression ratio: 93.6%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Current size: 6.4 Kb (was 100.4 Kb)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output: <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpEDnCuO\filebf8402e60b8.jpg</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
