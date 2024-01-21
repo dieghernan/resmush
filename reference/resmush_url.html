@@ -60,7 +60,8 @@ reSmush.it API."><meta property="og:image" content="https://dieghernan.github.io
 <span>  <span class="va">url</span>,</span>
 <span>  outfile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  qlty <span class="op">=</span> <span class="fl">92</span>,</span>
-<span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  exif_preserve <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -89,6 +90,12 @@ the optimization level. For optimal results use vales above 90.</p></dd>
 
 <dt>verbose</dt>
 <dd><p>Logical. If <code>TRUE</code> displays a summary of the results.</p></dd>
+
+
+<dt>exif_preserve</dt>
+<dd><p>Logical. Should be the
+<a href="https://en.wikipedia.org/wiki/Exif" class="external-link">Exif</a> information removed as well?
+Default is to remove (i.e. <code>exif_preserve = FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -121,7 +128,7 @@ returned as well.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                              src_img</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.png</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                            dest_img src_size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpKWLOfr/example.png 239.9 Kb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpOU9hTr/example.png 239.9 Kb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dest_size compress_ratio notes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   70.7 Kb          70.5% OK ;)</span>
 <span class="r-in"><span></span></span>
@@ -133,12 +140,12 @@ returned as well.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.jpg:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Effective compression ratio: 17.2%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Current size: 83.2 Kb (was 100.4 Kb)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output: <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKWLOfr/example.jpg</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output: <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpOU9hTr/example.jpg</span></span>
 <span class="r-in"><span><span class="fu">resmush_url</span><span class="op">(</span><span class="va">jpg_url</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span>, qlty <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.jpg:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Effective compression ratio: 93.6%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Current size: 6.4 Kb (was 100.4 Kb)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output: <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKWLOfr/example.jpg</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output: <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpOU9hTr/example.jpg</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

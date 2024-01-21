@@ -59,7 +59,13 @@ overwrites the local file. See Examples."><meta property="og:image" content="htt
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">resmush_file</span><span class="op">(</span><span class="va">file</span>, outfile <span class="op">=</span> <span class="va">file</span>, qlty <span class="op">=</span> <span class="fl">92</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">resmush_file</span><span class="op">(</span></span>
+<span>  <span class="va">file</span>,</span>
+<span>  outfile <span class="op">=</span> <span class="va">file</span>,</span>
+<span>  qlty <span class="op">=</span> <span class="fl">92</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  exif_preserve <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -86,6 +92,12 @@ the optimization level. For optimal results use vales above 90.</p></dd>
 
 <dt>verbose</dt>
 <dd><p>Logical. If <code>TRUE</code> displays a summary of the results.</p></dd>
+
+
+<dt>exif_preserve</dt>
+<dd><p>Logical. Should be the
+<a href="https://en.wikipedia.org/wiki/Exif" class="external-link">Exif</a> information removed as well?
+Default is to remove (i.e. <code>exif_preserve = FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -128,12 +140,12 @@ returned as well.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">D:/a/_temp/Library/resmush/extimg/example.jpg</span>:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Effective compression ratio: 17.2%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Current size: 83.2 Kb (was 100.4 Kb)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output: <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKWLOfr\filed08893481b.jpg</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output: <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpOU9hTr\file9f8f2e42df.jpg</span></span>
 <span class="r-in"><span><span class="fu">resmush_file</span><span class="op">(</span><span class="va">jpg_file</span>, outfile <span class="op">=</span> <span class="va">tmp_jpg</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span>, qlty <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">D:/a/_temp/Library/resmush/extimg/example.jpg</span>:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Effective compression ratio: 93.6%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Current size: 6.4 Kb (was 100.4 Kb)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output: <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKWLOfr\filed08893481b.jpg</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output: <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpOU9hTr\file9f8f2e42df.jpg</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
