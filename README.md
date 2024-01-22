@@ -73,7 +73,6 @@ resmush_url(url, outfile = "man/figures/jpg_example_compress.jpg")
 <div class="figure">
 
 <img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" alt="Original online figure" width="100%"/>
-
 <img src="./man/figures/jpg_example_compress.jpg" alt="Optimized figure" width="100%"/>
 
 <p class="caption">
@@ -91,15 +90,19 @@ this value above 90 to get a good image quality.
 
 ``` r
 resmush_url(url,
-  outfile = "man/figures/jpg_example_low.jpg", qlty = 10,
+  outfile = "man/figures/jpg_example_compress_low.jpg", qlty = 10,
   verbose = TRUE
 )
+#> ✔ Optimizing https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg:
+#> ℹ Effective compression ratio: 96.9%
+#> ℹ Current size: 5.6 Kb (was 178.7 Kb)
+#> ℹ Output: 'man/figures/jpg_example_compress_low.jpg'
 ```
 
 <div class="figure">
 
 <figure>
-<img src="./man/figures/jpg_example_low.jpg" style="width:100.0%"
+<img src="man/figures/jpg_example_compress_low.jpg" style="width:100.0%"
 alt="Low quality figure" />
 <figcaption aria-hidden="true">Low quality figure</figcaption>
 </figure>
@@ -116,21 +119,18 @@ All the functions return invisibly a data set with a summary of the
 process. The next example shows how when compressing a local file.
 
 ``` r
-tmpfile <- tempfile(fileext = ".png")
-url2 <- paste0(
-  "https://raw.githubusercontent.com/dieghernan/",
-  "resmush/main/img/png_example_original.png"
+png_file <- system.file("extimg/example.png",
+  package = "resmush"
 )
 
-download.file(url2, tmpfile, quiet = TRUE)
-
-summary <- resmush_file(tmpfile)
+tmp_png <- tempfile(fileext = ".png")
+summary <- resmush_file(png_file, tmp_png)
 
 tibble::as_tibble(summary[, -c(1, 2)])
 #> # A tibble: 1 × 4
 #>   src_size dest_size compress_ratio notes
 #>   <chr>    <chr>     <chr>          <chr>
-#> 1 186.2 Kb 70.8 Kb   62.0%          OK ;)
+#> 1 239.9 Kb 70.7 Kb   70.5%          OK ;)
 ```
 
 ## Other alternatives
@@ -139,17 +139,17 @@ tibble::as_tibble(summary[, -c(1, 2)])
   Xie [![Sponsor Yihui Xie on
   GitHub](man/figures/donate.svg)](https://github.com/sponsors/yihui)
   has the following functions that optimize image files:
-
   - `xfun::tinify()` is similar to `resmush_file()` but uses
     [TinyPNG](https://tinypng.com/). API key required.
   - `xfun::optipng()` compress local files with OptiPNG (that needs to
     be installed locally).
-
+- [**tinieR**](https://jmablog.github.io/tinieR/) package by
+  [jmablog](https://jmablog.com/). **R** package that provides a full
+  interface with [TinyPNG](https://tinypng.com/).
 - [**optout**](https://github.com/coolbutuseless/optout) package by
   [@coolbutuseless](https://coolbutuseless.github.io/). Similar to
   `xfun::optipng()` with additionall options. Needs additional software
   installed locally.
-
 - [Imgbot](https://imgbot.net/): Automatic optimization for files hosted
   in GitHub repos.
 
