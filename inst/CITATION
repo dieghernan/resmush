@@ -1,0 +1,20 @@
+year <- format(Sys.time(), "%Y")
+abs <- trimws(gsub("\\s+", " ", meta$Description))
+abs <- gsub("'", "", abs)
+title <- gsub("'", "", meta$Title, fixed = TRUE)
+title <- gsub("reSmush.it", "{reSmush.it}", title, fixed = TRUE)
+title <- gsub("API", "{API}", title, fixed = TRUE)
+doi <- "10.5281/zenodo.10495365"
+
+bibentry(
+  "Manual",
+  header = "To cite the 'resmush' package in publications use:",
+  title = paste("{resmush}:", title),
+  author = person("Diego", "Hernangómez"),
+  year = year,
+  key = "R-arcgeocoder",
+  version = meta$Version,
+  # doi = doi,
+  url = unlist(strsplit(meta$URL, ","))[1],
+  abstract = abs
+)

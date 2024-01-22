@@ -15,6 +15,18 @@ authors:
   given-names: Diego
   email: diego.hernangomezherrero@gmail.com
   orcid: https://orcid.org/0000-0001-8457-4658
+preferred-citation:
+  type: manual
+  title: 'resmush: Optimize and Compress Image Files with reSmush.it'
+  authors:
+  - family-names: Hernangómez
+    given-names: Diego
+    email: diego.hernangomezherrero@gmail.com
+    orcid: https://orcid.org/0000-0001-8457-4658
+  year: '2024'
+  version: 0.0.0.9000
+  url: https://dieghernan.github.io/resmush/
+  abstract: Compress local and online images using the reSmush.it API service <https://resmush.it/>.
 repository-code: https://github.com/dieghernan/resmush
 url: https://dieghernan.github.io/resmush/
 contact:

@@ -22,3 +22,5 @@
 ^resmush\.Rcheck$
 ^resmush.*\.tar\.gz$
 ^resmush.*\.tgz$
+^\./img$
+^img$

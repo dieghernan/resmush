@@ -107,7 +107,22 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "457.901KB",
+  "fileSize": "460.361KB",
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2024",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Diego",
+          "familyName": "Hernangómez"
+        }
+      ],
+      "name": "{resmush}: Optimize and Compress Image Files with {reSmush.it}",
+      "url": "https://dieghernan.github.io/resmush/"
+    }
+  ],
   "releaseNotes": "https://github.com/dieghernan/resmush/blob/master/NEWS.md",
   "readme": "https://github.com/dieghernan/resmush/blob/main/README.md",
   "contIntegration": ["https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/dieghernan/resmush"],
