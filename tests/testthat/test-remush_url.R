@@ -178,3 +178,154 @@ test_that("Test qlty par with jpg", {
 
   expect_lt(out2s, outs)
 })
+
+
+
+test_that("Test errors in lengths", {
+  skip_on_cran()
+
+  png_url <- paste0(
+    "https://raw.githubusercontent.com/",
+    "dieghernan/resmush/main/inst/",
+    "extimg/example.png"
+  )
+
+  jpg_url <- paste0(
+    "https://raw.githubusercontent.com/",
+    "dieghernan/resmush/main/inst/",
+    "extimg/example.jpg"
+  )
+
+  two_input <- c(png_url, jpg_url)
+  several_outputs <- LETTERS[1:3]
+
+  expect_snapshot(
+    dm <- resmush_url(two_input, several_outputs),
+    error = TRUE
+  )
+})
+
+test_that("Test full vectors without outfile", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # No url
+  turl <- "https://dieghernan.github.io/aaabbbccc.png"
+
+
+  # Not valid
+  notval <- paste0(
+    "https://raw.githubusercontent.com/",
+    "dieghernan/resmush/main/README.md"
+  )
+
+  png_url <- paste0(
+    "https://raw.githubusercontent.com/",
+    "dieghernan/resmush/main/inst/",
+    "extimg/example.png"
+  )
+
+  jpg_url <- paste0(
+    "https://raw.githubusercontent.com/",
+    "dieghernan/resmush/main/inst/",
+    "extimg/example.jpg"
+  )
+
+  all_in <- c(png_url, notval, jpg_url, turl)
+
+  expect_message(
+    dm <- resmush_url(all_in),
+    "API Error"
+  )
+
+  expect_equal(nrow(dm), 4)
+  expect_equal(dm$src_img, all_in)
+
+  is.na(dm$dest_img)
+  expect_equal(is.na(dm$dest_img), c(FALSE, TRUE, FALSE, TRUE))
+})
+
+
+test_that("Test full vectors with outfile", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # No url
+  turl <- "https://dieghernan.github.io/aaabbbccc.png"
+
+
+  # Not valid
+  notval <- paste0(
+    "https://raw.githubusercontent.com/",
+    "dieghernan/resmush/main/README.md"
+  )
+
+  png_url <- paste0(
+    "https://raw.githubusercontent.com/",
+    "dieghernan/resmush/main/inst/",
+    "extimg/example.png"
+  )
+
+  jpg_url <- paste0(
+    "https://raw.githubusercontent.com/",
+    "dieghernan/resmush/main/inst/",
+    "extimg/example.jpg"
+  )
+
+  all_in <- c(png_url, notval, jpg_url, turl)
+
+  all_outs <- c(
+    tempfile(fileext = ".png"),
+    tempfile(fileext = ".png"),
+    tempfile(fileext = ".jpg"),
+    tempfile(fileext = ".png")
+  )
+
+  expect_length(unique(all_outs), 4)
+
+  expect_message(
+    dm <- resmush_url(all_in, all_outs),
+    "API Error"
+  )
+
+  expect_equal(nrow(dm), 4)
+  expect_equal(dm$src_img, all_in)
+  expect_equal(dm$dest_img, c(all_outs[1], NA, all_outs[3], NA))
+
+  expect_true(all(file.exists(all_outs[c(1, 3)])))
+})
+
+
+test_that("Handle duplicate names", {
+  skip_on_cran()
+  skip_if_offline()
+
+  png_url_single <- paste0(
+    "https://raw.githubusercontent.com/",
+    "dieghernan/resmush/main/inst/",
+    "extimg/example.png"
+  )
+
+  png_url <- rep(png_url_single, 2)
+
+  outs <- file.path(tempdir(), basename(png_url))
+
+  if (any(file.exists(outs))) unlink(outs, force = TRUE)
+
+  expect_false(file.exists(outs[1]))
+
+  # But should be renamed as
+  renamed <- file.path(tempdir(), "example_1.png")
+  if (any(file.exists(renamed))) unlink(renamed, force = TRUE)
+  expect_false(file.exists(renamed))
+
+  # Call
+  expect_silent(dm <- resmush_url(png_url, outs))
+
+  # Check that now exists
+  expect_true(file.exists(renamed))
+
+  expect_equal(nrow(dm), 2)
+  expect_equal(dm$src_img, png_url)
+  expect_equal(dm$dest_img, c(outs[1], renamed))
+})

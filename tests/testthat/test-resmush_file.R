@@ -262,3 +262,29 @@ test_that("Test full vectors with outfile", {
 
   expect_true(all(file.exists(all_outs[c(1, 3)])))
 })
+
+
+test_that("Handle duplicate names", {
+  skip_on_cran()
+  skip_if_offline()
+
+  png_file <- rep(load_inst_to_temp("example.png"), 2)
+
+  outs <- rep(tempfile(fileext = "_local_nodup.png"), 2)
+
+  expect_false(file.exists(outs[1]))
+
+  # But should be renamed as
+  renamed <- gsub("local_nodup", "local_nodup_1", outs[1])
+  expect_false(file.exists(renamed))
+
+  # Call
+  expect_silent(dm <- resmush_file(png_file, outs))
+
+  # Check that now exists
+  expect_true(file.exists(renamed))
+
+  expect_equal(nrow(dm), 2)
+  expect_equal(dm$src_img, png_file)
+  expect_equal(dm$dest_img, c(outs[1], renamed))
+})

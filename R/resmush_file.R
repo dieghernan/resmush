@@ -6,26 +6,29 @@
 #' **Note that** the default parameters of the function `outfile = file`
 #' **overwrites** the local file. See **Examples**.
 #'
-#' @param file Path or paths to a local file. **reSmush** can optimize the
+#' @param file Path or paths to local files. **reSmush** can optimize the
 #'  following image files:
 #'  * `png`
 #'  * `jpg`
 #'  * `gif`
 #'  * `bmp`
 #'  * `tif`
-#' @param outfile Path or paths where the optimized file would be store in
+#' @param outfile Path or paths where the optimized files would be store in
 #'   your disk. By default, it would override the file specified in `file`. It
 #'   should be of the same length than `file` parameter.
 #' @param qlty Only affects `jpg` files. Integer between 0 and 100 indicating
 #' the optimization level. For optimal results use vales above 90.
 #' @param verbose Logical. If `TRUE` displays a summary of the results.
-#' @param exif_preserve Logical. Should be the
-#'   [Exif](https://en.wikipedia.org/wiki/Exif) information removed as well?
+#' @param exif_preserve Logical. Should the
+#'   [Exif](https://en.wikipedia.org/wiki/Exif) information (if any) deleted?
 #'   Default is to remove (i.e. `exif_preserve = FALSE`).
 #' @return
 #' Writes on disk the optimized file if the API call is successful.
 #' In any case, a (invisibly) data frame with a summary of the process is
 #' returned as well.
+#'
+#' If any value of the vector `outfile` is duplicated, `resmush_file()` would
+#' rename the output with a suffix `_1. _2`, etc.
 #'
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api) docs.
@@ -73,18 +76,18 @@ resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE,
   l2 <- length(outfile)
 
   if (l1 != l2) {
-    cli::cli_abort(
-      paste0(
-        "Lengths of {.arg file} and {.arg outfile}",
-        "should be the same ",
-        "({l1} vs. {l2})"
-      )
-    )
+    cli::cli_abort(paste0(
+      "Lengths of {.arg file} and {.arg outfile}",
+      "should be the same ({l1} vs. {l2})"
+    ))
   }
 
 
   # Once checked call single
   iter <- seq_len(l1)
+
+  # Make unique paths
+  outfile <- make_unique_paths(outfile)
 
   res_vector <- lapply(iter, function(x) {
     df <- resmush_file_single(

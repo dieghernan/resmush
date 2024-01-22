@@ -4,22 +4,27 @@
 #' Optimize and download an online image using the
 #' [reSmush.it API](https://resmush.it/).
 #'
-#' @param url url to a hosted file. **reSmush** can optimize the
-#'  following image files:
+#' @param url url or a vector of urls pointing to hosted image files.
+#' **reSmush** can optimize the following image files:
 #'  * `png`
 #'  * `jpg`
 #'  * `gif`
 #'  * `bmp`
 #'  * `tif`
-#' @param outfile Path where the optimized file would be store in your disk. By
-#' default, a temporary file (see [tempfile()]) with the same [basename()] than
-#' the file provided in url would be created.
+#' @param outfile Path or paths where the optimized files would be store in
+#' your disk. By default, temporary files (see [tempfile()]) with the same
+#' [basename()] than the file provided in `url` would be created. It should be
+#' of the same length than `url` parameter.
 #' @inheritParams resmush_file
 #'
 #' @return
 #' Writes on disk the optimized file if the API call is successful.
 #' In any case, a (invisibly) data frame with a summary of the process is
 #' returned as well.
+#'
+#' If any value of the vector `outfile` is duplicated, `resmush_url()` would
+#' rename the output with a suffix `_1. _2`, etc.
+#'
 #'
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api) docs.
@@ -36,20 +41,63 @@
 #' base_url <- "https://raw.githubusercontent.com/dieghernan/resmush/main/inst/"
 #'
 #' png_url <- paste0(base_url, "/extimg/example.png")
+#' resmush_url(png_url)
 #'
-#' # Silently returns a data frame
-#' png_res <- resmush_url(png_url)
-#' png_res
-#'
-#' # Use with jpg and parameters
+#' # Several urls
 #' jpg_url <- paste0(base_url, "/extimg/example.jpg")
 #'
-#' # Silently returns a data frame
+#'
+#' summary <- resmush_url(c(png_url, jpg_url))
+#'
+#' # Returns an (invisible) data frame with a summary of the process
+#' summary
+#'
+#' # Use with jpg and parameters
 #' resmush_url(jpg_url, verbose = TRUE)
 #' resmush_url(jpg_url, verbose = TRUE, qlty = 10)
 #' }
 resmush_url <- function(url, outfile = file.path(tempdir(), basename(url)),
                         qlty = 92, verbose = FALSE, exif_preserve = FALSE) {
+  # High level function for vectors
+
+  # Check lengths
+  l1 <- length(url)
+  l2 <- length(outfile)
+
+  if (l1 != l2) {
+    cli::cli_abort(paste0(
+      "Lengths of {.arg url} and {.arg outfile}",
+      "should be the same  ({l1} vs. {l2})"
+    ))
+  }
+
+
+  # Once checked call single
+  iter <- seq_len(l1)
+
+  # Make unique paths
+  outfile <- make_unique_paths(outfile)
+
+  res_vector <- lapply(iter, function(x) {
+    df <- resmush_url_single(
+      url[x], outfile[x],
+      qlty, verbose, exif_preserve
+    )
+    df
+  })
+
+  # Bind and output
+  df_end <- do.call("rbind", res_vector)
+
+  return(invisible(df_end))
+}
+
+
+
+resmush_url_single <- function(url,
+                               outfile = file.path(tempdir(), basename(url)),
+                               qlty = 92, verbose = FALSE,
+                               exif_preserve = FALSE) {
   # Master table with results
   res <- data.frame(
     src_img = url, dest_img = NA, src_size = NA,

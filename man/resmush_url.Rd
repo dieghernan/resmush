@@ -13,8 +13,8 @@ resmush_url(
 )
 }
 \arguments{
-\item{url}{url to a hosted file. \strong{reSmush} can optimize the
-following image files:
+\item{url}{url or a vector of urls pointing to hosted image files.
+\strong{reSmush} can optimize the following image files:
 \itemize{
 \item \code{png}
 \item \code{jpg}
@@ -23,23 +23,27 @@ following image files:
 \item \code{tif}
 }}
 
-\item{outfile}{Path where the optimized file would be store in your disk. By
-default, a temporary file (see \code{\link[=tempfile]{tempfile()}}) with the same \code{\link[=basename]{basename()}} than
-the file provided in url would be created.}
+\item{outfile}{Path or paths where the optimized files would be store in
+your disk. By default, temporary files (see \code{\link[=tempfile]{tempfile()}}) with the same
+\code{\link[=basename]{basename()}} than the file provided in \code{url} would be created. It should be
+of the same length than \code{url} parameter.}
 
 \item{qlty}{Only affects \code{jpg} files. Integer between 0 and 100 indicating
 the optimization level. For optimal results use vales above 90.}
 
 \item{verbose}{Logical. If \code{TRUE} displays a summary of the results.}
 
-\item{exif_preserve}{Logical. Should be the
-\href{https://en.wikipedia.org/wiki/Exif}{Exif} information removed as well?
+\item{exif_preserve}{Logical. Should the
+\href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) deleted?
 Default is to remove (i.e. \code{exif_preserve = FALSE}).}
 }
 \value{
 Writes on disk the optimized file if the API call is successful.
 In any case, a (invisibly) data frame with a summary of the process is
 returned as well.
+
+If any value of the vector \code{outfile} is duplicated, \code{resmush_url()} would
+rename the output with a suffix \verb{_1. _2}, etc.
 }
 \description{
 Optimize and download an online image using the
@@ -54,15 +58,18 @@ Optimize and download an online image using the
 base_url <- "https://raw.githubusercontent.com/dieghernan/resmush/main/inst/"
 
 png_url <- paste0(base_url, "/extimg/example.png")
+resmush_url(png_url)
 
-# Silently returns a data frame
-png_res <- resmush_url(png_url)
-png_res
-
-# Use with jpg and parameters
+# Several urls
 jpg_url <- paste0(base_url, "/extimg/example.jpg")
 
-# Silently returns a data frame
+
+summary <- resmush_url(c(png_url, jpg_url))
+
+# Returns an (invisible) data frame with a summary of the process
+summary
+
+# Use with jpg and parameters
 resmush_url(jpg_url, verbose = TRUE)
 resmush_url(jpg_url, verbose = TRUE, qlty = 10)
 }

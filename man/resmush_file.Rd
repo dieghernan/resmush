@@ -13,7 +13,7 @@ resmush_file(
 )
 }
 \arguments{
-\item{file}{Path or paths to a local file. \strong{reSmush} can optimize the
+\item{file}{Path or paths to local files. \strong{reSmush} can optimize the
 following image files:
 \itemize{
 \item \code{png}
@@ -23,7 +23,7 @@ following image files:
 \item \code{tif}
 }}
 
-\item{outfile}{Path or paths where the optimized file would be store in
+\item{outfile}{Path or paths where the optimized files would be store in
 your disk. By default, it would override the file specified in \code{file}. It
 should be of the same length than \code{file} parameter.}
 
@@ -32,14 +32,17 @@ the optimization level. For optimal results use vales above 90.}
 
 \item{verbose}{Logical. If \code{TRUE} displays a summary of the results.}
 
-\item{exif_preserve}{Logical. Should be the
-\href{https://en.wikipedia.org/wiki/Exif}{Exif} information removed as well?
+\item{exif_preserve}{Logical. Should the
+\href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) deleted?
 Default is to remove (i.e. \code{exif_preserve = FALSE}).}
 }
 \value{
 Writes on disk the optimized file if the API call is successful.
 In any case, a (invisibly) data frame with a summary of the process is
 returned as well.
+
+If any value of the vector \code{outfile} is duplicated, \code{resmush_file()} would
+rename the output with a suffix \verb{_1. _2}, etc.
 }
 \description{
 Optimize local images using the \href{https://resmush.it/}{reSmush.it API}.
