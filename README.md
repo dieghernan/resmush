@@ -72,13 +72,13 @@ resmush_url(url, outfile = "man/figures/jpg_example_compress.jpg")
 
 <div class="figure">
 
-<img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" alt="Original online figure" width="49%"/>
+<img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" alt="Original online figure" width="100%"/>
 
-<img src="./man/figures/jpg_example_compress.jpg" alt="Optimized figure" width="49%"/>
+<img src="./man/figures/jpg_example_compress.jpg" alt="Optimized figure" width="100%"/>
 
 <p class="caption">
 
-Original picture (left) 178.7 Kb and optimized picture (right) 45 Kb
+Original picture (top) 178.7 Kb and optimized picture (bottom) 45 Kb
 (Compression 74.8%)
 
 </p>
@@ -137,7 +137,7 @@ tibble::as_tibble(summary[, -c(1, 2)])
 
 - [**xfun**](https://cran.r-project.org/package=xfun) package by Yihui
   Xie [![Sponsor Yihui Xie on
-  GitHub](https://img.shields.io/badge/Sponsor-white?style=flat&logo=github&logoColor=%23bf3989)](https://github.com/sponsors/yihui)
+  GitHub](man/figures/donate.svg)](https://github.com/sponsors/yihui)
   has the following functions that optimize image files:
 
   - `xfun::tinify()` is similar to `resmush_file()` but uses
