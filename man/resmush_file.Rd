@@ -13,7 +13,7 @@ resmush_file(
 )
 }
 \arguments{
-\item{file}{Path to a local file. \strong{reSmush} can optimize the
+\item{file}{Path or paths to a local file. \strong{reSmush} can optimize the
 following image files:
 \itemize{
 \item \code{png}
@@ -23,8 +23,9 @@ following image files:
 \item \code{tif}
 }}
 
-\item{outfile}{Path where the optimized file would be store in your disk.
-By default, it would override the file specified in \code{file}.}
+\item{outfile}{Path or paths where the optimized file would be store in
+your disk. By default, it would override the file specified in \code{file}. It
+should be of the same length than \code{file} parameter.}
 
 \item{qlty}{Only affects \code{jpg} files. Integer between 0 and 100 indicating
 the optimization level. For optimal results use vales above 90.}
@@ -52,18 +53,26 @@ Optimize local images using the \href{https://resmush.it/}{reSmush.it API}.
 \donttest{
 png_file <- system.file("extimg/example.png", package = "resmush")
 
-# For example, write to a temp file
+# For the example, write to a temp file
 tmp_png <- tempfile(fileext = ".png")
 
-# Silently returns a data frame
-png_res <- resmush_file(png_file, outfile = tmp_png)
-png_res[, -c(1:2)]
+resmush_file(png_file, outfile = tmp_png)
 
-# Use with jpg and parameters
+# Several paths
 jpg_file <- system.file("extimg/example.jpg", package = "resmush")
-
-# For example, writes to a temp file
 tmp_jpg <- tempfile(fileext = ".jpg")
+
+
+summary <- resmush_file(c(png_file, jpg_file), outfile = c(
+  tmp_png,
+  tmp_jpg
+))
+
+# Returns an (invisible) data frame with a summary of the process
+summary
+
+
+# With parameters
 
 # Silently returns a data frame
 resmush_file(jpg_file, outfile = tmp_jpg, verbose = TRUE)

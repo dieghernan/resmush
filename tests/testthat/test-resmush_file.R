@@ -181,3 +181,84 @@ test_that("Test qlty par with jpg", {
 
   expect_lt(out2s, outs)
 })
+
+
+test_that("Test errors in lengths", {
+  skip_on_cran()
+
+  two_input <- rep(load_inst_to_temp("example.jpg"), 2)
+  expect_equal(length(two_input), 2)
+
+  several_outputs <- LETTERS[1:3]
+
+  expect_snapshot(
+    dm <- resmush_file(two_input, several_outputs),
+    error = TRUE
+  )
+})
+
+test_that("Test full vectors without outfile", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # tempfile
+  no_file <- tempfile()
+
+  # Bad extension
+  # tempfile
+  bad_ext <- tempfile(, fileext = ".txt")
+
+  writeLines("testing a fake file", con = bad_ext)
+  jpg_file <- load_inst_to_temp("example.jpg")
+  png_file <- load_inst_to_temp("example.png")
+
+  all_in <- c(png_file, no_file, jpg_file, bad_ext)
+
+  expect_message(
+    dm <- resmush_file(all_in),
+    "not found on disk"
+  )
+
+  expect_equal(nrow(dm), 4)
+  expect_equal(dm$src_img, all_in)
+  expect_equal(dm$dest_img, c(all_in[1], NA, all_in[3], NA))
+})
+
+
+test_that("Test full vectors with outfile", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # tempfile
+  no_file <- tempfile()
+
+  # Bad extension
+  # tempfile
+  bad_ext <- tempfile(, fileext = ".txt")
+
+  writeLines("testing a fake file", con = bad_ext)
+  jpg_file <- load_inst_to_temp("example.jpg")
+  png_file <- load_inst_to_temp("example.png")
+
+  all_in <- c(png_file, no_file, jpg_file, bad_ext)
+
+  all_outs <- c(
+    tempfile(fileext = ".png"),
+    tempfile(fileext = ".png"),
+    tempfile(fileext = ".jpg"),
+    tempfile(fileext = ".png")
+  )
+
+  expect_length(unique(all_outs), 4)
+
+  expect_message(
+    dm <- resmush_file(all_in, all_outs),
+    "not found on disk"
+  )
+
+  expect_equal(nrow(dm), 4)
+  expect_equal(dm$src_img, all_in)
+  expect_equal(dm$dest_img, c(all_outs[1], NA, all_outs[3], NA))
+
+  expect_true(all(file.exists(all_outs[c(1, 3)])))
+})
