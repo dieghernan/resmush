@@ -4,11 +4,11 @@
 \name{resmush-package}
 \alias{resmush}
 \alias{resmush-package}
-\title{resmush: What the Package Does (One Line, Title Case)}
+\title{resmush: Optimize and Compress Image Files with 'reSmush.it'}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-What the package does (one paragraph).
+Compress local and online images using the 'reSmush.it' API service \url{https://resmush.it/}.
 }
 \seealso{
 Useful links:

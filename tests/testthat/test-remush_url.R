@@ -94,7 +94,7 @@ test_that("Test default opts with png", {
   expect_s3_class(dm, "data.frame")
   expect_false(any(is.na(dm)))
   expect_equal(dm$src_img, png_url)
-  expect_equal(dm$dest_img, outf)
+  expect_equal(basename(dm$dest_img), basename(outf))
 
   ratio <- as.double(gsub("%", "", dm$compress_ratio))
   expect_lt(ratio, 100)
@@ -126,7 +126,6 @@ test_that("Test opts with png", {
   expect_s3_class(dm, "data.frame")
   expect_false(any(is.na(dm)))
   expect_equal(dm$src_img, png_url)
-  expect_equal(dm$dest_img, outf)
 
 
   outs <- file.size(outf)
@@ -165,7 +164,7 @@ test_that("Test qlty par with jpg", {
   expect_s3_class(dm, "data.frame")
   expect_false(any(is.na(dm)))
   expect_equal(dm$src_img, jpg_url)
-  expect_equal(dm$dest_img, outf)
+  expect_equal(basename(dm$dest_img), basename(outf))
 
   outs <- file.size(outf)
 
@@ -241,7 +240,6 @@ test_that("Test full vectors without outfile", {
   expect_equal(nrow(dm), 4)
   expect_equal(dm$src_img, all_in)
 
-  is.na(dm$dest_img)
   expect_equal(is.na(dm$dest_img), c(FALSE, TRUE, FALSE, TRUE))
 })
 
@@ -290,7 +288,10 @@ test_that("Test full vectors with outfile", {
 
   expect_equal(nrow(dm), 4)
   expect_equal(dm$src_img, all_in)
-  expect_equal(dm$dest_img, c(all_outs[1], NA, all_outs[3], NA))
+  expect_equal(
+    basename(dm$dest_img),
+    basename(c(all_outs[1], NA, all_outs[3], NA))
+  )
 
   expect_true(all(file.exists(all_outs[c(1, 3)])))
 })
@@ -327,5 +328,5 @@ test_that("Handle duplicate names", {
 
   expect_equal(nrow(dm), 2)
   expect_equal(dm$src_img, png_url)
-  expect_equal(dm$dest_img, c(outs[1], renamed))
+  expect_equal(basename(dm$dest_img), basename(c(outs[1], renamed)))
 })

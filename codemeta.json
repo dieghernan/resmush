@@ -2,8 +2,8 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "resmush",
-  "description": "What the package does (one paragraph).",
-  "name": "resmush: What the Package Does (One Line, Title Case)",
+  "description": "Compress local and online images using the 'reSmush.it' API service <https://resmush.it/>.",
+  "name": "resmush: Optimize and Compress Image Files with 'reSmush.it'",
   "relatedLink": "https://dieghernan.github.io/resmush/",
   "codeRepository": "https://github.com/dieghernan/resmush",
   "issueTracker": "https://github.com/dieghernan/resmush/issues",
@@ -107,9 +107,10 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "457.461KB",
+  "fileSize": "457.901KB",
   "releaseNotes": "https://github.com/dieghernan/resmush/blob/master/NEWS.md",
   "readme": "https://github.com/dieghernan/resmush/blob/main/README.md",
   "contIntegration": ["https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/dieghernan/resmush"],
-  "developmentStatus": "https://www.repostatus.org/#wip"
+  "developmentStatus": "https://www.repostatus.org/#wip",
+  "keywords": ["compress-images", "optimize-images", "r", "r-package", "resmushit"]
 }
