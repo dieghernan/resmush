@@ -136,16 +136,20 @@ tibble::as_tibble(summary[, -c(1, 2)])
 ## Other alternatives
 
 - [**xfun**](https://cran.r-project.org/package=xfun) package by Yihui
-  Xie ([❤️ Sponsor him](https://github.com/sponsors/yihui)) has the
-  following functions that optimize image files:
+  Xie [![Sponsor Yihui Xie on
+  GitHub](https://img.shields.io/badge/Sponsor-white?style=flat&logo=github&logoColor=%23bf3989)](https://github.com/sponsors/yihui)
+  has the following functions that optimize image files:
+
   - `xfun::tinify()` is similar to `resmush_file()` but uses
     [TinyPNG](https://tinypng.com/). API key required.
   - `xfun::optipng()` compress local files with OptiPNG (that needs to
     be installed locally).
+
 - [**optout**](https://github.com/coolbutuseless/optout) package by
   [@coolbutuseless](https://coolbutuseless.github.io/). Similar to
   `xfun::optipng()` with additionall options. Needs additional software
   installed locally.
+
 - [Imgbot](https://imgbot.net/): Automatic optimization for files hosted
   in GitHub repos.
 
