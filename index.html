@@ -92,22 +92,66 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p>The goal of resmush is to …</p>
+<p><strong>resmush</strong> is a <strong>R</strong> package that allow users to optimize and compress images using <a href="https://resmush.it/" class="external-link">reSmush.it</a>. reSmush.it is a free API that provides image optimization, and it has been implemented on Wordpress, Drupal or Magento.</p>
+<p>Some of the features of reSmush.it are:</p>
+<ul>
+<li>Free optimization services, no API key required.</li>
+<li>Optimize local and online images.</li>
+<li>Image files supported: <code>png</code>, <code>jpg</code>, <code>gif</code>, <code>bmp</code>, <code>tif</code>.</li>
+<li>Max image size: 5 Mb.</li>
+<li>Compression via several algorithms:
+<ul>
+<li>
+<a href="https://pngquant.org/" class="external-link"><strong>PNGQuant</strong></a>: Strip unneeded chunks from <code>png</code>s, preserving a full alpha transparency.</li>
+<li>
+<a href="https://github.com/tjko/jpegoptim" class="external-link"><strong>JPEGOptim</strong></a><strong>:</strong> Lossless optimization based on optimizing the Huffman tables.</li>
+<li>
+<a href="https://optipng.sourceforge.net/" class="external-link"><strong>OptiPNG</strong></a>: <code>png</code> reducer that’s used by several online optimizers.</li>
+</ul>
+</li>
+</ul>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of resmush from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>You can install the development version of <strong>resmush</strong> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dieghernan/resmush"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"dieghernan/resmush"</span><span class="op">)</span></span></code></pre></div>
+<p>Alternatively, you can install <strong>resmush</strong>* using the <a href="https://dieghernan.r-universe.dev/resmush" class="external-link">r-universe</a>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Install resmush in R:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"resmush"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"https://dieghernan.r-universe.dev"</span>,</span>
+<span>  <span class="st">"https://cloud.r-project.org"</span></span>
+<span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/resmush/">resmush</a></span><span class="op">)</span></span>
 <span><span class="co">## basic example code</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="other-alternatives-with-r">Other alternatives with R<a class="anchor" aria-label="anchor" href="#other-alternatives-with-r"></a>
+</h2>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>
+Hernangómez D (2024). <em>resmush: Optimize and Compress Image Files with reSmush.it</em>. <a href="https://dieghernan.github.io/resmush/">https://dieghernan.github.io/resmush/</a>.
+</p>
+<p>A BibTeX entry for LaTeX users is</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Manual{R<span class="sc">-</span>arcgeocoder,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">=</span> {{resmush}<span class="sc">:</span> Optimize and Compress Image Files with {reSmush.it}},</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2024</span>},</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="dv">0</span>.<span class="fl">0.9000</span>},</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>resmush<span class="sc">/</span>},</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  abstract <span class="ot">=</span> {Compress local and online images using the reSmush.it API service <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>resmush.it<span class="sc">/</span><span class="er">&gt;</span>.},</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="attributions">Attributions<a class="anchor" aria-label="anchor" href="#attributions"></a>
