@@ -1,8 +1,13 @@
 ---
-output: github_document
+title: "Using resmush"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using resmush}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- resmush.Rmd is generated from resmush.Rmd.orig. Please edit that file -->
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -17,20 +22,6 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-
-# resmush <a href="https://dieghernan.github.io/resmush/"><img src="man/figures/logo.png" alt="resmush website" align="right" height="139"/></a>
-
-<!-- badges: start -->
-
-[![R-CMD-check](https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml)
-[![codecov](https://codecov.io/gh/dieghernan/resmush/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/resmush)
-[![r-universe](https://dieghernan.r-universe.dev/badges/resmush)](https://dieghernan.r-universe.dev/resmush)
-[![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/resmush/badge)](https://www.codefactor.io/repository/github/dieghernan/resmush)
-[![Project Status: WIP -- Initial development is in progress, but there has not
-yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-
-<!-- badges: end -->
 
 **resmush** is a **R** package that allow users to optimize and compress images
 using [reSmush.it](https://resmush.it/). reSmush.it is a free API that provides
@@ -50,27 +41,6 @@ Some of the features of reSmush.it are:
     -   [**OptiPNG**](https://optipng.sourceforge.net/): `png` reducer that is
         used by several online optimizers.
 
-## Installation
-
-You can install the development version of **resmush** from
-[GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("dieghernan/resmush")
-```
-
-Alternatively, you can install **resmush** using the
-[r-universe](https://dieghernan.r-universe.dev/resmush):
-
-```{r, eval=FALSE}
-# Install resmush in R:
-install.packages("resmush", repos = c(
-  "https://dieghernan.r-universe.dev",
-  "https://cloud.r-project.org"
-))
-```
-
 ## Example
 
 Compressing an online `jpg` image:
@@ -78,18 +48,17 @@ Compressing an online `jpg` image:
 ```{r example}
 library(resmush)
 
-url <- paste0(
-  "https://raw.githubusercontent.com/dieghernan/",
-  "resmush/main/img/jpg_example_original.jpg"
-)
+url <- paste0("https://raw.githubusercontent.com/dieghernan/",
+              "resmush/main/img/jpg_example_original.jpg")
 
-resmush_url(url, outfile = "man/figures/jpg_example_compress.jpg")
+resmush_url(url, outfile = "jpg_example_compress.jpg")
+
 ```
 
 ::: figure
 <img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" alt="Original online figure" width="49%"/>
 
-<img src="./man/figures/jpg_example_compress.jpg" alt="Optimized figure" width="49%"/>
+<img src="./jpg_example_compress.jpg" alt="Optimized figure" width="49%"/>
 
 <p class="caption">
 
@@ -104,14 +73,14 @@ the parameter `qlty`. However, it is recommended to keep this value above 90 to
 get a good image quality.
 
 ```{r jpgcompresslow}
-resmush_url(url,
-  outfile = "man/figures/jpg_example_low.jpg", qlty = 10,
-  verbose = TRUE
-)
+
+resmush_url(url, outfile = "jpg_example_low.jpg", qlty = 10,
+            verbose = TRUE)
+
 ```
 
 ::: figure
-![Low quality figure](./man/figures/jpg_example_low.jpg){width="100%"}
+![Low quality figure](jpg_example_low.jpg){width="100%"}
 
 <p class="caption">
 
@@ -124,17 +93,17 @@ All the functions return invisibly a data set with a summary of the process. The
 next example shows how when compressing a local file.
 
 ```{r pngfile}
+
 tmpfile <- tempfile(fileext = ".png")
-url2 <- paste0(
-  "https://raw.githubusercontent.com/dieghernan/",
-  "resmush/main/img/png_example_original.png"
-)
+url2 <- paste0("https://raw.githubusercontent.com/dieghernan/",
+              "resmush/main/img/png_example_original.png")
 
 download.file(url2, tmpfile, quiet = TRUE)
 
 summary <- resmush_file(tmpfile)
 
-tibble::as_tibble(summary[, -c(1, 2)])
+tibble::as_tibble(summary[,-c(1,2)])
+
 ```
 
 ## Other alternatives
@@ -152,24 +121,3 @@ tibble::as_tibble(summary[, -c(1, 2)])
     installed locally.
 -   [Imgbot](https://imgbot.net/): Automatic optimization for files hosted in
     GitHub repos.
-
-## Citation
-
-```{r echo=FALSE, results='asis'}
-print(citation("resmush"), style = "html")
-```
-
-A BibTeX entry for LaTeX users is
-
-```{r echo=FALSE, comment=""}
-toBibtex(citation("resmush"))
-```
-
-## Attributions
-
-Logo uses:
-
--   [The great wave of Kanagawa icons created by Freepik -
-    Flaticons](https://www.flaticon.com/free-icons/the-great-wave-of-kanagawa "the great wave of kanagawa icons")
--   [Compression icons created by MansyGraphics -
-    Flaticon](https://www.flaticon.com/free-icons/compression "compression icons")

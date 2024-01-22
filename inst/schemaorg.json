@@ -1,25 +1,38 @@
 {
   "@context": "https://schema.org",
-  "type": "SoftwareSourceCode",
-  "author": {
-    "id": "https://orcid.org/0000-0001-8457-4658"
-  },
-  "codeRepository": "https://github.com/dieghernan/resmush",
-  "copyrightHolder": {
-    "id": "https://orcid.org/0000-0001-8457-4658",
-    "type": "Person",
-    "email": "diego.hernangomezherrero@gmail.com",
-    "familyName": "Hernangómez",
-    "givenName": "Diego"
-  },
-  "description": "Compress local and online images using the 'reSmush.it' API service <https://resmush.it/>.",
-  "license": "https://spdx.org/licenses/MIT",
-  "name": "resmush: Optimize and Compress Image Files with 'reSmush.it'",
-  "programmingLanguage": {
-    "type": "ComputerLanguage",
-    "name": "R",
-    "url": "https://r-project.org"
-  },
-  "runtimePlatform": "R version 4.3.2 (2023-10-31)",
-  "version": "0.0.0.9000"
+  "@graph": [
+    {
+      "type": "SoftwareSourceCode",
+      "author": {
+        "id": "https://orcid.org/0000-0001-8457-4658"
+      },
+      "codeRepository": "https://github.com/dieghernan/resmush",
+      "copyrightHolder": {
+        "id": "https://orcid.org/0000-0001-8457-4658",
+        "type": "Person",
+        "email": "diego.hernangomezherrero@gmail.com",
+        "familyName": "Hernangómez",
+        "givenName": "Diego"
+      },
+      "description": "Compress local and online images using the 'reSmush.it' API service <https://resmush.it/>.",
+      "license": "https://spdx.org/licenses/MIT",
+      "name": "resmush: Optimize and Compress Image Files with 'reSmush.it'",
+      "programmingLanguage": {
+        "type": "ComputerLanguage",
+        "name": "R",
+        "url": "https://r-project.org"
+      },
+      "runtimePlatform": "R version 4.3.2 (2023-10-31)",
+      "version": "0.0.0.9000"
+    },
+    {
+      "type": "SoftwareSourceCode",
+      "author": {
+        "type": "Person",
+        "familyName": "Hernangómez",
+        "givenName": "Diego"
+      },
+      "name": "{resmush}: Optimize and Compress Image Files with {reSmush.it}"
+    }
+  ]
 }

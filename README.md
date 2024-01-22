@@ -31,8 +31,8 @@ Some of the features of reSmush.it are:
     `png`s, preserving a full alpha transparency.
   - [**JPEGOptim**](https://github.com/tjko/jpegoptim)**:** Lossless
     optimization based on optimizing the Huffman tables.
-  - [**OptiPNG**](https://optipng.sourceforge.net/): `png` reducer
-    that’s used by several online optimizers.
+  - [**OptiPNG**](https://optipng.sourceforge.net/): `png` reducer that
+    is used by several online optimizers.
 
 ## Installation
 
@@ -44,7 +44,7 @@ You can install the development version of **resmush** from
 devtools::install_github("dieghernan/resmush")
 ```
 
-Alternatively, you can install **resmush**\* using the
+Alternatively, you can install **resmush** using the
 [r-universe](https://dieghernan.r-universe.dev/resmush):
 
 ``` r
@@ -57,14 +57,97 @@ install.packages("resmush", repos = c(
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Compressing an online `jpg` image:
 
 ``` r
 library(resmush)
-## basic example code
+
+url <- paste0(
+  "https://raw.githubusercontent.com/dieghernan/",
+  "resmush/main/img/jpg_example_original.jpg"
+)
+
+resmush_url(url, outfile = "man/figures/jpg_example_compress.jpg")
 ```
 
-## Other alternatives with R
+<div class="figure">
+
+<img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" alt="Original online figure" width="49%"/>
+
+<img src="./man/figures/jpg_example_compress.jpg" alt="Optimized figure" width="49%"/>
+
+<p class="caption">
+
+Original picture (left) 178.7 Kb and optimized picture (right) 45 Kb
+(Compression 74.8%)
+
+</p>
+
+</div>
+
+The quality of the compression can be adjusted in the case of `jpg`
+files using the parameter `qlty`. However, it is recommended to keep
+this value above 90 to get a good image quality.
+
+``` r
+resmush_url(url,
+  outfile = "man/figures/jpg_example_low.jpg", qlty = 10,
+  verbose = TRUE
+)
+```
+
+<div class="figure">
+
+<figure>
+<img src="./man/figures/jpg_example_low.jpg" style="width:100.0%"
+alt="Low quality figure" />
+<figcaption aria-hidden="true">Low quality figure</figcaption>
+</figure>
+
+<p class="caption">
+
+Low quality image due to a high compression rate.
+
+</p>
+
+</div>
+
+All the functions return invisibly a data set with a summary of the
+process. The next example shows how when compressing a local file.
+
+``` r
+tmpfile <- tempfile(fileext = ".png")
+url2 <- paste0(
+  "https://raw.githubusercontent.com/dieghernan/",
+  "resmush/main/img/png_example_original.png"
+)
+
+download.file(url2, tmpfile, quiet = TRUE)
+
+summary <- resmush_file(tmpfile)
+
+tibble::as_tibble(summary[, -c(1, 2)])
+#> # A tibble: 1 × 4
+#>   src_size dest_size compress_ratio notes
+#>   <chr>    <chr>     <chr>          <chr>
+#> 1 186.2 Kb 70.8 Kb   62.0%          OK ;)
+```
+
+## Other alternatives
+
+- [**xfun**](https://cran.r-project.org/package=xfun) package by Yihui
+  Xie ([❤️ Sponsor him](https://github.com/sponsors/yihui)) has the
+  following functions that optimize image files:
+  - `xfun::tinify()` is similar to `resmush_file()` but uses
+    [TinyPNG](https://tinypng.com/). API key required.
+  - `xfun::optipng()` compress local files with OptiPNG (that needs to
+    be installed locally).
+- [**optout**](https://github.com/coolbutuseless/optout) package by
+  [@coolbutuseless](https://coolbutuseless.github.io/). Similar to
+  `xfun::optipng()` with additionall options. Needs additional software
+  installed locally.
+- [Imgbot](https://imgbot.net/): Automatic optimization for files hosted
+  in GitHub repos.
 
 ## Citation
 
