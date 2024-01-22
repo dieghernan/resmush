@@ -97,7 +97,7 @@ test_that("Test default opts with png", {
   expect_s3_class(dm, "data.frame")
   expect_false(any(is.na(dm)))
   expect_equal(dm$src_img, test_png)
-  expect_equal(dm$dest_img, test_png)
+  expect_equal(basename(dm$dest_img), basename(test_png))
 
   ratio <- as.double(gsub("%", "", dm$compress_ratio))
   expect_lt(ratio, 100)
@@ -123,7 +123,7 @@ test_that("Test opts with png", {
   expect_s3_class(dm, "data.frame")
   expect_false(any(is.na(dm)))
   expect_equal(dm$src_img, test_png)
-  expect_equal(dm$dest_img, outf)
+  expect_equal(basename(dm$dest_img), basename(outf))
 
   ins <- file.size(test_png)
   outs <- file.size(outf)
@@ -158,7 +158,6 @@ test_that("Test qlty par with jpg", {
   expect_s3_class(dm, "data.frame")
   expect_false(any(is.na(dm)))
   expect_equal(dm$src_img, test_jpg)
-  expect_equal(dm$dest_img, outf)
 
   ins <- file.size(test_jpg)
   outs <- file.size(outf)
@@ -180,4 +179,114 @@ test_that("Test qlty par with jpg", {
   out2s <- file.size(outf2)
 
   expect_lt(out2s, outs)
+})
+
+
+test_that("Test errors in lengths", {
+  skip_on_cran()
+
+  two_input <- rep(load_inst_to_temp("example.jpg"), 2)
+  expect_equal(length(two_input), 2)
+
+  several_outputs <- LETTERS[1:3]
+
+  expect_snapshot(
+    dm <- resmush_file(two_input, several_outputs),
+    error = TRUE
+  )
+})
+
+test_that("Test full vectors without outfile", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # tempfile
+  no_file <- tempfile()
+
+  # Bad extension
+  # tempfile
+  bad_ext <- tempfile(, fileext = ".txt")
+
+  writeLines("testing a fake file", con = bad_ext)
+  jpg_file <- load_inst_to_temp("example.jpg")
+  png_file <- load_inst_to_temp("example.png")
+
+  all_in <- c(png_file, no_file, jpg_file, bad_ext)
+
+  expect_message(
+    dm <- resmush_file(all_in),
+    "not found on disk"
+  )
+
+  expect_equal(nrow(dm), 4)
+  expect_equal(dm$src_img, all_in)
+  expect_equal(basename(dm$dest_img), basename(c(all_in[1], NA, all_in[3], NA)))
+})
+
+
+test_that("Test full vectors with outfile", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # tempfile
+  no_file <- tempfile()
+
+  # Bad extension
+  # tempfile
+  bad_ext <- tempfile(, fileext = ".txt")
+
+  writeLines("testing a fake file", con = bad_ext)
+  jpg_file <- load_inst_to_temp("example.jpg")
+  png_file <- load_inst_to_temp("example.png")
+
+  all_in <- c(png_file, no_file, jpg_file, bad_ext)
+
+  all_outs <- c(
+    tempfile(fileext = ".png"),
+    tempfile(fileext = ".png"),
+    tempfile(fileext = ".jpg"),
+    tempfile(fileext = ".png")
+  )
+
+  expect_length(unique(all_outs), 4)
+
+  expect_message(
+    dm <- resmush_file(all_in, all_outs),
+    "not found on disk"
+  )
+
+  expect_equal(nrow(dm), 4)
+  expect_equal(dm$src_img, all_in)
+  expect_equal(
+    basename(dm$dest_img),
+    basename(c(all_outs[1], NA, all_outs[3], NA))
+  )
+
+  expect_true(all(file.exists(all_outs[c(1, 3)])))
+})
+
+
+test_that("Handle duplicate names", {
+  skip_on_cran()
+  skip_if_offline()
+
+  png_file <- rep(load_inst_to_temp("example.png"), 2)
+
+  outs <- rep(tempfile(fileext = "_local_nodup.png"), 2)
+
+  expect_false(file.exists(outs[1]))
+
+  # But should be renamed as
+  renamed <- gsub("local_nodup", "local_nodup_1", outs[1])
+  expect_false(file.exists(renamed))
+
+  # Call
+  expect_silent(dm <- resmush_file(png_file, outs))
+
+  # Check that now exists
+  expect_true(file.exists(renamed))
+
+  expect_equal(nrow(dm), 2)
+  expect_equal(dm$src_img, png_file)
+  expect_equal(basename(dm$dest_img), basename(c(outs[1], renamed)))
 })

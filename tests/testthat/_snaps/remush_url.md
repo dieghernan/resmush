@@ -73,3 +73,11 @@
                                                                             notes
       1 403: Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF, WEBP
 
+# Test errors in lengths
+
+    Code
+      dm <- resmush_url(two_input, several_outputs)
+    Condition
+      Error in `resmush_url()`:
+      ! Lengths of `url` and `outfile`should be the same (2 vs. 3)
+

@@ -19,3 +19,6 @@
 ^data-raw$
 ^docs$
 ^dev$
+^resmush\.Rcheck$
+^resmush.*\.tar\.gz$
+^resmush.*\.tgz$

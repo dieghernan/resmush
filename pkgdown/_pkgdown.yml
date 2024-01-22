@@ -6,6 +6,8 @@ figures:
 
 template:
   package: gitdevr
+  params:
+    ganalytics: G-57GZF8X6PD
   opengraph:
     twitter:
       creator: '@dhernangomez'

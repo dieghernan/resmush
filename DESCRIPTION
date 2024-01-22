@@ -1,10 +1,11 @@
 Package: resmush
-Title: What the Package Does (One Line, Title Case)
+Title: Optimize and Compress Image Files with 'reSmush.it'
 Version: 0.0.0.9000
 Authors@R: 
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
-Description: What the package does (one paragraph).
+Description: Compress local and online images using the 'reSmush.it' API
+    service <https://resmush.it/>.
 License: MIT + file LICENSE
 URL: https://dieghernan.github.io/resmush/,
     https://github.com/dieghernan/resmush
