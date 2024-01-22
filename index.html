@@ -59,6 +59,9 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
+  <a class="nav-link" href="articles/resmush.html">Get started</a>
+</li>
+<li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
 <li class="nav-item">
@@ -106,7 +109,7 @@
 <li>
 <a href="https://github.com/tjko/jpegoptim" class="external-link"><strong>JPEGOptim</strong></a><strong>:</strong> Lossless optimization based on optimizing the Huffman tables.</li>
 <li>
-<a href="https://optipng.sourceforge.net/" class="external-link"><strong>OptiPNG</strong></a>: <code>png</code> reducer that’s used by several online optimizers.</li>
+<a href="https://optipng.sourceforge.net/" class="external-link"><strong>OptiPNG</strong></a>: <code>png</code> reducer that is used by several online optimizers.</li>
 </ul>
 </li>
 </ul>
@@ -117,7 +120,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"dieghernan/resmush"</span><span class="op">)</span></span></code></pre></div>
-<p>Alternatively, you can install <strong>resmush</strong>* using the <a href="https://dieghernan.r-universe.dev/resmush" class="external-link">r-universe</a>:</p>
+<p>Alternatively, you can install <strong>resmush</strong> using the <a href="https://dieghernan.r-universe.dev/resmush" class="external-link">r-universe</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Install resmush in R:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"resmush"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
@@ -128,14 +131,72 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<p>Compressing an online <code>jpg</code> image:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/resmush/">resmush</a></span><span class="op">)</span></span>
-<span><span class="co">## basic example code</span></span></code></pre></div>
+<span></span>
+<span><span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
+<span>  <span class="st">"https://raw.githubusercontent.com/dieghernan/"</span>,</span>
+<span>  <span class="st">"resmush/main/img/jpg_example_original.jpg"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/resmush_url.html">resmush_url</a></span><span class="op">(</span><span class="va">url</span>, outfile <span class="op">=</span> <span class="st">"man/figures/jpg_example_compress.jpg"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<p><img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" alt="Original online figure" width="49%"></p>
+<p><img src="./reference/figures/jpg_example_compress.jpg" alt="Optimized figure" width="49%"></p>
+<p class="caption">
+</p>
+<p>Original picture (left) 178.7 Kb and optimized picture (right) 45 Kb (Compression 74.8%)</p>
+
+</div>
+<p>The quality of the compression can be adjusted in the case of <code>jpg</code> files using the parameter <code>qlty</code>. However, it is recommended to keep this value above 90 to get a good image quality.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/resmush_url.html">resmush_url</a></span><span class="op">(</span><span class="va">url</span>,</span>
+<span>  outfile <span class="op">=</span> <span class="st">"man/figures/jpg_example_low.jpg"</span>, qlty <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<figure><img src="./reference/figures/jpg_example_low.jpg" style="width:100.0%" alt="Low quality figure"><figcaption aria-hidden="true">
+Low quality figure
+</figcaption></figure><p class="caption">
+</p>
+<p>Low quality image due to a high compression rate.</p>
+
+</div>
+<p>All the functions return invisibly a data set with a summary of the process. The next example shows how when compressing a local file.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tmpfile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".png"</span><span class="op">)</span></span>
+<span><span class="va">url2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
+<span>  <span class="st">"https://raw.githubusercontent.com/dieghernan/"</span>,</span>
+<span>  <span class="st">"resmush/main/img/png_example_original.png"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span><span class="va">url2</span>, <span class="va">tmpfile</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/resmush_file.html">resmush_file</a></span><span class="op">(</span><span class="va">tmpfile</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="va">summary</span><span class="op">[</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 4</span></span>
+<span><span class="co">#&gt;   src_size dest_size compress_ratio notes</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;</span></span>
+<span><span class="co">#&gt; 1 186.2 Kb 70.8 Kb   62.0%          OK ;)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="other-alternatives-with-r">Other alternatives with R<a class="anchor" aria-label="anchor" href="#other-alternatives-with-r"></a>
+<h2 id="other-alternatives">Other alternatives<a class="anchor" aria-label="anchor" href="#other-alternatives"></a>
 </h2>
+<ul>
+<li>
+<p><a href="https://cran.r-project.org/package=xfun" class="external-link"><strong>xfun</strong></a> package by Yihui Xie <a href="https://github.com/sponsors/yihui" class="external-link"><img src="https://img.shields.io/badge/Sponsor-white?style=flat&amp;logo=github&amp;logoColor=%23bf3989" alt="Sponsor Yihui Xie on GitHub"></a> has the following functions that optimize image files:</p>
+<ul>
+<li>
+<code><a href="https://rdrr.io/pkg/xfun/man/tinify.html" class="external-link">xfun::tinify()</a></code> is similar to <code><a href="reference/resmush_file.html">resmush_file()</a></code> but uses <a href="https://tinypng.com/" class="external-link">TinyPNG</a>. API key required.</li>
+<li>
+<code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> compress local files with OptiPNG (that needs to be installed locally).</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/coolbutuseless/optout" class="external-link"><strong>optout</strong></a> package by <a href="https://coolbutuseless.github.io/" class="external-link">@coolbutuseless</a>. Similar to <code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> with additionall options. Needs additional software installed locally.</p></li>
+<li><p><a href="https://imgbot.net/" class="external-link">Imgbot</a>: Automatic optimization for files hosted in GitHub repos.</p></li>
+</ul>
 </div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
@@ -144,14 +205,14 @@
 Hernangómez D (2024). <em>resmush: Optimize and Compress Image Files with reSmush.it</em>. <a href="https://dieghernan.github.io/resmush/">https://dieghernan.github.io/resmush/</a>.
 </p>
 <p>A BibTeX entry for LaTeX users is</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Manual{R<span class="sc">-</span>arcgeocoder,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">=</span> {{resmush}<span class="sc">:</span> Optimize and Compress Image Files with {reSmush.it}},</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2024</span>},</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="dv">0</span>.<span class="fl">0.9000</span>},</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>resmush<span class="sc">/</span>},</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  abstract <span class="ot">=</span> {Compress local and online images using the reSmush.it API service <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>resmush.it<span class="sc">/</span><span class="er">&gt;</span>.},</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Manual{R<span class="sc">-</span>arcgeocoder,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">=</span> {{resmush}<span class="sc">:</span> Optimize and Compress Image Files with {reSmush.it}},</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2024</span>},</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="dv">0</span>.<span class="fl">0.9000</span>},</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>resmush<span class="sc">/</span>},</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  abstract <span class="ot">=</span> {Compress local and online images using the reSmush.it API service <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>resmush.it<span class="sc">/</span><span class="er">&gt;</span>.},</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="attributions">Attributions<a class="anchor" aria-label="anchor" href="#attributions"></a>
