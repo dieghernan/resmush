@@ -17,10 +17,11 @@ resmush_file(
 following image files:
 \itemize{
 \item \code{png}
-\item \code{jpg}
+\item \code{jpg/jpeg}
 \item \code{gif}
 \item \code{bmp}
-\item \code{tif}
+\item \code{tiff}
+\item \code{webp}
 }}
 
 \item{suffix}{Character, defaults to \code{"_resmush"}. By default, a new file
@@ -83,5 +84,7 @@ resmush_file(tmp_jpg, verbose = TRUE, qlty = 10)
 \seealso{
 \href{https://resmush.it/api}{reSmush.it API} docs.
 
-\code{\link[=resmush_url]{resmush_url()}}
+Other functions for optimizing:
+\code{\link{resmush_url}()}
 }
+\concept{optimize}

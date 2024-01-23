@@ -1,3 +1,7 @@
+#' Create an `object_size` object from an integer
+#'
+#' @param x An integer
+#' @noRd
 make_object_size <- function(x) {
   x <- as.integer(x)
   classob <- object.size(x)
@@ -6,7 +10,12 @@ make_object_size <- function(x) {
 }
 
 
-# Add suffix
+#' Add suffix to base name
+#'
+#' @param x A character
+#' @param suffix Suffix to be added
+#'
+#' @noRd
 add_suffix <- function(x, suffix = "_resmush") {
   # Handle suffix
   if (any(is.na(suffix), is.null(suffix), suffix == "")) {
@@ -21,7 +30,11 @@ add_suffix <- function(x, suffix = "_resmush") {
   return(newname)
 }
 
-# Handle names
+#' Create unique paths to files
+#'
+#' @param x A path
+#'
+#' @noRd
 make_unique_paths <- function(x) {
   dir_file <- dirname(x)
   base_names <- basename(x)
@@ -51,30 +64,6 @@ make_unique_paths <- function(x) {
 
   file.path(dir_file, res)
 }
-#
-# name_sans_ext <- function(x) {
-#   sans_ext <- vapply(x, FUN = function(y) {
-#     name_parts <- unlist(strsplit(y, ".", fixed = TRUE))
-#
-#     paste0(name_parts[-length(name_parts)], collapse = ".")
-#   }, FUN.VALUE = character(1))
-#
-#   unname(sans_ext)
-# }
-#
-#
-#
-# my_file_ext <- function(x) {
-#   ext_only <- vapply(x, FUN = function(y) {
-#     name_parts <- unlist(strsplit(y, ".", fixed = TRUE))
-#
-#     paste0(".", name_parts[length(name_parts)])
-#   }, FUN.VALUE = character(1))
-#
-#   unname(ext_only)
-# }
-
-
 
 # Utils for testing
 load_inst_to_temp <- function(file) {

@@ -3,5 +3,5 @@
 
 ## usethis namespace: start
 ## usethis namespace: end
-#' @importFrom utils object.size
+#' @importFrom utils object.size URLencode
 NULL

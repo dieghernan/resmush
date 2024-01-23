@@ -20,7 +20,10 @@ reference:
 - title: "Optimize images"
   desc:  Several ways to optimize images with <https://resmush.it/>
   contents:
-    - starts_with("resmush_")
+    - has_concept("optimize")
+- title: "Helper functions"
+  contents:
+    - has_concept("helpers")
 - title: "About the package"
   contents:
     - resmush-package

@@ -19,7 +19,7 @@ Some of the features of reSmush.it are:
 
 -   Free optimization services, no API key required.
 -   Optimize local and online images.
--   Image files supported: `png`, `jpg`, `gif`, `bmp`, `tif`.
+-   Image files supported: `png`, `jpg/jpeg`, `gif`, `bmp`, `tiff`, `webp`.
 -   Max image size: 5 Mb.
 -   Compression via several algorithms:
     -   [**PNGQuant**](https://pngquant.org/): Strip unneeded chunks from
@@ -94,16 +94,16 @@ png_file <- system.file("extimg/example.png", package = "resmush")
 # For the example, copy to a temporary file
 tmp_png <- tempfile(fileext = ".png")
 file.copy(png_file, tmp_png, overwrite = TRUE)
-#> [1] FALSE
+#> [1] TRUE
 
 
 summary <- resmush_file(tmp_png)
 
 tibble::as_tibble(summary[, -c(1, 2)])
 #> # A tibble: 1 × 4
-#>   src_size dest_size compress_ratio notes                     
-#>   <lgl>    <lgl>     <lgl>          <chr>                     
-#> 1 NA       NA        NA             local file does not exists
+#>   src_size dest_size compress_ratio notes
+#>   <chr>    <chr>     <chr>          <chr>
+#> 1 239.9 Kb 70.7 Kb   70.5%          OK ;)
 ```
 
 ## Other alternatives

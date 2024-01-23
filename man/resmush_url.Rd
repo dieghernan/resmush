@@ -17,10 +17,11 @@ resmush_url(
 \strong{reSmush} can optimize the following image files:
 \itemize{
 \item \code{png}
-\item \code{jpg}
+\item \code{jpg/jpeg}
 \item \code{gif}
 \item \code{bmp}
-\item \code{tif}
+\item \code{tiff}
+\item \code{webp}
 }}
 
 \item{outfile}{Path or paths where the optimized files would be store in
@@ -78,5 +79,7 @@ resmush_url(jpg_url, verbose = TRUE, qlty = 10)
 \seealso{
 \href{https://resmush.it/api}{reSmush.it API} docs.
 
-\code{\link[=resmush_file]{resmush_file()}}
+Other functions for optimizing:
+\code{\link{resmush_file}()}
 }
+\concept{optimize}

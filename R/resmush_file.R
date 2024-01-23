@@ -7,10 +7,11 @@
 #' @param file Path or paths to local files. **reSmush** can optimize the
 #'  following image files:
 #'  * `png`
-#'  * `jpg`
+#'  * `jpg/jpeg`
 #'  * `gif`
 #'  * `bmp`
-#'  * `tif`
+#'  * `tiff`
+#'  * `webp`
 #'
 #' @param suffix Character, defaults to `"_resmush"`. By default, a new file
 #'   with the suffix is created in the same directory than `file`. (i.e.,
@@ -32,7 +33,8 @@
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api) docs.
 #'
-#' [resmush_url()]
+#' @family optimize
+#'
 #' @export
 #'
 #' @examplesIf curl::has_internet()

@@ -31,7 +31,7 @@ Some of the features of reSmush.it are:
 
 -   Free optimization services, no API key required.
 -   Optimize local and online images.
--   Image files supported: `png`, `jpg`, `gif`, `bmp`, `tif`.
+-   Image files supported: `png`, `jpg/jpeg`, `gif`, `bmp`, `tiff`, `webp`.
 -   Max image size: 5 Mb.
 -   Compression via several algorithms:
     -   [**PNGQuant**](https://pngquant.org/): Strip unneeded chunks from

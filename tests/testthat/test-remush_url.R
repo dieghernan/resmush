@@ -315,7 +315,7 @@ test_that("Handle duplicate names", {
   expect_false(file.exists(outs[1]))
 
   # But should be renamed as
-  renamed <- file.path(tempdir(), "example_1.png")
+  renamed <- file.path(tempdir(), "example_01.png")
   if (any(file.exists(renamed))) unlink(renamed, force = TRUE)
   expect_false(file.exists(renamed))
 
