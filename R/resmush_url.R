@@ -7,10 +7,11 @@
 #' @param url url or a vector of urls pointing to hosted image files.
 #' **reSmush** can optimize the following image files:
 #'  * `png`
-#'  * `jpg`
+#'  * `jpg/jpeg`
 #'  * `gif`
 #'  * `bmp`
-#'  * `tif`
+#'  * `tiff`
+#'  * `webp`
 #' @param outfile Path or paths where the optimized files would be store in
 #' your disk. By default, temporary files (see [tempfile()]) with the same
 #' [basename()] than the file provided in `url` would be created. It should be
@@ -29,7 +30,7 @@
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api) docs.
 #'
-#' [resmush_file()]
+#' @family optimize
 #'
 #' @export
 #'
@@ -192,13 +193,14 @@ smush_from_url <- function(url, qlty, exif_preserve = TRUE, n_rep = 3) {
   exif_preserve <- isTRUE(exif_preserve)
 
   for (i in seq(1, n_rep)) {
-    api_get <- httr::GET(
-      paste0(
-        "http://api.resmush.it/ws.php?qlty=", qlty,
-        "&img=", url,
-        "&exif=", exif_preserve
-      )
+    url_enc <- paste0(
+      "http://api.resmush.it/ws.php?qlty=", qlty,
+      "&img=", url,
+      "&exif=", exif_preserve
     )
+    url_enc <- URLencode(url_enc)
+
+    api_get <- httr::GET(url_enc)
 
     res_get <- httr::content(api_get)
 

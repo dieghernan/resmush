@@ -89,15 +89,23 @@ test_that("Not valid file", {
 test_that("Test default opts with png", {
   skip_on_cran()
   skip_if_offline()
+
+  resmush_clean_dir(tempdir())
   test_png <- load_inst_to_temp("example.png")
+
+  # Make output
+  theout <- add_suffix(test_png)
+
   expect_true(file.exists(test_png))
+  expect_false(file.exists(theout))
 
   expect_silent(dm <- resmush_file(test_png))
 
   expect_s3_class(dm, "data.frame")
   expect_false(any(is.na(dm)))
   expect_equal(dm$src_img, test_png)
-  expect_equal(basename(dm$dest_img), basename(test_png))
+  expect_true(file.exists(theout))
+  expect_equal(basename(dm$dest_img), "example_resmush.png")
 
   ratio <- as.double(gsub("%", "", dm$compress_ratio))
   expect_lt(ratio, 100)
@@ -107,26 +115,26 @@ test_that("Test default opts with png", {
 test_that("Test opts with png", {
   skip_on_cran()
   skip_if_offline()
+  resmush_clean_dir(tempdir())
   test_png <- load_inst_to_temp("example.png")
   expect_true(file.exists(test_png))
-  outf <- tempfile(fileext = ".png")
-  expect_false(file.exists(outf))
+  ins <- file.size(test_png)
+
+  # Make output
+  theout <- add_suffix(test_png, suffix = "_resmush")
+  expect_false(file.exists(theout))
   expect_message(
-    dm <- resmush_file(test_png,
-      outf,
-      verbose = TRUE
-    ),
+    dm <- resmush_file(test_png, suffix = "", verbose = TRUE),
     "Optimizing"
   )
 
-  expect_true(file.exists(outf))
+  expect_false(file.exists(theout))
   expect_s3_class(dm, "data.frame")
   expect_false(any(is.na(dm)))
   expect_equal(dm$src_img, test_png)
-  expect_equal(basename(dm$dest_img), basename(outf))
+  expect_equal(dm$dest_img, dm$src_img)
 
-  ins <- file.size(test_png)
-  outs <- file.size(outf)
+  outs <- file.size(test_png)
   expect_lt(outs, ins)
 
   # Check units
@@ -142,15 +150,13 @@ test_that("Test qlty par with jpg", {
   skip_on_cran()
   skip_if_offline()
 
+  resmush_clean_dir(tempdir(), "a_jpg_qlty")
   test_jpg <- load_inst_to_temp("example.jpg")
   expect_true(file.exists(test_jpg))
-  outf <- tempfile(fileext = ".jpg")
+  outf <- add_suffix(test_jpg, "a_jpg_qlty")
   expect_false(file.exists(outf))
   expect_message(
-    dm <- resmush_file(test_jpg,
-      outf,
-      verbose = TRUE
-    ),
+    dm <- resmush_file(test_jpg, suffix = "a_jpg_qlty", verbose = TRUE),
     "Optimizing"
   )
 
@@ -172,8 +178,10 @@ test_that("Test qlty par with jpg", {
   expect_identical(dm$src_size, fmrted)
 
   # Use qlty
-  outf2 <- tempfile(fileext = ".jpg")
-  dm2 <- resmush_file(test_jpg, outf2, qlty = 30)
+  resmush_clean_dir(tempdir(), "_even_lower")
+  outf2 <- add_suffix(test_jpg, "_even_lower")
+  expect_false(file.exists(outf2))
+  dm2 <- resmush_file(test_jpg, suffix = "_even_lower", qlty = 30)
 
   expect_true(file.exists(outf2))
   out2s <- file.size(outf2)
@@ -182,21 +190,8 @@ test_that("Test qlty par with jpg", {
 })
 
 
-test_that("Test errors in lengths", {
-  skip_on_cran()
 
-  two_input <- rep(load_inst_to_temp("example.jpg"), 2)
-  expect_equal(length(two_input), 2)
-
-  several_outputs <- LETTERS[1:3]
-
-  expect_snapshot(
-    dm <- resmush_file(two_input, several_outputs),
-    error = TRUE
-  )
-})
-
-test_that("Test full vectors without outfile", {
+test_that("Test full vectors", {
   skip_on_cran()
   skip_if_offline()
 
@@ -212,6 +207,10 @@ test_that("Test full vectors without outfile", {
   png_file <- load_inst_to_temp("example.png")
 
   all_in <- c(png_file, no_file, jpg_file, bad_ext)
+
+  res_all <- add_suffix(all_in)
+
+  resmush_clean_dir(tempdir())
 
   expect_message(
     dm <- resmush_file(all_in),
@@ -220,73 +219,33 @@ test_that("Test full vectors without outfile", {
 
   expect_equal(nrow(dm), 4)
   expect_equal(dm$src_img, all_in)
-  expect_equal(basename(dm$dest_img), basename(c(all_in[1], NA, all_in[3], NA)))
+  expect_equal(basename(dm$dest_img), basename(c(
+    res_all[1], NA, res_all[3],
+    NA
+  )))
 })
 
 
-test_that("Test full vectors with outfile", {
+test_that("Test exif", {
   skip_on_cran()
   skip_if_offline()
+  exif <- tempfile("exif", fileext = ".jpg")
 
-  # tempfile
-  no_file <- tempfile()
-
-  # Bad extension
-  # tempfile
-  bad_ext <- tempfile(, fileext = ".txt")
-
-  writeLines("testing a fake file", con = bad_ext)
-  jpg_file <- load_inst_to_temp("example.jpg")
-  png_file <- load_inst_to_temp("example.png")
-
-  all_in <- c(png_file, no_file, jpg_file, bad_ext)
-
-  all_outs <- c(
-    tempfile(fileext = ".png"),
-    tempfile(fileext = ".png"),
-    tempfile(fileext = ".jpg"),
-    tempfile(fileext = ".png")
+  res <- httr::GET(
+    url = paste0(
+      "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+      "img/sample-jpg-exif-876kb.jpg"
+    ),
+    httr::write_disk(exif, overwrite = TRUE)
   )
 
-  expect_length(unique(all_outs), 4)
+  expect_true(file.exists(exif))
+  resmush_clean_dir(tempdir(), "_without_exif")
+  resmush_clean_dir(tempdir(), "_with_exif")
 
-  expect_message(
-    dm <- resmush_file(all_in, all_outs),
-    "not found on disk"
-  )
+  # With exif
+  dm <- resmush_file(exif, "_without_exif", exif_preserve = FALSE)
+  dm2 <- resmush_file(exif, "_with_exif", exif_preserve = TRUE)
 
-  expect_equal(nrow(dm), 4)
-  expect_equal(dm$src_img, all_in)
-  expect_equal(
-    basename(dm$dest_img),
-    basename(c(all_outs[1], NA, all_outs[3], NA))
-  )
-
-  expect_true(all(file.exists(all_outs[c(1, 3)])))
-})
-
-
-test_that("Handle duplicate names", {
-  skip_on_cran()
-  skip_if_offline()
-
-  png_file <- rep(load_inst_to_temp("example.png"), 2)
-
-  outs <- rep(tempfile(fileext = "_local_nodup.png"), 2)
-
-  expect_false(file.exists(outs[1]))
-
-  # But should be renamed as
-  renamed <- gsub("local_nodup", "local_nodup_1", outs[1])
-  expect_false(file.exists(renamed))
-
-  # Call
-  expect_silent(dm <- resmush_file(png_file, outs))
-
-  # Check that now exists
-  expect_true(file.exists(renamed))
-
-  expect_equal(nrow(dm), 2)
-  expect_equal(dm$src_img, png_file)
-  expect_equal(basename(dm$dest_img), basename(c(outs[1], renamed)))
+  expect_lt(file.size(dm$dest_img), file.size(dm2$dest_img))
 })

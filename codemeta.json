@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.2 (2023-10-31 ucrt)",
+  "runtimePlatform": "R version 4.3.2 (2023-10-31)",
   "author": [
     {
       "@type": "Person",
@@ -126,12 +126,18 @@
     },
     "5": {
       "@type": "SoftwareApplication",
+      "identifier": "tools",
+      "name": "tools"
+    },
+    "6": {
+      "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "575.966KB",
+  "keywords": ["r", "compress-images", "optimize-images", "resmushit", "api", "r-package"],
+  "fileSize": "580.18KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -150,6 +156,5 @@
   "releaseNotes": "https://github.com/dieghernan/resmush/blob/master/NEWS.md",
   "readme": "https://github.com/dieghernan/resmush/blob/main/README.md",
   "contIntegration": ["https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/dieghernan/resmush"],
-  "developmentStatus": "https://www.repostatus.org/#wip",
-  "keywords": ["compress-images", "optimize-images", "r", "r-package", "resmushit"]
+  "developmentStatus": "https://www.repostatus.org/#wip"
 }

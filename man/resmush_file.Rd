@@ -6,7 +6,7 @@
 \usage{
 resmush_file(
   file,
-  outfile = file,
+  suffix = "_resmush",
   qlty = 92,
   verbose = FALSE,
   exif_preserve = FALSE
@@ -17,15 +17,18 @@ resmush_file(
 following image files:
 \itemize{
 \item \code{png}
-\item \code{jpg}
+\item \code{jpg/jpeg}
 \item \code{gif}
 \item \code{bmp}
-\item \code{tif}
+\item \code{tiff}
+\item \code{webp}
 }}
 
-\item{outfile}{Path or paths where the optimized files would be store in
-your disk. By default, it would override the file specified in \code{file}. It
-should be of the same length than \code{file} parameter.}
+\item{suffix}{Character, defaults to \code{"_resmush"}. By default, a new file
+with the suffix is created in the same directory than \code{file}. (i.e.,
+optimized \code{example.png} would be \code{example_resmush.png}). Use \code{""}, \code{NA}
+of \code{NULL} for overwrite the initial \code{file}.
+the \code{file} use any of the following values: \verb{"", NA, NULL}.}
 
 \item{qlty}{Only affects \code{jpg} files. Integer between 0 and 100 indicating
 the optimization level. For optimal results use vales above 90.}
@@ -37,18 +40,13 @@ the optimization level. For optimal results use vales above 90.}
 Default is to remove (i.e. \code{exif_preserve = FALSE}).}
 }
 \value{
-Writes on disk the optimized file if the API call is successful.
+Writes on disk the optimized file if the API call is successful in the
+same directory than \code{file}.
 In any case, a (invisibly) data frame with a summary of the process is
 returned as well.
-
-If any value of the vector \code{outfile} is duplicated, \code{resmush_file()} would
-rename the output with a suffix \verb{_1. _2}, etc.
 }
 \description{
 Optimize local images using the \href{https://resmush.it/}{reSmush.it API}.
-
-\strong{Note that} the default parameters of the function \code{outfile = file}
-\strong{overwrites} the local file. See \strong{Examples}.
 }
 \examples{
 \dontshow{if (curl::has_internet()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
@@ -56,20 +54,20 @@ Optimize local images using the \href{https://resmush.it/}{reSmush.it API}.
 \donttest{
 png_file <- system.file("extimg/example.png", package = "resmush")
 
-# For the example, write to a temp file
+# For the example, copy to a temporary file
 tmp_png <- tempfile(fileext = ".png")
 
-resmush_file(png_file, outfile = tmp_png)
+file.copy(png_file, tmp_png, overwrite = TRUE)
+
+resmush_file(tmp_png)
 
 # Several paths
 jpg_file <- system.file("extimg/example.jpg", package = "resmush")
 tmp_jpg <- tempfile(fileext = ".jpg")
 
+file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 
-summary <- resmush_file(c(png_file, jpg_file), outfile = c(
-  tmp_png,
-  tmp_jpg
-))
+summary <- resmush_file(c(tmp_png, tmp_jpg))
 
 # Returns an (invisible) data frame with a summary of the process
 summary
@@ -78,13 +76,15 @@ summary
 # With parameters
 
 # Silently returns a data frame
-resmush_file(jpg_file, outfile = tmp_jpg, verbose = TRUE)
-resmush_file(jpg_file, outfile = tmp_jpg, verbose = TRUE, qlty = 10)
+resmush_file(tmp_jpg, verbose = TRUE)
+resmush_file(tmp_jpg, verbose = TRUE, qlty = 10)
 }
 \dontshow{\}) # examplesIf}
 }
 \seealso{
 \href{https://resmush.it/api}{reSmush.it API} docs.
 
-\code{\link[=resmush_url]{resmush_url()}}
+Other functions for optimizing:
+\code{\link{resmush_url}()}
 }
+\concept{optimize}

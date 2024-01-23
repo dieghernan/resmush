@@ -24,7 +24,8 @@ Some of the features of reSmush.it are:
 
 - Free optimization services, no API key required.
 - Optimize local and online images.
-- Image files supported: `png`, `jpg`, `gif`, `bmp`, `tif`.
+- Image files supported: `png`, `jpg/jpeg`, `gif`, `bmp`, `tiff`,
+  `webp`.
 - Max image size: 5 Mb.
 - Compression via several algorithms:
   - [**PNGQuant**](https://pngquant.org/): Strip unneeded chunks from
@@ -119,12 +120,15 @@ All the functions return invisibly a data set with a summary of the
 process. The next example shows how when compressing a local file.
 
 ``` r
-png_file <- system.file("extimg/example.png",
-  package = "resmush"
-)
+png_file <- system.file("extimg/example.png", package = "resmush")
 
+# For the example, copy to a temporary file
 tmp_png <- tempfile(fileext = ".png")
-summary <- resmush_file(png_file, tmp_png)
+file.copy(png_file, tmp_png, overwrite = TRUE)
+#> [1] TRUE
+
+
+summary <- resmush_file(tmp_png)
 
 tibble::as_tibble(summary[, -c(1, 2)])
 #> # A tibble: 1 × 4
@@ -163,7 +167,7 @@ with reSmush.it</em>.
 
 A BibTeX entry for LaTeX users is
 
-    @Manual{R-arcgeocoder,
+    @Manual{R-resmush,
       title = {{resmush}: Optimize and Compress Image Files with {reSmush.it}},
       author = {Diego Hernangómez},
       year = {2024},
