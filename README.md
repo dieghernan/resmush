@@ -167,7 +167,7 @@ with reSmush.it</em>.
 
 A BibTeX entry for LaTeX users is
 
-    @Manual{R-arcgeocoder,
+    @Manual{R-resmush,
       title = {{resmush}: Optimize and Compress Image Files with {reSmush.it}},
       author = {Diego Hernangómez},
       year = {2024},

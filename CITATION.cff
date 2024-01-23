@@ -35,11 +35,12 @@ contact:
   email: diego.hernangomezherrero@gmail.com
   orcid: https://orcid.org/0000-0001-8457-4658
 keywords:
+- r
 - compress-images
 - optimize-images
-- r
-- r-package
 - resmushit
+- api
+- r-package
 references:
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
