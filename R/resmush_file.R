@@ -3,8 +3,6 @@
 #' @description
 #' Optimize local images using the [reSmush.it API](https://resmush.it/).
 #'
-#' **Note that** the default parameters of the function `outfile = file`
-#' **overwrites** the local file. See **Examples**.
 #'
 #' @param file Path or paths to local files. **reSmush** can optimize the
 #'  following image files:
@@ -13,9 +11,12 @@
 #'  * `gif`
 #'  * `bmp`
 #'  * `tif`
-#' @param outfile Path or paths where the optimized files would be store in
-#'   your disk. By default, it would override the file specified in `file`. It
-#'   should be of the same length than `file` parameter.
+#'
+#' @param suffix Character, defaults to `"_resmush"`. By default, a new file
+#'   with the suffix is created in the same directory than `file`. (i.e.,
+#'   optimized `example.png` would be `example_resmush.png`). Use `""`, `NA`
+#'   of `NULL` for overwrite the initial `file`.
+#'   the `file` use any of the following values: `"", NA, NULL`.
 #' @param qlty Only affects `jpg` files. Integer between 0 and 100 indicating
 #' the optimization level. For optimal results use vales above 90.
 #' @param verbose Logical. If `TRUE` displays a summary of the results.
@@ -23,12 +24,10 @@
 #'   [Exif](https://en.wikipedia.org/wiki/Exif) information (if any) deleted?
 #'   Default is to remove (i.e. `exif_preserve = FALSE`).
 #' @return
-#' Writes on disk the optimized file if the API call is successful.
+#' Writes on disk the optimized file if the API call is successful in the
+#' same directory than `file`.
 #' In any case, a (invisibly) data frame with a summary of the process is
 #' returned as well.
-#'
-#' If any value of the vector `outfile` is duplicated, `resmush_file()` would
-#' rename the output with a suffix `_1. _2`, etc.
 #'
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api) docs.
@@ -41,20 +40,20 @@
 #' \donttest{
 #' png_file <- system.file("extimg/example.png", package = "resmush")
 #'
-#' # For the example, write to a temp file
+#' # For the example, copy to a temporary file
 #' tmp_png <- tempfile(fileext = ".png")
 #'
-#' resmush_file(png_file, outfile = tmp_png)
+#' file.copy(png_file, tmp_png, overwrite = TRUE)
+#'
+#' resmush_file(tmp_png)
 #'
 #' # Several paths
 #' jpg_file <- system.file("extimg/example.jpg", package = "resmush")
 #' tmp_jpg <- tempfile(fileext = ".jpg")
 #'
+#' file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 #'
-#' summary <- resmush_file(c(png_file, jpg_file), outfile = c(
-#'   tmp_png,
-#'   tmp_jpg
-#' ))
+#' summary <- resmush_file(c(tmp_png, tmp_jpg))
 #'
 #' # Returns an (invisible) data frame with a summary of the process
 #' summary
@@ -63,35 +62,17 @@
 #' # With parameters
 #'
 #' # Silently returns a data frame
-#' resmush_file(jpg_file, outfile = tmp_jpg, verbose = TRUE)
-#' resmush_file(jpg_file, outfile = tmp_jpg, verbose = TRUE, qlty = 10)
+#' resmush_file(tmp_jpg, verbose = TRUE)
+#' resmush_file(tmp_jpg, verbose = TRUE, qlty = 10)
 #' }
 #'
-resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE,
+resmush_file <- function(file, suffix = "_resmush", qlty = 92, verbose = FALSE,
                          exif_preserve = FALSE) {
-  # High level function for vectors
-
-  # Check lengths
-  l1 <- length(file)
-  l2 <- length(outfile)
-
-  if (l1 != l2) {
-    cli::cli_abort(paste0(
-      "Lengths of {.arg file} and {.arg outfile}",
-      "should be the same ({l1} vs. {l2})"
-    ))
-  }
-
-
-  # Once checked call single
-  iter <- seq_len(l1)
-
-  # Make unique paths
-  outfile <- make_unique_paths(outfile)
-
+  # Call single
+  iter <- seq_len(length(file))
   res_vector <- lapply(iter, function(x) {
     df <- resmush_file_single(
-      file[x], outfile[x],
+      file[x], suffix,
       qlty, verbose, exif_preserve
     )
     df
@@ -105,8 +86,9 @@ resmush_file <- function(file, outfile = file, qlty = 92, verbose = FALSE,
 
 
 # Single call
-resmush_file_single <- function(file, outfile = file, qlty = 92,
+resmush_file_single <- function(file, suffix = "_resmush", qlty = 92,
                                 verbose = FALSE, exif_preserve = FALSE) {
+  outfile <- add_suffix(file, suffix)
   # Master table with results
   res <- data.frame(
     src_img = file, dest_img = NA, src_size = NA,

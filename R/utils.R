@@ -5,8 +5,24 @@ make_object_size <- function(x) {
   x
 }
 
+
+# Add suffix
+add_suffix <- function(x, suffix = "_resmush") {
+  # Handle suffix
+  if (any(is.na(suffix), is.null(suffix), suffix == "")) {
+    return(x)
+  }
+
+  # If not handle suffix
+  base_file <- tools::file_path_sans_ext(x)
+  ext_file <- tools::file_ext(x)
+
+  newname <- paste0(base_file, suffix, ".", ext_file)
+  return(newname)
+}
+
 # Handle names
-make_unique_paths <- function(x, res) {
+make_unique_paths <- function(x) {
   dir_file <- dirname(x)
   base_names <- basename(x)
 
@@ -21,11 +37,11 @@ make_unique_paths <- function(x, res) {
       res[i] <- this_file
       next
     }
-    newname <- name_sans_ext(this_file)
-    ext <- my_file_ext(this_file)
+    newname <- tools::file_path_sans_ext(this_file)
+    ext <- tools::file_ext(this_file)
 
     for (j in seq(1, 100)) {
-      f <- paste0(newname, "_", j, ext)
+      f <- paste0(newname, "_", sprintf("%002d", j), ".", ext)
       if (!f %in% res) {
         res[i] <- f
         break
@@ -35,28 +51,28 @@ make_unique_paths <- function(x, res) {
 
   file.path(dir_file, res)
 }
-
-name_sans_ext <- function(x) {
-  sans_ext <- vapply(x, FUN = function(y) {
-    name_parts <- unlist(strsplit(y, ".", fixed = TRUE))
-
-    paste0(name_parts[-length(name_parts)], collapse = ".")
-  }, FUN.VALUE = character(1))
-
-  unname(sans_ext)
-}
-
-
-
-my_file_ext <- function(x) {
-  ext_only <- vapply(x, FUN = function(y) {
-    name_parts <- unlist(strsplit(y, ".", fixed = TRUE))
-
-    paste0(".", name_parts[length(name_parts)])
-  }, FUN.VALUE = character(1))
-
-  unname(ext_only)
-}
+#
+# name_sans_ext <- function(x) {
+#   sans_ext <- vapply(x, FUN = function(y) {
+#     name_parts <- unlist(strsplit(y, ".", fixed = TRUE))
+#
+#     paste0(name_parts[-length(name_parts)], collapse = ".")
+#   }, FUN.VALUE = character(1))
+#
+#   unname(sans_ext)
+# }
+#
+#
+#
+# my_file_ext <- function(x) {
+#   ext_only <- vapply(x, FUN = function(y) {
+#     name_parts <- unlist(strsplit(y, ".", fixed = TRUE))
+#
+#     paste0(".", name_parts[length(name_parts)])
+#   }, FUN.VALUE = character(1))
+#
+#   unname(ext_only)
+# }
 
 
 

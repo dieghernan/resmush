@@ -89,18 +89,21 @@ next example shows how when compressing a local file.
 
 
 ```r
-png_file <- system.file("extimg/example.png",
-  package = "resmush"
-)
+png_file <- system.file("extimg/example.png", package = "resmush")
 
+# For the example, copy to a temporary file
 tmp_png <- tempfile(fileext = ".png")
-summary <- resmush_file(png_file, tmp_png)
+file.copy(png_file, tmp_png, overwrite = TRUE)
+#> [1] FALSE
+
+
+summary <- resmush_file(tmp_png)
 
 tibble::as_tibble(summary[, -c(1, 2)])
 #> # A tibble: 1 × 4
-#>   src_size dest_size compress_ratio notes
-#>   <chr>    <chr>     <chr>          <chr>
-#> 1 239.9 Kb 70.7 Kb   70.5%          OK ;)
+#>   src_size dest_size compress_ratio notes                     
+#>   <lgl>    <lgl>     <lgl>          <chr>                     
+#> 1 NA       NA        NA             local file does not exists
 ```
 
 ## Other alternatives

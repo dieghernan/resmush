@@ -16,6 +16,7 @@ Imports:
     cli,
     curl,
     httr,
+    tools,
     utils
 Suggests: 
     knitr,

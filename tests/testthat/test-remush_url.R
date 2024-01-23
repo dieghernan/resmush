@@ -8,7 +8,6 @@ test_that("Test offline", {
   )
 
   # Options for testing
-  ops <- options()
   options(resmush_test_offline = TRUE)
 
   expect_true("resmush_test_offline" %in% names(options()))

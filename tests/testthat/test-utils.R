@@ -1,37 +1,35 @@
-test_that("Handle duplicate names", {
+test_that("Add suffix", {
   unique_names <- c("./a/example.png", "b/example.jpg")
   expect_length(unique(unique_names), 2)
-
-
-  same_res <- make_unique_paths(unique_names)
-
+  same_res <- add_suffix(unique_names, suffix = "")
+  same_res_na <- add_suffix(unique_names, suffix = NA)
+  same_res_null <- add_suffix(unique_names, suffix = NULL)
   expect_identical(unique_names, same_res)
+  expect_identical(unique_names, same_res_na)
+  expect_identical(unique_names, same_res_null)
 
-  # More extensions
-  nodups <- c("./test.png", "./test.png.jpg", "./test.jpg", "./test.jpg.png")
-
-  same_res2 <- make_unique_paths(nodups)
-  expect_identical(nodups, same_res2)
-
-  # With duplicates
-
-  complex <- c(
-    "./a/example.png", "b/example.jpg", "cd/example.png",
-    "ss/example.jpg", "ffaa/example.png",
-    "a/a file with blak spaces.txt"
+  # More extensions with suffix
+  nodups <- c(
+    "./test.png", "./a./dot./test.png.jpg",
+    "./test.jpg", "./test.jpg.png"
   )
 
-  expect_false(length(unique(basename(complex))) == length(complex))
-
-  handle_complex <- make_unique_paths(complex)
-
-  expect_length(unique(basename(handle_complex)), length(handle_complex))
-
-
-  expect_true(all((complex == handle_complex)[c(1, 2, 6)]))
-
+  # Default behaviour
+  def <- add_suffix(nodups)
   expect_identical(
-    basename(handle_complex)[-c(1, 2, 6)],
-    c("example_1.png", "example_1.jpg", "example_2.png")
+    c(
+      "./test_resmush.png", "./a./dot./test.png_resmush.jpg",
+      "./test_resmush.jpg", "./test.jpg_resmush.png"
+    ),
+    def
+  )
+
+  same_res2 <- add_suffix(nodups, suffix = "_asuffix")
+  expect_identical(
+    c(
+      "./test_asuffix.png", "./a./dot./test.png_asuffix.jpg",
+      "./test_asuffix.jpg", "./test.jpg_asuffix.png"
+    ),
+    same_res2
   )
 })
