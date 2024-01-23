@@ -132,7 +132,7 @@ test_that("webp", {
 
   # webp
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/dev/",
+    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
     "img/sample_webp_250kb.webp"
   )
 

@@ -84,7 +84,10 @@ resmush_file(tmp_jpg, verbose = TRUE, qlty = 10)
 \seealso{
 \href{https://resmush.it/api}{reSmush.it API} docs.
 
+See \code{\link[=resmush_clean_dir]{resmush_clean_dir()}} to clean a directory of previous runs.
+
 Other functions for optimizing:
+\code{\link{resmush_dir}()},
 \code{\link{resmush_url}()}
 }
 \concept{optimize}

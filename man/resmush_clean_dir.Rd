@@ -53,7 +53,7 @@ resmush_clean_dir(tempdir(), suffix = suffix)
 file.exists(tmp_png)
 }
 \seealso{
-\code{\link[=list.files]{list.files()}}, \code{\link[=unlink]{unlink()}}
+\code{\link[=resmush_file]{resmush_file()}}, \code{\link[=resmush_dir]{resmush_dir()}}, \code{\link[=list.files]{list.files()}}, \code{\link[=unlink]{unlink()}}
 }
 \concept{helpers}
 \keyword{internal}
