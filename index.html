@@ -100,7 +100,7 @@
 <ul>
 <li>Free optimization services, no API key required.</li>
 <li>Optimize local and online images.</li>
-<li>Image files supported: <code>png</code>, <code>jpg</code>, <code>gif</code>, <code>bmp</code>, <code>tif</code>.</li>
+<li>Image files supported: <code>png</code>, <code>jpg/jpeg</code>, <code>gif</code>, <code>bmp</code>, <code>tiff</code>, <code>webp</code>.</li>
 <li>Max image size: 5 Mb.</li>
 <li>Compression via several algorithms:
 <ul>
@@ -168,12 +168,15 @@ Low quality figure
 </div>
 <p>All the functions return invisibly a data set with a summary of the process. The next example shows how when compressing a local file.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">png_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extimg/example.png"</span>,</span>
-<span>  package <span class="op">=</span> <span class="st">"resmush"</span></span>
-<span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">png_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extimg/example.png"</span>, package <span class="op">=</span> <span class="st">"resmush"</span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># For the example, copy to a temporary file</span></span>
 <span><span class="va">tmp_png</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".png"</span><span class="op">)</span></span>
-<span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/resmush_file.html">resmush_file</a></span><span class="op">(</span><span class="va">png_file</span>, <span class="va">tmp_png</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.copy</a></span><span class="op">(</span><span class="va">png_file</span>, <span class="va">tmp_png</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span></span>
+<span></span>
+<span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/resmush_file.html">resmush_file</a></span><span class="op">(</span><span class="va">tmp_png</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="va">summary</span><span class="op">[</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 4</span></span>
@@ -209,7 +212,7 @@ Low quality figure
 Hernangómez D (2024). <em>resmush: Optimize and Compress Image Files with reSmush.it</em>. <a href="https://dieghernan.github.io/resmush/">https://dieghernan.github.io/resmush/</a>.
 </p>
 <p>A BibTeX entry for LaTeX users is</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Manual{R<span class="sc">-</span>arcgeocoder,</span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Manual{R<span class="sc">-</span>resmush,</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">=</span> {{resmush}<span class="sc">:</span> Optimize and Compress Image Files with {reSmush.it}},</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2024</span>},</span>
@@ -244,6 +247,12 @@ Hernangómez D (2024). <em>resmush: Optimize and Compress Image Files with reSmu
 </ul>
 </div>
 
+<div class="community">
+<h2 data-toc-skip>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
+</ul>
+</div>
 
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
