@@ -4,8 +4,7 @@ abs <- gsub("'", "", abs)
 title <- trimws(gsub("'", "", meta$Title, fixed = TRUE))
 title <- gsub("reSmush.it", "{reSmush.it}", title, fixed = TRUE)
 title <- gsub("API", "{API}", title, fixed = TRUE)
-# TODO
-# doi <- "10.5281/zenodo.10495365"
+doi <- "10.5281/zenodo.10556679"
 pkg <- trimws(meta$Package)
 
 bibentry(
@@ -16,7 +15,7 @@ bibentry(
   year = year,
   key = paste0("R-", pkg),
   version = meta$Version,
-  # doi = doi,
+  doi = doi,
   url = unlist(strsplit(meta$URL, ","))[1],
   abstract = abs
 )

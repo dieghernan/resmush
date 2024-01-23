@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/dieghernan/resmush",
   "issueTracker": "https://github.com/dieghernan/resmush/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.1",
+  "version": "0.0.1.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -137,7 +137,7 @@
     "SystemRequirements": null
   },
   "keywords": ["r", "compress-images", "optimize-images", "resmushit", "api", "r-package"],
-  "fileSize": "590.308KB",
+  "fileSize": "590.56KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -150,11 +150,14 @@
         }
       ],
       "name": "{resmush}: Optimize and Compress Image Files with {reSmush.it}",
-      "url": "https://dieghernan.github.io/resmush/"
+      "identifier": "10.5281/zenodo.10556679",
+      "url": "https://dieghernan.github.io/resmush/",
+      "@id": "https://doi.org/10.5281/zenodo.10556679",
+      "sameAs": "https://doi.org/10.5281/zenodo.10556679"
     }
   ],
   "releaseNotes": "https://github.com/dieghernan/resmush/blob/master/NEWS.md",
   "readme": "https://github.com/dieghernan/resmush/blob/main/README.md",
   "contIntegration": ["https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/dieghernan/resmush"],
-  "developmentStatus": "https://www.repostatus.org/#wip"
+  "developmentStatus": "https://www.repostatus.org/#active"
 }

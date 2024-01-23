@@ -9,9 +9,10 @@
 [![codecov](https://codecov.io/gh/dieghernan/resmush/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/resmush)
 [![r-universe](https://dieghernan.r-universe.dev/badges/resmush)](https://dieghernan.r-universe.dev/resmush)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/resmush/badge)](https://www.codefactor.io/repository/github/dieghernan/resmush)
-[![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.10556679-blue)](https://doi.org/10.5281/zenodo.10556679)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 <!-- badges: end -->
 
@@ -162,6 +163,7 @@ tibble::as_tibble(summary[, -c(1, 2)])
 <p>
 Hernangómez D (2024). <em>resmush: Optimize and Compress Image Files
 with reSmush.it</em>.
+<a href="https://doi.org/10.5281/zenodo.10556679">doi:10.5281/zenodo.10556679</a>,
 <a href="https://dieghernan.github.io/resmush/">https://dieghernan.github.io/resmush/</a>.
 </p>
 
@@ -171,7 +173,8 @@ A BibTeX entry for LaTeX users is
       title = {{resmush}: Optimize and Compress Image Files with {reSmush.it}},
       author = {Diego Hernangómez},
       year = {2024},
-      version = {0.0.1},
+      version = {0.0.1.9000},
+      doi = {10.5281/zenodo.10556679},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
     }
