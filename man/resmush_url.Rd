@@ -80,6 +80,7 @@ resmush_url(jpg_url, verbose = TRUE, qlty = 10)
 \href{https://resmush.it/api}{reSmush.it API} docs.
 
 Other functions for optimizing:
+\code{\link{resmush_dir}()},
 \code{\link{resmush_file}()}
 }
 \concept{optimize}

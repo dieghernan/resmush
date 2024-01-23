@@ -1,3 +1,3 @@
-# resmush (development version)
+# resmush 0.0.1
 
-* Initial version
+-   Initial version

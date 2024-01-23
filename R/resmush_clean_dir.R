@@ -19,7 +19,8 @@
 #'
 #' `0` for success, `1` for failure, invisibly. See [unlink()].
 #'
-#' @seealso [list.files()], [unlink()]
+#' @seealso
+#' [resmush_file()], [resmush_dir()], [list.files()], [unlink()]
 #' @family helpers
 #'
 #' @export

@@ -33,6 +33,8 @@
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api) docs.
 #'
+#' See [resmush_clean_dir()] to clean a directory of previous runs.
+#'
 #' @family optimize
 #'
 #' @export
