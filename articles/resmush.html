@@ -138,7 +138,7 @@ Lossless optimization based on optimizing the Huffman tables.</li>
 <span>  <span class="st">"resmush/main/img/jpg_example_original.jpg"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/resmush_url.html">resmush_url</a></span><span class="op">(</span><span class="va">url</span>, outfile <span class="op">=</span> <span class="st">"jpg_example_compress.jpg"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/resmush_url.html">resmush_url</a></span><span class="op">(</span><span class="va">url</span>, outfile <span class="op">=</span> <span class="st">"jpg_example_compress.jpg"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <p><img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" alt="Original online figure" width="100%"><img src="jpg_example_compress.jpg" alt="Optimized figure" width="100%"></p>
 <p class="caption">
@@ -152,14 +152,15 @@ Lossless optimization based on optimizing the Huffman tables.</li>
 it is recommended to keep this value above 90 to get a good image
 quality.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/resmush_url.html">resmush_url</a></span><span class="op">(</span><span class="va">url</span>,</span>
-<span>  outfile <span class="op">=</span> <span class="st">"jpg_example_compress_low.jpg"</span>, qlty <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<code class="sourceCode R"><span><span class="co"># Extreme case</span></span>
+<span><span class="fu"><a href="../reference/resmush_url.html">resmush_url</a></span><span class="op">(</span><span class="va">url</span>,</span>
+<span>  outfile <span class="op">=</span> <span class="st">"jpg_example_compress_low.jpg"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  qlty <span class="op">=</span> <span class="fl">3</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✔ Optimizing https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg:</span></span>
-<span><span class="co">#&gt; ℹ Effective compression ratio: 96.9%</span></span>
-<span><span class="co">#&gt; ℹ Current size: 5.6 Kb (was 178.7 Kb)</span></span>
-<span><span class="co">#&gt; ℹ Output: './jpg_example_compress_low.jpg'</span></span></code></pre></div>
+<span><span class="co">#&gt; ℹ Effective compression ratio: 98.7%</span></span>
+<span><span class="co">#&gt; ℹ Current size: 2.2 Kb (was 178.7 Kb)</span></span>
+<span><span class="co">#&gt; ℹ Output: 'jpg_example_compress_low.jpg'</span></span></code></pre></div>
 <div class="figure">
 <p><img src="jpg_example_compress_low.jpg" alt="Low quality figure" width="100%"></p>
 <p class="caption">

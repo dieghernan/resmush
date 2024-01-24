@@ -69,6 +69,7 @@ the  <a href="https://resmush.it/" class="external-link">reSmush.it API</a>.</p>
 <span>  <span class="va">dir</span>,</span>
 <span>  ext <span class="op">=</span> <span class="st">"\\.(png|jpe?g|bmp|gif|tif|webp)$"</span>,</span>
 <span>  suffix <span class="op">=</span> <span class="st">"_resmush"</span>,</span>
+<span>  overwrite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -89,8 +90,13 @@ The default value would capture all the extensions admitted by the API.</p></dd>
 <dt>suffix</dt>
 <dd><p>Character, defaults to <code>"_resmush"</code>. By default, a new file
 with the suffix is created in the same directory (i.e.,
-optimized <code>example.png</code> would be <code>example_resmush.png</code>). Use <code>""</code>, <code>NA</code>
-of <code>NULL</code> for overwrite the files.</p></dd>
+optimized <code>example.png</code> would be <code>example_resmush.png</code>). Values <code>""</code>, <code>NA</code>
+and <code>NULL</code> would be the same than <code>overwrite = TRUE</code>.</p></dd>
+
+
+<dt>overwrite</dt>
+<dd><p>Logical. Should the files in <code>dir</code> be overwritten? If <code>TRUE</code>
+<code>suffix</code> would be ignored.</p></dd>
 
 
 <dt>verbose</dt>
@@ -145,31 +151,31 @@ returned as well.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE TRUE TRUE TRUE TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">resmush_dir</span><span class="op">(</span><span class="va">temp_dir</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKqd3Wr/example_dir/example.jpg</span>:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKQ7t8X/example_dir/example.jpg</span>:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Effective compression ratio: 17.2%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Current size: 83.2 Kb (was 100.4 Kb)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKqd3Wr/example_dir/example_resmush.jpg</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKqd3Wr/example_dir/example.png</span>:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKQ7t8X/example_dir/example_resmush.jpg</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKQ7t8X/example_dir/example.png</span>:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Effective compression ratio: 70.5%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Current size: 70.7 Kb (was 239.9 Kb)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKqd3Wr/example_dir/example_resmush.png</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKqd3Wr/example_dir/jpg_example_compress.jpg</span>:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKQ7t8X/example_dir/example_resmush.png</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKQ7t8X/example_dir/jpg_example_compress.jpg</span>:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Effective compression ratio: 0.3%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Current size: 44.3 Kb (was 44.4 Kb)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKqd3Wr/example_dir/jpg_example_compress_resmush.jpg</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKqd3Wr/example_dir/jpg_example_compress_low.jpg</span>:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKQ7t8X/example_dir/jpg_example_compress_resmush.jpg</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKQ7t8X/example_dir/jpg_example_compress_low.jpg</span>:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Effective compression ratio: 0.0%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Current size: 5.6 Kb (was 5.6 Kb)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Current size: 2.2 Kb (was 2.2 Kb)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKqd3Wr/example_dir/jpg_example_compress_low_resmush.jpg</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKqd3Wr/example_dir/logo.png</span>:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKQ7t8X/example_dir/jpg_example_compress_low_resmush.jpg</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKQ7t8X/example_dir/logo.png</span>:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Effective compression ratio: 0.0%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Current size: 66.8 Kb (was 66.8 Kb)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKqd3Wr/example_dir/logo_resmush.png</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKQ7t8X/example_dir/logo_resmush.png</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Clean up</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">temp_dir</span>, force <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>

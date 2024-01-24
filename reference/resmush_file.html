@@ -65,6 +65,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">resmush_file</span><span class="op">(</span></span>
 <span>  <span class="va">file</span>,</span>
 <span>  suffix <span class="op">=</span> <span class="st">"_resmush"</span>,</span>
+<span>  overwrite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  qlty <span class="op">=</span> <span class="fl">92</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  exif_preserve <span class="op">=</span> <span class="cn">FALSE</span></span>
@@ -87,9 +88,13 @@ following image files:</p><ul><li><p><code>png</code></p></li>
 <dt>suffix</dt>
 <dd><p>Character, defaults to <code>"_resmush"</code>. By default, a new file
 with the suffix is created in the same directory than <code>file</code>. (i.e.,
-optimized <code>example.png</code> would be <code>example_resmush.png</code>). Use <code>""</code>, <code>NA</code>
-of <code>NULL</code> for overwrite the initial <code>file</code>.
-the <code>file</code> use any of the following values: <code>"", NA, NULL</code>.</p></dd>
+optimized <code>example.png</code> would be <code>example_resmush.png</code>). Values <code>""</code>, <code>NA</code>
+and <code>NULL</code> would be the same than <code>overwrite = TRUE</code>.</p></dd>
+
+
+<dt>overwrite</dt>
+<dd><p>Logical. Should the file in <code>file</code> be overwritten? If <code>TRUE</code>
+<code>suffix</code> would be ignored.</p></dd>
 
 
 <dt>qlty</dt>
@@ -151,11 +156,11 @@ returned as well.</p>
 <span class="r-in"><span><span class="co"># Returns an (invisible) data frame with a summary of the process</span></span></span>
 <span class="r-in"><span><span class="va">summary</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                       src_img</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpKqd3Wr\\file127858b31c96.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpKqd3Wr\\file12782ef560f4.jpg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpKQ7t8X\\file17c41ffb25c1.png</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpKQ7t8X\\file17c42adc49b2.jpg</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                              dest_img</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpKqd3Wr\\file127858b31c96_resmush.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpKqd3Wr\\file12782ef560f4_resmush.jpg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpKQ7t8X\\file17c41ffb25c1_resmush.png</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpKQ7t8X\\file17c42adc49b2_resmush.jpg</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   src_size dest_size compress_ratio notes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 239.9 Kb   70.7 Kb          70.5% OK ;)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 100.4 Kb   83.2 Kb          17.2% OK ;)</span>
@@ -165,17 +170,17 @@ returned as well.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Silently returns a data frame</span></span></span>
 <span class="r-in"><span><span class="fu">resmush_file</span><span class="op">(</span><span class="va">tmp_jpg</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKqd3Wr\file12782ef560f4.jpg</span>:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKQ7t8X\file17c42adc49b2.jpg</span>:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Effective compression ratio: 17.2%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Current size: 83.2 Kb (was 100.4 Kb)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKqd3Wr\file12782ef560f4_resmush.jpg</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKQ7t8X\file17c42adc49b2_resmush.jpg</span></span>
 <span class="r-in"><span><span class="fu">resmush_file</span><span class="op">(</span><span class="va">tmp_jpg</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span>, qlty <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKqd3Wr\file12782ef560f4.jpg</span>:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimizing <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKQ7t8X\file17c42adc49b2.jpg</span>:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Effective compression ratio: 93.6%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Current size: 6.4 Kb (was 100.4 Kb)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Output:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKqd3Wr\file12782ef560f4_resmush.jpg</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB;">C:\Users\RUNNER~1\AppData\Local\Temp\RtmpKQ7t8X\file17c42adc49b2_resmush.jpg</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
