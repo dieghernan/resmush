@@ -16,6 +16,11 @@
 #' your disk. By default, temporary files (see [tempfile()]) with the same
 #' [basename()] than the file provided in `url` would be created. It should be
 #' of the same length than `url` parameter.
+#'
+#' @param overwrite Logical. Should `outfile` be overwritten (if already
+#'   exists)? If `FALSE` and `outfile` exists it would create a copy with
+#'   a numerical suffix (i.e. `<outfile>.png`, `<outfile>_01.png`, etc.).
+#'
 #' @inheritParams resmush_file
 #'
 #' @return
@@ -58,7 +63,8 @@
 #' resmush_url(jpg_url, verbose = TRUE, qlty = 10)
 #' }
 resmush_url <- function(url, outfile = file.path(tempdir(), basename(url)),
-                        qlty = 92, verbose = FALSE, exif_preserve = FALSE) {
+                        overwrite = FALSE, qlty = 92, verbose = FALSE,
+                        exif_preserve = FALSE) {
   # High level function for vectors
 
   # Check lengths
@@ -76,12 +82,9 @@ resmush_url <- function(url, outfile = file.path(tempdir(), basename(url)),
   # Once checked call single
   iter <- seq_len(l1)
 
-  # Make unique paths
-  outfile <- make_unique_paths(outfile)
-
   res_vector <- lapply(iter, function(x) {
     df <- resmush_url_single(
-      url[x], outfile[x],
+      url[x], outfile[x], overwrite,
       qlty, verbose, exif_preserve
     )
     df
@@ -97,8 +100,17 @@ resmush_url <- function(url, outfile = file.path(tempdir(), basename(url)),
 
 resmush_url_single <- function(url,
                                outfile = file.path(tempdir(), basename(url)),
+                               overwrite = FALSE,
                                qlty = 92, verbose = FALSE,
                                exif_preserve = FALSE) {
+  # Avoid duplicates if requested
+  outfile <- make_unique_paths(outfile, overwrite)
+
+
+  # Create dir if it doesn't exists
+  the_dir <- dirname(outfile)
+  if (!dir.exists(the_dir)) dir.create(the_dir, recursive = TRUE)
+
   # Master table with results
   res <- data.frame(
     src_img = url, dest_img = NA, src_size = NA,

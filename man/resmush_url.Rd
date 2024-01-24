@@ -7,6 +7,7 @@
 resmush_url(
   url,
   outfile = file.path(tempdir(), basename(url)),
+  overwrite = FALSE,
   qlty = 92,
   verbose = FALSE,
   exif_preserve = FALSE
@@ -28,6 +29,10 @@ resmush_url(
 your disk. By default, temporary files (see \code{\link[=tempfile]{tempfile()}}) with the same
 \code{\link[=basename]{basename()}} than the file provided in \code{url} would be created. It should be
 of the same length than \code{url} parameter.}
+
+\item{overwrite}{Logical. Should \code{outfile} be overwritten (if already
+exists)? If \code{FALSE} and \code{outfile} exists it would create a copy with
+a numerical suffix (i.e. \verb{<outfile>.png}, \verb{<outfile>_01.png}, etc.).}
 
 \item{qlty}{Only affects \code{jpg} files. Integer between 0 and 100 indicating
 the optimization level. For optimal results use vales above 90.}

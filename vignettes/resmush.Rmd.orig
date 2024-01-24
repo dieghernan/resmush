@@ -53,7 +53,7 @@ url <- paste0(
   "resmush/main/img/jpg_example_original.jpg"
 )
 
-resmush_url(url, outfile = "jpg_example_compress.jpg")
+resmush_url(url, outfile = "jpg_example_compress.jpg", overwrite = TRUE)
 ```
 
 ::: figure
@@ -73,9 +73,9 @@ the parameter `qlty`. However, it is recommended to keep this value above 90 to
 get a good image quality.
 
 ```{r jpgcompresslow, message=TRUE}
-resmush_url(url,
-  outfile = "jpg_example_compress_low.jpg", qlty = 10,
-  verbose = TRUE
+# Extreme case
+resmush_url(url, outfile = "jpg_example_compress_low.jpg", overwrite = TRUE,
+  qlty = 3, verbose = TRUE
 )
 ```
 
