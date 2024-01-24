@@ -7,6 +7,7 @@
 resmush_file(
   file,
   suffix = "_resmush",
+  overwrite = FALSE,
   qlty = 92,
   verbose = FALSE,
   exif_preserve = FALSE
@@ -26,9 +27,11 @@ following image files:
 
 \item{suffix}{Character, defaults to \code{"_resmush"}. By default, a new file
 with the suffix is created in the same directory than \code{file}. (i.e.,
-optimized \code{example.png} would be \code{example_resmush.png}). Use \code{""}, \code{NA}
-of \code{NULL} for overwrite the initial \code{file}.
-the \code{file} use any of the following values: \verb{"", NA, NULL}.}
+optimized \code{example.png} would be \code{example_resmush.png}). Values \code{""}, \code{NA}
+and \code{NULL} would be the same than \code{overwrite = TRUE}.}
+
+\item{overwrite}{Logical. Should the file in \code{file} be overwritten? If \code{TRUE}
+\code{suffix} would be ignored.}
 
 \item{qlty}{Only affects \code{jpg} files. Integer between 0 and 100 indicating
 the optimization level. For optimal results use vales above 90.}

@@ -10,8 +10,10 @@
 #'   The default value would capture all the extensions admitted by the API.
 #' @param suffix Character, defaults to `"_resmush"`. By default, a new file
 #'   with the suffix is created in the same directory (i.e.,
-#'   optimized `example.png` would be `example_resmush.png`). Use `""`, `NA`
-#'   of `NULL` for overwrite the files.
+#'   optimized `example.png` would be `example_resmush.png`). Values `""`, `NA`
+#'   and `NULL` would be the same than `overwrite = TRUE`.
+#' @param overwrite Logical. Should the files in `dir` be overwritten? If `TRUE`
+#'   `suffix` would be ignored.
 #' @inheritParams resmush_file
 #' @inheritDotParams resmush_file qlty exif_preserve
 #'
@@ -50,7 +52,8 @@
 #' }
 #'
 resmush_dir <- function(dir, ext = "\\.(png|jpe?g|bmp|gif|tif|webp)$",
-                        suffix = "_resmush", verbose = FALSE, ...) {
+                        suffix = "_resmush", overwrite = FALSE,
+                        verbose = FALSE, ...) {
   allfiles <- list.files(
     path = dir, pattern = ext, recursive = FALSE,
     full.names = TRUE
@@ -58,5 +61,8 @@ resmush_dir <- function(dir, ext = "\\.(png|jpe?g|bmp|gif|tif|webp)$",
 
   # Call resmush_file
 
-  resmush_file(allfiles, suffix = suffix, verbose = verbose, ...)
+  resmush_file(allfiles,
+    suffix = suffix, overwrite = overwrite,
+    verbose = verbose, ...
+  )
 }

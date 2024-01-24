@@ -8,6 +8,7 @@ resmush_dir(
   dir,
   ext = "\\\\.(png|jpe?g|bmp|gif|tif|webp)$",
   suffix = "_resmush",
+  overwrite = FALSE,
   verbose = FALSE,
   ...
 )
@@ -21,8 +22,11 @@ The default value would capture all the extensions admitted by the API.}
 
 \item{suffix}{Character, defaults to \code{"_resmush"}. By default, a new file
 with the suffix is created in the same directory (i.e.,
-optimized \code{example.png} would be \code{example_resmush.png}). Use \code{""}, \code{NA}
-of \code{NULL} for overwrite the files.}
+optimized \code{example.png} would be \code{example_resmush.png}). Values \code{""}, \code{NA}
+and \code{NULL} would be the same than \code{overwrite = TRUE}.}
+
+\item{overwrite}{Logical. Should the files in \code{dir} be overwritten? If \code{TRUE}
+\code{suffix} would be ignored.}
 
 \item{verbose}{Logical. If \code{TRUE} displays a summary of the results.}
 

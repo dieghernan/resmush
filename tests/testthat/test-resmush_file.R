@@ -249,3 +249,39 @@ test_that("Test exif", {
 
   expect_lt(file.size(dm$dest_img), file.size(dm2$dest_img))
 })
+
+test_that("Test override", {
+  skip_on_cran()
+  skip_if_offline()
+
+  resmush_clean_dir(tempdir())
+
+  test_png <- load_inst_to_temp("example.png", "overr_file")
+  expect_true(file.exists(test_png))
+  ins <- file.size(test_png)
+
+  # Extract dir
+  out_dir <- dirname(test_png)
+
+  # Make output
+  theout <- add_suffix(test_png, suffix = "_resmush")
+  expect_false(file.exists(theout))
+
+  expect_silent(
+    dm <- resmush_file(test_png, suffix = "_resmush", overwrite = TRUE)
+  )
+
+  expect_false(file.exists(theout))
+  expect_s3_class(dm, "data.frame")
+  expect_false(any(is.na(dm)))
+  expect_equal(dm$src_img, test_png)
+  expect_equal(dm$dest_img, dm$src_img)
+
+  outs <- file.size(test_png)
+  expect_lt(outs, ins)
+
+  # No new files
+  expect_length(list.files(out_dir, pattern = "png$"), 1)
+
+  unlink(out_dir, force = TRUE)
+})

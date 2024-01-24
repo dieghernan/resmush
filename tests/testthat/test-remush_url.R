@@ -85,15 +85,18 @@ test_that("Test default opts with png", {
     "extimg/example.png"
   )
 
+  # Mock default output
+  out_f <- file.path(tempdir(), basename(png_url))
+
+  if (file.exists(out_f)) unlink(out_f, force = TRUE)
 
   expect_silent(dm <- resmush_url(png_url))
 
-  outf <- file.path(tempdir(), "example.png")
 
   expect_s3_class(dm, "data.frame")
   expect_false(any(is.na(dm)))
   expect_equal(dm$src_img, png_url)
-  expect_equal(basename(dm$dest_img), basename(outf))
+  expect_equal(basename(dm$dest_img), basename(out_f))
 
   ratio <- as.double(gsub("%", "", dm$compress_ratio))
   expect_lt(ratio, 100)
@@ -306,7 +309,7 @@ test_that("Handle duplicate names", {
     "extimg/example.png"
   )
 
-  png_url <- rep(png_url_single, 2)
+  png_url <- rep(png_url_single, 3)
 
   outs <- file.path(tempdir(), basename(png_url))
 
@@ -315,17 +318,82 @@ test_that("Handle duplicate names", {
   expect_false(file.exists(outs[1]))
 
   # But should be renamed as
-  renamed <- file.path(tempdir(), "example_01.png")
+  renamed <- file.path(tempdir(), c("example_01.png", "example_02.png"))
   if (any(file.exists(renamed))) unlink(renamed, force = TRUE)
-  expect_false(file.exists(renamed))
+  expect_false(any(file.exists(renamed)))
 
   # Call
   expect_silent(dm <- resmush_url(png_url, outs))
 
   # Check that now exists
-  expect_true(file.exists(renamed))
+  expect_true(all(file.exists(renamed)))
 
-  expect_equal(nrow(dm), 2)
+  expect_equal(nrow(dm), 3)
   expect_equal(dm$src_img, png_url)
   expect_equal(basename(dm$dest_img), basename(c(outs[1], renamed)))
+})
+
+
+test_that("Use  overwrite", {
+  skip_on_cran()
+  skip_if_offline()
+
+  png_url_single <- paste0(
+    "https://raw.githubusercontent.com/",
+    "dieghernan/resmush/main/inst/",
+    "extimg/example.png"
+  )
+
+  png_url <- rep(png_url_single, 3)
+
+  outs <- file.path(tempdir(), "over", basename(png_url))
+  the_dir <- unique(dirname(outs))
+
+  if (any(file.exists(outs))) unlink(outs, force = TRUE)
+
+  expect_false(file.exists(outs[1]))
+
+  # Call with override
+  expect_silent(dm <- resmush_url(png_url, outs, overwrite = TRUE))
+
+  expect_equal(nrow(dm), 3)
+  expect_equal(dm$src_img, png_url)
+  expect_equal(basename(dm$dest_img), basename(outs))
+
+  # Check length, should be one
+  ll <- list.files(the_dir, pattern = "png$")
+  expect_length(ll, 1)
+  expect_identical(ll, "example.png")
+
+  unlink(the_dir, force = TRUE)
+})
+
+
+test_that("To non-existing directories", {
+  skip_on_cran()
+  skip_if_offline()
+
+  png_url <- paste0(
+    "https://raw.githubusercontent.com/",
+    "dieghernan/resmush/main/inst/",
+    "extimg/example.png"
+  )
+
+
+  # Random folder name
+  let1 <- paste0(LETTERS[sample(seq_len(20), 4, replace = TRUE)], collapse = "")
+  let2 <- paste0(let1, "_", as.integer(runif(1) * 10))
+  outf <- file.path(tempdir(), let1, let2)
+  expect_false(dir.exists(outf))
+  outs <- file.path(outf, basename(png_url))
+
+  # Call
+  expect_silent(dm <- resmush_url(png_url, outs))
+
+  # Check that now exists
+  expect_true(dir.exists(outf))
+  expect_true(file.exists(outs))
+
+  # Clean up
+  unlink(outf, force = TRUE)
 })

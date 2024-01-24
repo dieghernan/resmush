@@ -69,7 +69,7 @@ url <- paste0(
   "resmush/main/img/jpg_example_original.jpg"
 )
 
-resmush_url(url, outfile = "man/figures/jpg_example_compress.jpg")
+resmush_url(url, outfile = "man/figures/jpg_example_compress.jpg", overwrite = TRUE)
 ```
 
 <div class="figure">
@@ -91,13 +91,14 @@ files using the parameter `qlty`. However, it is recommended to keep
 this value above 90 to get a good image quality.
 
 ``` r
+# Extreme case
 resmush_url(url,
-  outfile = "man/figures/jpg_example_compress_low.jpg", qlty = 10,
-  verbose = TRUE
+  outfile = "man/figures/jpg_example_compress_low.jpg", overwrite = TRUE,
+  qlty = 3, verbose = TRUE
 )
 #> ✔ Optimizing https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg:
-#> ℹ Effective compression ratio: 96.9%
-#> ℹ Current size: 5.6 Kb (was 178.7 Kb)
+#> ℹ Effective compression ratio: 98.7%
+#> ℹ Current size: 2.2 Kb (was 178.7 Kb)
 #> ℹ Output: 'man/figures/jpg_example_compress_low.jpg'
 ```
 

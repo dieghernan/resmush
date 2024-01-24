@@ -15,9 +15,10 @@
 #'
 #' @param suffix Character, defaults to `"_resmush"`. By default, a new file
 #'   with the suffix is created in the same directory than `file`. (i.e.,
-#'   optimized `example.png` would be `example_resmush.png`). Use `""`, `NA`
-#'   of `NULL` for overwrite the initial `file`.
-#'   the `file` use any of the following values: `"", NA, NULL`.
+#'   optimized `example.png` would be `example_resmush.png`). Values `""`, `NA`
+#'   and `NULL` would be the same than `overwrite = TRUE`.
+#' @param overwrite Logical. Should the file in `file` be overwritten? If `TRUE`
+#'   `suffix` would be ignored.
 #' @param qlty Only affects `jpg` files. Integer between 0 and 100 indicating
 #' the optimization level. For optimal results use vales above 90.
 #' @param verbose Logical. If `TRUE` displays a summary of the results.
@@ -70,13 +71,13 @@
 #' resmush_file(tmp_jpg, verbose = TRUE, qlty = 10)
 #' }
 #'
-resmush_file <- function(file, suffix = "_resmush", qlty = 92, verbose = FALSE,
-                         exif_preserve = FALSE) {
+resmush_file <- function(file, suffix = "_resmush", overwrite = FALSE,
+                         qlty = 92, verbose = FALSE, exif_preserve = FALSE) {
   # Call single
   iter <- seq_len(length(file))
   res_vector <- lapply(iter, function(x) {
     df <- resmush_file_single(
-      file[x], suffix,
+      file[x], suffix, overwrite,
       qlty, verbose, exif_preserve
     )
     df
@@ -90,9 +91,10 @@ resmush_file <- function(file, suffix = "_resmush", qlty = 92, verbose = FALSE,
 
 
 # Single call
-resmush_file_single <- function(file, suffix = "_resmush", qlty = 92,
-                                verbose = FALSE, exif_preserve = FALSE) {
-  outfile <- add_suffix(file, suffix)
+resmush_file_single <- function(file, suffix = "_resmush", overwrite = FALSE,
+                                qlty = 92, verbose = FALSE,
+                                exif_preserve = FALSE) {
+  outfile <- add_suffix(file, suffix, overwrite)
   # Master table with results
   res <- data.frame(
     src_img = file, dest_img = NA, src_size = NA,
