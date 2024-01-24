@@ -16,7 +16,7 @@ argument.}
 directories?}
 }
 \value{
-\code{0} for success, \code{1} for failure, invisibly. See \code{\link[=unlink]{unlink()}}.
+Nothing. Produce messages with information of the process.
 }
 \description{
 \strong{Use with caution}. This would remove files from your computer.

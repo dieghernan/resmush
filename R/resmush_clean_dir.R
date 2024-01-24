@@ -17,7 +17,7 @@
 #'
 #' @return
 #'
-#' `0` for success, `1` for failure, invisibly. See [unlink()].
+#' Nothing. Produce messages with information of the process.
 #'
 #' @seealso
 #' [resmush_file()], [resmush_dir()], [list.files()], [unlink()]
@@ -59,6 +59,19 @@ resmush_clean_dir <- function(dir, suffix = "_resmush", recursive = FALSE) {
     recursive = recursive
   )
 
-  res_un <- unlink(allfiles, force = TRUE)
-  return(invisible(res_un))
+  if (length(allfiles) < 1) {
+    cli::cli_alert_info(
+      "No files to clean in {.path {dir}} with suffix {.val {suffix}\\.}."
+    )
+    return(invisible(NULL))
+  }
+
+  cli::cli_alert_info("Would remove {length(allfiles)} file{?s}:")
+
+  make_bull <- allfiles
+  names(make_bull) <- rep(">", length(make_bull))
+  cli::cli_bullets(make_bull)
+
+  unlink(allfiles, force = TRUE)
+  return(invisible(NULL))
 }
