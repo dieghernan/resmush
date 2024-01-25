@@ -107,7 +107,8 @@ get a good image quality.
 # Extreme case
 resmush_url(url,
   outfile = "man/figures/jpg_example_compress_low.jpg", overwrite = TRUE,
-  qlty = 3)
+  qlty = 3
+)
 ```
 
 ::: figure
@@ -134,8 +135,6 @@ file.copy(png_file, tmp_png, overwrite = TRUE)
 summary <- resmush_file(tmp_png, overwrite = TRUE)
 
 tibble::as_tibble(summary[, -c(1, 2)])
-
-
 ```
 
 ## Other alternatives

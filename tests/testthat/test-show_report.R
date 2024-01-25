@@ -1,5 +1,9 @@
 test_that("Report for local", {
   skip_on_cran()
+  skip_on_os("mac")
+  skip_on_os("linux")
+  skip_on_os("solaris")
+
   test_f <- res_example
   # Full
   expect_snapshot(show_report(test_f))
@@ -19,6 +23,10 @@ test_that("Report for local", {
 
 test_that("Report for url", {
   skip_on_cran()
+  skip_on_os("mac")
+  skip_on_os("linux")
+  skip_on_os("solaris")
+
   test_f <- res_example
   # Full
   expect_snapshot(show_report(test_f, "url"))

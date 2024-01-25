@@ -72,8 +72,6 @@ load_inst_to_temp <- function(file, subdir = NULL) {
 
   tmp <- file.path(dest_dir, basename(f))
 
-
-  if (file.exists(tmp)) unlink(tmp, force = TRUE)
   file.copy(f, dest_dir, overwrite = TRUE)
   tmp
 }
