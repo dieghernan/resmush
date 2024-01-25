@@ -1,6 +1,8 @@
 test_that("Test offline", {
   skip_on_cran()
-  test_png <- load_inst_to_temp("example.png")
+
+  test_dir <- load_dir_to_temp()
+  test_png <- file.path(test_dir, "example.png")
   expect_true(file.exists(test_png))
 
   # Options for testing
@@ -9,7 +11,7 @@ test_that("Test offline", {
 
   expect_true("resmush_test_offline" %in% names(options()))
 
-  expect_snapshot(dm <- resmush_file(test_png))
+  expect_silent(dm <- resmush_file(test_png, report = FALSE))
 
   expect_s3_class(dm, "data.frame")
   expect_snapshot(dm[, -1])
@@ -19,13 +21,15 @@ test_that("Test offline", {
   # Reset ops
   options(resmush_test_offline = NULL)
   expect_false("resmush_test_offline" %in% names(options()))
+  unlink(test_dir, recursive = TRUE, force = TRUE)
 })
 
 test_that("Test corner", {
   skip_on_cran()
   skip_if_offline()
 
-  test_png <- load_inst_to_temp("example.png")
+  test_dir <- load_dir_to_temp()
+  test_png <- file.path(test_dir, "example.png")
   expect_true(file.exists(test_png))
 
   # Options for testing
@@ -34,16 +38,17 @@ test_that("Test corner", {
 
   expect_true("resmush_test_corner" %in% names(options()))
 
-  expect_snapshot(dm <- resmush_file(test_png))
+  expect_message(dm <- resmush_file(test_png))
 
   expect_s3_class(dm, "data.frame")
-  expect_snapshot(dm[, -c(1, 3)])
+  expect_snapshot(dm[, -c(1, 3, 7)])
 
   expect_equal(dm$src_img, test_png)
 
   # Reset ops
   options(resmush_test_corner = NULL)
   expect_false("resmush_test_corner" %in% names(options()))
+  unlink(test_dir, recursive = TRUE, force = TRUE)
 })
 
 
@@ -56,15 +61,13 @@ test_that("Test not provided file", {
 
   expect_false(file.exists(fl))
 
-  expect_message(
-    dm <- resmush_file(fl),
-    "not found on disk"
-  )
+  expect_message(dm <- resmush_file(fl))
 
   expect_s3_class(dm, "data.frame")
   expect_snapshot(dm[, -1])
 
   expect_equal(dm$src_img, fl)
+  unlink(fl, force = TRUE)
 })
 
 test_that("Not valid file", {
@@ -77,23 +80,21 @@ test_that("Not valid file", {
   writeLines("testing a fake file", con = fl)
   expect_true(file.exists(fl))
 
-  expect_message(
-    dm <- resmush_file(fl),
-    "API Error"
-  )
+  expect_message(dm <- resmush_file(fl))
 
   expect_s3_class(dm, "data.frame")
-  expect_snapshot(dm[, -c(1, 3)])
+  expect_snapshot(dm[, -c(1, 3, 7)])
   expect_false(is.na(dm$src_img))
   expect_equal(dm$src_img, fl)
+  unlink(fl, force = TRUE, recursive = TRUE)
 })
 
 test_that("Test default opts with png", {
   skip_on_cran()
   skip_if_offline()
 
-  resmush_clean_dir(tempdir())
-  test_png <- load_inst_to_temp("example.png")
+  test_dir <- load_dir_to_temp()
+  test_png <- file.path(test_dir, "example.png")
 
   # Make output
   theout <- add_suffix(test_png)
@@ -101,7 +102,7 @@ test_that("Test default opts with png", {
   expect_true(file.exists(test_png))
   expect_false(file.exists(theout))
 
-  expect_silent(dm <- resmush_file(test_png))
+  expect_message(dm <- resmush_file(test_png))
 
   expect_s3_class(dm, "data.frame")
   expect_false(any(is.na(dm)))
@@ -111,14 +112,15 @@ test_that("Test default opts with png", {
 
   ratio <- as.double(gsub("%", "", dm$compress_ratio))
   expect_lt(ratio, 100)
+  unlink(test_dir, recursive = TRUE, force = TRUE)
 })
 
 
 test_that("Test opts with png", {
   skip_on_cran()
   skip_if_offline()
-  resmush_clean_dir(tempdir())
-  test_png <- load_inst_to_temp("example.png")
+  test_dir <- load_dir_to_temp()
+  test_png <- file.path(test_dir, "example.png")
   expect_true(file.exists(test_png))
   ins <- file.size(test_png)
 
@@ -126,8 +128,7 @@ test_that("Test opts with png", {
   theout <- add_suffix(test_png, suffix = "_resmush")
   expect_false(file.exists(theout))
   expect_message(
-    dm <- resmush_file(test_png, suffix = "", verbose = TRUE),
-    "Optimizing"
+    dm <- resmush_file(test_png, suffix = "")
   )
 
   expect_false(file.exists(theout))
@@ -140,27 +141,21 @@ test_that("Test opts with png", {
   expect_lt(outs, ins)
 
   # Check units
-  unts <- make_object_size(ins)
-  anobj <- object.size(unts)
-  expect_s3_class(unts, class(unts))
-  fmrted <- format(unts, "auto")
-
+  fmrted <- make_pretty_size(ins)
   expect_identical(dm$src_size, fmrted)
+  unlink(test_dir, recursive = TRUE, force = TRUE)
 })
 
 test_that("Test qlty par with jpg", {
   skip_on_cran()
   skip_if_offline()
+  test_dir <- load_dir_to_temp()
+  test_jpg <- file.path(test_dir, "example.jpg")
 
-  resmush_clean_dir(tempdir(), "a_jpg_qlty")
-  test_jpg <- load_inst_to_temp("example.jpg")
   expect_true(file.exists(test_jpg))
   outf <- add_suffix(test_jpg, "a_jpg_qlty")
   expect_false(file.exists(outf))
-  expect_message(
-    dm <- resmush_file(test_jpg, suffix = "a_jpg_qlty", verbose = TRUE),
-    "Optimizing"
-  )
+  expect_message(dm <- resmush_file(test_jpg, suffix = "a_jpg_qlty"))
 
   expect_true(file.exists(outf))
   expect_s3_class(dm, "data.frame")
@@ -172,15 +167,14 @@ test_that("Test qlty par with jpg", {
   expect_lt(outs, ins)
 
   # Check units
-  unts <- make_object_size(ins)
-  anobj <- object.size(unts)
-  expect_s3_class(unts, class(unts))
-  fmrted <- format(unts, "auto")
-
+  fmrted <- make_pretty_size(ins)
   expect_identical(dm$src_size, fmrted)
 
   # Use qlty
-  resmush_clean_dir(tempdir(), "_even_lower")
+  expect_message(
+    resmush_clean_dir(tempdir(), "_even_lower"),
+    "No files to clean"
+  )
   outf2 <- add_suffix(test_jpg, "_even_lower")
   expect_false(file.exists(outf2))
   dm2 <- resmush_file(test_jpg, suffix = "_even_lower", qlty = 30)
@@ -189,6 +183,7 @@ test_that("Test qlty par with jpg", {
   out2s <- file.size(outf2)
 
   expect_lt(out2s, outs)
+  unlink(test_dir, force = TRUE, recursive = TRUE)
 })
 
 
@@ -212,12 +207,38 @@ test_that("Test full vectors", {
 
   res_all <- add_suffix(all_in)
 
-  resmush_clean_dir(tempdir())
+  expect_message(resmush_clean_dir(tempdir()))
+
+  # Recover options
+
+  optsinit <- options()
+  expect_false(
+    isTRUE(optsinit$cli.progress_bar_style == "aaa")
+  )
+  options(
+    cli.progress_bar_style = "aaa",
+    cli.progress_show_after = 1000,
+    cli.spinner = "ccc"
+  )
+
+  optinit2 <- options()
+
+  expect_true(optinit2$cli.progress_bar_style == "aaa")
 
   expect_message(
     dm <- resmush_file(all_in),
-    "not found on disk"
+    "reSmushing"
   )
+
+  # Restored options
+  expect_identical(options(), optinit2)
+
+  options(
+    cli.progress_bar_style = optsinit$cli.progress_bar_style,
+    cli.progress_show_after = optsinit$cli.progress_show_after,
+    cli.spinner = optsinit$cli.spinner
+  )
+  expect_identical(options(), optsinit)
 
   expect_equal(nrow(dm), 4)
   expect_equal(dm$src_img, all_in)
@@ -225,8 +246,77 @@ test_that("Test full vectors", {
     res_all[1], NA, res_all[3],
     NA
   )))
-})
 
+  expect_message(
+    resmush_clean_dir(tempdir())
+  )
+  unlink(all_in, force = TRUE, recursive = TRUE)
+})
+test_that("Test full vectors silent", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # tempfile
+  no_file <- tempfile()
+
+  # Bad extension
+  # tempfile
+  bad_ext <- tempfile(, fileext = ".txt")
+
+  writeLines("testing a fake file", con = bad_ext)
+  jpg_file <- load_inst_to_temp("example.jpg")
+  png_file <- load_inst_to_temp("example.png")
+
+  all_in <- c(png_file, no_file, jpg_file, bad_ext)
+
+  res_all <- add_suffix(all_in)
+
+  expect_message(resmush_clean_dir(tempdir()))
+
+  # Recover options
+
+  optsinit <- options()
+  expect_false(
+    isTRUE(optsinit$cli.progress_bar_style == "aaa")
+  )
+  options(
+    cli.progress_bar_style = "aaa",
+    cli.progress_show_after = 1000,
+    cli.spinner = "ccc"
+  )
+
+  optinit2 <- options()
+
+  expect_true(optinit2$cli.progress_bar_style == "aaa")
+  expect_silent(
+    dm <- resmush_file(all_in,
+      progress = FALSE,
+      report = FALSE
+    )
+  )
+
+  # Restored options
+  expect_identical(options(), optinit2)
+
+  options(
+    cli.progress_bar_style = optsinit$cli.progress_bar_style,
+    cli.progress_show_after = optsinit$cli.progress_show_after,
+    cli.spinner = optsinit$cli.spinner
+  )
+  expect_identical(options(), optsinit)
+
+  expect_equal(nrow(dm), 4)
+  expect_equal(dm$src_img, all_in)
+  expect_equal(basename(dm$dest_img), basename(c(
+    res_all[1], NA, res_all[3],
+    NA
+  )))
+
+  expect_message(
+    resmush_clean_dir(tempdir())
+  )
+  unlink(all_in, force = TRUE, recursive = TRUE)
+})
 
 test_that("Test exif", {
   skip_on_cran()
@@ -250,6 +340,15 @@ test_that("Test exif", {
   dm2 <- resmush_file(exif, "_with_exif", exif_preserve = TRUE)
 
   expect_lt(file.size(dm$dest_img), file.size(dm2$dest_img))
+  expect_message(
+    resmush_clean_dir(tempdir(), "_without_exif"),
+    "Would remove"
+  )
+  expect_message(
+    resmush_clean_dir(tempdir(), "_with_exif"),
+    "Would remove"
+  )
+  unlink(exif, force = TRUE)
 })
 
 test_that("Test override", {
@@ -269,7 +368,7 @@ test_that("Test override", {
   theout <- add_suffix(test_png, suffix = "_resmush")
   expect_false(file.exists(theout))
 
-  expect_silent(
+  expect_message(
     dm <- resmush_file(test_png, suffix = "_resmush", overwrite = TRUE)
   )
 
@@ -285,5 +384,5 @@ test_that("Test override", {
   # No new files
   expect_length(list.files(out_dir, pattern = "png$"), 1)
 
-  unlink(out_dir, force = TRUE)
+  unlink(out_dir, force = TRUE, recursive = TRUE)
 })

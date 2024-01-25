@@ -70,6 +70,10 @@ url <- paste0(
 )
 
 resmush_url(url, outfile = "man/figures/jpg_example_compress.jpg", overwrite = TRUE)
+#> ══ resmush summary ═════════════════════════════════════════════════════════════
+#> ℹ Input: 1 url with size 178.7 Kb
+#> ✔ Success for 1 url: Size now is 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
+#> See result in directory 'man/figures'.
 ```
 
 <div class="figure">
@@ -94,12 +98,12 @@ this value above 90 to get a good image quality.
 # Extreme case
 resmush_url(url,
   outfile = "man/figures/jpg_example_compress_low.jpg", overwrite = TRUE,
-  qlty = 3, verbose = TRUE
+  qlty = 3
 )
-#> ✔ Optimizing https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg:
-#> ℹ Effective compression ratio: 98.7%
-#> ℹ Current size: 2.2 Kb (was 178.7 Kb)
-#> ℹ Output: 'man/figures/jpg_example_compress_low.jpg'
+#> ══ resmush summary ═════════════════════════════════════════════════════════════
+#> ℹ Input: 1 url with size 178.7 Kb
+#> ✔ Success for 1 url: Size now is 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
+#> See result in directory 'man/figures'.
 ```
 
 <div class="figure">
@@ -130,13 +134,13 @@ file.copy(png_file, tmp_png, overwrite = TRUE)
 #> [1] TRUE
 
 
-summary <- resmush_file(tmp_png)
+summary <- resmush_file(tmp_png, overwrite = TRUE)
 
 tibble::as_tibble(summary[, -c(1, 2)])
-#> # A tibble: 1 × 4
-#>   src_size dest_size compress_ratio notes
-#>   <chr>    <chr>     <chr>          <chr>
-#> 1 239.9 Kb 70.7 Kb   70.5%          OK ;)
+#> # A tibble: 1 × 6
+#>   src_size dest_size compress_ratio notes src_bytes dest_bytes
+#>   <chr>    <chr>     <chr>          <chr>     <dbl>      <dbl>
+#> 1 239.9 Kb 70.7 Kb   70.54%         OK       245618      72356
 ```
 
 ## Other alternatives

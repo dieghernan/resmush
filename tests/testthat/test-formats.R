@@ -9,9 +9,11 @@ test_that("jpg", {
   )
 
 
-  expect_silent(dm <- resmush_url(url))
+  expect_silent(dm <- resmush_url(url, report = FALSE))
 
   expect_equal(tools::file_ext(dm$dest_img), "jpg")
+
+  unlink(dm$dest_img, force = TRUE)
 
   # jpeg, has space
   url <- paste0(
@@ -19,9 +21,10 @@ test_that("jpg", {
     "img/sample-jpeg-1mb .jpeg"
   )
 
-  expect_silent(dm <- resmush_url(url))
-
+  expect_silent(dm <- resmush_url(url, report = FALSE))
   expect_equal(basename(url), basename(dm$dest_img))
+
+  unlink(dm$dest_img, force = TRUE)
 
   # Check exif online
   url <- paste0(
@@ -41,7 +44,8 @@ test_that("jpg", {
 
   expect_lt(file.size(noexif), file.size(yesexif))
 
-  unlink(c(yesexif, noexif), force = TRUE)
+  unlink(no_exif$dest_img, force = TRUE)
+  unlink(yes_exif$dest_img, force = TRUE)
 })
 
 
@@ -56,10 +60,12 @@ test_that("png", {
   )
 
 
-  expect_silent(dm <- resmush_url(url))
+  expect_silent(dm <- resmush_url(url, report = FALSE))
   expect_true(file.exists(dm$dest_img))
 
   expect_equal(basename(url), basename(dm$dest_img))
+
+  unlink(dm$dest_img, force = TRUE)
 
   # png more than 10 Mb
   url <- paste0(
@@ -84,7 +90,8 @@ test_that("gif", {
   )
 
 
-  expect_silent(dm <- resmush_url(url))
+  expect_silent(dm <- resmush_url(url, report = FALSE))
+  unlink(dm$dest_img)
 })
 
 
@@ -99,7 +106,10 @@ test_that("bmp", {
   )
 
 
-  expect_silent(dm <- resmush_url(url))
+  dm <- resmush_url(url)
+  expect_true(dm$notes == "OK")
+
+  unlink(dm$dest_img)
 })
 
 test_that("tif", {
@@ -113,8 +123,9 @@ test_that("tif", {
   )
 
 
-  expect_silent(dm <- resmush_url(url))
+  expect_silent(dm <- resmush_url(url, report = FALSE))
 
+  unlink(dm$dest_img, force = TRUE)
 
   # tif
   url <- paste0(
@@ -137,7 +148,9 @@ test_that("webp", {
   )
 
 
-  expect_silent(dm <- resmush_url(url))
+  expect_silent(dm <- resmush_url(url, report = FALSE))
 
   expect_identical(basename(url), basename(dm$dest_img))
+
+  unlink(dm$dest_img, force = TRUE)
 })

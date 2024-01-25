@@ -45,7 +45,7 @@ Some of the features of reSmush.it are:
 
 Compressing an online `jpg` image:
 
-```{r example}
+```{r example, message=TRUE}
 library(resmush)
 
 url <- paste0(
@@ -74,9 +74,8 @@ get a good image quality.
 
 ```{r jpgcompresslow, message=TRUE}
 # Extreme case
-resmush_url(url, outfile = "jpg_example_compress_low.jpg", overwrite = TRUE,
-  qlty = 3, verbose = TRUE
-)
+resmush_url(url, outfile = "jpg_example_compress_low.jpg",
+   overwrite = TRUE, qlty = 3)
 ```
 
 ::: figure
@@ -105,10 +104,10 @@ file.copy(png_file, tmp_png, overwrite = TRUE)
 summary <- resmush_file(tmp_png)
 
 tibble::as_tibble(summary[, -c(1, 2)])
-#> # A tibble: 1 × 4
-#>   src_size dest_size compress_ratio notes
-#>   <chr>    <chr>     <chr>          <chr>
-#> 1 239.9 Kb 70.7 Kb   70.5%          OK ;)
+#> # A tibble: 1 × 6
+#>   src_size dest_size compress_ratio notes src_bytes dest_bytes
+#>   <chr>    <chr>     <chr>          <chr>     <dbl>      <dbl>
+#> 1 239.9 Kb 70.7 Kb   70.54%         OK       245618      72356
 
 ```
 

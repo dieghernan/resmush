@@ -14,13 +14,16 @@
 #'   and `NULL` would be the same than `overwrite = TRUE`.
 #' @param overwrite Logical. Should the files in `dir` be overwritten? If `TRUE`
 #'   `suffix` would be ignored.
+#' @param recursive Logical. Should the `dir` file search recursive? See also
+#'   [list.files()].
 #' @inheritParams resmush_file
 #' @inheritDotParams resmush_file qlty exif_preserve
 #'
 #' @return
 #' Writes on disk the optimized file if the API call is successful in the
 #' directories specified in `dir`.
-#' In any case, a (invisibly) data frame with a summary of the process is
+#'
+#' In all cases, a (invisible) data frame with a summary of the process is
 #' returned as well.
 #'
 #' @seealso
@@ -34,35 +37,62 @@
 #'
 #' @examplesIf curl::has_internet()
 #' \donttest{
-#' # Get example files and copy to a temporary dir
-#' example_files <- list.files(system.file(package = "resmush"),
-#'   pattern = "\\.(png|jpe?g)$",
-#'   recursive = TRUE,
-#'   full.names = TRUE
-#' )
+#' # Get example dir and copy
+#' example_dir <- system.file("extimg", package = "resmush")
+#' temp_dir <- tempdir()
+#' file.copy(example_dir, temp_dir, recursive = TRUE)
 #'
-#' temp_dir <- file.path(tempdir(), "example_dir")
-#' if (!dir.exists(temp_dir)) dir.create(temp_dir)
-#' file.copy(example_files, temp_dir)
+#' # Dest folder
 #'
-#' resmush_dir(temp_dir, verbose = TRUE)
+#' dest_folder <- file.path(tempdir(), "extimg")
 #'
-#' # Clean up
-#' unlink(temp_dir, force = TRUE)
+#'
+#' # Non-recursive
+#' resmush_dir(dest_folder)
+#' resmush_clean_dir(dest_folder)
+#'
+#' # Recursive
+#' summary <- resmush_dir(dest_folder, recursive = TRUE)
+#'
+#' # Same info in the invisible df
+#' summary[, -c(1, 2)]
+#'
+#' # Display with png
+#' if (require("png", quietly = TRUE)) {
+#'   a_png <- grepl("png$", summary$dest_img)
+#'   my_png <- png::readPNG(summary[a_png, ]$dest_img[2])
+#'   grid::grid.raster(my_png)
 #' }
 #'
+#' # Clean up example
+#' unlink(dest_folder, force = TRUE, recursive = TRUE)
+#' }
 resmush_dir <- function(dir, ext = "\\.(png|jpe?g|bmp|gif|tif|webp)$",
-                        suffix = "_resmush", overwrite = FALSE,
-                        verbose = FALSE, ...) {
+                        suffix = "_resmush", overwrite = FALSE, progress = TRUE,
+                        report = TRUE, recursive = FALSE, ...) {
   allfiles <- list.files(
-    path = dir, pattern = ext, recursive = FALSE,
+    path = dir, pattern = ext, recursive = recursive,
     full.names = TRUE
   )
+
+  if (length(allfiles) < 1) {
+    cli::cli_alert_info(
+      "No files found in {.path {dir}} with ext {.val {ext}}"
+    )
+    return(invisible(NULL))
+  }
+  if (report) {
+    # nolint start
+    nf <- length(allfiles)
+    # nolint end
+    cli::cli_alert_info("Resmushing {nf} file{?s}")
+  }
+
 
   # Call resmush_file
 
   resmush_file(allfiles,
     suffix = suffix, overwrite = overwrite,
-    verbose = verbose, ...
+    progress = progress, report = report, ...
   )
 }

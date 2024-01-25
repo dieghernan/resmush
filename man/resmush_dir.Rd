@@ -9,7 +9,9 @@ resmush_dir(
   ext = "\\\\.(png|jpe?g|bmp|gif|tif|webp)$",
   suffix = "_resmush",
   overwrite = FALSE,
-  verbose = FALSE,
+  progress = TRUE,
+  report = TRUE,
+  recursive = FALSE,
   ...
 )
 }
@@ -28,7 +30,13 @@ and \code{NULL} would be the same than \code{overwrite = TRUE}.}
 \item{overwrite}{Logical. Should the files in \code{dir} be overwritten? If \code{TRUE}
 \code{suffix} would be ignored.}
 
-\item{verbose}{Logical. If \code{TRUE} displays a summary of the results.}
+\item{progress}{Logical. Display a progress bar when needed.}
+
+\item{report}{Logical. Display a summary report of the process in the
+console. See also \strong{Value}.}
+
+\item{recursive}{Logical. Should the \code{dir} file search recursive? See also
+\code{\link[=list.files]{list.files()}}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=resmush_file]{resmush_file}}
@@ -43,7 +51,8 @@ Default is to remove (i.e. \code{exif_preserve = FALSE}).}
 \value{
 Writes on disk the optimized file if the API call is successful in the
 directories specified in \code{dir}.
-In any case, a (invisibly) data frame with a summary of the process is
+
+In all cases, a (invisible) data frame with a summary of the process is
 returned as well.
 }
 \description{
@@ -53,21 +62,35 @@ the  \href{https://resmush.it/}{reSmush.it API}.
 \examples{
 \dontshow{if (curl::has_internet()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
-# Get example files and copy to a temporary dir
-example_files <- list.files(system.file(package = "resmush"),
-  pattern = "\\\\.(png|jpe?g)$",
-  recursive = TRUE,
-  full.names = TRUE
-)
+# Get example dir and copy
+example_dir <- system.file("extimg", package = "resmush")
+temp_dir <- tempdir()
+file.copy(example_dir, temp_dir, recursive = TRUE)
 
-temp_dir <- file.path(tempdir(), "example_dir")
-if (!dir.exists(temp_dir)) dir.create(temp_dir)
-file.copy(example_files, temp_dir)
+# Dest folder
 
-resmush_dir(temp_dir, verbose = TRUE)
+dest_folder <- file.path(tempdir(), "extimg")
 
-# Clean up
-unlink(temp_dir, force = TRUE)
+
+# Non-recursive
+resmush_dir(dest_folder)
+resmush_clean_dir(dest_folder)
+
+# Recursive
+summary <- resmush_dir(dest_folder, recursive = TRUE)
+
+# Same info in the invisible df
+summary[, -c(1, 2)]
+
+# Display with png
+if (require("png", quietly = TRUE)) {
+  a_png <- grepl("png$", summary$dest_img)
+  my_png <- png::readPNG(summary[a_png, ]$dest_img[2])
+  grid::grid.raster(my_png)
+}
+
+# Clean up example
+unlink(dest_folder, force = TRUE, recursive = TRUE)
 }
 \dontshow{\}) # examplesIf}
 }

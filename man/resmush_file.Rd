@@ -8,8 +8,9 @@ resmush_file(
   file,
   suffix = "_resmush",
   overwrite = FALSE,
+  progress = TRUE,
+  report = TRUE,
   qlty = 92,
-  verbose = FALSE,
   exif_preserve = FALSE
 )
 }
@@ -33,10 +34,13 @@ and \code{NULL} would be the same than \code{overwrite = TRUE}.}
 \item{overwrite}{Logical. Should the file in \code{file} be overwritten? If \code{TRUE}
 \code{suffix} would be ignored.}
 
+\item{progress}{Logical. Display a progress bar when needed.}
+
+\item{report}{Logical. Display a summary report of the process in the
+console. See also \strong{Value}.}
+
 \item{qlty}{Only affects \code{jpg} files. Integer between 0 and 100 indicating
 the optimization level. For optimal results use vales above 90.}
-
-\item{verbose}{Logical. If \code{TRUE} displays a summary of the results.}
 
 \item{exif_preserve}{Logical. Should the
 \href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) deleted?
@@ -45,8 +49,10 @@ Default is to remove (i.e. \code{exif_preserve = FALSE}).}
 \value{
 Writes on disk the optimized file if the API call is successful in the
 same directory than \code{file}.
-In any case, a (invisibly) data frame with a summary of the process is
-returned as well.
+
+With the option \code{report = TRUE} a summary report is displayed in the
+console. In all cases, a (invisible) data frame with a summary of the
+process used for generate the report is returned.
 }
 \description{
 Optimize local images using the \href{https://resmush.it/}{reSmush.it API}.
@@ -70,17 +76,23 @@ tmp_jpg <- tempfile(fileext = ".jpg")
 
 file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 
+# Output summary in console
 summary <- resmush_file(c(tmp_png, tmp_jpg))
 
-# Returns an (invisible) data frame with a summary of the process
+# Similar info in an (invisible) data frame as a result
 summary
 
 
-# With parameters
 
-# Silently returns a data frame
-resmush_file(tmp_jpg, verbose = TRUE)
-resmush_file(tmp_jpg, verbose = TRUE, qlty = 10)
+# Display with png
+if (require("png", quietly = TRUE)) {
+  my_png <- png::readPNG(summary$dest_img[1])
+  grid::grid.raster(my_png)
+}
+
+# With parameters
+resmush_file(tmp_jpg)
+resmush_file(tmp_jpg, qlty = 10)
 }
 \dontshow{\}) # examplesIf}
 }

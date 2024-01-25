@@ -19,17 +19,22 @@
 #'   and `NULL` would be the same than `overwrite = TRUE`.
 #' @param overwrite Logical. Should the file in `file` be overwritten? If `TRUE`
 #'   `suffix` would be ignored.
+#' @param progress Logical. Display a progress bar when needed.
+#' @param report Logical. Display a summary report of the process in the
+#'   console. See also **Value**.
 #' @param qlty Only affects `jpg` files. Integer between 0 and 100 indicating
 #' the optimization level. For optimal results use vales above 90.
-#' @param verbose Logical. If `TRUE` displays a summary of the results.
 #' @param exif_preserve Logical. Should the
 #'   [Exif](https://en.wikipedia.org/wiki/Exif) information (if any) deleted?
 #'   Default is to remove (i.e. `exif_preserve = FALSE`).
+
 #' @return
 #' Writes on disk the optimized file if the API call is successful in the
 #' same directory than `file`.
-#' In any case, a (invisibly) data frame with a summary of the process is
-#' returned as well.
+#'
+#' With the option `report = TRUE` a summary report is displayed in the
+#' console. In all cases, a (invisible) data frame with a summary of the
+#' process used for generate the report is returned.
 #'
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api) docs.
@@ -58,70 +63,115 @@
 #'
 #' file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 #'
+#' # Output summary in console
 #' summary <- resmush_file(c(tmp_png, tmp_jpg))
 #'
-#' # Returns an (invisible) data frame with a summary of the process
+#' # Similar info in an (invisible) data frame as a result
 #' summary
 #'
 #'
-#' # With parameters
 #'
-#' # Silently returns a data frame
-#' resmush_file(tmp_jpg, verbose = TRUE)
-#' resmush_file(tmp_jpg, verbose = TRUE, qlty = 10)
+#' # Display with png
+#' if (require("png", quietly = TRUE)) {
+#'   my_png <- png::readPNG(summary$dest_img[1])
+#'   grid::grid.raster(my_png)
+#' }
+#'
+#' # With parameters
+#' resmush_file(tmp_jpg)
+#' resmush_file(tmp_jpg, qlty = 10)
 #' }
 #'
 resmush_file <- function(file, suffix = "_resmush", overwrite = FALSE,
-                         qlty = 92, verbose = FALSE, exif_preserve = FALSE) {
-  # Call single
-  iter <- seq_len(length(file))
-  res_vector <- lapply(iter, function(x) {
-    df <- resmush_file_single(
-      file[x], suffix, overwrite,
-      qlty, verbose, exif_preserve
+                         progress = TRUE, report = TRUE,
+                         qlty = 92, exif_preserve = FALSE) {
+  # Prepare progress bar
+  n_files <- length(file)
+  n_seq <- seq_len(n_files)
+
+  if (progress) {
+    opts <- options()
+    options(
+      cli.progress_bar_style = "fillsquares",
+      cli.progress_show_after = 0,
+      cli.spinner = "clock"
     )
-    df
-  })
 
-  # Bind and output
-  df_end <- do.call("rbind", res_vector)
+    cli::cli_progress_bar(
+      format = paste0(
+        "{cli::pb_spin} reSmushing | {cli::pb_bar} ",
+        "{cli::pb_percent} [{cli::pb_elapsed}] | ETA: {cli::pb_eta} ",
+        "({cli::pb_current}/{cli::pb_total} files)"
+      ),
+      total = n_files, clear = FALSE,
+      format_done = "reSmushed {n_files} file{?s} in {cli::pb_elapsed}."
+    )
+  }
+  # Call single with loop, cli::cli_progress_bar does not work on applys yet
+  res_df <- NULL
 
-  return(invisible(df_end))
+  for (i in n_seq) {
+    if (progress) cli::cli_progress_update()
+
+    df <- resmush_file_single(file[i],
+      suffix = suffix, overwrite = overwrite,
+      qlty = qlty, exif_preserve = exif_preserve
+    )
+    if (is.null(res_df)) {
+      res_df <- df
+    } else {
+      res_df <- rbind(res_df, df)
+    }
+  }
+
+  # restore options
+  if (progress) {
+    options(
+      cli.progress_bar_style = opts$cli.progress_bar_style,
+      cli.progress_show_after = opts$cli.progress_show_after,
+      cli.spinner = opts$cli.spinner
+    )
+  }
+
+  # report
+  if (report) {
+    show_report(res_df = res_df)
+  }
+
+  # output
+
+  return(invisible(res_df))
 }
 
 
 # Single call
 resmush_file_single <- function(file, suffix = "_resmush", overwrite = FALSE,
-                                qlty = 92, verbose = FALSE,
-                                exif_preserve = FALSE) {
+                                qlty = 92, exif_preserve = FALSE) {
   outfile <- add_suffix(file, suffix, overwrite)
   # Master table with results
   res <- data.frame(
     src_img = file, dest_img = NA, src_size = NA,
-    dest_size = NA, compress_ratio = NA, notes = NA
+    dest_size = NA, compress_ratio = NA, notes = NA,
+    src_bytes = NA, dest_bytes = NA
   )
 
   # Check access
   # Internal option, for checking purposes only
   test <- getOption("resmush_test_offline", FALSE)
   if (any(isFALSE(curl::has_internet()), test)) {
-    cli::cli_alert_warning("Offline")
     res$notes <- "Offline"
     return(invisible(res))
   }
   # Check if file
   if (!file.exists(file)) {
-    cli::cli_alert_warning("{.file {file}} not found on disk.")
-    res$notes <- "local file does not exists"
+    res$notes <- "Local file does not exists"
     return(invisible(res))
   }
 
   # Initial call to size in disk
   src_size <- file.size(file)
-  src_size <- make_object_size(src_size)
-  src_size_pretty <- format(src_size, units = "auto")
-
-  res$src_size <- src_size_pretty
+  res$src_bytes <- src_size
+  res$src_size <- make_pretty_size(src_size)
 
   # API Calls -----
   ## 1. Send local file -----
@@ -135,28 +185,19 @@ resmush_file_single <- function(file, suffix = "_resmush", overwrite = FALSE,
   exif_preserve <- isTRUE(exif_preserve)
 
   api_post <- httr::POST(
-    paste0(
-      "http://api.resmush.it/?qlty=", qlty,
-      "&exif=", exif_preserve
-    ),
+    url = paste0("http://api.resmush.it/?qlty=", qlty, "&exif=", exif_preserve),
     body = list(files = file_post)
   )
 
   res_post <- httr::content(api_post)
 
   if ("error" %in% names(res_post)) {
-    cli::cli_alert_warning("API Error for {.file {file}}")
-    cli::cli_bullets(c("i" = "Error {res_post$error}: {res_post$error_long}"))
-
     res$notes <- paste0(res_post$error, ": ", res_post$error_long)
     return(invisible(res))
   }
 
   # nocov start
   if (!"dest" %in% names(res_post)) {
-    cli::cli_alert_warning(
-      "API Not responding, check {.href https://resmush.it/status}"
-    )
     res$notes <- "API Not responding, check https://resmush.it/status}"
     return(invisible(res))
   }
@@ -164,7 +205,7 @@ resmush_file_single <- function(file, suffix = "_resmush", overwrite = FALSE,
 
   ##  2. Download from dest ----
   dwn_opt <- httr::GET(
-    res_post$dest,
+    url = res_post$dest,
     httr::write_disk(outfile, overwrite = TRUE)
   )
 
@@ -172,9 +213,6 @@ resmush_file_single <- function(file, suffix = "_resmush", overwrite = FALSE,
   # Internal option, for checking purposes only
   test_corner <- getOption("resmush_test_corner", FALSE)
   if (any(httr::status_code(dwn_opt) != 200, test_corner)) {
-    cli::cli_alert_warning(
-      "API Not responding, check {.href https://resmush.it/status}"
-    )
     res$notes <- "API Not responding, check https://resmush.it/status}"
     return(invisible(res))
   }
@@ -183,23 +221,13 @@ resmush_file_single <- function(file, suffix = "_resmush", overwrite = FALSE,
   res$dest_img <- outfile
 
   out_size <- file.size(outfile)
-  out_size <- make_object_size(out_size)
-  out_size_pretty <- format(out_size, units = "auto")
+  res$dest_bytes <- out_size
+  res$dest_size <- make_pretty_size(out_size)
 
-  res$dest_size <- out_size_pretty
   # Reduction ratio
-  red_ratio <- 1 - as.integer(out_size) / as.integer(src_size)
-  res$compress_ratio <- sprintf("%0.1f%%", red_ratio * 100)
-  res$notes <- "OK ;)"
+  red_ratio <- 1 - out_size / src_size
+  res$compress_ratio <- sprintf("%0.2f%%", red_ratio * 100)
+  res$notes <- "OK"
 
-  if (verbose) {
-    cli::cli_alert_success("Optimizing {.file {file}}:")
-
-    cli::cli_bullets(c(
-      "i" = "Effective compression ratio: {res$compress_ratio}",
-      "i" = "Current size: {res$dest_size} (was {res$src_size})",
-      "i" = "Output: {.file {outfile}}"
-    ))
-  }
   return(invisible(res))
 }

@@ -17,7 +17,7 @@ test_that("Message when no files", {
   )
 
 
-  unlink(dir_temp, force = TRUE)
+  unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
 
@@ -40,7 +40,7 @@ test_that("Message with 1 file", {
   )
 
 
-  unlink(dir_temp, force = TRUE)
+  unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
 test_that("Message with 2 files", {
@@ -64,5 +64,5 @@ test_that("Message with 2 files", {
   )
 
 
-  unlink(dir_temp, force = TRUE)
+  unlink(dir_temp, force = TRUE, recursive = TRUE)
 })

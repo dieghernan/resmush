@@ -1,12 +1,13 @@
-#' Create an `object_size` object from an integer
+#' Create a pretty object_size` object from an integer
 #'
 #' @param x An integer
 #' @noRd
-make_object_size <- function(x) {
+make_pretty_size <- function(x) {
   x <- as.integer(x)
   classob <- object.size(x)
   class(x) <- class(classob)
-  x
+  pretty_size <- format(x, units = "auto")
+  pretty_size
 }
 
 
@@ -75,4 +76,21 @@ load_inst_to_temp <- function(file, subdir = NULL) {
   if (file.exists(tmp)) unlink(tmp, force = TRUE)
   file.copy(f, dest_dir, overwrite = TRUE)
   tmp
+}
+
+load_dir_to_temp <- function(n = 4) {
+  inst_dir <- system.file("extimg", package = "resmush")
+
+  # random name
+  temp_name <- paste0(sample(LETTERS, n, replace = TRUE), collapse = "")
+
+  dest_dir <- file.path(tempdir(), temp_name)
+
+  if (!dir.exists(dest_dir)) dir.create(dest_dir, recursive = TRUE)
+
+  # Copy files
+  lf <- list.files(inst_dir, full.names = TRUE)
+  file.copy(lf, dest_dir, recursive = TRUE)
+
+  return(dest_dir)
 }

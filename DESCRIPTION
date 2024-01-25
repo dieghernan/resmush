@@ -19,7 +19,9 @@ Imports:
     tools,
     utils
 Suggests: 
+    grid,
     knitr,
+    png,
     rmarkdown,
     testthat (>= 3.0.0)
 VignetteBuilder: 

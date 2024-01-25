@@ -40,13 +40,15 @@ test_that("Test corner", {
 
   expect_snapshot(dm <- resmush_url(png_url))
 
+
   expect_s3_class(dm, "data.frame")
   expect_snapshot(dm)
-
 
   # Reset ops
   options(resmush_test_corner = NULL)
   expect_false("resmush_test_corner" %in% names(options()))
+
+  unlink(file.path(tempdir(), basename(dm$src_img)))
 })
 
 
@@ -92,8 +94,35 @@ test_that("Test default opts with png", {
 
   if (file.exists(out_f)) unlink(out_f, force = TRUE)
 
-  expect_silent(dm <- resmush_url(png_url))
+  # Recover options
 
+  optsinit <- options()
+  expect_false(
+    isTRUE(optsinit$cli.progress_bar_style == "aaa")
+  )
+  options(
+    cli.progress_bar_style = "aaa",
+    cli.progress_show_after = 1000,
+    cli.spinner = "ccc"
+  )
+
+  optinit2 <- options()
+
+  expect_true(optinit2$cli.progress_bar_style == "aaa")
+
+  expect_message(dm <- resmush_url(png_url))
+
+
+  # Restored options
+  expect_identical(options(), optinit2)
+
+  options(
+    cli.progress_bar_style = optsinit$cli.progress_bar_style,
+    cli.progress_show_after = optsinit$cli.progress_show_after,
+    cli.spinner = optsinit$cli.spinner
+  )
+
+  expect_identical(options(), optsinit)
 
   expect_s3_class(dm, "data.frame")
   expect_false(any(is.na(dm)))
@@ -102,6 +131,7 @@ test_that("Test default opts with png", {
 
   ratio <- as.double(gsub("%", "", dm$compress_ratio))
   expect_lt(ratio, 100)
+  unlink(dm$dest_img, recursive = TRUE, force = TRUE)
 })
 
 
@@ -119,11 +149,7 @@ test_that("Test opts with png", {
   outf <- tempfile(fileext = ".png")
   expect_false(file.exists(outf))
   expect_message(
-    dm <- resmush_url(png_url,
-      outf,
-      verbose = TRUE
-    ),
-    "Optimizing"
+    dm <- resmush_url(png_url, outf)
   )
 
   expect_true(file.exists(outf))
@@ -135,12 +161,9 @@ test_that("Test opts with png", {
   outs <- file.size(outf)
 
   # Check units
-  unts <- make_object_size(outs)
-  anobj <- object.size(unts)
-  expect_s3_class(unts, class(unts))
-  fmrted <- format(unts, "auto")
-
+  fmrted <- make_pretty_size(outs)
   expect_identical(dm$dest_size, fmrted)
+  unlink(dm$dest_img, recursive = TRUE, force = TRUE)
 })
 
 test_that("Test qlty par with jpg", {
@@ -157,11 +180,7 @@ test_that("Test qlty par with jpg", {
   outf <- tempfile(fileext = ".jpg")
   expect_false(file.exists(outf))
   expect_message(
-    dm <- resmush_url(jpg_url,
-      outf,
-      verbose = TRUE
-    ),
-    "Optimizing"
+    dm <- resmush_url(jpg_url, outf)
   )
 
   expect_true(file.exists(outf))
@@ -236,15 +255,40 @@ test_that("Test full vectors without outfile", {
 
   all_in <- c(png_url, notval, jpg_url, turl)
 
-  expect_message(
-    dm <- resmush_url(all_in),
-    "API Error"
+  # Recover options
+
+  optsinit <- options()
+  expect_false(
+    isTRUE(optsinit$cli.progress_bar_style == "aaa")
   )
+  options(
+    cli.progress_bar_style = "aaa",
+    cli.progress_show_after = 1000,
+    cli.spinner = "ccc"
+  )
+
+  optinit2 <- options()
+
+  expect_true(optinit2$cli.progress_bar_style == "aaa")
+
+
+  expect_silent(dm <- resmush_url(all_in, report = FALSE, progress = FALSE))
+
+  # Restored options
+  expect_identical(options(), optinit2)
+
+  options(
+    cli.progress_bar_style = optsinit$cli.progress_bar_style,
+    cli.progress_show_after = optsinit$cli.progress_show_after,
+    cli.spinner = optsinit$cli.spinner
+  )
+  expect_identical(options(), optsinit)
 
   expect_equal(nrow(dm), 4)
   expect_equal(dm$src_img, all_in)
 
   expect_equal(is.na(dm$dest_img), c(FALSE, TRUE, FALSE, TRUE))
+  unlink(dm$dest_img, recursive = TRUE, force = TRUE)
 })
 
 
@@ -287,7 +331,6 @@ test_that("Test full vectors with outfile", {
 
   expect_message(
     dm <- resmush_url(all_in, all_outs),
-    "API Error"
   )
 
   expect_equal(nrow(dm), 4)
@@ -298,6 +341,8 @@ test_that("Test full vectors with outfile", {
   )
 
   expect_true(all(file.exists(all_outs[c(1, 3)])))
+
+  unlink(dm$dest_img, recursive = TRUE, force = TRUE)
 })
 
 
@@ -325,7 +370,7 @@ test_that("Handle duplicate names", {
   expect_false(any(file.exists(renamed)))
 
   # Call
-  expect_silent(dm <- resmush_url(png_url, outs))
+  expect_message(dm <- resmush_url(png_url, outs))
 
   # Check that now exists
   expect_true(all(file.exists(renamed)))
@@ -333,6 +378,7 @@ test_that("Handle duplicate names", {
   expect_equal(nrow(dm), 3)
   expect_equal(dm$src_img, png_url)
   expect_equal(basename(dm$dest_img), basename(c(outs[1], renamed)))
+  unlink(dm$dest_img, recursive = TRUE, force = TRUE)
 })
 
 
@@ -356,7 +402,7 @@ test_that("Use  overwrite", {
   expect_false(file.exists(outs[1]))
 
   # Call with override
-  expect_silent(dm <- resmush_url(png_url, outs, overwrite = TRUE))
+  expect_message(dm <- resmush_url(png_url, outs, overwrite = TRUE))
 
   expect_equal(nrow(dm), 3)
   expect_equal(dm$src_img, png_url)
@@ -367,7 +413,7 @@ test_that("Use  overwrite", {
   expect_length(ll, 1)
   expect_identical(ll, "example.png")
 
-  unlink(the_dir, force = TRUE)
+  unlink(the_dir, force = TRUE, recursive = TRUE)
 })
 
 
@@ -390,12 +436,12 @@ test_that("To non-existing directories", {
   outs <- file.path(outf, basename(png_url))
 
   # Call
-  expect_silent(dm <- resmush_url(png_url, outs))
+  expect_message(dm <- resmush_url(png_url, outs))
 
   # Check that now exists
   expect_true(dir.exists(outf))
   expect_true(file.exists(outs))
 
   # Clean up
-  unlink(outf, force = TRUE)
+  unlink(outf, force = TRUE, recursive = TRUE)
 })

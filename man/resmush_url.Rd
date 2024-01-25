@@ -8,8 +8,9 @@ resmush_url(
   url,
   outfile = file.path(tempdir(), basename(url)),
   overwrite = FALSE,
+  progress = TRUE,
+  report = TRUE,
   qlty = 92,
-  verbose = FALSE,
   exif_preserve = FALSE
 )
 }
@@ -34,10 +35,13 @@ of the same length than \code{url} parameter.}
 exists)? If \code{FALSE} and \code{outfile} exists it would create a copy with
 a numerical suffix (i.e. \verb{<outfile>.png}, \verb{<outfile>_01.png}, etc.).}
 
+\item{progress}{Logical. Display a progress bar when needed.}
+
+\item{report}{Logical. Display a summary report of the process in the
+console. See also \strong{Value}.}
+
 \item{qlty}{Only affects \code{jpg} files. Integer between 0 and 100 indicating
 the optimization level. For optimal results use vales above 90.}
-
-\item{verbose}{Logical. If \code{TRUE} displays a summary of the results.}
 
 \item{exif_preserve}{Logical. Should the
 \href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) deleted?
@@ -45,11 +49,11 @@ Default is to remove (i.e. \code{exif_preserve = FALSE}).}
 }
 \value{
 Writes on disk the optimized file if the API call is successful.
-In any case, a (invisibly) data frame with a summary of the process is
+In all cases, a (invisible) data frame with a summary of the process is
 returned as well.
 
 If any value of the vector \code{outfile} is duplicated, \code{resmush_url()} would
-rename the output with a suffix \verb{_1. _2}, etc.
+rename the output with a suffix \verb{_01. _02}, etc.
 }
 \description{
 Optimize and download an online image using the
@@ -75,9 +79,15 @@ summary <- resmush_url(c(png_url, jpg_url))
 # Returns an (invisible) data frame with a summary of the process
 summary
 
+# Display with png
+if (require("png", quietly = TRUE)) {
+  my_png <- png::readPNG(summary$dest_img[1])
+  grid::grid.raster(my_png)
+}
+
 # Use with jpg and parameters
-resmush_url(jpg_url, verbose = TRUE)
-resmush_url(jpg_url, verbose = TRUE, qlty = 10)
+resmush_url(jpg_url)
+resmush_url(jpg_url, qlty = 10)
 }
 \dontshow{\}) # examplesIf}
 }
