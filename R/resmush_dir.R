@@ -6,8 +6,9 @@
 #'
 #' @param dir Character or vector of characters representing paths of local
 #'   directories.
-#' @param ext [regex] indicating the extensions of the files to be optimized.
-#'   The default value would capture all the extensions admitted by the API.
+#' @param ext [`regex`][base::regex] indicating the extensions of the files to 
+#'   be optimized. The default value would capture all the extensions admitted 
+#'   by the API.
 #' @param suffix Character, defaults to `"_resmush"`. By default, a new file
 #'   with the suffix is created in the same directory (i.e.,
 #'   optimized `example.png` would be `example_resmush.png`). Values `""`, `NA`
