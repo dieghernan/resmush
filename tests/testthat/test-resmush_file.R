@@ -23,6 +23,8 @@ test_that("Test offline", {
 
 test_that("Test corner", {
   skip_on_cran()
+  skip_if_offline()
+
   test_png <- load_inst_to_temp("example.png")
   expect_true(file.exists(test_png))
 

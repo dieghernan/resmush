@@ -24,6 +24,8 @@ test_that("Test offline", {
 
 test_that("Test corner", {
   skip_on_cran()
+  skip_if_offline()
+
   png_url <- paste0(
     "https://raw.githubusercontent.com/",
     "dieghernan/resmush/main/inst/",
