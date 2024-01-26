@@ -38,6 +38,12 @@ Some of the features of reSmush.it are:
 
 ## Installation
 
+Once accepted, you can install resmush from **CRAN** with:
+
+``` r
+install.packages("resmush")
+```
+
 You can install the development version of **resmush** from
 [GitHub](https://github.com/) with:
 
@@ -158,7 +164,7 @@ tibble::as_tibble(summary[, -c(1, 2)])
   interface with [TinyPNG](https://tinypng.com/).
 - [**optout**](https://github.com/coolbutuseless/optout) package by
   [@coolbutuseless](https://coolbutuseless.github.io/). Similar to
-  `xfun::optipng()` with additionall options. Needs additional software
+  `xfun::optipng()` with additional options. Needs additional software
   installed locally.
 - [Imgbot](https://imgbot.net/): Automatic optimization for files hosted
   in GitHub repos.
@@ -178,7 +184,7 @@ A BibTeX entry for LaTeX users is
       title = {{resmush}: Optimize and Compress Image Files with {reSmush.it}},
       author = {Diego Hernangómez},
       year = {2024},
-      version = {0.0.1.9000},
+      version = {0.1.0},
       doi = {10.5281/zenodo.10556679},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},

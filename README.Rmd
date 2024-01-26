@@ -53,10 +53,16 @@ Some of the features of reSmush.it are:
 
 ## Installation
 
+Once accepted, you can install resmush from **CRAN** with:
+
+```{r, eval=FALSE}
+install.packages("resmush")
+```
+
 You can install the development version of **resmush** from
 [GitHub](https://github.com/) with:
 
-``` r
+```{r, eval=FALSE}
 # install.packages("devtools")
 devtools::install_github("dieghernan/resmush")
 ```
@@ -152,7 +158,7 @@ tibble::as_tibble(summary[, -c(1, 2)])
     interface with [TinyPNG](https://tinypng.com/).
 -   [**optout**](https://github.com/coolbutuseless/optout) package by
     [\@coolbutuseless](https://coolbutuseless.github.io/). Similar to
-    `xfun::optipng()` with additionall options. Needs additional software
+    `xfun::optipng()` with additional options. Needs additional software
     installed locally.
 -   [Imgbot](https://imgbot.net/): Automatic optimization for files hosted in
     GitHub repos.
