@@ -102,8 +102,7 @@ resmush_url <- function(url, outfile = file.path(tempdir(), basename(url)),
         "{cli::pb_percent} [{cli::pb_elapsed}] | ETA: {cli::pb_eta} ",
         "({cli::pb_current}/{cli::pb_total} urls)"
       ),
-      total = n_urls, clear = FALSE,
-      format_done = "reSmushed {n_urls} url{?s} in {cli::pb_elapsed}."
+      total = n_urls, clear = FALSE
     )
   }
 

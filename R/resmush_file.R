@@ -103,8 +103,7 @@ resmush_file <- function(file, suffix = "_resmush", overwrite = FALSE,
         "{cli::pb_percent} [{cli::pb_elapsed}] | ETA: {cli::pb_eta} ",
         "({cli::pb_current}/{cli::pb_total} files)"
       ),
-      total = n_files, clear = FALSE,
-      format_done = "reSmushed {n_files} file{?s} in {cli::pb_elapsed}."
+      total = n_files, clear = FALSE
     )
   }
   # Call single with loop, cli::cli_progress_bar does not work on applys yet
