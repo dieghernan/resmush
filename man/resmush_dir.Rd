@@ -19,8 +19,9 @@ resmush_dir(
 \item{dir}{Character or vector of characters representing paths of local
 directories.}
 
-\item{ext}{\link{regex} indicating the extensions of the files to be optimized.
-The default value would capture all the extensions admitted by the API.}
+\item{ext}{\code{\link[base:regex]{regex}} indicating the extensions of the files to
+be optimized. The default value would capture all the extensions admitted
+by the API.}
 
 \item{suffix}{Character, defaults to \code{"_resmush"}. By default, a new file
 with the suffix is created in the same directory (i.e.,
