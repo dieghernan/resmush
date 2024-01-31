@@ -15,7 +15,7 @@ Depends:
 Imports:
     cli,
     curl,
-    httr,
+    httr2 (>= 1.0.0),
     tools,
     utils
 Suggests: 

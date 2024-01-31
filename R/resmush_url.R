@@ -189,16 +189,18 @@ resmush_url_single <- function(url,
   }
   # nocov end
 
+
+
   ##  2. Download from dest ----
-  dwn_opt <- httr::GET(
-    res_get$dest,
-    httr::write_disk(outfile, overwrite = TRUE)
-  )
+  dwn_opt <- httr2::request(res_get$dest)
+
+  # Finally
+  dwn_opt <- httr2::req_perform(dwn_opt, path = outfile)
 
   # Corner case
   # Internal option, for checking purposes only
   test_corner <- getOption("resmush_test_corner", FALSE)
-  if (any(httr::status_code(dwn_opt) != 200, test_corner)) {
+  if (any(httr2::resp_status(dwn_opt) != 200, test_corner)) {
     res$notes <- "API Not responding, check https://resmush.it/status}"
     return(invisible(res))
   }
@@ -234,18 +236,18 @@ smush_from_url <- function(url, qlty, exif_preserve = TRUE, n_rep = 3) {
   # Make logical
   exif_preserve <- isTRUE(exif_preserve)
 
+  api_url <- httr2::url_parse("http://api.resmush.it/ws.php")
+  api_url$query <- list(
+    qlty = qlty, exif = exif_preserve,
+    img = url
+  )
+  api_url <- httr2::url_build(api_url)
+  the_req <- httr2::request(api_url)
+
+
   for (i in seq(1, n_rep)) {
-    url_enc <- paste0(
-      "http://api.resmush.it/ws.php?qlty=", qlty,
-      "&img=", url,
-      "&exif=", exif_preserve
-    )
-    url_enc <- URLencode(url_enc)
-
-    api_get <- httr::GET(url_enc)
-
-    res_get <- httr::content(api_get)
-
+    api_get <- httr2::req_perform(the_req)
+    res_get <- httr2::resp_body_json(api_get)
     if (!"error" %in% names(res_get)) break
     Sys.sleep(0.5)
   }

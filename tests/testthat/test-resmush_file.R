@@ -323,13 +323,12 @@ test_that("Test exif", {
   skip_if_offline()
   exif <- tempfile("exif", fileext = ".jpg")
 
-  res <- httr::GET(
-    url = paste0(
-      "https://raw.githubusercontent.com/dieghernan/resmush/main/",
-      "img/sample-jpg-exif-876kb.jpg"
-    ),
-    httr::write_disk(exif, overwrite = TRUE)
-  )
+  res <- httr2::request(paste0(
+    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "img/sample-jpg-exif-876kb.jpg"
+  ))
+
+  end <- httr2::req_perform(res, path = exif)
 
   expect_true(file.exists(exif))
   resmush_clean_dir(tempdir(), "_without_exif")
