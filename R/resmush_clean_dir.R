@@ -25,7 +25,8 @@
 #'
 #' @export
 #' @keywords internal
-#' @examples
+#' @examplesIf curl::has_internet()
+#' \donttest{
 #' # Simple example
 #'
 #' png_file <- system.file("extimg/example.png", package = "resmush")
@@ -52,6 +53,7 @@
 #' resmush_clean_dir(tempdir(), suffix = suffix)
 #'
 #' file.exists(tmp_png)
+#' }
 resmush_clean_dir <- function(dir, suffix = "_resmush", recursive = FALSE) {
   allfiles <- list.files(
     pattern = paste0(suffix, "\\."),

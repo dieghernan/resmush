@@ -131,15 +131,16 @@
     },
     "4": {
       "@type": "SoftwareApplication",
-      "identifier": "httr",
-      "name": "httr",
+      "identifier": "httr2",
+      "name": "httr2",
+      "version": ">= 1.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=httr"
+      "sameAs": "https://CRAN.R-project.org/package=httr2"
     },
     "5": {
       "@type": "SoftwareApplication",
@@ -154,7 +155,7 @@
     "SystemRequirements": null
   },
   "keywords": ["r", "compress-images", "optimize-images", "resmushit", "api", "r-package"],
-  "fileSize": "673.76KB",
+  "fileSize": "678.735KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

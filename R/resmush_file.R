@@ -175,20 +175,7 @@ resmush_file_single <- function(file, suffix = "_resmush", overwrite = FALSE,
   # API Calls -----
   ## 1. Send local file -----
 
-  # Create file object
-  file_post <- httr::upload_file(file)
-  file_post$name <- basename(file)
-
-  # Send to reSmusht
-  # Make logical
-  exif_preserve <- isTRUE(exif_preserve)
-
-  api_post <- httr::POST(
-    url = paste0("http://api.resmush.it/?qlty=", qlty, "&exif=", exif_preserve),
-    body = list(files = file_post)
-  )
-
-  res_post <- httr::content(api_post)
+  res_post <- smush_from_local(file, qlty, exif_preserve)
 
   if ("error" %in% names(res_post)) {
     res$notes <- paste0(res_post$error, ": ", res_post$error_long)
@@ -203,15 +190,15 @@ resmush_file_single <- function(file, suffix = "_resmush", overwrite = FALSE,
   # nocov end
 
   ##  2. Download from dest ----
-  dwn_opt <- httr::GET(
-    url = res_post$dest,
-    httr::write_disk(outfile, overwrite = TRUE)
-  )
+  dwn_opt <- httr2::request(res_post$dest)
+
+  # Finally
+  dwn_opt <- httr2::req_perform(dwn_opt, path = outfile)
 
   # Corner case
   # Internal option, for checking purposes only
   test_corner <- getOption("resmush_test_corner", FALSE)
-  if (any(httr::status_code(dwn_opt) != 200, test_corner)) {
+  if (any(httr2::resp_status(dwn_opt) != 200, test_corner)) {
     res$notes <- "API Not responding, check https://resmush.it/status}"
     return(invisible(res))
   }
@@ -229,4 +216,26 @@ resmush_file_single <- function(file, suffix = "_resmush", overwrite = FALSE,
   res$notes <- "OK"
 
   return(invisible(res))
+}
+
+
+# Helper function for retrying the call
+smush_from_local <- function(path, qlty, exif_preserve = TRUE) {
+  # Make logical
+  exif_preserve <- isTRUE(exif_preserve)
+
+  api_url <- httr2::url_parse("http://api.resmush.it/")
+  api_url$query <- list(qlty = qlty, exif = exif_preserve)
+  api_url <- httr2::url_build(api_url)
+  the_req <- httr2::request(api_url)
+
+  the_req_file <- httr2::req_body_multipart(the_req,
+    files = curl::form_file(path)
+  )
+
+
+  api_get <- httr2::req_perform(the_req_file)
+  res_get <- httr2::resp_body_json(api_get)
+
+  return(res_get)
 }
