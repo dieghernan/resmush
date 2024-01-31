@@ -25,6 +25,8 @@ Clean a directory (or a list of directories) of files created by
 \code{\link[=resmush_file]{resmush_file()}}.
 }
 \examples{
+\dontshow{if (curl::has_internet()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
 # Simple example
 
 png_file <- system.file("extimg/example.png", package = "resmush")
@@ -51,6 +53,8 @@ file.exists(tmp_png)
 resmush_clean_dir(tempdir(), suffix = suffix)
 
 file.exists(tmp_png)
+}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=resmush_file]{resmush_file()}}, \code{\link[=resmush_dir]{resmush_dir()}}, \code{\link[=list.files]{list.files()}}, \code{\link[=unlink]{unlink()}}
