@@ -98,6 +98,8 @@ download_to_temp <- function(url) {
   extt <- tools::file_ext(url)
   tmpfi <- tempfile(fileext = paste0(".", extt))
   rq <- httr2::request(url)
+  # nolint start
   dwn <- httr2::req_perform(rq, path = tmpfi)
+  # nolint end
   return(tmpfi)
 }
