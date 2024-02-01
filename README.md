@@ -38,7 +38,7 @@ Some of the features of reSmush.it are:
 
 ## Installation
 
-Once accepted, you can install resmush from **CRAN** with:
+Once accepted, you can install **resmush** from **CRAN** with:
 
 ``` r
 install.packages("resmush")
