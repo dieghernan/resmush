@@ -227,7 +227,7 @@ test_that("Test full vectors", {
 
   expect_message(
     dm <- resmush_file(all_in),
-    "reSmushing"
+    "Go!"
   )
 
   # Restored options

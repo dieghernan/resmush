@@ -99,7 +99,7 @@ resmush_file <- function(file, suffix = "_resmush", overwrite = FALSE,
 
     cli::cli_progress_bar(
       format = paste0(
-        "{cli::pb_spin} reSmushing | {cli::pb_bar} ",
+        "{cli::pb_spin} Go! | {cli::pb_bar} ",
         "{cli::pb_percent} [{cli::pb_elapsed}] | ETA: {cli::pb_eta} ",
         "({cli::pb_current}/{cli::pb_total} files)"
       ),
