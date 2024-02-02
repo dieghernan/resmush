@@ -30,3 +30,5 @@ dev
 dev/
 docs/
 inst/doc
+/doc/
+/Meta/

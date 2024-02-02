@@ -8,6 +8,7 @@ Freepik
 Imgbot
 JPEGOptim
 Kanagawa
+Ko
 Magento
 MansyGraphics
 ORCID
@@ -17,9 +18,17 @@ TinyPNG
 Wordpress
 Xie
 Yihui
+blogdown
+bmp
+bookdown
 codecov
+fi
 httr
 jmablog
+jpg
+knitr
+mb
+mx
 optimizers
 optout
 png
@@ -27,4 +36,5 @@ reSmush
 recurse
 repos
 tinieR
+webp
 xfun

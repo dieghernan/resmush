@@ -22,6 +22,11 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/resmush)](https://CRAN.R-project.org/package=resmush)
+[![CRAN
+results](https://badges.cranchecks.info/worst/resmush.svg)](https://cran.r-project.org/web/checks/check_results_resmush.html)
+[![Downloads](https://cranlogs.r-pkg.org/badges/resmush)](https://CRAN.R-project.org/package=resmush)
 [![R-CMD-check](https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/resmush/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/resmush)
 [![r-universe](https://dieghernan.r-universe.dev/badges/resmush)](https://dieghernan.r-universe.dev/resmush)
@@ -34,10 +39,11 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 <!-- badges: end -->
 
 **resmush** is a **R** package that allow users to optimize and compress images
-using [reSmush.it](https://resmush.it/). reSmush.it is a free API that provides
-image optimization, and it has been implemented on Wordpress, Drupal or Magento.
+using [**reSmush.it**](https://resmush.it/). reSmush.it is a free API that
+provides image optimization, and it has been implemented on Wordpress, Drupal or
+Magento.
 
-Some of the features of reSmush.it are:
+Some of the features of **reSmush.it** are:
 
 -   Free optimization services, no API key required.
 -   Optimize local and online images.
@@ -51,9 +57,19 @@ Some of the features of reSmush.it are:
     -   [**OptiPNG**](https://optipng.sourceforge.net/): `png` reducer that is
         used by several online optimizers.
 
+**reSmush.it** is free of charge, but its team is planning to offer more serves
+as well as extend the service to support other types of image files. If you
+enjoy this API (as I do), you can consider supporting them.
+
+::: {.text-center .mb-4}
+[![Support reSmush.it on
+Ko-fi](man/figures/ko-fi-resmush.png){width="296"}](https://ko-fi.com/E1E51PW00)
+:::
+
 ## Installation
 
-Once accepted, you can install **resmush** from **CRAN** with:
+Install **resmush** from [**CRAN**](https://CRAN.R-project.org/package=resmush)
+with:
 
 ```{r, eval=FALSE}
 install.packages("resmush")
@@ -94,13 +110,16 @@ resmush_url(url, outfile = "man/figures/jpg_example_compress.jpg", overwrite = T
 ```
 
 ::: figure
-<img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" alt="Original online figure" width="100%"/>
-<img src="./man/figures/jpg_example_compress.jpg" alt="Optimized figure" width="100%"/>
+[![](https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg){alt="Original uncompressed file"
+width="100%"}](https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg)
+
+[![](./man/figures/jpg_example_compress.jpg){alt="Optimized file"
+width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 
 <p class="caption">
 
 Original picture (top) 178.7 Kb and optimized picture (bottom) 45 Kb
-(Compression 74.8%)
+(Compression 74.8%). Click to enlarge.
 
 </p>
 :::
@@ -118,7 +137,8 @@ resmush_url(url,
 ```
 
 ::: figure
-![Low quality figure](man/figures/jpg_example_compress_low.jpg){width="100%"}
+[![Low quality
+figure](man/figures/jpg_example_compress_low.jpg){width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
 <p class="caption">
 
@@ -145,23 +165,54 @@ tibble::as_tibble(summary[, -c(1, 2)])
 
 ## Other alternatives
 
--   [**xfun**](https://cran.r-project.org/package=xfun) package by Yihui Xie
-    [![Sponsor Yihui Xie on
-    GitHub](man/figures/sponsor.svg)](https://github.com/sponsors/yihui) has the
-    following functions that optimize image files:
+There are other alternatives for optimizing images with **R**, but first…
+
+::: {.alert .alert-info .p-3 .mx-2 .mb-3}
+Please consider sponsor Yihui Xie on GitHub (more info
+[here](https://yihui.org/en/2024/01/bye-rstudio/)). Yihui has developed some of
+the most amazing packages for **R** such as **knitr**, **markdown**,
+**blogdown**, and **bookdown**.
+
+::: {.text-center .mb-4}
+[![Sponsor
+Yihui](man/figures/sponsor.png){width="175"}](https://github.com/sponsors/yihui)
+:::
+:::
+
+-   One of the many packages developed by Yihui is
+    [**xfun**](https://cran.r-project.org/package=xfun), which includes the
+    following functions for optimizing image files:
     -   `xfun::tinify()` is similar to `resmush_file()` but uses
-        [TinyPNG](https://tinypng.com/). API key required.
-    -   `xfun::optipng()` compress local files with OptiPNG (that needs to be
-        installed locally).
+        [**TinyPNG**](https://tinypng.com/). An API key is required.
+    -   `xfun::optipng()` compresses local files with **OptiPNG** (which needs
+        to be installed locally).
 -   [**tinieR**](https://jmablog.github.io/tinieR/) package by
-    [jmablog](https://jmablog.com/). **R** package that provides a full
-    interface with [TinyPNG](https://tinypng.com/).
+    [jmablog](https://jmablog.com/). An **R** package that provides a full
+    interface with [**TinyPNG**](https://tinypng.com/).
 -   [**optout**](https://github.com/coolbutuseless/optout) package by
     [\@coolbutuseless](https://coolbutuseless.github.io/). Similar to
-    `xfun::optipng()` with additional options. Needs additional software
-    installed locally.
--   [Imgbot](https://imgbot.net/): Automatic optimization for files hosted in
-    GitHub repos.
+    `xfun::optipng()` with additional options. Requires additional software to
+    be installed locally.
+
+| tool              | CRAN | Additional software? | Online? | API Key? | Limits?                     |
+|--------------|--------------|--------------|--------------|--------------|--------------|
+| `xfun::tinify()`  | Yes  | No                   | Yes     | Yes      | 500 files/month (Free tier) |
+| `xfun::optipng()` | Yes  | Yes                  | No      | No       | No                          |
+| **tinieR**        | No   | No                   | Yes     | Yes      | 500 files/month (Free tier) |
+| **optout**        | No   | Yes                  | No      | No       | No                          |
+| **resmush**       | Yes  | No                   | Yes     | No       | Max size 5Mb                |
+
+: Table 1: **R** packages: Comparison of alternatives for optimizing images.
+
+| tool              | png | jpg | gif | bmp | tiff | webp | pdf |
+|-------------------|-----|-----|-----|-----|------|------|-----|
+| `xfun::tinify()`  | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
+| `xfun::optipng()` | ✅  | ❌  | ❌  | ❌  | ❌   | ❌   | ❌  |
+| **tinieR**        | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
+| **optout**        | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
+| **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ✅   | ❌  |
+
+: Table 2: **R** packages: Formats admitted.
 
 ## Citation
 

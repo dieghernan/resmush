@@ -4,7 +4,7 @@
   "identifier": "resmush",
   "description": "Compress local and online images using the 'reSmush.it' API service <https://resmush.it/>.",
   "name": "resmush: Optimize and Compress Image Files with 'reSmush.it'",
-  "relatedLink": "https://dieghernan.github.io/resmush/",
+  "relatedLink": ["https://dieghernan.github.io/resmush/", "https://CRAN.R-project.org/package=resmush"],
   "codeRepository": "https://github.com/dieghernan/resmush",
   "issueTracker": "https://github.com/dieghernan/resmush/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -15,6 +15,12 @@
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.3.2 (2023-10-31 ucrt)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -155,7 +161,7 @@
     "SystemRequirements": null
   },
   "keywords": ["r", "compress-images", "optimize-images", "resmushit", "api", "r-package"],
-  "fileSize": "676.794KB",
+  "fileSize": "686.452KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

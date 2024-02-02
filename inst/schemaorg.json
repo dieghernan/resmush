@@ -22,6 +22,12 @@
         "name": "R",
         "url": "https://r-project.org"
       },
+      "provider": {
+        "id": "https://cran.r-project.org",
+        "type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
       "runtimePlatform": "R version 4.3.2 (2023-10-31 ucrt)",
       "version": "0.1.0"
     },
