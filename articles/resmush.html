@@ -100,10 +100,10 @@
     
 <!-- resmush.Rmd is generated from resmush.Rmd.orig. Please edit that file -->
 <p><strong>resmush</strong> is a <strong>R</strong> package that allow
-users to optimize and compress images using <a href="https://resmush.it/" class="external-link">reSmush.it</a>. reSmush.it is a free API that
-provides image optimization, and it has been implemented on Wordpress,
-Drupal or Magento.</p>
-<p>Some of the features of reSmush.it are:</p>
+users to optimize and compress images using <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. reSmush.it
+is a free API that provides image optimization, and it has been
+implemented on Wordpress, Drupal or Magento.</p>
+<p>Some of the features of <strong>reSmush.it</strong> are:</p>
 <ul>
 <li>Free optimization services, no API key required.</li>
 <li>Optimize local and online images.</li>
@@ -139,16 +139,17 @@ Lossless optimization based on optimizing the Huffman tables.</li>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/resmush_url.html">resmush_url</a></span><span class="op">(</span><span class="va">url</span>, outfile <span class="op">=</span> <span class="st">"jpg_example_compress.jpg"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ══ resmush summary ════════════════════════════════════════════════════════════</span></span>
+<span><span class="co">#&gt; ══ resmush summary ═════════════════════════════════════════════════════════════</span></span>
 <span><span class="co">#&gt; ℹ Input: 1 url with size 178.7 Kb</span></span>
 <span><span class="co">#&gt; ✔ Success for 1 url: Size now is 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).</span></span>
 <span><span class="co">#&gt; See result in directory '.'.</span></span></code></pre></div>
 <div class="figure">
-<p><img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" alt="Original online figure" width="100%"><img src="jpg_example_compress.jpg" alt="Optimized figure" width="100%"></p>
+<p><a href="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" class="external-link"><img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" style="width:100.0%" alt="Original uncompressed file"></a></p>
+<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg"><img src="jpg_example_compress.jpg" style="width:100.0%" alt="Optimized file"></a></p>
 <p class="caption">
 </p>
 <p>Original picture (top) 178.7 Kb and optimized picture (bottom) 45 Kb
-(Compression 74.8%)</p>
+(Compression 74.8%). Click to enlarge.</p>
 
 </div>
 <p>The quality of the compression can be adjusted in the case of
@@ -161,12 +162,12 @@ quality.</p>
 <span>  outfile <span class="op">=</span> <span class="st">"jpg_example_compress_low.jpg"</span>,</span>
 <span>  overwrite <span class="op">=</span> <span class="cn">TRUE</span>, qlty <span class="op">=</span> <span class="fl">3</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; ══ resmush summary ════════════════════════════════════════════════════════════</span></span>
+<span><span class="co">#&gt; ══ resmush summary ═════════════════════════════════════════════════════════════</span></span>
 <span><span class="co">#&gt; ℹ Input: 1 url with size 178.7 Kb</span></span>
 <span><span class="co">#&gt; ✔ Success for 1 url: Size now is 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).</span></span>
 <span><span class="co">#&gt; See result in directory '.'.</span></span></code></pre></div>
 <div class="figure">
-<p><img src="jpg_example_compress_low.jpg" alt="Low quality figure" width="100%"></p>
+<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg"><img src="jpg_example_compress_low.jpg" style="width:100.0%" alt="Low quality figure"></a></p>
 <p class="caption">
 </p>
 <p>Low quality image due to a high compression rate.</p>
@@ -197,8 +198,8 @@ process. The next example shows how when compressing a local file.</p>
 <ul>
 <li>
 <a href="https://cran.r-project.org/package=xfun" class="external-link"><strong>xfun</strong></a>
-package by Yihui Xie <a href="https://github.com/sponsors/yihui" class="external-link"><img src="sponsor.svg" alt="Sponsor Yihui Xie on GitHub"></a> has the
-following functions that optimize image files:
+package by Yihui Xie has the following functions that optimize image
+files:
 <ul>
 <li>
 <code><a href="https://rdrr.io/pkg/xfun/man/tinify.html" class="external-link">xfun::tinify()</a></code> is similar to
@@ -221,6 +222,134 @@ software installed locally.</li>
 <a href="https://imgbot.net/" class="external-link">Imgbot</a>: Automatic optimization for
 files hosted in GitHub repos.</li>
 </ul>
+<table style="width:100%;" class="table">
+<caption>Table 1: <strong>R</strong> packages: Comparison of
+alternatives for optimizing images.</caption>
+<colgroup>
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+</colgroup>
+<thead><tr class="header">
+<th>tool</th>
+<th>CRAN</th>
+<th>Additional software?</th>
+<th>Online?</th>
+<th>API Key?</th>
+<th>Limits?</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code><a href="https://rdrr.io/pkg/xfun/man/tinify.html" class="external-link">xfun::tinify()</a></code></td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>500 files/month (Free tier)</td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td><strong>tinieR</strong></td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>500 files/month (Free tier)</td>
+</tr>
+<tr class="even">
+<td><strong>optout</strong></td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td><strong>resmush</strong></td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+<td>Max size 5Mb</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<caption>Table 2: <strong>R</strong> packages: Formats
+admitted.</caption>
+<thead><tr class="header">
+<th>tool</th>
+<th>png</th>
+<th>jpg</th>
+<th>gif</th>
+<th>bmp</th>
+<th>tiff</th>
+<th>webp</th>
+<th>pdf</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code><a href="https://rdrr.io/pkg/xfun/man/tinify.html" class="external-link">xfun::tinify()</a></code></td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td><strong>tinieR</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr class="even">
+<td><strong>optout</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td><strong>resmush</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

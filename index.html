@@ -95,8 +95,8 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p><strong>resmush</strong> is a <strong>R</strong> package that allow users to optimize and compress images using <a href="https://resmush.it/" class="external-link">reSmush.it</a>. reSmush.it is a free API that provides image optimization, and it has been implemented on Wordpress, Drupal or Magento.</p>
-<p>Some of the features of reSmush.it are:</p>
+<p><strong>resmush</strong> is a <strong>R</strong> package that allow users to optimize and compress images using <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. reSmush.it is a free API that provides image optimization, and it has been implemented on Wordpress, Drupal or Magento.</p>
+<p>Some of the features of <strong>reSmush.it</strong> are:</p>
 <ul>
 <li>Free optimization services, no API key required.</li>
 <li>Optimize local and online images.</li>
@@ -113,10 +113,14 @@
 </ul>
 </li>
 </ul>
+<p><strong>reSmush.it</strong> is free of charge, but its team is planning to offer more serves as well as extend the service to support other types of image files. If you enjoy this API (as I do), you can consider supporting them.</p>
+<div class="text-center mb-4">
+<p><a href="https://ko-fi.com/E1E51PW00" class="external-link"><img src="reference/figures/ko-fi-resmush.png" width="296" alt="Support reSmush.it on Ko-fi"></a></p>
+</div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Once accepted, you can install <strong>resmush</strong> from <strong>CRAN</strong> with:</p>
+<p>Install <strong>resmush</strong> from <a href="https://CRAN.R-project.org/package=resmush" class="external-link"><strong>CRAN</strong></a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"resmush"</span><span class="op">)</span></span></code></pre></div>
 <p>You can install the development version of <strong>resmush</strong> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
@@ -149,10 +153,11 @@
 <span><span class="co">#&gt; ✔ Success for 1 url: Size now is 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).</span></span>
 <span><span class="co">#&gt; See result in directory 'man/figures'.</span></span></code></pre></div>
 <div class="figure">
-<p><img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" alt="Original online figure" width="100%"><img src="./reference/figures/jpg_example_compress.jpg" alt="Optimized figure" width="100%"></p>
+<p><a href="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" class="external-link"><img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" style="width:100.0%" alt="Original uncompressed file"></a></p>
+<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg"><img src="./reference/figures/jpg_example_compress.jpg" style="width:100.0%" alt="Optimized file"></a></p>
 <p class="caption">
 </p>
-<p>Original picture (top) 178.7 Kb and optimized picture (bottom) 45 Kb (Compression 74.8%)</p>
+<p>Original picture (top) 178.7 Kb and optimized picture (bottom) 45 Kb (Compression 74.8%). Click to enlarge.</p>
 
 </div>
 <p>The quality of the compression can be adjusted in the case of <code>jpg</code> files using the parameter <code>qlty</code>. However, it is recommended to keep this value above 90 to get a good image quality.</p>
@@ -167,9 +172,8 @@
 <span><span class="co">#&gt; ✔ Success for 1 url: Size now is 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).</span></span>
 <span><span class="co">#&gt; See result in directory 'man/figures'.</span></span></code></pre></div>
 <div class="figure">
-<figure><img src="reference/figures/jpg_example_compress_low.jpg" style="width:100.0%" alt="Low quality figure"><figcaption aria-hidden="true">
-Low quality figure
-</figcaption></figure><p class="caption">
+<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg"><img src="reference/figures/jpg_example_compress_low.jpg" style="width:100.0%" alt="Low quality figure"></a></p>
+<p class="caption">
 </p>
 <p>Low quality image due to a high compression rate.</p>
 
@@ -195,23 +199,153 @@ Low quality figure
 <div class="section level2">
 <h2 id="other-alternatives">Other alternatives<a class="anchor" aria-label="anchor" href="#other-alternatives"></a>
 </h2>
+<p>There are other alternatives for optimizing images with <strong>R</strong>, but first…</p>
+<div class="alert alert-info p-3 mx-2 mb-3">
+<p>Please consider sponsor Yihui Xie on GitHub (more info <a href="https://yihui.org/en/2024/01/bye-rstudio/" class="external-link">here</a>). Yihui has developed some of the most amazing packages for <strong>R</strong> such as <strong>knitr</strong>, <strong>markdown</strong>, <strong>blogdown</strong>, and <strong>bookdown</strong>.</p>
+<div class="text-center mb-4">
+<p><a href="https://github.com/sponsors/yihui" class="external-link"><img src="reference/figures/sponsor.png" width="175" alt="Sponsor Yihui"></a></p>
+</div>
+</div>
+<ul>
+<li>One of the many packages developed by Yihui is <a href="https://cran.r-project.org/package=xfun" class="external-link"><strong>xfun</strong></a>, which includes the following functions for optimizing image files:
 <ul>
 <li>
-<a href="https://cran.r-project.org/package=xfun" class="external-link"><strong>xfun</strong></a> package by Yihui Xie <a href="https://github.com/sponsors/yihui" class="external-link"><img src="reference/figures/sponsor.svg" alt="Sponsor Yihui Xie on GitHub"></a> has the following functions that optimize image files:
-<ul>
+<code><a href="https://rdrr.io/pkg/xfun/man/tinify.html" class="external-link">xfun::tinify()</a></code> is similar to <code><a href="reference/resmush_file.html">resmush_file()</a></code> but uses <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a>. An API key is required.</li>
 <li>
-<code><a href="https://rdrr.io/pkg/xfun/man/tinify.html" class="external-link">xfun::tinify()</a></code> is similar to <code><a href="reference/resmush_file.html">resmush_file()</a></code> but uses <a href="https://tinypng.com/" class="external-link">TinyPNG</a>. API key required.</li>
-<li>
-<code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> compress local files with OptiPNG (that needs to be installed locally).</li>
+<code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> compresses local files with <strong>OptiPNG</strong> (which needs to be installed locally).</li>
 </ul>
 </li>
 <li>
-<a href="https://jmablog.github.io/tinieR/" class="external-link"><strong>tinieR</strong></a> package by <a href="https://jmablog.com/" class="external-link">jmablog</a>. <strong>R</strong> package that provides a full interface with <a href="https://tinypng.com/" class="external-link">TinyPNG</a>.</li>
+<a href="https://jmablog.github.io/tinieR/" class="external-link"><strong>tinieR</strong></a> package by <a href="https://jmablog.com/" class="external-link">jmablog</a>. An <strong>R</strong> package that provides a full interface with <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a>.</li>
 <li>
-<a href="https://github.com/coolbutuseless/optout" class="external-link"><strong>optout</strong></a> package by <a href="https://coolbutuseless.github.io/" class="external-link">@coolbutuseless</a>. Similar to <code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> with additional options. Needs additional software installed locally.</li>
-<li>
-<a href="https://imgbot.net/" class="external-link">Imgbot</a>: Automatic optimization for files hosted in GitHub repos.</li>
+<a href="https://github.com/coolbutuseless/optout" class="external-link"><strong>optout</strong></a> package by <a href="https://coolbutuseless.github.io/" class="external-link">@coolbutuseless</a>. Similar to <code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> with additional options. Requires additional software to be installed locally.</li>
 </ul>
+<table class="table">
+<colgroup>
+<col width="20%">
+<col width="6%">
+<col width="23%">
+<col width="9%">
+<col width="10%">
+<col width="30%">
+</colgroup>
+<thead><tr class="header">
+<th>tool</th>
+<th>CRAN</th>
+<th>Additional software?</th>
+<th>Online?</th>
+<th>API Key?</th>
+<th>Limits?</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code><a href="https://rdrr.io/pkg/xfun/man/tinify.html" class="external-link">xfun::tinify()</a></code></td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>500 files/month (Free tier)</td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td><strong>tinieR</strong></td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>500 files/month (Free tier)</td>
+</tr>
+<tr class="even">
+<td><strong>optout</strong></td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td><strong>resmush</strong></td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+<td>Max size 5Mb</td>
+</tr>
+</tbody>
+</table>
+<p>Table 1: <strong>R</strong> packages: Comparison of alternatives for optimizing images.</p>
+<table class="table">
+<thead><tr class="header">
+<th>tool</th>
+<th>png</th>
+<th>jpg</th>
+<th>gif</th>
+<th>bmp</th>
+<th>tiff</th>
+<th>webp</th>
+<th>pdf</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code><a href="https://rdrr.io/pkg/xfun/man/tinify.html" class="external-link">xfun::tinify()</a></code></td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td><strong>tinieR</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr class="even">
+<td><strong>optout</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td><strong>resmush</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<p>Table 2: <strong>R</strong> packages: Formats admitted.</p>
 </div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
@@ -282,6 +416,9 @@ Hernangómez D (2024). <em>resmush: Optimize and Compress Image Files with reSmu
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
+<li><a href="https://CRAN.R-project.org/package=resmush" class="external-link"><img src="https://www.r-pkg.org/badges/version/resmush" alt="CRAN status"></a></li>
+<li><a href="https://cran.r-project.org/web/checks/check_results_resmush.html" class="external-link"><img src="https://badges.cranchecks.info/worst/resmush.svg" alt="CRAN results"></a></li>
+<li><a href="https://CRAN.R-project.org/package=resmush" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/resmush" alt="Downloads"></a></li>
 <li><a href="https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml" class="external-link"><img src="https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://app.codecov.io/gh/dieghernan/resmush" class="external-link"><img src="https://codecov.io/gh/dieghernan/resmush/graph/badge.svg" alt="codecov"></a></li>
 <li><a href="https://dieghernan.r-universe.dev/resmush" class="external-link"><img src="https://dieghernan.r-universe.dev/badges/resmush" alt="r-universe"></a></li>
