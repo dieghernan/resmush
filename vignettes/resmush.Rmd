@@ -84,7 +84,7 @@ resmush_url(url,
 
 ::: figure
 [![Low quality
-figure](man/figures/jpg_example_compress_low.jpg){width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
+figure](jpg_example_compress_low.jpg){width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
 <p class="caption">
 
