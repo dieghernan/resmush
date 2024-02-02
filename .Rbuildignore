@@ -25,3 +25,5 @@
 ^\./img$
 ^img$
 ^vignettes/resmush\.Rmd\.orig$
+^doc$
+^Meta$

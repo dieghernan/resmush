@@ -113,10 +113,8 @@ tibble::as_tibble(summary[, -c(1, 2)])
 
 ## Other alternatives
 
--   [**xfun**](https://cran.r-project.org/package=xfun) package by Yihui Xie
-    [![Sponsor Yihui Xie on
-    GitHub](sponsor.svg)](https://github.com/sponsors/yihui) has the
-    following functions that optimize image files:
+-   [**xfun**](https://cran.r-project.org/package=xfun) package by Yihui Xie has
+    the following functions that optimize image files:
     -   `xfun::tinify()` is similar to `resmush_file()` but uses
         [TinyPNG](https://tinypng.com/). API key required.
     -   `xfun::optipng()` compress local files with OptiPNG (that needs to be
@@ -131,3 +129,22 @@ tibble::as_tibble(summary[, -c(1, 2)])
 -   [Imgbot](https://imgbot.net/): Automatic optimization for files hosted in
     GitHub repos.
 
+| tool              | CRAN | Additional software? | Online? | API Key? | Limits?                     |
+|--------------|--------------|--------------|--------------|--------------|--------------|
+| `xfun::tinify()`  | Yes  | No                   | Yes     | Yes      | 500 files/month (Free tier) |
+| `xfun::optipng()` | Yes  | Yes                  | No      | No       | No                          |
+| **tinieR**        | No   | No                   | Yes     | Yes      | 500 files/month (Free tier) |
+| **optout**        | No   | Yes                  | No      | No       | No                          |
+| **resmush**       | Yes  | No                   | Yes     | No       | Max size 5Mb                |
+
+: Table 1: **R** packages: Comparison of alternatives for optimizing images.
+
+| tool              | png | jpg | gif | bmp | tiff | webp | pdf |
+|-------------------|-----|-----|-----|-----|------|------|-----|
+| `xfun::tinify()`  | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
+| `xfun::optipng()` | ✅  | ❌  | ❌  | ❌  | ❌   | ❌   | ❌  |
+| **tinieR**        | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
+| **optout**        | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
+| **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ✅   | ❌  |
+
+: Table 2: **R** packages: Formats admitted.

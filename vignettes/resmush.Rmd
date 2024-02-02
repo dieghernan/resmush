@@ -9,8 +9,6 @@ vignette: >
 
 <!-- resmush.Rmd is generated from resmush.Rmd.orig. Please edit that file -->
 
-
-
 **resmush** is a **R** package that allow users to optimize and compress images
 using [reSmush.it](https://resmush.it/). reSmush.it is a free API that provides
 image optimization, and it has been implemented on Wordpress, Drupal or Magento.
@@ -33,8 +31,7 @@ Some of the features of reSmush.it are:
 
 Compressing an online `jpg` image:
 
-
-```r
+``` r
 library(resmush)
 
 url <- paste0(
@@ -65,8 +62,7 @@ The quality of the compression can be adjusted in the case of `jpg` files using
 the parameter `qlty`. However, it is recommended to keep this value above 90 to
 get a good image quality.
 
-
-```r
+``` r
 # Extreme case
 resmush_url(url,
   outfile = "jpg_example_compress_low.jpg",
@@ -79,7 +75,6 @@ resmush_url(url,
 ```
 
 ::: figure
-
 <img src="jpg_example_compress_low.jpg" alt="Low quality figure" width="100%"/>
 
 <p class="caption">
@@ -92,8 +87,7 @@ Low quality image due to a high compression rate.
 All the functions return invisibly a data set with a summary of the process. The
 next example shows how when compressing a local file.
 
-
-```r
+``` r
 png_file <- system.file("extimg/example.png", package = "resmush")
 
 # For the example, copy to a temporary file
@@ -113,10 +107,8 @@ tibble::as_tibble(summary[, -c(1, 2)])
 
 ## Other alternatives
 
--   [**xfun**](https://cran.r-project.org/package=xfun) package by Yihui Xie
-    [![Sponsor Yihui Xie on
-    GitHub](sponsor.svg)](https://github.com/sponsors/yihui) has the
-    following functions that optimize image files:
+-   [**xfun**](https://cran.r-project.org/package=xfun) package by Yihui Xie has
+    the following functions that optimize image files:
     -   `xfun::tinify()` is similar to `resmush_file()` but uses
         [TinyPNG](https://tinypng.com/). API key required.
     -   `xfun::optipng()` compress local files with OptiPNG (that needs to be
@@ -130,4 +122,3 @@ tibble::as_tibble(summary[, -c(1, 2)])
     installed locally.
 -   [Imgbot](https://imgbot.net/): Automatic optimization for files hosted in
     GitHub repos.
-
