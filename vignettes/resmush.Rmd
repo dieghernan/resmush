@@ -9,11 +9,14 @@ vignette: >
 
 <!-- resmush.Rmd is generated from resmush.Rmd.orig. Please edit that file -->
 
-**resmush** is a **R** package that allow users to optimize and compress images
-using [reSmush.it](https://resmush.it/). reSmush.it is a free API that provides
-image optimization, and it has been implemented on Wordpress, Drupal or Magento.
 
-Some of the features of reSmush.it are:
+
+**resmush** is a **R** package that allow users to optimize and compress images
+using [**reSmush.it**](https://resmush.it/). reSmush.it is a free API that
+provides image optimization, and it has been implemented on Wordpress, Drupal or
+Magento.
+
+Some of the features of **reSmush.it** are:
 
 -   Free optimization services, no API key required.
 -   Optimize local and online images.
@@ -31,7 +34,8 @@ Some of the features of reSmush.it are:
 
 Compressing an online `jpg` image:
 
-``` r
+
+```r
 library(resmush)
 
 url <- paste0(
@@ -40,20 +44,23 @@ url <- paste0(
 )
 
 resmush_url(url, outfile = "jpg_example_compress.jpg", overwrite = TRUE)
-#> ══ resmush summary ════════════════════════════════════════════════════════════
+#> ══ resmush summary ═══════════════════════════════════════════════════════════════════════
 #> ℹ Input: 1 url with size 178.7 Kb
 #> ✔ Success for 1 url: Size now is 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
 #> See result in directory '.'.
 ```
 
 ::: figure
-<img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" alt="Original online figure" width="100%"/>
-<img src="jpg_example_compress.jpg" alt="Optimized figure" width="100%"/>
+[![](https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg){alt="Original uncompressed file"
+width="100%"}](https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg)
+
+[![](jpg_example_compress.jpg){alt="Optimized file"
+width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 
 <p class="caption">
 
 Original picture (top) 178.7 Kb and optimized picture (bottom) 45 Kb
-(Compression 74.8%)
+(Compression 74.8%). Click to enlarge.
 
 </p>
 :::
@@ -62,20 +69,22 @@ The quality of the compression can be adjusted in the case of `jpg` files using
 the parameter `qlty`. However, it is recommended to keep this value above 90 to
 get a good image quality.
 
-``` r
+
+```r
 # Extreme case
 resmush_url(url,
   outfile = "jpg_example_compress_low.jpg",
   overwrite = TRUE, qlty = 3
 )
-#> ══ resmush summary ════════════════════════════════════════════════════════════
+#> ══ resmush summary ═══════════════════════════════════════════════════════════════════════
 #> ℹ Input: 1 url with size 178.7 Kb
 #> ✔ Success for 1 url: Size now is 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
 #> See result in directory '.'.
 ```
 
 ::: figure
-<img src="jpg_example_compress_low.jpg" alt="Low quality figure" width="100%"/>
+[![Low quality
+figure](man/figures/jpg_example_compress_low.jpg){width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
 <p class="caption">
 
@@ -87,7 +96,8 @@ Low quality image due to a high compression rate.
 All the functions return invisibly a data set with a summary of the process. The
 next example shows how when compressing a local file.
 
-``` r
+
+```r
 png_file <- system.file("extimg/example.png", package = "resmush")
 
 # For the example, copy to a temporary file
@@ -122,3 +132,23 @@ tibble::as_tibble(summary[, -c(1, 2)])
     installed locally.
 -   [Imgbot](https://imgbot.net/): Automatic optimization for files hosted in
     GitHub repos.
+
+| tool              | CRAN | Additional software? | Online? | API Key? | Limits?                     |
+|--------------|--------------|--------------|--------------|--------------|--------------|
+| `xfun::tinify()`  | Yes  | No                   | Yes     | Yes      | 500 files/month (Free tier) |
+| `xfun::optipng()` | Yes  | Yes                  | No      | No       | No                          |
+| **tinieR**        | No   | No                   | Yes     | Yes      | 500 files/month (Free tier) |
+| **optout**        | No   | Yes                  | No      | No       | No                          |
+| **resmush**       | Yes  | No                   | Yes     | No       | Max size 5Mb                |
+
+: Table 1: **R** packages: Comparison of alternatives for optimizing images.
+
+| tool              | png | jpg | gif | bmp | tiff | webp | pdf |
+|-------------------|-----|-----|-----|-----|------|------|-----|
+| `xfun::tinify()`  | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
+| `xfun::optipng()` | ✅  | ❌  | ❌  | ❌  | ❌   | ❌   | ❌  |
+| **tinieR**        | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
+| **optout**        | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
+| **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ✅   | ❌  |
+
+: Table 2: **R** packages: Formats admitted.

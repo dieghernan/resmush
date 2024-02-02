@@ -22,11 +22,11 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 <!-- badges: end -->
 
 **resmush** is a **R** package that allow users to optimize and compress
-images using [reSmush.it](https://resmush.it/). reSmush.it is a free API
-that provides image optimization, and it has been implemented on
+images using [**reSmush.it**](https://resmush.it/). reSmush.it is a free
+API that provides image optimization, and it has been implemented on
 Wordpress, Drupal or Magento.
 
-Some of the features of reSmush.it are:
+Some of the features of **reSmush.it** are:
 
 - Free optimization services, no API key required.
 - Optimize local and online images.
@@ -102,13 +102,17 @@ resmush_url(url, outfile = "man/figures/jpg_example_compress.jpg", overwrite = T
 
 <div class="figure">
 
-<img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" alt="Original online figure" width="100%"/>
-<img src="./man/figures/jpg_example_compress.jpg" alt="Optimized figure" width="100%"/>
+[<img
+src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg"
+style="width:100.0%" alt="Original uncompressed file" />](https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg)
+
+[<img src="./man/figures/jpg_example_compress.jpg" style="width:100.0%"
+alt="Optimized file" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 
 <p class="caption">
 
 Original picture (top) 178.7 Kb and optimized picture (bottom) 45 Kb
-(Compression 74.8%)
+(Compression 74.8%). Click to enlarge.
 
 </p>
 
@@ -132,11 +136,8 @@ resmush_url(url,
 
 <div class="figure">
 
-<figure>
-<img src="man/figures/jpg_example_compress_low.jpg" style="width:100.0%"
-alt="Low quality figure" />
-<figcaption aria-hidden="true">Low quality figure</figcaption>
-</figure>
+[<img src="man/figures/jpg_example_compress_low.jpg" style="width:100.0%"
+alt="Low quality figure" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
 <p class="caption">
 

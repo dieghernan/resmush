@@ -29,7 +29,6 @@ preferred-citation:
   doi: 10.5281/zenodo.10556679
   url: https://dieghernan.github.io/resmush/
   abstract: Compress local and online images using the reSmush.it API service <https://resmush.it/>.
-repository: https://dieghernan.r-universe.dev/
 repository-code: https://github.com/dieghernan/resmush
 url: https://dieghernan.github.io/resmush/
 contact:
