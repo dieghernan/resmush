@@ -45,7 +45,7 @@ the optimization level. For optimal results use vales above 90.}
 
 \item{exif_preserve}{Logical. Should the
 \href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) deleted?
-Default is to remove (i.e. \code{exif_preserve = FALSE}).}
+Default is to remove it (i.e. \code{exif_preserve = FALSE}).}
 }
 \value{
 Writes on disk the optimized file if the API call is successful.
@@ -92,7 +92,7 @@ resmush_url(jpg_url, qlty = 10)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\href{https://resmush.it/api}{reSmush.it API} docs.
+\href{https://resmush.it/api/}{reSmush.it API} docs.
 
 Other functions for optimizing:
 \code{\link{resmush_dir}()},

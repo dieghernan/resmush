@@ -33,7 +33,7 @@
 #'
 #'
 #' @seealso
-#' [reSmush.it API](https://resmush.it/api) docs.
+#' [reSmush.it API](https://resmush.it/api/) docs.
 #'
 #' @family optimize
 #'

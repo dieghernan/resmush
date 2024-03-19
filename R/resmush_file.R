@@ -26,7 +26,7 @@
 #' the optimization level. For optimal results use vales above 90.
 #' @param exif_preserve Logical. Should the
 #'   [Exif](https://en.wikipedia.org/wiki/Exif) information (if any) deleted?
-#'   Default is to remove (i.e. `exif_preserve = FALSE`).
+#'   Default is to remove it (i.e. `exif_preserve = FALSE`).
 
 #' @return
 #' Writes on disk the optimized file if the API call is successful in the
@@ -37,7 +37,7 @@
 #' process used for generate the report is returned.
 #'
 #' @seealso
-#' [reSmush.it API](https://resmush.it/api) docs.
+#' [reSmush.it API](https://resmush.it/api/) docs.
 #'
 #' See [resmush_clean_dir()] to clean a directory of previous runs.
 #'

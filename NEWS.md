@@ -1,3 +1,7 @@
+# resmush (development version)
+
+-   Update docs.
+
 # resmush 0.1.0
 
 -   Accepted on **CRAN**.
@@ -14,4 +18,4 @@
 
 # resmush 0.0.1
 
--   Initial version
+-   Initial version.

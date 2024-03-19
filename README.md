@@ -23,9 +23,12 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 <!-- badges: end -->
 
 **resmush** is a **R** package that allow users to optimize and compress
-images using [**reSmush.it**](https://resmush.it/). reSmush.it is a free
-API that provides image optimization, and it has been implemented on
-Wordpress, Drupal or Magento.
+images using [**reSmush.it**](https://resmush.it/). reSmush.it is a
+<u>free API</u> that provides image optimization, and it has been
+implemented on
+[WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/),
+[Drupal](https://www.drupal.org/project/resmushit) and [many
+more](https://resmush.it/tools/).
 
 Some of the features of **reSmush.it** are:
 
@@ -42,18 +45,6 @@ Some of the features of **reSmush.it** are:
   - [**OptiPNG**](https://optipng.sourceforge.net/): `png` reducer that
     is used by several online optimizers.
 
-**reSmush.it** is free of charge, but its team is planning to offer more
-serves as well as extend the service to support other types of image
-files. If you enjoy this API (as I do), you can consider supporting
-them.
-
-<div class="text-center mb-4">
-
-[<img src="man/figures/ko-fi-resmush.png" width="296"
-alt="Support reSmush.it on Ko-fi" />](https://ko-fi.com/E1E51PW00)
-
-</div>
-
 ## Installation
 
 Install **resmush** from
@@ -67,8 +58,7 @@ You can install the development version of **resmush** from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("dieghernan/resmush")
+remotes::install_github("dieghernan/resmush")
 ```
 
 Alternatively, you can install **resmush** using the
@@ -171,38 +161,20 @@ tibble::as_tibble(summary[, -c(1, 2)])
 
 ## Other alternatives
 
-There are other alternatives for optimizing images with **R**, but
-first…
+There are other alternatives for optimizing images with **R**:
 
-<div class="alert alert-info p-3 mx-2 mb-3">
-
-Please consider sponsor Yihui Xie on GitHub (more info
-[here](https://yihui.org/en/2024/01/bye-rstudio/)). Yihui has developed
-some of the most amazing packages for **R** such as **knitr**,
-**markdown**, **blogdown**, and **bookdown**.
-
-<div class="text-center mb-4">
-
-[<img src="man/figures/sponsor.png" width="175" alt="Sponsor Yihui" />](https://github.com/sponsors/yihui)
-
-</div>
-
-</div>
-
-- One of the many packages developed by Yihui is
-  [**xfun**](https://cran.r-project.org/package=xfun), which includes
-  the following functions for optimizing image files:
-  - `xfun::tinify()` is similar to `resmush_file()` but uses
-    [**TinyPNG**](https://tinypng.com/). An API key is required.
-  - `xfun::optipng()` compresses local files with **OptiPNG** (which
-    needs to be installed locally).
+- **xfun** ([Xie 2024](#ref-xfun)), which includes the following
+  functions for optimizing image files: - `xfun::tinify()` is similar to
+  `resmush_file()` but uses [**TinyPNG**](https://tinypng.com/). An API
+  key is required. - `xfun::optipng()` compresses local files with
+  **OptiPNG** (which needs to be installed locally).
 - [**tinieR**](https://jmablog.github.io/tinieR/) package by
   [jmablog](https://jmablog.com/). An **R** package that provides a full
   interface with [**TinyPNG**](https://tinypng.com/).
 - [**optout**](https://github.com/coolbutuseless/optout) package by
   [@coolbutuseless](https://coolbutuseless.github.io/). Similar to
-  `xfun::optipng()` with additional options. Requires additional
-  software to be installed locally.
+  `xfun::optipng()` with more options. Requires additional software to
+  be installed locally.
 
 | tool              | CRAN | Additional software? | Online? | API Key? | Limits?                     |
 |-------------------|------|----------------------|---------|----------|-----------------------------|
@@ -240,7 +212,7 @@ A BibTeX entry for LaTeX users is
       title = {{resmush}: Optimize and Compress Image Files with {reSmush.it}},
       author = {Diego Hernangómez},
       year = {2024},
-      version = {0.1.0},
+      version = {0.1.0.9000},
       doi = {10.5281/zenodo.10556679},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
@@ -251,6 +223,20 @@ A BibTeX entry for LaTeX users is
 Logo uses:
 
 - [The great wave of Kanagawa icons created by Freepik -
-  Flaticons](https://www.flaticon.com/free-icons/the-great-wave-of-kanagawa "the great wave of kanagawa icons")
+  Flaticons](https://www.flaticon.com/free-icons/the-great-wave-of-kanagawa)
 - [Compression icons created by MansyGraphics -
-  Flaticon](https://www.flaticon.com/free-icons/compression "compression icons")
+  Flaticon](https://www.flaticon.com/free-icons/compression)
+
+## References
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-xfun" class="csl-entry">
+
+Xie, Yihui. 2024. *<span class="nocase">xfun</span>: Supporting
+Functions for Packages Maintained by Yihui Xie*.
+<https://github.com/yihui/xfun>.
+
+</div>
+
+</div>

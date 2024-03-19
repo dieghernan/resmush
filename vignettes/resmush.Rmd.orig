@@ -1,6 +1,8 @@
 ---
 title: "Using resmush"
 output: rmarkdown::html_vignette
+bibliography: REFERENCES.bib
+link-citations: yes
 vignette: >
   %\VignetteIndexEntry{Using resmush}
   %\VignetteEngine{knitr::rmarkdown}
@@ -78,8 +80,10 @@ get a good image quality.
 
 ```{r jpgcompresslow, message=TRUE}
 # Extreme case
-resmush_url(url, outfile = "jpg_example_compress_low.jpg",
-   overwrite = TRUE, qlty = 3)
+resmush_url(url,
+  outfile = "jpg_example_compress_low.jpg",
+  overwrite = TRUE, qlty = 3
+)
 ```
 
 ::: figure
@@ -112,29 +116,28 @@ tibble::as_tibble(summary[, -c(1, 2)])
 #>   src_size dest_size compress_ratio notes src_bytes dest_bytes
 #>   <chr>    <chr>     <chr>          <chr>     <dbl>      <dbl>
 #> 1 239.9 Kb 70.7 Kb   70.54%         OK       245618      72356
-
 ```
 
 ## Other alternatives
 
--   [**xfun**](https://cran.r-project.org/package=xfun) package by Yihui Xie has
-    the following functions that optimize image files:
+There are other alternatives for optimizing images with **R**:
+
+-   **xfun** [@xfun], which includes the following functions for optimizing
+    image files:
     -   `xfun::tinify()` is similar to `resmush_file()` but uses
-        [TinyPNG](https://tinypng.com/). API key required.
-    -   `xfun::optipng()` compress local files with OptiPNG (that needs to be
-        installed locally).
+        [**TinyPNG**](https://tinypng.com/). An API key is required.
+    -   `xfun::optipng()` compresses local files with **OptiPNG** (which needs
+        to be installed locally).
 -   [**tinieR**](https://jmablog.github.io/tinieR/) package by
-    [jmablog](https://jmablog.com/). **R** package that provides a full
-    interface with [TinyPNG](https://tinypng.com/).
+    [jmablog](https://jmablog.com/). An **R** package that provides a full
+    interface with [**TinyPNG**](https://tinypng.com/).
 -   [**optout**](https://github.com/coolbutuseless/optout) package by
     [\@coolbutuseless](https://coolbutuseless.github.io/). Similar to
-    `xfun::optipng()` with additional options. Needs additional software
+    `xfun::optipng()` with more options. Requires additional software to be
     installed locally.
--   [Imgbot](https://imgbot.net/): Automatic optimization for files hosted in
-    GitHub repos.
 
 | tool              | CRAN | Additional software? | Online? | API Key? | Limits?                     |
-|--------------|--------------|--------------|--------------|--------------|--------------|
+|-------------------|------|----------------------|---------|----------|-----------------------------|
 | `xfun::tinify()`  | Yes  | No                   | Yes     | Yes      | 500 files/month (Free tier) |
 | `xfun::optipng()` | Yes  | Yes                  | No      | No       | No                          |
 | **tinieR**        | No   | No                   | Yes     | Yes      | 500 files/month (Free tier) |
@@ -152,3 +155,5 @@ tibble::as_tibble(summary[, -c(1, 2)])
 | **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ✅   | ❌  |
 
 : Table 2: **R** packages: Formats admitted.
+
+## References

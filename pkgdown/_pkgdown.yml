@@ -21,7 +21,7 @@ repo:
 
 reference:
 - title: "Optimize images"
-  desc:  Several ways to optimize images with <https://resmush.it/>
+  desc:  Several ways to optimize images with <https://resmush.it/>:
   contents:
     - has_concept("optimize")
 - title: "Helper functions"

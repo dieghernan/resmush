@@ -46,7 +46,7 @@ console. See also \strong{Value}.}
 the optimization level. For optimal results use vales above 90.}
     \item{\code{exif_preserve}}{Logical. Should the
 \href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) deleted?
-Default is to remove (i.e. \code{exif_preserve = FALSE}).}
+Default is to remove it (i.e. \code{exif_preserve = FALSE}).}
   }}
 }
 \value{
@@ -96,7 +96,7 @@ unlink(dest_folder, force = TRUE, recursive = TRUE)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\href{https://resmush.it/api}{reSmush.it API} docs.
+\href{https://resmush.it/api/}{reSmush.it API} docs.
 
 See \code{\link[=resmush_clean_dir]{resmush_clean_dir()}} to clean a directory of previous runs.
 
