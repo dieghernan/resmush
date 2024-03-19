@@ -1,4 +1,4 @@
-url: 'https://dieghernan.github.io/resmush'
+url: https://dieghernan.github.io/resmush
 
 figures:
   dpi: 300
@@ -12,6 +12,7 @@ template:
     twitter:
       creator: '@dhernangomez'
       card: summary_large_image
+
 authors:
   Diego Hernangómez:
     href: https://dieghernan.github.io/
@@ -19,17 +20,20 @@ authors:
 repo:
   branch: main
 
+home:
+  title: resmush | Optimize and Compress Image Files with reSmush.it
+  description: |
+    Compress local and online images in R using the reSmush.it API service.
+
 reference:
-- title: "Optimize images"
-  desc:  Several ways to optimize images with <https://resmush.it/>:
-  contents:
-    - has_concept("optimize")
-- title: "Helper functions"
+- title: Optimize images
+  desc: Several ways to optimize images with <https://resmush.it/>.
+  contents: has_concept("optimize")
+- title: Helper functions
   desc: Helpers included in the package
   contents:
-    - has_concept("helpers")
-    - resmush_clean_dir
-- title: "About the package"
-  contents:
-    - resmush-package
+  - has_concept("helpers")
+  - resmush_clean_dir
+- title: About the package
+  contents: resmush-package
 
