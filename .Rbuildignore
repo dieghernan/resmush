@@ -27,3 +27,4 @@
 ^vignettes/resmush\.Rmd\.orig$
 ^doc$
 ^Meta$
+^codecov\.yml$

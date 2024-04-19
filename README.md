@@ -229,8 +229,7 @@ Logo uses:
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
 <div id="ref-xfun" class="csl-entry">
 
