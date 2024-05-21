@@ -148,6 +148,9 @@ png_file <- system.file("extimg/example.png", package = "resmush")
 tmp_png <- tempfile(fileext = ".png")
 file.copy(png_file, tmp_png, overwrite = TRUE)
 #> [1] TRUE
+```
+
+``` r
 
 
 summary <- resmush_file(tmp_png, overwrite = TRUE)
@@ -229,7 +232,8 @@ Logo uses:
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
 
 <div id="ref-xfun" class="csl-entry">
 
