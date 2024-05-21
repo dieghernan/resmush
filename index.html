@@ -180,8 +180,9 @@
 <span><span class="co"># For the example, copy to a temporary file</span></span>
 <span><span class="va">tmp_png</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".png"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.copy</a></span><span class="op">(</span><span class="va">png_file</span>, <span class="va">tmp_png</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] TRUE</span></span>
-<span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span></span>
 <span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/resmush_file.html">resmush_file</a></span><span class="op">(</span><span class="va">tmp_png</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -337,15 +338,15 @@
 Hernangómez D (2024). <em>resmush: Optimize and Compress Image Files with reSmush.it</em>. <a href="https://doi.org/10.5281/zenodo.10556679" class="external-link">doi:10.5281/zenodo.10556679</a>, <a href="https://dieghernan.github.io/resmush/">https://dieghernan.github.io/resmush/</a>.
 </p>
 <p>A BibTeX entry for LaTeX users is</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="sc">@</span>Manual{R<span class="sc">-</span>resmush,</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  title <span class="ot">=</span> {{resmush}<span class="sc">:</span> Optimize and Compress Image Files with {reSmush.it}},</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2024</span>},</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="dv">1</span>.<span class="fl">0.9000</span>},</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  doi <span class="ot">=</span> {<span class="fl">10.5281</span><span class="sc">/</span>zenodo<span class="fl">.10556679</span>},</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>resmush<span class="sc">/</span>},</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>  abstract <span class="ot">=</span> {Compress local and online images using the reSmush.it API service <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>resmush.it<span class="sc">/</span><span class="er">&gt;</span>.},</span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="sc">@</span>Manual{R<span class="sc">-</span>resmush,</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  title <span class="ot">=</span> {{resmush}<span class="sc">:</span> Optimize and Compress Image Files with {reSmush.it}},</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2024</span>},</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="dv">1</span>.<span class="fl">0.9000</span>},</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>  doi <span class="ot">=</span> {<span class="fl">10.5281</span><span class="sc">/</span>zenodo<span class="fl">.10556679</span>},</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>resmush<span class="sc">/</span>},</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  abstract <span class="ot">=</span> {Compress local and online images using the reSmush.it API service <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>resmush.it<span class="sc">/</span><span class="er">&gt;</span>.},</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="attributions">Attributions<a class="anchor" aria-label="anchor" href="#attributions"></a>
@@ -359,7 +360,7 @@ Hernangómez D (2024). <em>resmush: Optimize and Compress Image Files with reSmu
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-xfun" class="csl-entry">
 Xie, Yihui. 2024. <em><span class="nocase">xfun</span>: Supporting Functions for Packages Maintained by Yihui Xie</em>. <a href="https://github.com/yihui/xfun" class="external-link uri">https://github.com/yihui/xfun</a>.
 </div>
