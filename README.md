@@ -168,10 +168,11 @@ tibble::as_tibble(summary[, -c(1, 2)])
 There are other alternatives for optimizing images with **R**:
 
 - **xfun** ([Xie 2024](#ref-xfun)), which includes the following
-  functions for optimizing image files: - `xfun::tinify()` is similar to
-  `resmush_file()` but uses [**TinyPNG**](https://tinypng.com/). An API
-  key is required. - `xfun::optipng()` compresses local files with
-  **OptiPNG** (which needs to be installed locally).
+  functions for optimizing image files: 
+    -   `xfun::tinify()` is similar to `resmush_file()` but uses
+        [**TinyPNG**](https://tinypng.com/). An API key is required.
+    -   `xfun::optipng()` compresses local files with **OptiPNG** (which needs
+        to be installed locally).
 - [**tinieR**](https://jmablog.github.io/tinieR/) package by
   [jmablog](https://jmablog.com/). An **R** package that provides a full
   interface with [**TinyPNG**](https://tinypng.com/).
