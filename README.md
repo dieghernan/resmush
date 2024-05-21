@@ -18,7 +18,7 @@ results](https://badges.cranchecks.info/worst/resmush.svg)](https://cran.r-proje
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![status](https://tinyverse.netlify.com/badge/resmush)](https://CRAN.R-project.org/package=resmush)
+[![status](https://tinyverse.netlify.app/status/resmush)](https://CRAN.R-project.org/package=resmush)
 
 <!-- badges: end -->
 
