@@ -217,20 +217,11 @@ A BibTeX entry for LaTeX users is
       title = {{resmush}: Optimize and Compress Image Files with {reSmush.it}},
       author = {Diego Hernangómez},
       year = {2024},
-      version = {0.1.0.9000},
+      version = {0.1.1},
       doi = {10.5281/zenodo.10556679},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
     }
-
-## Attributions
-
-Logo uses:
-
-- [The great wave of Kanagawa icons created by Freepik -
-  Flaticons](https://www.flaticon.com/free-icons/the-great-wave-of-kanagawa)
-- [Compression icons created by MansyGraphics -
-  Flaticon](https://www.flaticon.com/free-icons/compression)
 
 ## References
 

@@ -1,4 +1,4 @@
-# resmush (development version)
+# resmush 0.1.1
 
 -   Update docs.
 

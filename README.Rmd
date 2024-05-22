@@ -164,7 +164,7 @@ tibble::as_tibble(summary[, -c(1, 2)])
 There are other alternatives for optimizing images with **R**:
 
 -   **xfun** [@xfun], which includes the following functions for optimizing
-    image files: 
+    image files:
     -   `xfun::tinify()` is similar to `resmush_file()` but uses
         [**TinyPNG**](https://tinypng.com/). An API key is required.
     -   `xfun::optipng()` compresses local files with **OptiPNG** (which needs
@@ -208,14 +208,5 @@ A BibTeX entry for LaTeX users is
 ```{r echo=FALSE, comment=""}
 toBibtex(citation("resmush"))
 ```
-
-## Attributions
-
-Logo uses:
-
--   [The great wave of Kanagawa icons created by Freepik -
-    Flaticons](https://www.flaticon.com/free-icons/the-great-wave-of-kanagawa)
--   [Compression icons created by MansyGraphics -
-    Flaticon](https://www.flaticon.com/free-icons/compression)
 
 ## References
