@@ -178,7 +178,7 @@ There are other alternatives for optimizing images with **R**:
     installed locally.
 
 | tool              | CRAN | Additional software? | Online? | API Key? | Limits?                     |
-|--------------|--------------|--------------|--------------|--------------|--------------|
+|-------------------|------|----------------------|---------|----------|-----------------------------|
 | `xfun::tinify()`  | Yes  | No                   | Yes     | Yes      | 500 files/month (Free tier) |
 | `xfun::optipng()` | Yes  | Yes                  | No      | No       | No                          |
 | **tinieR**        | No   | No                   | Yes     | Yes      | 500 files/month (Free tier) |

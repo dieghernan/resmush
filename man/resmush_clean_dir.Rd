@@ -2,7 +2,7 @@
 % Please edit documentation in R/resmush_clean_dir.R
 \name{resmush_clean_dir}
 \alias{resmush_clean_dir}
-\title{Helper function for cleaning files created by \strong{resmush}}
+\title{Helper function for cleaning files created by \CRANpkg{resmush}}
 \usage{
 resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 }

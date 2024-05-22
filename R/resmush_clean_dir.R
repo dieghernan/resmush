@@ -1,4 +1,4 @@
-#' Helper function for cleaning files created by **resmush**
+#' Helper function for cleaning files created by \CRANpkg{resmush}
 #'
 #' @description
 #'
