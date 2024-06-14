@@ -4,18 +4,18 @@ abs <- gsub("'", "", abs)
 title <- trimws(gsub("'", "", meta$Title, fixed = TRUE))
 title <- gsub("reSmush.it", "{reSmush.it}", title, fixed = TRUE)
 title <- gsub("API", "{API}", title, fixed = TRUE)
-doi <- "10.5281/zenodo.10556679"
 pkg <- trimws(meta$Package)
+doi <- paste0("10.32614/CRAN.package.", pkg)
 
 bibentry(
   "Manual",
-  header = paste0("To cite the '", pkg, "' package in publications use:"),
-  title = paste0("{", pkg, "}: ", title),
-  author = person("Diego", "Hernangómez"),
-  year = year,
-  key = paste0("R-", pkg),
-  version = meta$Version,
+  header = paste0("To cite '", pkg, "' in publications use:"),
+  title = paste0("{", pkg, "}: ", gsub("'", "", title)),
   doi = doi,
+  author = c(person("Diego", "Hernangómez")),
+  year = year,
+  version = meta$Version,
   url = unlist(strsplit(meta$URL, ","))[1],
-  abstract = abs
+  abstract = abs,
+  key = paste0("R-", pkg)
 )
