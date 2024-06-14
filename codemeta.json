@@ -161,7 +161,7 @@
     "SystemRequirements": null
   },
   "keywords": ["r", "compress-images", "optimize-images", "resmushit", "api", "r-package"],
-  "fileSize": "677.581KB",
+  "fileSize": "679.101KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -174,10 +174,10 @@
         }
       ],
       "name": "{resmush}: Optimize and Compress Image Files with {reSmush.it}",
-      "identifier": "10.5281/zenodo.10556679",
+      "identifier": "10.32614/CRAN.package.resmush",
       "url": "https://dieghernan.github.io/resmush/",
-      "@id": "https://doi.org/10.5281/zenodo.10556679",
-      "sameAs": "https://doi.org/10.5281/zenodo.10556679"
+      "@id": "https://doi.org/10.32614/CRAN.package.resmush",
+      "sameAs": "https://doi.org/10.32614/CRAN.package.resmush"
     }
   ],
   "releaseNotes": "https://github.com/dieghernan/resmush/blob/master/NEWS.md",

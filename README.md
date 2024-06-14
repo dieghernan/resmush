@@ -15,7 +15,7 @@ results](https://badges.cranchecks.info/worst/resmush.svg)](https://cran.r-proje
 [![codecov](https://codecov.io/gh/dieghernan/resmush/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/resmush)
 [![r-universe](https://dieghernan.r-universe.dev/badges/resmush)](https://dieghernan.r-universe.dev/resmush)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/resmush/badge)](https://www.codefactor.io/repository/github/dieghernan/resmush)
-[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.10556679-blue)](https://doi.org/10.5281/zenodo.10556679)
+[![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.resmush-blue)](https://doi.org/10.32614/CRAN.package.resmush)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -207,7 +207,7 @@ Table 2: **R** packages: Formats admitted.
 <p>
 Hernangómez D (2024). <em>resmush: Optimize and Compress Image Files
 with reSmush.it</em>.
-<a href="https://doi.org/10.5281/zenodo.10556679">doi:10.5281/zenodo.10556679</a>,
+<a href="https://doi.org/10.32614/CRAN.package.resmush">doi:10.32614/CRAN.package.resmush</a>,
 <a href="https://dieghernan.github.io/resmush/">https://dieghernan.github.io/resmush/</a>.
 </p>
 
@@ -215,10 +215,10 @@ A BibTeX entry for LaTeX users is
 
     @Manual{R-resmush,
       title = {{resmush}: Optimize and Compress Image Files with {reSmush.it}},
+      doi = {10.32614/CRAN.package.resmush},
       author = {Diego Hernangómez},
       year = {2024},
       version = {0.1.1},
-      doi = {10.5281/zenodo.10556679},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
     }

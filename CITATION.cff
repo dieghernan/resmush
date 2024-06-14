@@ -9,7 +9,7 @@ type: software
 license: MIT
 title: 'resmush: Optimize and Compress Image Files with ''reSmush.it'''
 version: 0.1.1
-doi: 10.5281/zenodo.10556679
+doi: 10.32614/CRAN.package.resmush
 abstract: Compress local and online images using the 'reSmush.it' API service <https://resmush.it/>.
 authors:
 - family-names: Hernangómez
@@ -24,9 +24,9 @@ preferred-citation:
     given-names: Diego
     email: diego.hernangomezherrero@gmail.com
     orcid: https://orcid.org/0000-0001-8457-4658
+  doi: 10.32614/CRAN.package.resmush
   year: '2024'
   version: 0.1.1
-  doi: 10.5281/zenodo.10556679
   url: https://dieghernan.github.io/resmush/
   abstract: Compress local and online images using the reSmush.it API service <https://resmush.it/>.
 repository: https://CRAN.R-project.org/package=resmush
@@ -79,6 +79,9 @@ references:
     email: jeroen@berkeley.edu
     orcid: https://orcid.org/0000-0002-4035-0289
   year: '2024'
+  identifiers:
+  - type: url
+    value: https://curl.se/libcurl/
 - type: software
   title: httr2
   abstract: 'httr2: Perform HTTP Requests and Process the Responses'
