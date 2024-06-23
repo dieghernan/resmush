@@ -19,7 +19,8 @@
 #'   and `NULL` would be the same than `overwrite = TRUE`.
 #' @param overwrite Logical. Should the file in `file` be overwritten? If `TRUE`
 #'   `suffix` would be ignored.
-#' @param progress Logical. Display a progress bar when needed.
+#' @param progress Logical. Display a progress bar when needed and the
+#'   terminal supports it (see [cli::is_dynamic_tty()].
 #' @param report Logical. Display a summary report of the process in the
 #'   console. See also **Value**.
 #' @param qlty Only affects `jpg` files. Integer between 0 and 100 indicating
@@ -88,6 +89,10 @@ resmush_file <- function(file, suffix = "_resmush", overwrite = FALSE,
   # Prepare progress bar
   n_files <- length(file)
   n_seq <- seq_len(n_files)
+
+  # In non supported session don't display
+  if (!cli::is_dynamic_tty()) progress <- FALSE
+
 
   if (progress) {
     opts <- options()

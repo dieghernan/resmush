@@ -1,3 +1,8 @@
+# resmush (development version)
+
+-   Show progress bar only if terminal supports carriage return `\\r`, see
+    `cli::is_dynamic_tty()`.
+
 # resmush 0.1.1
 
 -   Update docs.

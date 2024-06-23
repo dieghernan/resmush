@@ -225,10 +225,7 @@ test_that("Test full vectors", {
 
   expect_true(optinit2$cli.progress_bar_style == "aaa")
 
-  expect_message(
-    dm <- resmush_file(all_in),
-    "Go!"
-  )
+  expect_message(dm <- resmush_file(all_in, progress = FALSE))
 
   # Restored options
   expect_identical(options(), optinit2)
