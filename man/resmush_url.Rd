@@ -35,7 +35,8 @@ of the same length than \code{url} parameter.}
 exists)? If \code{FALSE} and \code{outfile} exists it would create a copy with
 a numerical suffix (i.e. \verb{<outfile>.png}, \verb{<outfile>_01.png}, etc.).}
 
-\item{progress}{Logical. Display a progress bar when needed.}
+\item{progress}{Logical. Display a progress bar when needed and the
+terminal supports it (see \code{\link[cli:is_dynamic_tty]{cli::is_dynamic_tty()}}.}
 
 \item{report}{Logical. Display a summary report of the process in the
 console. See also \strong{Value}.}

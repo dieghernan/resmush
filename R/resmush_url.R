@@ -6,12 +6,12 @@
 #'
 #' @param url url or a vector of urls pointing to hosted image files.
 #' **reSmush** can optimize the following image files:
-#'  * `png`
-#'  * `jpg/jpeg`
-#'  * `gif`
-#'  * `bmp`
-#'  * `tiff`
-#'  * `webp`
+#'  - `png`
+#'  - `jpg/jpeg`
+#'  - `gif`
+#'  - `bmp`
+#'  - `tiff`
+#'  - `webp`
 #' @param outfile Path or paths where the optimized files would be store in
 #' your disk. By default, temporary files (see [tempfile()]) with the same
 #' [basename()] than the file provided in `url` would be created. It should be
@@ -87,6 +87,9 @@ resmush_url <- function(url, outfile = file.path(tempdir(), basename(url)),
   # Prepare progress bar
   n_urls <- l1
   n_seq <- seq_len(n_urls)
+
+  # In interactive session don't display
+  if (!cli::is_dynamic_tty()) progress <- FALSE
 
   if (progress) {
     opts <- options()

@@ -31,7 +31,8 @@ and \code{NULL} would be the same than \code{overwrite = TRUE}.}
 \item{overwrite}{Logical. Should the files in \code{dir} be overwritten? If \code{TRUE}
 \code{suffix} would be ignored.}
 
-\item{progress}{Logical. Display a progress bar when needed.}
+\item{progress}{Logical. Display a progress bar when needed and the
+terminal supports it (see \code{\link[cli:is_dynamic_tty]{cli::is_dynamic_tty()}}.}
 
 \item{report}{Logical. Display a summary report of the process in the
 console. See also \strong{Value}.}
