@@ -23,7 +23,6 @@ following image files:
 \item \code{gif}
 \item \code{bmp}
 \item \code{tiff}
-\item \code{webp}
 }}
 
 \item{suffix}{Character, defaults to \code{"_resmush"}. By default, a new file

@@ -136,21 +136,3 @@ test_that("tif", {
 
   expect_snapshot(dm <- resmush_url(url))
 })
-
-test_that("webp", {
-  skip_on_cran()
-  skip_if_offline()
-
-  # webp
-  url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
-    "img/sample_webp_250kb.webp"
-  )
-
-
-  expect_silent(dm <- resmush_url(url, report = FALSE))
-
-  expect_identical(basename(url), basename(dm$dest_img))
-
-  unlink(dm$dest_img, force = TRUE)
-})

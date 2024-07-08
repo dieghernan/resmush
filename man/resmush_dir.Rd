@@ -6,7 +6,7 @@
 \usage{
 resmush_dir(
   dir,
-  ext = "\\\\.(png|jpe?g|bmp|gif|tif|webp)$",
+  ext = "\\\\.(png|jpe?g|bmp|gif|tif)$",
   suffix = "_resmush",
   overwrite = FALSE,
   progress = TRUE,

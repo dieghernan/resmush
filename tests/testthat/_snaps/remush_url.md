@@ -72,7 +72,7 @@
       i Input: 1 url with size 0 bytes
       x Failed for 1 url:
       ! <https://raw.githubusercontent.com/dieghernan/resmush/main/README.md>: 403:
-        Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF, WEBP.
+        Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
 
 ---
 
@@ -83,10 +83,10 @@
       1 https://raw.githubusercontent.com/dieghernan/resmush/main/README.md       NA
         src_size dest_size compress_ratio
       1       NA        NA             NA
-                                                                            notes
-      1 403: Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF, WEBP
-        src_bytes dest_bytes
-      1        NA         NA
+                                                                      notes src_bytes
+      1 403: Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF        NA
+        dest_bytes
+      1         NA
 
 # Test errors in lengths
 

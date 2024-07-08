@@ -11,7 +11,6 @@
 #'  * `gif`
 #'  * `bmp`
 #'  * `tiff`
-#'  * `webp`
 #'
 #' @param suffix Character, defaults to `"_resmush"`. By default, a new file
 #'   with the suffix is created in the same directory than `file`. (i.e.,

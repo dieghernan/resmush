@@ -23,7 +23,6 @@ resmush_url(
 \item \code{gif}
 \item \code{bmp}
 \item \code{tiff}
-\item \code{webp}
 }}
 
 \item{outfile}{Path or paths where the optimized files would be store in

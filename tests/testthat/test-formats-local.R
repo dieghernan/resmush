@@ -93,23 +93,3 @@ test_that("tif", {
   expect_true(dm$notes == "OK")
   unlink(c(dm$dest_img, dm$src_img), force = TRUE)
 })
-
-test_that("webp", {
-  skip_on_cran()
-  skip_if_offline()
-
-  # webp
-  url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
-    "img/sample_webp_250kb.webp"
-  )
-
-  loc_file <- download_to_temp(url)
-
-  expect_silent(dm <- resmush_file(loc_file, report = FALSE))
-
-  expect_true(file.exists(dm$src_img))
-  expect_true(file.exists(dm$dest_img))
-  expect_true(dm$notes == "OK")
-  unlink(c(dm$dest_img, dm$src_img), force = TRUE)
-})

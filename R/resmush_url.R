@@ -11,7 +11,7 @@
 #'  * `gif`
 #'  * `bmp`
 #'  * `tiff`
-#'  * `webp`
+#'
 #' @param outfile Path or paths where the optimized files would be store in
 #' your disk. By default, temporary files (see [tempfile()]) with the same
 #' [basename()] than the file provided in `url` would be created. It should be

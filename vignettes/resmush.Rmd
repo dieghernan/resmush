@@ -22,7 +22,7 @@ Some of the features of **reSmush.it** are:
 
 -   Free optimization services, no API key required.
 -   Optimize local and online images.
--   Image files supported: `png`, `jpg/jpeg`, `gif`, `bmp`, `tiff`, `webp`.
+-   Image files supported: `png`, `jpg/jpeg`, `gif`, `bmp`, `tiff`.
 -   Max image size: 5 Mb.
 -   Compression via several algorithms:
     -   [**PNGQuant**](https://pngquant.org/): Strip unneeded chunks from
@@ -46,7 +46,7 @@ url <- paste0(
 )
 
 resmush_url(url, outfile = "jpg_example_compress.jpg", overwrite = TRUE)
-#> ══ resmush summary ═════════════════════════════════════════════════════════════
+#> ══ resmush summary ═════════════════════════════════════════════════════════════════
 #> ℹ Input: 1 url with size 178.7 Kb
 #> ✔ Success for 1 url: Size now is 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
 #> See result in directory '.'.
@@ -78,7 +78,7 @@ resmush_url(url,
   outfile = "jpg_example_compress_low.jpg",
   overwrite = TRUE, qlty = 3
 )
-#> ══ resmush summary ═════════════════════════════════════════════════════════════
+#> ══ resmush summary ═════════════════════════════════════════════════════════════════
 #> ℹ Input: 1 url with size 178.7 Kb
 #> ✔ Success for 1 url: Size now is 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
 #> See result in directory '.'.
@@ -136,7 +136,7 @@ There are other alternatives for optimizing images with **R**:
     installed locally.
 
 | tool              | CRAN | Additional software? | Online? | API Key? | Limits?                     |
-|-------------------|------|----------------------|---------|----------|-----------------------------|
+|-------------|-------------|-------------|-------------|-------------|-----------------|
 | `xfun::tinify()`  | Yes  | No                   | Yes     | Yes      | 500 files/month (Free tier) |
 | `xfun::optipng()` | Yes  | Yes                  | No      | No       | No                          |
 | **tinieR**        | No   | No                   | Yes     | Yes      | 500 files/month (Free tier) |
@@ -151,7 +151,7 @@ There are other alternatives for optimizing images with **R**:
 | `xfun::optipng()` | ✅  | ❌  | ❌  | ❌  | ❌   | ❌   | ❌  |
 | **tinieR**        | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
 | **optout**        | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
-| **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ✅   | ❌  |
+| **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ❌   | ❌  |
 
 : Table 2: **R** packages: Formats admitted.
 

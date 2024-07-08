@@ -35,8 +35,7 @@ Some of the features of **reSmush.it** are:
 
 - Free optimization services, no API key required.
 - Optimize local and online images.
-- Image files supported: `png`, `jpg/jpeg`, `gif`, `bmp`, `tiff`,
-  `webp`.
+- Image files supported: `png`, `jpg/jpeg`, `gif`, `bmp`, `tiff`.
 - Max image size: 5 Mb.
 - Compression via several algorithms:
   - [**PNGQuant**](https://pngquant.org/): Strip unneeded chunks from
@@ -198,7 +197,7 @@ images.
 | `xfun::optipng()` | ✅  | ❌  | ❌  | ❌  | ❌   | ❌   | ❌  |
 | **tinieR**        | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
 | **optout**        | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
-| **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ✅   | ❌  |
+| **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ❌   | ❌  |
 
 Table 2: **R** packages: Formats admitted.
 
@@ -218,15 +217,14 @@ A BibTeX entry for LaTeX users is
       doi = {10.32614/CRAN.package.resmush},
       author = {Diego Hernangómez},
       year = {2024},
-      version = {0.1.1},
+      version = {0.1.1.9000},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
     }
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
 <div id="ref-xfun" class="csl-entry">
 

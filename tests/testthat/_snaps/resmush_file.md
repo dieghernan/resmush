@@ -33,8 +33,8 @@
     Output
         dest_img dest_size compress_ratio
       1       NA        NA             NA
-                                                                            notes
-      1 403: Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF, WEBP
+                                                                      notes
+      1 403: Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF
         dest_bytes
       1         NA
 
