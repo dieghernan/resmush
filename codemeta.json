@@ -161,7 +161,7 @@
     "SystemRequirements": null
   },
   "keywords": ["r", "compress-images", "optimize-images", "resmushit", "api", "r-package"],
-  "fileSize": "674.687KB",
+  "fileSize": "674.676KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

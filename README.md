@@ -148,9 +148,6 @@ png_file <- system.file("extimg/example.png", package = "resmush")
 tmp_png <- tempfile(fileext = ".png")
 file.copy(png_file, tmp_png, overwrite = TRUE)
 #> [1] TRUE
-```
-
-``` r
 
 
 summary <- resmush_file(tmp_png, overwrite = TRUE)
