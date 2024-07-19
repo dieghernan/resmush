@@ -149,9 +149,6 @@ png_file <- system.file("extimg/example.png", package = "resmush")
 tmp_png <- tempfile(fileext = ".png")
 file.copy(png_file, tmp_png, overwrite = TRUE)
 #> [1] TRUE
-```
-
-``` r
 
 
 summary <- resmush_file(tmp_png, overwrite = TRUE)
@@ -218,7 +215,7 @@ A BibTeX entry for LaTeX users is
       doi = {10.32614/CRAN.package.resmush},
       author = {Diego Hernangómez},
       year = {2024},
-      version = {0.1.1.9000},
+      version = {0.2.0},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
     }
