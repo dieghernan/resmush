@@ -214,14 +214,15 @@ A BibTeX entry for LaTeX users is
       doi = {10.32614/CRAN.package.resmush},
       author = {Diego Hernangómez},
       year = {2024},
-      version = {0.1.1.9000},
+      version = {0.2.0},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
     }
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
 
 <div id="ref-xfun" class="csl-entry">
 
