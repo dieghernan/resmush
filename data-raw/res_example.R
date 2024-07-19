@@ -25,10 +25,14 @@ jpg_url <- paste0(
 all_in <- c(png_url, notval, jpg_url, turl)
 
 res_example <- resmush_url(all_in)
-res_example$dest_img <- gsub("C:\\Users\\diego\\AppData\\Local\\Temp", "",
-  res_example$dest_img,
-  fixed = TRUE
+
+# Anonimize folder
+
+res_example$dest_img <- basename(res_example$dest_img)
+
+res_example$dest_img <- ifelse(is.na(res_example$dest_img),
+  NA, file.path("some_folder", res_example$dest_img)
 )
-res_example$dest_img
+
 
 usethis::use_data(res_example, overwrite = TRUE, internal = TRUE)
