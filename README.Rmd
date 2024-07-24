@@ -33,6 +33,7 @@ results](https://badges.cranchecks.info/worst/resmush.svg)](https://cran.r-proje
 [![R-hub](https://github.com/dieghernan/resmush/actions/workflows/rhub.yaml/badge.svg)](https://github.com/dieghernan/resmush/actions/workflows/rhub.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/resmush/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/resmush)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/resmush/badge)](https://www.codefactor.io/repository/github/dieghernan/resmush)
+[![r-universe](https://dieghernan.r-universe.dev/badges/resmush)](https://dieghernan.r-universe.dev/resmush)
 [![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.resmush-blue)](https://doi.org/10.32614/CRAN.package.resmush)
 [![Project Status: Active -- The project has reached a stable, usable state and
 is being actively
@@ -78,7 +79,8 @@ You can install the development version of **resmush** from
 remotes::install_github("dieghernan/resmush")
 ```
 
-Alternatively, you can install **resmush** using the **r-universe+**:
+Alternatively, you can install **resmush** using the
+[r-universe](https://dieghernan.r-universe.dev/resmush):
 
 ```{r, eval=FALSE}
 # Install resmush in R:
