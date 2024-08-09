@@ -83,6 +83,9 @@ references:
     email: jeroen@berkeley.edu
     orcid: https://orcid.org/0000-0002-4035-0289
   year: '2024'
+  identifiers:
+  - type: url
+    value: https://curl.se/libcurl/
   doi: 10.32614/CRAN.package.curl
 - type: software
   title: httr2
@@ -107,7 +110,6 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  doi: 10.32614/CRAN.package.tools
 - type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -118,7 +120,6 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  doi: 10.32614/CRAN.package.utils
 - type: software
   title: grid
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -129,7 +130,6 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  doi: 10.32614/CRAN.package.grid
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
