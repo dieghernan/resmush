@@ -47,6 +47,8 @@ keywords:
 - resmushit
 - api
 - r-package
+- cran
+- cran-r
 references:
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
