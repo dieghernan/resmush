@@ -90,7 +90,7 @@ load_dir_to_temp <- function(n = 4) {
   lf <- list.files(inst_dir, full.names = TRUE)
   file.copy(lf, dest_dir, recursive = TRUE)
 
-  return(dest_dir)
+  dest_dir
 }
 
 download_to_temp <- function(url) {
@@ -101,5 +101,5 @@ download_to_temp <- function(url) {
   # nolint start
   dwn <- httr2::req_perform(rq, path = tmpfi)
   # nolint end
-  return(tmpfi)
+  tmpfi
 }

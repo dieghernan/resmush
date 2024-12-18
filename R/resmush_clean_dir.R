@@ -75,5 +75,5 @@ resmush_clean_dir <- function(dir, suffix = "_resmush", recursive = FALSE) {
   cli::cli_bullets(make_bull)
 
   unlink(allfiles, force = TRUE)
-  return(invisible(NULL))
+  invisible(NULL)
 }
