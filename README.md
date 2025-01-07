@@ -177,13 +177,13 @@ There are other alternatives for optimizing images with **R**:
   `xfun::optipng()` with more options. Requires additional software to
   be installed locally.
 
-| tool | CRAN | Additional software? | Online? | API Key? | Limits? |
-|----|----|----|----|----|----|
-| `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (Free tier) |
-| `xfun::optipng()` | Yes | Yes | No | No | No |
-| **tinieR** | No | No | Yes | Yes | 500 files/month (Free tier) |
-| **optout** | No | Yes | No | No | No |
-| **resmush** | Yes | No | Yes | No | Max size 5Mb |
+| tool              | CRAN | Additional software? | Online? | API Key? | Limits?                     |
+|-------------------|------|----------------------|---------|----------|-----------------------------|
+| `xfun::tinify()`  | Yes  | No                   | Yes     | Yes      | 500 files/month (Free tier) |
+| `xfun::optipng()` | Yes  | Yes                  | No      | No       | No                          |
+| **tinieR**        | No   | No                   | Yes     | Yes      | 500 files/month (Free tier) |
+| **optout**        | No   | Yes                  | No      | No       | No                          |
+| **resmush**       | Yes  | No                   | Yes     | No       | Max size 5Mb                |
 
 Table 1: **R** packages: Comparison of alternatives for optimizing
 images.
@@ -201,7 +201,7 @@ Table 2: **R** packages: Formats admitted.
 ## Citation
 
 <p>
-Hernangómez D (2024). <em>resmush: Optimize and Compress Image Files
+Hernangómez D (2025). <em>resmush: Optimize and Compress Image Files
 with reSmush.it</em>.
 <a href="https://doi.org/10.32614/CRAN.package.resmush">doi:10.32614/CRAN.package.resmush</a>,
 <a href="https://dieghernan.github.io/resmush/">https://dieghernan.github.io/resmush/</a>.
@@ -213,7 +213,7 @@ A BibTeX entry for LaTeX users is
       title = {{resmush}: Optimize and Compress Image Files with {reSmush.it}},
       doi = {10.32614/CRAN.package.resmush},
       author = {Diego Hernangómez},
-      year = {2024},
+      year = {2025},
       version = {0.2.1},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
