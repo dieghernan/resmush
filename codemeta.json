@@ -161,7 +161,7 @@
     "SystemRequirements": null
   },
   "keywords": ["r", "compress-images", "optimize-images", "resmushit", "api", "r-package", "cran", "cran-r"],
-  "fileSize": "679.104KB",
+  "fileSize": "678.847KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
