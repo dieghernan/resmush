@@ -221,6 +221,19 @@ A BibTeX entry for LaTeX users is
 
 ## References
 
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
+
+<div id="ref-xfun" class="csl-entry">
+
+Xie, Yihui. 2024. *<span class="nocase">xfun</span>: Supporting
+Functions for Packages Maintained by Yihui Xie*.
+<https://github.com/yihui/xfun>.
+
+</div>
+
+</div>
+
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -251,16 +264,3 @@ specification. Contributions of any kind are welcome!
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
-
-<div id="ref-xfun" class="csl-entry">
-
-Xie, Yihui. 2024. *<span class="nocase">xfun</span>: Supporting
-Functions for Packages Maintained by Yihui Xie*.
-<https://github.com/yihui/xfun>.
-
-</div>
-
-</div>
