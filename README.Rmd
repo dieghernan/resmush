@@ -211,6 +211,9 @@ toBibtex(citation("resmush"))
 
 ## References
 
+::: {#refs}
+:::
+
 ## Contributors
 
 
