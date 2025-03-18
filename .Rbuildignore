@@ -28,3 +28,5 @@
 ^doc$
 ^Meta$
 ^codecov\.yml$
+^_pkgdown\.yaml$
+^_pkgdown\.yml$

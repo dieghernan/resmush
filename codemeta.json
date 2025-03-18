@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.2 (2024-10-31 ucrt)",
+  "runtimePlatform": "R version 4.4.3 (2025-02-28 ucrt)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -161,7 +161,7 @@
     "SystemRequirements": null
   },
   "keywords": ["r", "compress-images", "optimize-images", "resmushit", "api", "r-package", "cran", "cran-r"],
-  "fileSize": "677.573KB",
+  "fileSize": "678.896KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
