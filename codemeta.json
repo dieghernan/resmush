@@ -180,7 +180,7 @@
       "sameAs": "https://doi.org/10.32614/CRAN.package.resmush"
     }
   ],
-  "releaseNotes": "https://github.com/dieghernan/resmush/blob/master/NEWS.md",
+  "releaseNotes": "https://github.com/dieghernan/resmush/blob/main/NEWS.md",
   "readme": "https://github.com/dieghernan/resmush/blob/main/README.md",
   "contIntegration": ["https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml", "https://github.com/dieghernan/resmush/actions/workflows/rhub.yaml", "https://app.codecov.io/gh/dieghernan/resmush"],
   "developmentStatus": "https://www.repostatus.org/#active"
