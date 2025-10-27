@@ -61,7 +61,7 @@ Optimize all the local files of a directory (or list of directories) using
 the  \href{https://resmush.it/}{reSmush.it API}.
 }
 \examples{
-\dontshow{if (curl::has_internet()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (curl::has_internet()) withAutoprint(\{ # examplesIf}
 \donttest{
 # Get example dir and copy
 example_dir <- system.file("extimg", package = "resmush")

@@ -202,7 +202,6 @@ test_that("Test qlty par with jpg", {
 })
 
 
-
 test_that("Test errors in lengths", {
   skip_on_cran()
 

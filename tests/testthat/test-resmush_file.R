@@ -187,7 +187,6 @@ test_that("Test qlty par with jpg", {
 })
 
 
-
 test_that("Test full vectors", {
   skip_on_cran()
   skip_if_offline()

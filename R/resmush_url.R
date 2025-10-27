@@ -190,7 +190,6 @@ resmush_url_single <- function(url,
   # nocov end
 
 
-
   ##  2. Download from dest ----
   dwn_opt <- httr2::request(res_get$dest)
 

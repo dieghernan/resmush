@@ -69,7 +69,6 @@
 #' summary
 #'
 #'
-#'
 #' # Display with png
 #' if (require("png", quietly = TRUE)) {
 #'   my_png <- png::readPNG(summary$dest_img[1])

@@ -57,7 +57,7 @@ process used for generate the report is returned.
 Optimize local images using the \href{https://resmush.it/}{reSmush.it API}.
 }
 \examples{
-\dontshow{if (curl::has_internet()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (curl::has_internet()) withAutoprint(\{ # examplesIf}
 
 \donttest{
 png_file <- system.file("extimg/example.png", package = "resmush")
@@ -80,7 +80,6 @@ summary <- resmush_file(c(tmp_png, tmp_jpg))
 
 # Similar info in an (invisible) data frame as a result
 summary
-
 
 
 # Display with png

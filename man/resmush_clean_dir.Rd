@@ -25,7 +25,7 @@ Clean a directory (or a list of directories) of files created by
 \code{\link[=resmush_file]{resmush_file()}}.
 }
 \examples{
-\dontshow{if (curl::has_internet()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (curl::has_internet()) withAutoprint(\{ # examplesIf}
 \donttest{
 # Simple example
 
