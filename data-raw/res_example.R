@@ -30,8 +30,10 @@ res_example <- resmush_url(all_in)
 
 res_example$dest_img <- basename(res_example$dest_img)
 
-res_example$dest_img <- ifelse(is.na(res_example$dest_img),
-  NA, file.path("some_folder", res_example$dest_img)
+res_example$dest_img <- ifelse(
+  is.na(res_example$dest_img),
+  NA,
+  file.path("some_folder", res_example$dest_img)
 )
 
 

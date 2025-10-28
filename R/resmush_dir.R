@@ -68,11 +68,20 @@
 #' # Clean up example
 #' unlink(dest_folder, force = TRUE, recursive = TRUE)
 #' }
-resmush_dir <- function(dir, ext = "\\.(png|jpe?g|bmp|gif|tif)$",
-                        suffix = "_resmush", overwrite = FALSE, progress = TRUE,
-                        report = TRUE, recursive = FALSE, ...) {
+resmush_dir <- function(
+  dir,
+  ext = "\\.(png|jpe?g|bmp|gif|tif)$",
+  suffix = "_resmush",
+  overwrite = FALSE,
+  progress = TRUE,
+  report = TRUE,
+  recursive = FALSE,
+  ...
+) {
   allfiles <- list.files(
-    path = dir, pattern = ext, recursive = recursive,
+    path = dir,
+    pattern = ext,
+    recursive = recursive,
     full.names = TRUE
   )
 
@@ -89,11 +98,14 @@ resmush_dir <- function(dir, ext = "\\.(png|jpe?g|bmp|gif|tif)$",
     cli::cli_alert_info("Resmushing {nf} file{?s}")
   }
 
-
   # Call resmush_file
 
-  resmush_file(allfiles,
-    suffix = suffix, overwrite = overwrite,
-    progress = progress, report = report, ...
+  resmush_file(
+    allfiles,
+    suffix = suffix,
+    overwrite = overwrite,
+    progress = progress,
+    report = report,
+    ...
   )
 }

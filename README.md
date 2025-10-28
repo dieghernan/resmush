@@ -177,13 +177,13 @@ There are other alternatives for optimizing images with **R**:
   `xfun::optipng()` with more options. Requires additional software to
   be installed locally.
 
-| tool | CRAN | Additional software? | Online? | API Key? | Limits? |
-|----|----|----|----|----|----|
-| `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (Free tier) |
-| `xfun::optipng()` | Yes | Yes | No | No | No |
-| **tinieR** | No | No | Yes | Yes | 500 files/month (Free tier) |
-| **optout** | No | Yes | No | No | No |
-| **resmush** | Yes | No | Yes | No | Max size 5Mb |
+| tool              | CRAN | Additional software? | Online? | API Key? | Limits?                     |
+|-------------------|------|----------------------|---------|----------|-----------------------------|
+| `xfun::tinify()`  | Yes  | No                   | Yes     | Yes      | 500 files/month (Free tier) |
+| `xfun::optipng()` | Yes  | Yes                  | No      | No       | No                          |
+| **tinieR**        | No   | No                   | Yes     | Yes      | 500 files/month (Free tier) |
+| **optout**        | No   | Yes                  | No      | No       | No                          |
+| **resmush**       | Yes  | No                   | Yes     | No       | Max size 5Mb                |
 
 Table 1: **R** packages: Comparison of alternatives for optimizing
 images.
@@ -201,7 +201,6 @@ Table 2: **R** packages: Formats admitted.
 ## Citation
 
 <p>
-
 Hernangómez D (2025). <em>resmush: Optimize and Compress Image Files
 with reSmush.it</em>.
 <a href="https://doi.org/10.32614/CRAN.package.resmush">doi:10.32614/CRAN.package.resmush</a>,
@@ -238,9 +237,7 @@ Functions for Packages Maintained by Yihui Xie*.
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-
 <!-- prettier-ignore-start -->
-
 <!-- markdownlint-disable -->
 
 All contributions to this project are gratefully acknowledged using the
@@ -249,23 +246,15 @@ following the [allcontributors](https://allcontributors.org)
 specification. Contributions of any kind are welcome!
 
 <table class="table allctb-table">
-
 <tr>
-
 <td align="center">
-
 <a href="https://github.com/dieghernan">
 <img src="https://avatars.githubusercontent.com/u/25656809?v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/dieghernan/resmush/commits?author=dieghernan">dieghernan</a>
 </td>
-
 </tr>
-
 </table>
-
 <!-- markdownlint-enable -->
-
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->

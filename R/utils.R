@@ -19,10 +19,14 @@ make_pretty_size <- function(x) {
 #' @noRd
 add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
   # Handle suffix
-  if (any(
-    is.na(suffix), is.null(suffix), suffix == "",
-    overwrite
-  )) {
+  if (
+    any(
+      is.na(suffix),
+      is.null(suffix),
+      suffix == "",
+      overwrite
+    )
+  ) {
     return(x)
   }
 
@@ -68,7 +72,9 @@ load_inst_to_temp <- function(file, subdir = NULL) {
     dest_dir <- tempdir()
   }
 
-  if (!dir.exists(dest_dir)) dir.create(dest_dir, recursive = TRUE)
+  if (!dir.exists(dest_dir)) {
+    dir.create(dest_dir, recursive = TRUE)
+  }
 
   tmp <- file.path(dest_dir, basename(f))
 
@@ -84,7 +90,9 @@ load_dir_to_temp <- function(n = 4) {
 
   dest_dir <- file.path(tempdir(), temp_name)
 
-  if (!dir.exists(dest_dir)) dir.create(dest_dir, recursive = TRUE)
+  if (!dir.exists(dest_dir)) {
+    dir.create(dest_dir, recursive = TRUE)
+  }
 
   # Copy files
   lf <- list.files(inst_dir, full.names = TRUE)

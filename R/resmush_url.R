@@ -68,9 +68,15 @@
 #' resmush_url(jpg_url)
 #' resmush_url(jpg_url, qlty = 10)
 #' }
-resmush_url <- function(url, outfile = file.path(tempdir(), basename(url)),
-                        overwrite = FALSE, progress = TRUE, report = TRUE,
-                        qlty = 92, exif_preserve = FALSE) {
+resmush_url <- function(
+  url,
+  outfile = file.path(tempdir(), basename(url)),
+  overwrite = FALSE,
+  progress = TRUE,
+  report = TRUE,
+  qlty = 92,
+  exif_preserve = FALSE
+) {
   # High level function for vectors
 
   # Check lengths
@@ -102,7 +108,8 @@ resmush_url <- function(url, outfile = file.path(tempdir(), basename(url)),
         "{cli::pb_percent} [{cli::pb_elapsed}] | ETA: {cli::pb_eta} ",
         "({cli::pb_current}/{cli::pb_total} urls)"
       ),
-      total = n_urls, clear = FALSE
+      total = n_urls,
+      clear = FALSE
     )
   }
 
@@ -110,11 +117,15 @@ resmush_url <- function(url, outfile = file.path(tempdir(), basename(url)),
   res_df <- NULL
 
   for (i in n_seq) {
-    if (progress) cli::cli_progress_update()
+    if (progress) {
+      cli::cli_progress_update()
+    }
 
     df <- resmush_url_single(
-      url = url[i], outfile = outfile[i],
-      overwrite = overwrite, qlty = qlty,
+      url = url[i],
+      outfile = outfile[i],
+      overwrite = overwrite,
+      qlty = qlty,
       exif_preserve = exif_preserve
     )
 
@@ -139,30 +150,38 @@ resmush_url <- function(url, outfile = file.path(tempdir(), basename(url)),
     show_report(res_df = res_df, summary_type = "url")
   }
 
-
   # output
 
   return(invisible(res_df))
 }
 
 
-resmush_url_single <- function(url,
-                               outfile = file.path(tempdir(), basename(url)),
-                               overwrite = FALSE,
-                               qlty = 92, exif_preserve = FALSE) {
+resmush_url_single <- function(
+  url,
+  outfile = file.path(tempdir(), basename(url)),
+  overwrite = FALSE,
+  qlty = 92,
+  exif_preserve = FALSE
+) {
   # Avoid duplicates if requested
   outfile <- make_unique_paths(outfile, overwrite)
 
-
   # Create dir if it doesn't exists
   the_dir <- dirname(outfile)
-  if (!dir.exists(the_dir)) dir.create(the_dir, recursive = TRUE)
+  if (!dir.exists(the_dir)) {
+    dir.create(the_dir, recursive = TRUE)
+  }
 
   # Master table with results
   res <- data.frame(
-    src_img = url, dest_img = NA, src_size = NA,
-    dest_size = NA, compress_ratio = NA, notes = NA,
-    src_bytes = NA, dest_bytes = NA
+    src_img = url,
+    dest_img = NA,
+    src_size = NA,
+    dest_size = NA,
+    compress_ratio = NA,
+    notes = NA,
+    src_bytes = NA,
+    dest_bytes = NA
   )
 
   # Check access
@@ -189,7 +208,6 @@ resmush_url_single <- function(url,
   }
   # nocov end
 
-
   ##  2. Download from dest ----
   dwn_opt <- httr2::request(res_get$dest)
 
@@ -212,7 +230,6 @@ resmush_url_single <- function(url,
 
   res$src_size <- src_size_pretty
   res$src_bytes <- src_size
-
 
   out_size <- file.size(outfile)
   out_size_pretty <- make_pretty_size(out_size)
@@ -237,17 +254,19 @@ smush_from_url <- function(url, qlty, exif_preserve = TRUE, n_rep = 3) {
 
   api_url <- httr2::url_parse("http://api.resmush.it/ws.php")
   api_url$query <- list(
-    qlty = qlty, exif = exif_preserve,
+    qlty = qlty,
+    exif = exif_preserve,
     img = url
   )
   api_url <- httr2::url_build(api_url)
   the_req <- httr2::request(api_url)
 
-
   for (i in seq(1, n_rep)) {
     api_get <- httr2::req_perform(the_req)
     res_get <- httr2::resp_body_json(api_get)
-    if (!"error" %in% names(res_get)) break
+    if (!"error" %in% names(res_get)) {
+      break
+    }
     Sys.sleep(0.5)
   }
   return(res_get)

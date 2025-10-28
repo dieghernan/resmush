@@ -241,10 +241,15 @@ test_that("Test full vectors", {
 
   expect_equal(nrow(dm), 4)
   expect_equal(dm$src_img, all_in)
-  expect_equal(basename(dm$dest_img), basename(c(
-    res_all[1], NA, res_all[3],
-    NA
-  )))
+  expect_equal(
+    basename(dm$dest_img),
+    basename(c(
+      res_all[1],
+      NA,
+      res_all[3],
+      NA
+    ))
+  )
 
   expect_message(
     resmush_clean_dir(tempdir())
@@ -288,10 +293,7 @@ test_that("Test full vectors silent", {
 
   expect_true(optinit2$cli.progress_bar_style == "aaa")
   expect_silent(
-    dm <- resmush_file(all_in,
-      progress = FALSE,
-      report = FALSE
-    )
+    dm <- resmush_file(all_in, progress = FALSE, report = FALSE)
   )
 
   # Restored options
@@ -306,10 +308,15 @@ test_that("Test full vectors silent", {
 
   expect_equal(nrow(dm), 4)
   expect_equal(dm$src_img, all_in)
-  expect_equal(basename(dm$dest_img), basename(c(
-    res_all[1], NA, res_all[3],
-    NA
-  )))
+  expect_equal(
+    basename(dm$dest_img),
+    basename(c(
+      res_all[1],
+      NA,
+      res_all[3],
+      NA
+    ))
+  )
 
   expect_message(
     resmush_clean_dir(tempdir())

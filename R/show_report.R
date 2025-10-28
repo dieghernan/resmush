@@ -12,18 +12,22 @@ show_report <- function(res_df, summary_type = "file") {
 
   # nolint end
 
-  heading <- cli::cli_div(theme = list(rule = list(
-    "line-type" = "double"
-  )))
+  heading <- cli::cli_div(
+    theme = list(
+      rule = list(
+        "line-type" = "double"
+      )
+    )
+  )
   cli::cli_rule(left = "{.pkg resmush} summary")
   cli::cli_end(heading)
   cli::cli_alert_info(
     paste0(
-      "Input: {nrow(res_df)} ", name_cli,
+      "Input: {nrow(res_df)} ",
+      name_cli,
       " with size {totinit_pretty}"
     )
   )
-
 
   nok <- res_df[res_df$notes != "OK", ]
   ok <- res_df[res_df$notes == "OK", ]
@@ -44,7 +48,9 @@ show_report <- function(res_df, summary_type = "file") {
 
     cli::cli_alert_success(
       paste0(
-        "Success for {nrow(ok)} ", name_cli, ": Size now is {okend_pretty} ",
+        "Success for {nrow(ok)} ",
+        name_cli,
+        ": Size now is {okend_pretty} ",
         "(was {okinit_pretty}). Saved {okdif} ({okperc_pretty})."
       )
     )
@@ -69,7 +75,9 @@ show_report <- function(res_df, summary_type = "file") {
           "{.path {nok$src_img[%s]}} ",
           "({nok$src_size[%s]}):  {nok$notes[%s]}."
         ),
-        noks, noks, noks
+        noks,
+        noks,
+        noks
       )
 
       names(makebull) <- rep("!", nrow(nok))
@@ -77,7 +85,6 @@ show_report <- function(res_df, summary_type = "file") {
         "i" = "File{cli::qty(nrow(nok))}{?s} not converted:",
         makebull
       )
-
 
       cli::cli_alert_danger(
         paste0(
@@ -89,7 +96,8 @@ show_report <- function(res_df, summary_type = "file") {
       # Prepare bullets
       makebull <- sprintf(
         "{.url {nok$src_img[%s]}}: {nok$notes[%s]}.",
-        noks, noks
+        noks,
+        noks
       )
 
       names(makebull) <- rep("!", nrow(nok))
@@ -98,7 +106,6 @@ show_report <- function(res_df, summary_type = "file") {
 
     cli::cli_bullets(makebull)
   }
-
 
   return(invisible(NULL))
 }

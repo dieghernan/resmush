@@ -80,9 +80,15 @@
 #' resmush_file(tmp_jpg, qlty = 10)
 #' }
 #'
-resmush_file <- function(file, suffix = "_resmush", overwrite = FALSE,
-                         progress = TRUE, report = TRUE,
-                         qlty = 92, exif_preserve = FALSE) {
+resmush_file <- function(
+  file,
+  suffix = "_resmush",
+  overwrite = FALSE,
+  progress = TRUE,
+  report = TRUE,
+  qlty = 92,
+  exif_preserve = FALSE
+) {
   # Prepare progress bar
   n_files <- length(file)
   n_seq <- seq_len(n_files)
@@ -101,18 +107,24 @@ resmush_file <- function(file, suffix = "_resmush", overwrite = FALSE,
         "{cli::pb_percent} [{cli::pb_elapsed}] | ETA: {cli::pb_eta} ",
         "({cli::pb_current}/{cli::pb_total} files)"
       ),
-      total = n_files, clear = FALSE
+      total = n_files,
+      clear = FALSE
     )
   }
   # Call single with loop, cli::cli_progress_bar does not work on applys yet
   res_df <- NULL
 
   for (i in n_seq) {
-    if (progress) cli::cli_progress_update()
+    if (progress) {
+      cli::cli_progress_update()
+    }
 
-    df <- resmush_file_single(file[i],
-      suffix = suffix, overwrite = overwrite,
-      qlty = qlty, exif_preserve = exif_preserve
+    df <- resmush_file_single(
+      file[i],
+      suffix = suffix,
+      overwrite = overwrite,
+      qlty = qlty,
+      exif_preserve = exif_preserve
     )
     if (is.null(res_df)) {
       res_df <- df
@@ -142,14 +154,24 @@ resmush_file <- function(file, suffix = "_resmush", overwrite = FALSE,
 
 
 # Single call
-resmush_file_single <- function(file, suffix = "_resmush", overwrite = FALSE,
-                                qlty = 92, exif_preserve = FALSE) {
+resmush_file_single <- function(
+  file,
+  suffix = "_resmush",
+  overwrite = FALSE,
+  qlty = 92,
+  exif_preserve = FALSE
+) {
   outfile <- add_suffix(file, suffix, overwrite)
   # Master table with results
   res <- data.frame(
-    src_img = file, dest_img = NA, src_size = NA,
-    dest_size = NA, compress_ratio = NA, notes = NA,
-    src_bytes = NA, dest_bytes = NA
+    src_img = file,
+    dest_img = NA,
+    src_size = NA,
+    dest_size = NA,
+    compress_ratio = NA,
+    notes = NA,
+    src_bytes = NA,
+    dest_bytes = NA
   )
 
   # Check access
@@ -227,10 +249,10 @@ smush_from_local <- function(path, qlty, exif_preserve = TRUE) {
   api_url <- httr2::url_build(api_url)
   the_req <- httr2::request(api_url)
 
-  the_req_file <- httr2::req_body_multipart(the_req,
+  the_req_file <- httr2::req_body_multipart(
+    the_req,
     files = curl::form_file(path)
   )
-
 
   api_get <- httr2::req_perform(the_req_file)
   res_get <- httr2::resp_body_json(api_get)

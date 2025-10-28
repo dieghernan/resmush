@@ -8,7 +8,6 @@ test_that("jpg", {
     "img/sample-jpg-1mb.jpg"
   )
 
-
   expect_silent(dm <- resmush_url(url, report = FALSE))
 
   expect_equal(tools::file_ext(dm$dest_img), "jpg")
@@ -36,11 +35,9 @@ test_that("jpg", {
 
   no_exif <- resmush_url(url, noexif)
 
-
   yesexif <- tempfile(fileext = "_yesexif.jpg")
 
   yes_exif <- resmush_url(url, yesexif, exif_preserve = TRUE)
-
 
   expect_lt(file.size(noexif), file.size(yesexif))
 
@@ -58,7 +55,6 @@ test_that("png", {
     "https://raw.githubusercontent.com/dieghernan/resmush/main/",
     "img/sample-png-3mb.png"
   )
-
 
   expect_silent(dm <- resmush_url(url, report = FALSE))
   expect_true(file.exists(dm$dest_img))
@@ -89,7 +85,6 @@ test_that("gif", {
     "img/sample-gif-350kb.gif"
   )
 
-
   expect_silent(dm <- resmush_url(url, report = FALSE))
   unlink(dm$dest_img)
 })
@@ -104,7 +99,6 @@ test_that("bmp", {
     "https://raw.githubusercontent.com/dieghernan/resmush/main/",
     "img/sample-bmp-798kb.bmp"
   )
-
 
   dm <- resmush_url(url)
   expect_true(dm$notes == "OK")
@@ -122,7 +116,6 @@ test_that("tif", {
     "img/sample-tiff-1mb.tiff"
   )
 
-
   expect_silent(dm <- resmush_url(url, report = FALSE))
 
   unlink(dm$dest_img, force = TRUE)
@@ -132,7 +125,6 @@ test_that("tif", {
     "https://raw.githubusercontent.com/dieghernan/resmush/main/",
     "img/sample-tif-1mb.tif"
   )
-
 
   expect_snapshot(dm <- resmush_url(url))
 })

@@ -10,16 +10,20 @@ test_that("Add suffix", {
 
   # More extensions with suffix
   nodups <- c(
-    "./test.png", "./a./dot./test.png.jpg",
-    "./test.jpg", "./test.jpg.png"
+    "./test.png",
+    "./a./dot./test.png.jpg",
+    "./test.jpg",
+    "./test.jpg.png"
   )
 
   # Default behaviour
   def <- add_suffix(nodups)
   expect_identical(
     c(
-      "./test_resmush.png", "./a./dot./test.png_resmush.jpg",
-      "./test_resmush.jpg", "./test.jpg_resmush.png"
+      "./test_resmush.png",
+      "./a./dot./test.png_resmush.jpg",
+      "./test_resmush.jpg",
+      "./test.jpg_resmush.png"
     ),
     def
   )
@@ -27,8 +31,10 @@ test_that("Add suffix", {
   same_res2 <- add_suffix(nodups, suffix = "_asuffix")
   expect_identical(
     c(
-      "./test_asuffix.png", "./a./dot./test.png_asuffix.jpg",
-      "./test_asuffix.jpg", "./test.jpg_asuffix.png"
+      "./test_asuffix.png",
+      "./a./dot./test.png_asuffix.jpg",
+      "./test_asuffix.jpg",
+      "./test.jpg_asuffix.png"
     ),
     same_res2
   )

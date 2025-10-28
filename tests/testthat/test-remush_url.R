@@ -40,7 +40,6 @@ test_that("Test corner", {
 
   expect_snapshot(dm <- resmush_url(png_url))
 
-
   expect_s3_class(dm, "data.frame")
   expect_snapshot(dm)
 
@@ -92,7 +91,9 @@ test_that("Test default opts with png", {
   # Mock default output
   out_f <- file.path(tempdir(), basename(png_url))
 
-  if (file.exists(out_f)) unlink(out_f, force = TRUE)
+  if (file.exists(out_f)) {
+    unlink(out_f, force = TRUE)
+  }
 
   # Recover options
 
@@ -111,7 +112,6 @@ test_that("Test default opts with png", {
   expect_true(optinit2$cli.progress_bar_style == "aaa")
 
   expect_message(dm <- resmush_url(png_url))
-
 
   # Restored options
   expect_identical(options(), optinit2)
@@ -145,7 +145,6 @@ test_that("Test opts with png", {
     "extimg/example.png"
   )
 
-
   outf <- tempfile(fileext = ".png")
   expect_false(file.exists(outf))
   expect_message(
@@ -156,7 +155,6 @@ test_that("Test opts with png", {
   expect_s3_class(dm, "data.frame")
   expect_false(any(is.na(dm)))
   expect_equal(dm$src_img, png_url)
-
 
   outs <- file.size(outf)
 
@@ -175,7 +173,6 @@ test_that("Test qlty par with jpg", {
     "dieghernan/resmush/main/inst/",
     "extimg/example.jpg"
   )
-
 
   outf <- tempfile(fileext = ".jpg")
   expect_false(file.exists(outf))
@@ -233,7 +230,6 @@ test_that("Test full vectors without outfile", {
   # No url
   turl <- "https://dieghernan.github.io/aaabbbccc.png"
 
-
   # Not valid
   notval <- paste0(
     "https://raw.githubusercontent.com/",
@@ -270,7 +266,6 @@ test_that("Test full vectors without outfile", {
 
   expect_true(optinit2$cli.progress_bar_style == "aaa")
 
-
   expect_silent(dm <- resmush_url(all_in, report = FALSE, progress = FALSE))
 
   # Restored options
@@ -297,7 +292,6 @@ test_that("Test full vectors with outfile", {
 
   # No url
   turl <- "https://dieghernan.github.io/aaabbbccc.png"
-
 
   # Not valid
   notval <- paste0(
@@ -359,13 +353,17 @@ test_that("Handle duplicate names", {
 
   outs <- file.path(tempdir(), basename(png_url))
 
-  if (any(file.exists(outs))) unlink(outs, force = TRUE)
+  if (any(file.exists(outs))) {
+    unlink(outs, force = TRUE)
+  }
 
   expect_false(file.exists(outs[1]))
 
   # But should be renamed as
   renamed <- file.path(tempdir(), c("example_01.png", "example_02.png"))
-  if (any(file.exists(renamed))) unlink(renamed, force = TRUE)
+  if (any(file.exists(renamed))) {
+    unlink(renamed, force = TRUE)
+  }
   expect_false(any(file.exists(renamed)))
 
   # Call
@@ -396,7 +394,9 @@ test_that("Use  overwrite", {
   outs <- file.path(tempdir(), "over", basename(png_url))
   the_dir <- unique(dirname(outs))
 
-  if (any(file.exists(outs))) unlink(outs, force = TRUE)
+  if (any(file.exists(outs))) {
+    unlink(outs, force = TRUE)
+  }
 
   expect_false(file.exists(outs[1]))
 
@@ -425,7 +425,6 @@ test_that("To non-existing directories", {
     "dieghernan/resmush/main/inst/",
     "extimg/example.png"
   )
-
 
   # Random folder name
   let1 <- paste0(LETTERS[sample(seq_len(20), 4, replace = TRUE)], collapse = "")

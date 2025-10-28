@@ -8,7 +8,8 @@ library(showtext)
 font_add_google("Inter", "inter")
 
 showtext_auto()
-sticker("data-raw/plot.png",
+sticker(
+  "data-raw/plot.png",
   s_width = 0,
   s_height = 0,
   s_x = 1,

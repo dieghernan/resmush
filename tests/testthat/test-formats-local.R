@@ -63,7 +63,6 @@ test_that("bmp", {
     "img/sample-bmp-798kb.bmp"
   )
 
-
   loc_file <- download_to_temp(url)
 
   expect_silent(dm <- resmush_file(loc_file, report = FALSE))
