@@ -107,5 +107,5 @@ show_report <- function(res_df, summary_type = "file") {
     cli::cli_bullets(makebull)
   }
 
-  return(invisible(NULL))
+  invisible(NULL)
 }

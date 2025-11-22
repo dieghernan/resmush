@@ -152,7 +152,7 @@ resmush_url <- function(
 
   # output
 
-  return(invisible(res_df))
+  invisible(res_df)
 }
 
 
@@ -242,7 +242,7 @@ resmush_url_single <- function(
   res$compress_ratio <- sprintf("%0.2f%%", red_ratio * 100)
   res$notes <- "OK"
 
-  return(invisible(res))
+  invisible(res)
 }
 
 
@@ -269,5 +269,5 @@ smush_from_url <- function(url, qlty, exif_preserve = TRUE, n_rep = 3) {
     }
     Sys.sleep(0.5)
   }
-  return(res_get)
+  res_get
 }

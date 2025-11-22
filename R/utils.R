@@ -35,7 +35,7 @@ add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
   ext_file <- tools::file_ext(x)
 
   newname <- paste0(base_file, suffix, ".", ext_file)
-  return(newname)
+  newname
 }
 
 #' Create unique paths to files to avoid overriding
