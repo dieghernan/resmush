@@ -211,6 +211,11 @@ resmush_url_single <- function(
   ##  2. Download from dest ----
   dwn_opt <- httr2::request(res_get$dest)
 
+  dwn_opt <- httr2::req_headers(
+    dwn_opt,
+    referer = "https://dieghernan.github.io/resmush/"
+  )
+
   # Finally
   dwn_opt <- httr2::req_perform(dwn_opt, path = outfile)
 
@@ -260,6 +265,10 @@ smush_from_url <- function(url, qlty, exif_preserve = TRUE, n_rep = 3) {
   )
   api_url <- httr2::url_build(api_url)
   the_req <- httr2::request(api_url)
+  the_req <- httr2::req_headers(
+    the_req,
+    referer = "https://dieghernan.github.io/resmush/"
+  )
 
   for (i in seq(1, n_rep)) {
     api_get <- httr2::req_perform(the_req)

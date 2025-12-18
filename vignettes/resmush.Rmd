@@ -46,10 +46,8 @@ url <- paste0(
 )
 
 resmush_url(url, outfile = "jpg_example_compress.jpg", overwrite = TRUE)
-#> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 178.7 Kb
-#> ✔ Success for 1 url: Size now is 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
-#> See result in directory '.'.
+#> Error in `httr2::req_perform()` at resmush/R/resmush_url.R:220:3:
+#> ! HTTP 400 Bad Request.
 ```
 
 ::: figure
@@ -78,7 +76,7 @@ resmush_url(url,
   outfile = "jpg_example_compress_low.jpg",
   overwrite = TRUE, qlty = 3
 )
-#> ══ resmush summary ═════════════════════════════════════════════════════════════
+#> ══ resmush summary ══════════════════════════════════════════════════════════════════════
 #> ℹ Input: 1 url with size 178.7 Kb
 #> ✔ Success for 1 url: Size now is 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
 #> See result in directory '.'.

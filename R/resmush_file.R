@@ -211,6 +211,10 @@ resmush_file_single <- function(
 
   ##  2. Download from dest ----
   dwn_opt <- httr2::request(res_post$dest)
+  dwn_opt <- httr2::req_headers(
+    dwn_opt,
+    referer = "https://dieghernan.github.io/resmush/"
+  )
 
   # Finally
   dwn_opt <- httr2::req_perform(dwn_opt, path = outfile)
@@ -248,7 +252,10 @@ smush_from_local <- function(path, qlty, exif_preserve = TRUE) {
   api_url$query <- list(qlty = qlty, exif = exif_preserve)
   api_url <- httr2::url_build(api_url)
   the_req <- httr2::request(api_url)
-
+  the_req <- httr2::req_headers(
+    the_req,
+    referer = "https://dieghernan.github.io/resmush/"
+  )
   the_req_file <- httr2::req_body_multipart(
     the_req,
     files = curl::form_file(path)
