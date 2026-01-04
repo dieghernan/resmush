@@ -8,7 +8,7 @@ message: 'To cite package "resmush" in publications use:'
 type: software
 license: MIT
 title: 'resmush: Optimize and Compress Image Files with ''reSmush.it'''
-version: 0.2.1
+version: 0.2.1.9000
 doi: 10.32614/CRAN.package.resmush
 identifiers:
 - type: doi
@@ -28,8 +28,8 @@ preferred-citation:
     email: diego.hernangomezherrero@gmail.com
     orcid: https://orcid.org/0000-0001-8457-4658
   doi: 10.32614/CRAN.package.resmush
-  year: '2025'
-  version: 0.2.1
+  year: '2026'
+  version: 0.2.1.9000
   url: https://dieghernan.github.io/resmush/
   abstract: Compress local and online images using the reSmush.it API service <https://resmush.it/>.
 repository: https://CRAN.R-project.org/package=resmush
@@ -59,7 +59,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2025'
+  year: '2026'
   version: '>= 3.6.0'
 - type: software
   title: cli
@@ -71,7 +71,7 @@ references:
   - family-names: Csárdi
     given-names: Gábor
     email: gabor@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.cli
 - type: software
   title: curl
@@ -84,7 +84,7 @@ references:
     given-names: Jeroen
     email: jeroenooms@gmail.com
     orcid: https://orcid.org/0000-0002-4035-0289
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.curl
 - type: software
   title: httr2
@@ -96,7 +96,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.httr2
   version: '>= 1.0.0'
 - type: software
@@ -108,7 +108,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2025'
+  year: '2026'
 - type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -118,7 +118,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2025'
+  year: '2026'
 - type: software
   title: grid
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -128,7 +128,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2025'
+  year: '2026'
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -140,7 +140,7 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.knitr
 - type: software
   title: png
@@ -152,7 +152,7 @@ references:
   - family-names: Urbanek
     given-names: Simon
     email: Simon.Urbanek@r-project.org
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.png
 - type: software
   title: rmarkdown
@@ -196,7 +196,7 @@ references:
     given-names: Richard
     email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.rmarkdown
 - type: software
   title: testthat
@@ -208,7 +208,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.testthat
   version: '>= 3.0.0'
 

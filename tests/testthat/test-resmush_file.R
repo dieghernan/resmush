@@ -120,6 +120,7 @@ test_that("Test opts with png", {
   skip_on_cran()
   skip_if_offline()
   test_dir <- load_dir_to_temp()
+  list.files(test_dir)
   test_png <- file.path(test_dir, "example.png")
   expect_true(file.exists(test_png))
   ins <- file.size(test_png)
