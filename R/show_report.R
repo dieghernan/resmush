@@ -1,4 +1,8 @@
 show_report <- function(res_df, summary_type = "file") {
+  if (is.null(res_df)) {
+    return(invisible(NULL))
+  }
+
   # Heading
 
   name_cli <- switch(summary_type,

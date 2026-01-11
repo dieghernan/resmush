@@ -392,3 +392,25 @@ test_that("Test override", {
 
   unlink(out_dir, force = TRUE, recursive = TRUE)
 })
+test_that("Test no file", {
+  skip_on_cran()
+  skip_if_offline()
+
+  test_dir <- load_dir_to_temp()
+  test_png <- file.path(test_dir, "example.png")
+  expect_true(file.exists(test_png))
+
+  # Options for testing
+  ops <- options()
+  options(resmush_test_no_file = TRUE)
+
+  expect_true("resmush_test_no_file" %in% names(options()))
+
+  expect_message(dm <- resmush_file(test_png), regexp = "for file")
+  expect_null(dm)
+
+  # Reset ops
+  options(resmush_test_no_file = NULL)
+  expect_false("resmush_test_no_file" %in% names(options()))
+  unlink(test_dir, recursive = TRUE, force = TRUE)
+})

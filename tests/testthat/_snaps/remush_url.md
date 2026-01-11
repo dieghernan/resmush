@@ -96,3 +96,11 @@
       Error in `resmush_url()`:
       ! Lengths of `url` and `outfile`should be the same (2 vs. 3)
 
+# Test no file
+
+    Code
+      dm <- resmush_url(png_url)
+    Message
+      x HTTP 200 OK for url:
+      <https://raw.githubusercontent.com/dieghernan/resmush/main/inst/extimg/example.png>
+

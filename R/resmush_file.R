@@ -126,6 +126,11 @@ resmush_file <- function(
       qlty = qlty,
       exif_preserve = exif_preserve
     )
+
+    if (is.null(df)) {
+      next
+    }
+
     if (is.null(res_df)) {
       res_df <- df
     } else {
@@ -215,6 +220,21 @@ resmush_file_single <- function(
     dwn_opt,
     referer = "https://dieghernan.github.io/resmush/"
   )
+
+  # First dry-run
+  req_head <- httr2::req_method(dwn_opt, "HEAD")
+  req_head <- httr2::req_error(req_head, is_error = function(x) {
+    FALSE
+  })
+  resp_head <- httr2::req_perform(req_head)
+  test_no_file <- getOption("resmush_test_no_file", FALSE)
+  if (any(httr2::resp_is_error(resp_head), test_no_file)) {
+    # Get code and error and return NULL
+    err_code <- httr2::resp_status(resp_head)
+    err <- httr2::resp_status_desc(resp_head)
+    cli::cli_alert_danger("HTTP {err_code} {err} for file:\n {.path {file}}")
+    return(NULL)
+  }
 
   # Finally
   dwn_opt <- httr2::req_perform(dwn_opt, path = outfile)

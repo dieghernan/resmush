@@ -2,6 +2,7 @@
 
 -   Add `httr2::req_headers(referer = "https://dieghernan.github.io/resmush/" )`
     on the corresponding calls.
+-   API call now perform a dry run to ensure that the compressed file exists.
 
 # resmush 0.2.1
 

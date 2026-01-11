@@ -16,6 +16,9 @@ test_that("Report for local", {
 
   # Two goods
   expect_snapshot(show_report(res_example[-c(2, 4), ]))
+
+  # NULL
+  expect_null(show_report(NULL))
 })
 
 test_that("Report for url", {

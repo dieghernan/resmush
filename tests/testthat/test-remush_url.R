@@ -443,3 +443,28 @@ test_that("To non-existing directories", {
   # Clean up
   unlink(outf, force = TRUE, recursive = TRUE)
 })
+
+test_that("Test no file", {
+  skip_on_cran()
+  skip_if_offline()
+
+  png_url <- paste0(
+    "https://raw.githubusercontent.com/",
+    "dieghernan/resmush/main/inst/",
+    "extimg/example.png"
+  )
+
+  # Options for testing
+  ops <- options()
+  options(resmush_test_no_file = TRUE)
+
+  expect_true("resmush_test_no_file" %in% names(options()))
+
+  expect_snapshot(dm <- resmush_url(png_url))
+
+  expect_null(dm)
+
+  # Reset ops
+  options(resmush_test_no_file = NULL)
+  expect_false("resmush_test_no_file" %in% names(options()))
+})
