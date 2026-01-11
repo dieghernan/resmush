@@ -229,8 +229,8 @@ resmush_url_single <- function(
   test_no_file <- getOption("resmush_test_no_file", FALSE)
   if (any(httr2::resp_is_error(resp_head), test_no_file)) {
     # Get code and error and return NULL
-    err_code <- httr2::resp_status(resp_head)
-    err <- httr2::resp_status_desc(resp_head)
+    err_code <- httr2::resp_status(resp_head) # nolint
+    err <- httr2::resp_status_desc(resp_head) # nolint
     cli::cli_alert_danger("HTTP {err_code} {err} for url:\n {.url {url}}")
     return(NULL)
   }
