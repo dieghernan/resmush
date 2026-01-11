@@ -2,7 +2,9 @@ on:
   workflow_dispatch:
 
 name: update-docs
-
+permissions:
+  contents: read
+ 
 jobs:
   update-docs:
     runs-on: windows-latest
