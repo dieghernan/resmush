@@ -3,8 +3,8 @@ on:
 
 name: update-docs
 permissions:
-  contents: read
- 
+  contents: write
+
 jobs:
   update-docs:
     runs-on: windows-latest

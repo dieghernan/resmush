@@ -1,6 +1,5 @@
 CMD
 CodeFactor
-DOI
 Exif
 JPEGOptim
 Magento
@@ -13,10 +12,10 @@ Xie
 Yihui
 bmp
 codecov
+doi
 httr
 jmablog
 jpg
-optimizers
 optout
 png
 reSmush

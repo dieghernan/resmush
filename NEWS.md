@@ -1,4 +1,4 @@
-# resmush (development version)
+# resmush 0.2.2
 
 -   Add `httr2::req_headers(referer = "https://dieghernan.github.io/resmush/" )`
     on the corresponding calls.
