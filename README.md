@@ -176,13 +176,13 @@ Several other **R** packages also provide image optimization tools:
   `xfun::optipng()` but with more options. Requires additional local
   software.
 
-| tool | CRAN | Additional software? | Online? | API Key? | Limits? |
-|----|----|----|----|----|----|
-| `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
-| `xfun::optipng()` | Yes | Yes | No | No | No |
-| **tinieR** | No | No | Yes | Yes | 500 files/month (free tier) |
-| **optout** | No | Yes | No | No | No |
-| **resmush** | Yes | No | Yes | No | Max size 5Mb |
+| tool              | CRAN | Additional software? | Online? | API Key? | Limits?                     |
+|-------------------|------|----------------------|---------|----------|-----------------------------|
+| `xfun::tinify()`  | Yes  | No                   | Yes     | Yes      | 500 files/month (free tier) |
+| `xfun::optipng()` | Yes  | Yes                  | No      | No       | No                          |
+| **tinieR**        | No   | No                   | Yes     | Yes      | 500 files/month (free tier) |
+| **optout**        | No   | Yes                  | No      | No       | No                          |
+| **resmush**       | Yes  | No                   | Yes     | No       | Max size 5Mb                |
 
 Table 1: **R** packages: Comparison of alternatives for optimizing
 images.
@@ -200,7 +200,6 @@ Table 2: **R** packages: Formats admitted.
 ## Citation
 
 <p>
-
 Hernangómez D (2026). <em>resmush: Optimize and Compress Image Files
 with reSmush.it</em>.
 <a href="https://doi.org/10.32614/CRAN.package.resmush">doi:10.32614/CRAN.package.resmush</a>,
