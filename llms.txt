@@ -37,7 +37,7 @@ You can install the development version of **resmush** from
 pak::pak("dieghernan/resmush")
 ```
 
-Alternatively, nstall **resmush** using the
+Alternatively, install **resmush** using the
 [r-universe](https://dieghernan.r-universe.dev/resmush):
 
 ``` r

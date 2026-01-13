@@ -2,6 +2,8 @@
 
 ## resmush 0.2.2
 
+CRAN release: 2026-01-12
+
 - Add
   `httr2::req_headers(referer = "https://dieghernan.github.io/resmush/" )`
   on the corresponding calls.
