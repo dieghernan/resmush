@@ -1,5 +1,9 @@
 # Changelog
 
+## resmush (development version)
+
+- Minimum **R** version required is now 4.1.0.
+
 ## resmush 0.2.2
 
 CRAN release: 2026-01-12
