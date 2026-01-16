@@ -1,4 +1,4 @@
-# giscoR (development version)
+# resmush (development version)
 
 -   Minimum **R** version required is now 4.1.0. 
 
