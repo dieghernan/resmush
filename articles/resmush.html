@@ -77,18 +77,18 @@
     
     
 <!-- resmush.Rmd is generated from resmush.Rmd.orig. Please edit that file -->
-<p><strong>resmush</strong> is a <strong>R</strong> package that allow
+<p><strong>resmush</strong> is a <strong>R</strong> package that allows
 users to optimize and compress images using <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. reSmush.it
-is a <u>free API</u> that provides image optimization, and has been
-implemented in <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a>,
-and <a href="https://resmush.it/tools/" class="external-link">many more tools</a>.</p>
+is a <u>free API</u> that provides image optimization and has been
+implemented in <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a>
+and <a href="https://resmush.it/tools/" class="external-link">many other tools</a>.</p>
 <p>Some of the features of <strong>reSmush.it</strong> include:</p>
 <ul>
 <li>Free optimization services with <u>no API key required</u>.</li>
 <li>Support for both local and online images.</li>
 <li>Supported image formats: <code>png</code>, <code>jpg/jpeg</code>,
 <code>gif</code>, <code>bmp</code>, <code>tiff</code>.</li>
-<li>Maximum image size: 5 Mb.</li>
+<li>Maximum image size: 5 MB.</li>
 <li>Compression using several algorithms:
 <ul>
 <li>
@@ -128,7 +128,7 @@ tools.</li>
 <p class="caption">
 </p>
 <p>Original picture (top): 178.7 Kb; Optimized picture (bottom): 45 Kb
-(Compression 74.8%). Click to enlarge.</p>
+(Compression: 74.8%). Click to enlarge.</p>
 
 </div>
 <p>The compression quality for <code>jpg</code> files can be adjusted
@@ -151,7 +151,7 @@ this value above 90 to maintain good image quality.</p>
 <p>Low quality image due to a high compression rate.</p>
 
 </div>
-<p>All the functions return (invisibly) a data set summarizing the
+<p>All the functions return (invisibly) a dataset summarizing the
 process. The following example shows how this works when compressing a
 local file:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -184,7 +184,7 @@ optimization tools:</p>
 but uses <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a> and
 requires an API key.</li>
 <li>
-<code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code>: Compresses local using
+<code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code>: Compresses local files using
 <strong>OptiPNG</strong>, which must be installed locally.</li>
 </ul>
 </li>
@@ -256,13 +256,13 @@ alternatives for optimizing images.</caption>
 <td>No</td>
 <td>Yes</td>
 <td>No</td>
-<td>Max size 5Mb</td>
+<td>Max size 5 MB</td>
 </tr>
 </tbody>
 </table>
 <table class="table">
-<caption>Table 2: <strong>R</strong> packages: Formats
-admitted.</caption>
+<caption>Table 2: <strong>R</strong> packages: Supported
+formats.</caption>
 <thead><tr class="header">
 <th>tool</th>
 <th>png</th>

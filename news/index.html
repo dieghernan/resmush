@@ -43,7 +43,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.2" id="resmush-022">resmush 0.2.2<a class="anchor" aria-label="anchor" href="#resmush-022"></a></h2><p class="text-muted">CRAN release: 2026-01-12</p>
 <ul><li>Add <code>httr2::req_headers(referer = "https://dieghernan.github.io/resmush/" )</code> on the corresponding calls.</li>
-<li>API call now perform a dry run to ensure that the compressed file exists.</li>
+<li>API calls now perform a dry run to ensure that the compressed file exists.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.1" id="resmush-021">resmush 0.2.1<a class="anchor" aria-label="anchor" href="#resmush-021"></a></h2><p class="text-muted">CRAN release: 2024-12-18</p>
@@ -52,7 +52,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="resmush-020">resmush 0.2.0<a class="anchor" aria-label="anchor" href="#resmush-020"></a></h2><p class="text-muted">CRAN release: 2024-07-19</p>
 <ul><li>
-<code>webp</code> format is not admitted any more by the API, remove from package.</li>
+<code>webp</code> format is no longer supported by the API; removed from package.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1" id="resmush-011">resmush 0.1.1<a class="anchor" aria-label="anchor" href="#resmush-011"></a></h2><p class="text-muted">CRAN release: 2024-05-22</p>
@@ -64,8 +64,8 @@
 <li>Now <strong>resmush</strong> uses <strong>httr2</strong> instead of <strong>httr</strong>.</li>
 <li>Add DOI: <a href="https://doi.org/10.5281/zenodo.10556679" class="external-link uri">https://doi.org/10.5281/zenodo.10556679</a>.</li>
 <li>
-<code><a href="../reference/resmush_file.html">resmush_file()</a></code>, <code><a href="../reference/resmush_dir.html">resmush_dir()</a></code> and <code><a href="../reference/resmush_url.html">resmush_url()</a></code> gain an new argument <code>overwrite</code>.</li>
-<li>Changes in the API: New messages and use of progress bars with <code><a href="https://cli.r-lib.org/reference/cli_progress_bar.html" class="external-link">cli::cli_progress_bar()</a></code>. These changes also affects the following:
+<code><a href="../reference/resmush_file.html">resmush_file()</a></code>, <code><a href="../reference/resmush_dir.html">resmush_dir()</a></code> and <code><a href="../reference/resmush_url.html">resmush_url()</a></code> gain a new argument <code>overwrite</code>.</li>
+<li>Changes in the API: New messages and use of progress bars with <code><a href="https://cli.r-lib.org/reference/cli_progress_bar.html" class="external-link">cli::cli_progress_bar()</a></code>. These changes also affect the following:
 <ul><li>New arguments <code>progress</code> and <code>report</code>.</li>
 <li>Deprecated the <code>verbose</code> argument.</li>
 <li>

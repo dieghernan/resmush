@@ -79,13 +79,13 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p><strong>resmush</strong> is a <strong>R</strong> package that allow users to optimize and compress images using <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. reSmush.it is a <u>free API</u> that provides image optimization, and has been implemented in <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a>, and <a href="https://resmush.it/tools/" class="external-link">many more tools</a>.</p>
+<p><strong>resmush</strong> is a <strong>R</strong> package that allows users to optimize and compress images using <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. reSmush.it is a <u>free API</u> that provides image optimization and has been implemented in <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a> and <a href="https://resmush.it/tools/" class="external-link">many other tools</a>.</p>
 <p>Some of the features of <strong>reSmush.it</strong> include:</p>
 <ul>
 <li>Free optimization services with <u>no API key required</u>.</li>
 <li>Support for both local and online images.</li>
 <li>Supported image formats: <code>png</code>, <code>jpg/jpeg</code>, <code>gif</code>, <code>bmp</code>, <code>tiff</code>.</li>
-<li>Maximum image size: 5 Mb.</li>
+<li>Maximum image size: 5 MB.</li>
 <li>Compression using several algorithms:
 <ul>
 <li>
@@ -137,7 +137,7 @@
 <p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg"><img src="./reference/figures/jpg_example_compress.jpg" style="width:100.0%" alt="Optimized file"></a></p>
 <p class="caption">
 </p>
-<p>Original picture (top): 178.7 Kb; Optimized picture (bottom): 45 Kb (Compression 74.8%). Click to enlarge.</p>
+<p>Original picture (top): 178.7 Kb; Optimized picture (bottom): 45 Kb (Compression: 74.8%). Click to enlarge.</p>
 
 </div>
 <p>The compression quality for <code>jpg</code> files can be adjusted using the <code>qlty</code> argument. However, it is recommended to keep this value above 90 to maintain good image quality.</p>
@@ -158,7 +158,7 @@
 <p>Low quality image due to a high compression rate.</p>
 
 </div>
-<p>All the functions return (invisibly) a data set summarizing the process. The following example shows how this works when compressing a local file:</p>
+<p>All the functions return (invisibly) a dataset summarizing the process. The following example shows how this works when compressing a local file:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">png_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extimg/example.png"</span>, package <span class="op">=</span> <span class="st">"resmush"</span><span class="op">)</span></span>
 <span></span>
@@ -186,7 +186,7 @@
 <li>
 <code><a href="https://rdrr.io/pkg/xfun/man/tinify.html" class="external-link">xfun::tinify()</a></code>: Similar to <code><a href="reference/resmush_file.html">resmush_file()</a></code> but uses <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a> and requires an API key.</li>
 <li>
-<code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code>: Compresses local using <strong>OptiPNG</strong>, which must be installed locally.</li>
+<code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code>: Compresses local files using <strong>OptiPNG</strong>, which must be installed locally.</li>
 </ul>
 </li>
 <li>
@@ -194,14 +194,14 @@
 <li>
 <a href="https://github.com/coolbutuseless/optout" class="external-link"><strong>optout</strong></a> by <a href="https://coolbutuseless.github.io/" class="external-link">@coolbutuseless</a>: Similar to <code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> but with more options. Requires additional local software.</li>
 </ul>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="20%">
-<col width="6%">
-<col width="23%">
-<col width="9%">
-<col width="10%">
-<col width="30%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
 </colgroup>
 <thead><tr class="header">
 <th>tool</th>
@@ -250,7 +250,7 @@
 <td>No</td>
 <td>Yes</td>
 <td>No</td>
-<td>Max size 5Mb</td>
+<td>Max size 5 MB</td>
 </tr>
 </tbody>
 </table>
@@ -319,7 +319,7 @@
 </tr>
 </tbody>
 </table>
-<p>Table 2: <strong>R</strong> packages: Formats admitted.</p>
+<p>Table 2: <strong>R</strong> packages: Supported formats.</p>
 </div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>

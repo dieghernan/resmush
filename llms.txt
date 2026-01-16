@@ -1,17 +1,18 @@
 # resmush
 
-**resmush** is a **R** package that allow users to optimize and compress
-images using [**reSmush.it**](https://resmush.it/). reSmush.it is a
-*free API* that provides image optimization, and has been implemented in
-[WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/),
-and [many more tools](https://resmush.it/tools/).
+**resmush** is a **R** package that allows users to optimize and
+compress images using [**reSmush.it**](https://resmush.it/). reSmush.it
+is a *free API* that provides image optimization and has been
+implemented in
+[WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/)
+and [many other tools](https://resmush.it/tools/).
 
 Some of the features of **reSmush.it** include:
 
 - Free optimization services with *no API key required*.
 - Support for both local and online images.
 - Supported image formats: `png`, `jpg/jpeg`, `gif`, `bmp`, `tiff`.
-- Maximum image size: 5 Mb.
+- Maximum image size: 5 MB.
 - Compression using several algorithms:
   - [**PNGQuant**](https://pngquant.org/): Removes unnecessary chunks
     from `png` files while preserving a full alpha transparency.
@@ -74,7 +75,7 @@ file](https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_
 file](./reference/figures/jpg_example_compress.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 
 Original picture (top): 178.7 Kb; Optimized picture (bottom): 45 Kb
-(Compression 74.8%). Click to enlarge.
+(Compression: 74.8%). Click to enlarge.
 
 The compression quality for `jpg` files can be adjusted using the `qlty`
 argument. However, it is recommended to keep this value above 90 to
@@ -97,7 +98,7 @@ figure](reference/figures/jpg_example_compress_low.jpg)](https://dieghernan.gith
 
 Low quality image due to a high compression rate.
 
-All the functions return (invisibly) a data set summarizing the process.
+All the functions return (invisibly) a dataset summarizing the process.
 The following example shows how this works when compressing a local
 file:
 
@@ -129,7 +130,8 @@ Several other **R** packages also provide image optimization tools:
     but uses [**TinyPNG**](https://tinypng.com/) and requires an API
     key.
   - [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html):
-    Compresses local using **OptiPNG**, which must be installed locally.
+    Compresses local files using **OptiPNG**, which must be installed
+    locally.
 - [**tinieR**](https://jmablog.github.io/tinieR/) by
   [jmablog](https://jmablog.com/): An **R** interface to
   [**TinyPNG**](https://tinypng.com/).
@@ -144,7 +146,7 @@ Several other **R** packages also provide image optimization tools:
 | [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) | Yes  | Yes                  | No      | No       | No                          |
 | **tinieR**                                                     | No   | No                   | Yes     | Yes      | 500 files/month (free tier) |
 | **optout**                                                     | No   | Yes                  | No      | No       | No                          |
-| **resmush**                                                    | Yes  | No                   | Yes     | No       | Max size 5Mb                |
+| **resmush**                                                    | Yes  | No                   | Yes     | No       | Max size 5 MB               |
 
 Table 1: **R** packages: Comparison of alternatives for optimizing
 images.
@@ -157,7 +159,7 @@ images.
 | **optout**                                                     | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
 | **resmush**                                                    | ✅  | ✅  | ✅  | ✅  | ✅   | ❌   | ❌  |
 
-Table 2: **R** packages: Formats admitted.
+Table 2: **R** packages: Supported formats.
 
 ## Citation
 
