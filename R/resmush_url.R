@@ -12,10 +12,10 @@
 #'  * `bmp`
 #'  * `tiff`
 #'
-#' @param outfile Path or paths where the optimized files would be store in
-#' your disk. By default, temporary files (see [tempfile()]) with the same
-#' [basename()] than the file provided in `url` would be created. It should be
-#' of the same length than `url` parameter.
+#' @param outfile Path or paths where the optimized files would be stored in
+#'  your disk. By default, temporary files (see [tempfile()]) with the same
+#'  [basename()] as the file provided in `url` would be created. It should be
+#'  of the same length as `url` parameter.
 #'
 #' @param overwrite Logical. Should `outfile` be overwritten (if already
 #'   exists)? If `FALSE` and `outfile` exists it would create a copy with
@@ -25,11 +25,11 @@
 #'
 #' @return
 #' Writes on disk the optimized file if the API call is successful.
-#' In all cases, a (invisible) data frame with a summary of the process is
+#' In all cases, an ([invisible()]) data frame with a summary of the process is
 #' returned as well.
 #'
 #' If any value of the vector `outfile` is duplicated, `resmush_url()` would
-#' rename the output with a suffix `_01. _02`, etc.
+#' rename the output with a suffix `_01, _02`, etc.
 #'
 #'
 #' @seealso
@@ -38,7 +38,7 @@
 #' @family optimize
 #'
 #' @export
-#'
+#' @encoding UTF-8
 #' @examplesIf curl::has_internet()
 #'
 #' \donttest{

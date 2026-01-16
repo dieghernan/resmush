@@ -125,11 +125,11 @@ test_that("Test default opts with png", {
   expect_identical(options(), optsinit)
 
   expect_s3_class(dm, "data.frame")
-  expect_false(any(is.na(dm)))
+  expect_false(anyNA(dm))
   expect_equal(dm$src_img, png_url)
   expect_equal(basename(dm$dest_img), basename(out_f))
 
-  ratio <- as.double(gsub("%", "", dm$compress_ratio))
+  ratio <- as.double(gsub("%", "", dm$compress_ratio, fixed = TRUE))
   expect_lt(ratio, 100)
   unlink(dm$dest_img, recursive = TRUE, force = TRUE)
 })
@@ -153,7 +153,7 @@ test_that("Test opts with png", {
 
   expect_true(file.exists(outf))
   expect_s3_class(dm, "data.frame")
-  expect_false(any(is.na(dm)))
+  expect_false(anyNA(dm))
   expect_equal(dm$src_img, png_url)
 
   outs <- file.size(outf)
@@ -182,7 +182,7 @@ test_that("Test qlty par with jpg", {
 
   expect_true(file.exists(outf))
   expect_s3_class(dm, "data.frame")
-  expect_false(any(is.na(dm)))
+  expect_false(anyNA(dm))
   expect_equal(dm$src_img, jpg_url)
   expect_equal(basename(dm$dest_img), basename(outf))
 

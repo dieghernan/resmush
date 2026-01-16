@@ -1,8 +1,6 @@
 #' Helper function for cleaning files created by \CRANpkg{resmush}
 #'
 #' @description
-#'
-#'
 #' **Use with caution**. This would remove files from your computer.
 #'
 #' Clean a directory (or a list of directories) of files created by
@@ -10,14 +8,14 @@
 #'
 #' @param dir A character vector of full path names. See [list.files()], `path`
 #'   argument.
-#' @param suffix  Character, defaults to `"_resmush"`. See [resmush_file()].
+#' @param suffix Character, defaults to `"_resmush"`. See [resmush_file()].
 #'
-#' @param recursive Logical. Should the files to be deleted recurse into
+#' @param recursive Logical. Should the file search recurse into
 #'   directories?
 #'
 #' @return
-#'
-#' Nothing. Produce messages with information of the process.
+#' An [invisible()] `NULL` value. Produces messages with information of the
+#' process.
 #'
 #' @seealso
 #' [resmush_file()], [resmush_dir()], [list.files()], [unlink()]
@@ -25,6 +23,7 @@
 #'
 #' @export
 #' @keywords internal
+#' @encoding UTF-8
 #' @examplesIf curl::has_internet()
 #' \donttest{
 #' # Simple example

@@ -3,7 +3,6 @@
 #' @description
 #' Optimize local images using the [reSmush.it API](https://resmush.it/).
 #'
-#'
 #' @param file Path or paths to local files. **reSmush** can optimize the
 #'  following image files:
 #'  * `png`
@@ -13,27 +12,28 @@
 #'  * `tiff`
 #'
 #' @param suffix Character, defaults to `"_resmush"`. By default, a new file
-#'   with the suffix is created in the same directory than `file`. (i.e.,
+#'   with this `suffix` is created in the same directory as `file`. (i.e.,
 #'   optimized `example.png` would be `example_resmush.png`). Values `""`, `NA`
-#'   and `NULL` would be the same than `overwrite = TRUE`.
+#'   and `NULL` would be the same as `overwrite = TRUE`.
 #' @param overwrite Logical. Should the file in `file` be overwritten? If `TRUE`
 #'   `suffix` would be ignored.
 #' @param progress Logical. Display a progress bar when needed.
 #' @param report Logical. Display a summary report of the process in the
 #'   console. See also **Value**.
-#' @param qlty Only affects `jpg` files. Integer between 0 and 100 indicating
-#' the optimization level. For optimal results use vales above 90.
+#' @param qlty Only affects `jpg` files. Integer between `0` and `100`
+#'   indicating the optimization level. For optimal results use values above
+#'   `90`.
 #' @param exif_preserve Logical. Should the
-#'   [Exif](https://en.wikipedia.org/wiki/Exif) information (if any) deleted?
+#'   [Exif](https://en.wikipedia.org/wiki/Exif) information (if any) be deleted?
 #'   Default is to remove it (i.e. `exif_preserve = FALSE`).
-
+#'
 #' @return
 #' Writes on disk the optimized file if the API call is successful in the
-#' same directory than `file`.
+#' same directory as `file`.
 #'
 #' With the option `report = TRUE` a summary report is displayed in the
-#' console. In all cases, a (invisible) data frame with a summary of the
-#' process used for generate the report is returned.
+#' console. In all cases, an (`invisible()`) data frame with a summary of the
+#' process used to generate the report is returned.
 #'
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api/) docs.
@@ -41,7 +41,7 @@
 #' See [resmush_clean_dir()] to clean a directory of previous runs.
 #'
 #' @family optimize
-#'
+#' @encoding UTF-8
 #' @export
 #'
 #' @examplesIf curl::has_internet()

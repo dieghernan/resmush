@@ -23,19 +23,19 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 <!-- badges: end -->
 
-**resmush** is a **R** package that allow users to optimize and compress
-images using [**reSmush.it**](https://resmush.it/). reSmush.it is a
-<u>free API</u> that provides image optimization, and has been
+**resmush** is a **R** package that allows users to optimize and
+compress images using [**reSmush.it**](https://resmush.it/). reSmush.it
+is a <u>free API</u> that provides image optimization and has been
 implemented in
-[WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/),
-and [many more tools](https://resmush.it/tools/).
+[WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/)
+and [many other tools](https://resmush.it/tools/).
 
 Some of the features of **reSmush.it** include:
 
 - Free optimization services with <u>no API key required</u>.
 - Support for both local and online images.
 - Supported image formats: `png`, `jpg/jpeg`, `gif`, `bmp`, `tiff`.
-- Maximum image size: 5 Mb.
+- Maximum image size: 5 MB.
 - Compression using several algorithms:
   - [**PNGQuant**](https://pngquant.org/): Removes unnecessary chunks
     from `png` files while preserving a full alpha transparency.
@@ -103,7 +103,7 @@ alt="Optimized file" />](https://dieghernan.github.io/resmush/reference/figures/
 <p class="caption">
 
 Original picture (top): 178.7 Kb; Optimized picture (bottom): 45 Kb
-(Compression 74.8%). Click to enlarge.
+(Compression: 74.8%). Click to enlarge.
 
 </p>
 
@@ -138,7 +138,7 @@ Low quality image due to a high compression rate.
 
 </div>
 
-All the functions return (invisibly) a data set summarizing the process.
+All the functions return (invisibly) a dataset summarizing the process.
 The following example shows how this works when compressing a local
 file:
 
@@ -166,8 +166,8 @@ Several other **R** packages also provide image optimization tools:
 - **xfun** ([Xie 2024](#ref-xfun)), which includes:
   - `xfun::tinify()`: Similar to `resmush_file()` but uses
     [**TinyPNG**](https://tinypng.com/) and requires an API key.
-  - `xfun::optipng()`: Compresses local using **OptiPNG**, which must be
-    installed locally.
+  - `xfun::optipng()`: Compresses local files using **OptiPNG**, which
+    must be installed locally.
 - [**tinieR**](https://jmablog.github.io/tinieR/) by
   [jmablog](https://jmablog.com/): An **R** interface to
   [**TinyPNG**](https://tinypng.com/).
@@ -176,13 +176,13 @@ Several other **R** packages also provide image optimization tools:
   `xfun::optipng()` but with more options. Requires additional local
   software.
 
-| tool              | CRAN | Additional software? | Online? | API Key? | Limits?                     |
-|-------------------|------|----------------------|---------|----------|-----------------------------|
-| `xfun::tinify()`  | Yes  | No                   | Yes     | Yes      | 500 files/month (free tier) |
-| `xfun::optipng()` | Yes  | Yes                  | No      | No       | No                          |
-| **tinieR**        | No   | No                   | Yes     | Yes      | 500 files/month (free tier) |
-| **optout**        | No   | Yes                  | No      | No       | No                          |
-| **resmush**       | Yes  | No                   | Yes     | No       | Max size 5Mb                |
+| tool | CRAN | Additional software? | Online? | API Key? | Limits? |
+|----|----|----|----|----|----|
+| `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
+| `xfun::optipng()` | Yes | Yes | No | No | No |
+| **tinieR** | No | No | Yes | Yes | 500 files/month (free tier) |
+| **optout** | No | Yes | No | No | No |
+| **resmush** | Yes | No | Yes | No | Max size 5 MB |
 
 Table 1: **R** packages: Comparison of alternatives for optimizing
 images.
@@ -195,11 +195,12 @@ images.
 | **optout**        | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
 | **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ❌   | ❌  |
 
-Table 2: **R** packages: Formats admitted.
+Table 2: **R** packages: Supported formats.
 
 ## Citation
 
 <p>
+
 Hernangómez D (2026). <em>resmush: Optimize and Compress Image Files
 with reSmush.it</em>.
 <a href="https://doi.org/10.32614/CRAN.package.resmush">doi:10.32614/CRAN.package.resmush</a>,

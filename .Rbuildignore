@@ -32,3 +32,4 @@
 ^_pkgdown\.yml$
 ^[.]?air[.]toml$
 ^\.vscode$
+^jarl\.toml$

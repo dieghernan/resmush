@@ -105,12 +105,12 @@ test_that("Test default opts with png", {
   expect_message(dm <- resmush_file(test_png))
 
   expect_s3_class(dm, "data.frame")
-  expect_false(any(is.na(dm)))
+  expect_false(anyNA(dm))
   expect_equal(dm$src_img, test_png)
   expect_true(file.exists(theout))
   expect_equal(basename(dm$dest_img), "example_resmush.png")
 
-  ratio <- as.double(gsub("%", "", dm$compress_ratio))
+  ratio <- as.double(gsub("%", "", dm$compress_ratio, fixed = TRUE))
   expect_lt(ratio, 100)
   unlink(test_dir, recursive = TRUE, force = TRUE)
 })
@@ -134,7 +134,7 @@ test_that("Test opts with png", {
 
   expect_false(file.exists(theout))
   expect_s3_class(dm, "data.frame")
-  expect_false(any(is.na(dm)))
+  expect_false(anyNA(dm))
   expect_equal(dm$src_img, test_png)
   expect_equal(dm$dest_img, dm$src_img)
 
@@ -160,7 +160,7 @@ test_that("Test qlty par with jpg", {
 
   expect_true(file.exists(outf))
   expect_s3_class(dm, "data.frame")
-  expect_false(any(is.na(dm)))
+  expect_false(anyNA(dm))
   expect_equal(dm$src_img, test_jpg)
 
   ins <- file.size(test_jpg)
@@ -380,7 +380,7 @@ test_that("Test override", {
 
   expect_false(file.exists(theout))
   expect_s3_class(dm, "data.frame")
-  expect_false(any(is.na(dm)))
+  expect_false(anyNA(dm))
   expect_equal(dm$src_img, test_png)
   expect_equal(dm$dest_img, dm$src_img)
 

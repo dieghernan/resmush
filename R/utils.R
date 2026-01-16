@@ -1,4 +1,4 @@
-#' Create a pretty object_size` object from an integer
+#' Create a pretty `object_size` object from an integer
 #'
 #' @param x An integer
 #' @noRd
@@ -21,8 +21,8 @@ add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
   # Handle suffix
   if (
     any(
-      is.na(suffix),
       is.null(suffix),
+      is.na(suffix),
       suffix == "",
       overwrite
     )

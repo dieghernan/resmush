@@ -12,10 +12,10 @@
 #' @param suffix Character, defaults to `"_resmush"`. By default, a new file
 #'   with the suffix is created in the same directory (i.e.,
 #'   optimized `example.png` would be `example_resmush.png`). Values `""`, `NA`
-#'   and `NULL` would be the same than `overwrite = TRUE`.
+#'   and `NULL` would be the same as `overwrite = TRUE`.
 #' @param overwrite Logical. Should the files in `dir` be overwritten? If `TRUE`
 #'   `suffix` would be ignored.
-#' @param recursive Logical. Should the `dir` file search recursive? See also
+#' @param recursive Logical. Should the `dir` file search be recursive? See also
 #'   [list.files()].
 #' @inheritParams resmush_file
 #' @inheritDotParams resmush_file qlty exif_preserve
@@ -24,7 +24,7 @@
 #' Writes on disk the optimized file if the API call is successful in the
 #' directories specified in `dir`.
 #'
-#' In all cases, a (invisible) data frame with a summary of the process is
+#' In all cases, an ([invisible()]) data frame with a summary of the process is
 #' returned as well.
 #'
 #' @seealso
@@ -33,7 +33,7 @@
 #' See [resmush_clean_dir()] to clean a directory of previous runs.
 #'
 #' @family optimize
-#'
+#' @encoding UTF-8
 #' @export
 #'
 #' @examplesIf curl::has_internet()
