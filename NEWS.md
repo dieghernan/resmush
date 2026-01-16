@@ -1,3 +1,7 @@
+# giscoR (development version)
+
+-   Minimum **R** version required is now 4.1.0. 
+
 # resmush 0.2.2
 
 -   Add `httr2::req_headers(referer = "https://dieghernan.github.io/resmush/" )`
