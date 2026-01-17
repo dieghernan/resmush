@@ -63,8 +63,8 @@ url <- paste0(
 
 resmush_url(url, outfile = "man/figures/jpg_example_compress.jpg", overwrite = TRUE)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 178.7 Kb
-#> ✔ Success for 1 url: Size now is 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
+#> ℹ Input: 1 url with size 45 Kb
+#> ✔ Success for 1 url: Size now is 44.4 Kb (was 45 Kb). Saved 570 bytes (1.24%).
 #> See result in directory 'man/figures'.
 ```
 
@@ -88,8 +88,8 @@ resmush_url(url,
   qlty = 3
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 178.7 Kb
-#> ✔ Success for 1 url: Size now is 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
+#> ℹ Input: 1 url with size 45 Kb
+#> ✔ Success for 1 url: Size now is 2.2 Kb (was 45 Kb). Saved 42.8 Kb (95.02%).
 #> See result in directory 'man/figures'.
 ```
 
@@ -176,7 +176,7 @@ A BibTeX entry for LaTeX users is
   doi = {10.32614/CRAN.package.resmush},
   author = {Diego Hernangómez},
   year = {2026},
-  version = {0.2.2},
+  version = {0.2.2.9000},
   url = {https://dieghernan.github.io/resmush/},
   abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
 }
