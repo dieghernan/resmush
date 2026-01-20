@@ -99,7 +99,7 @@ resmush_url(png_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 url with size 239.9 Kb
 #> ✔ Success for 1 url: Size now is 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-#> See result in directory C:/Users/RUNNER~1/AppData/Local/Temp/RtmpgpCvJp.
+#> See result in directory C:/Users/RUNNER~1/AppData/Local/Temp/RtmpQFYir4.
 
 # Several urls
 jpg_url <- paste0(base_url, "/extimg/example.jpg")
@@ -107,12 +107,12 @@ jpg_url <- paste0(base_url, "/extimg/example.jpg")
 
 summary <- resmush_url(c(png_url, jpg_url))
 #> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 urls)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.1s] | ETA:  0s (2/2 urls)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.5s] | ETA:  0s (2/2 urls)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 urls with size 340.2 Kb
 #> ✔ Success for 2 urls: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory C:/Users/RUNNER~1/AppData/Local/Temp/RtmpgpCvJp.
+#> See results in directory C:/Users/RUNNER~1/AppData/Local/Temp/RtmpQFYir4.
 
 # Returns an (invisible) data frame with a summary of the process
 summary
@@ -120,8 +120,8 @@ summary
 #> 1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.png
 #> 2 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.jpg
 #>                                                               dest_img src_size
-#> 1 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpgpCvJp/example_01.png 239.9 Kb
-#> 2    C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpgpCvJp/example.jpg 100.4 Kb
+#> 1 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpQFYir4/example_01.png 239.9 Kb
+#> 2    C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpQFYir4/example.jpg 100.4 Kb
 #>   dest_size compress_ratio notes src_bytes dest_bytes
 #> 1   70.7 Kb         70.54%    OK    245618      72356
 #> 2   83.2 Kb         17.15%    OK    102796      85164
@@ -138,11 +138,11 @@ resmush_url(jpg_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 url with size 100.4 Kb
 #> ✔ Success for 1 url: Size now is 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> See result in directory C:/Users/RUNNER~1/AppData/Local/Temp/RtmpgpCvJp.
+#> See result in directory C:/Users/RUNNER~1/AppData/Local/Temp/RtmpQFYir4.
 resmush_url(jpg_url, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 url with size 100.4 Kb
 #> ✔ Success for 1 url: Size now is 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> See result in directory C:/Users/RUNNER~1/AppData/Local/Temp/RtmpgpCvJp.
+#> See result in directory C:/Users/RUNNER~1/AppData/Local/Temp/RtmpQFYir4.
 # }
 ```
