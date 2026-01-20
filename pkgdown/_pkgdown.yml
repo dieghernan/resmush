@@ -11,7 +11,7 @@ template:
     ganalytics: G-57GZF8X6PD
   opengraph:
     twitter:
-      creator: '@dhernangomez'
+      creator: "@dhernangomez"
       card: summary_large_image
 
 authors:
