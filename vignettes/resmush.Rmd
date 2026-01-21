@@ -2,7 +2,7 @@
 title: "Using resmush"
 output: rmarkdown::html_vignette
 bibliography: REFERENCES.bib
-link-citations: yes
+link-citations: true
 vignette: >
   %\VignetteIndexEntry{Using resmush}
   %\VignetteEngine{knitr::rmarkdown}
