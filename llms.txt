@@ -63,8 +63,8 @@ url <- paste0(
 
 resmush_url(url, outfile = "man/figures/jpg_example_compress.jpg", overwrite = TRUE)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 44.4 Kb
-#> ✔ Success for 1 url: Size now is 44.3 Kb (was 44.4 Kb). Saved 131 bytes (0.29%).
+#> ℹ Input: 1 url with size 44.3 Kb
+#> ✔ Success for 1 url: Size now is 44.2 Kb (was 44.3 Kb). Saved 83 bytes (0.18%).
 #> See result in directory 'man/figures'.
 ```
 
@@ -88,8 +88,8 @@ resmush_url(url,
   qlty = 3
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 44.4 Kb
-#> ✔ Success for 1 url: Size now is 2.2 Kb (was 44.4 Kb). Saved 42.2 Kb (94.97%).
+#> ℹ Input: 1 url with size 44.3 Kb
+#> ✔ Success for 1 url: Size now is 2.2 Kb (was 44.3 Kb). Saved 42.1 Kb (94.96%).
 #> See result in directory 'man/figures'.
 ```
 
