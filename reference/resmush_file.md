@@ -103,7 +103,7 @@ resmush_file(tmp_png)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file with size 239.9 Kb
 #> ✔ Success for 1 file: Size now is 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-#> See result in directory C:/Users/RUNNER~1/AppData/Local/Temp/Rtmpiem3VN.
+#> See result in directory C:/Users/RUNNER~1/AppData/Local/Temp/RtmpwzbyCp.
 
 # Several paths
 jpg_file <- system.file("extimg/example.jpg", package = "resmush")
@@ -115,21 +115,21 @@ file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 # Output summary in console
 summary <- resmush_file(c(tmp_png, tmp_jpg))
 #> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.6s] | ETA:  0s (2/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.2s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files with size 340.2 Kb
 #> ✔ Success for 2 files: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory C:/Users/RUNNER~1/AppData/Local/Temp/Rtmpiem3VN.
+#> See results in directory C:/Users/RUNNER~1/AppData/Local/Temp/RtmpwzbyCp.
 
 # Similar info in an (invisible) data frame as a result
 summary
 #>                                                                       src_img
-#> 1  C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\Rtmpiem3VN\\file17087d8e262.png
-#> 2 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\Rtmpiem3VN\\file17083ed072b8.jpg
+#> 1 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpwzbyCp\\file13086387538b.png
+#> 2 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpwzbyCp\\file1308271477ac.jpg
 #>                                                                              dest_img
-#> 1  C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\Rtmpiem3VN\\file17087d8e262_resmush.png
-#> 2 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\Rtmpiem3VN\\file17083ed072b8_resmush.jpg
+#> 1 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpwzbyCp\\file13086387538b_resmush.png
+#> 2 C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpwzbyCp\\file1308271477ac_resmush.jpg
 #>   src_size dest_size compress_ratio notes src_bytes dest_bytes
 #> 1 239.9 Kb   70.7 Kb         70.54%    OK    245618      72356
 #> 2 100.4 Kb   83.2 Kb         17.15%    OK    102796      85164
@@ -147,11 +147,11 @@ resmush_file(tmp_jpg)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file with size 100.4 Kb
 #> ✔ Success for 1 file: Size now is 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> See result in directory C:/Users/RUNNER~1/AppData/Local/Temp/Rtmpiem3VN.
+#> See result in directory C:/Users/RUNNER~1/AppData/Local/Temp/RtmpwzbyCp.
 resmush_file(tmp_jpg, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file with size 100.4 Kb
 #> ✔ Success for 1 file: Size now is 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> See result in directory C:/Users/RUNNER~1/AppData/Local/Temp/Rtmpiem3VN.
+#> See result in directory C:/Users/RUNNER~1/AppData/Local/Temp/RtmpwzbyCp.
 # }
 ```
