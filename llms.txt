@@ -23,13 +23,6 @@ Some of the features of **reSmush.it** include:
 
 ## Installation
 
-Install **resmush** from
-[**CRAN**](https://CRAN.R-project.org/package=resmush) with:
-
-``` r
-install.packages("resmush")
-```
-
 You can install the development version of **resmush** from
 [GitHub](https://github.com/) with:
 
@@ -63,8 +56,8 @@ url <- paste0(
 
 resmush_url(url, outfile = "man/figures/jpg_example_compress.jpg", overwrite = TRUE)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 44.3 Kb
-#> ✔ Success for 1 url: Size now is 44.2 Kb (was 44.3 Kb). Saved 83 bytes (0.18%).
+#> ℹ Input: 1 url with size 44.2 Kb
+#> ✔ Success for 1 url: Size now is 44.2 Kb (was 44.2 Kb). Saved 56 bytes (0.12%).
 #> See result in directory 'man/figures'.
 ```
 
@@ -88,8 +81,8 @@ resmush_url(url,
   qlty = 3
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 44.3 Kb
-#> ✔ Success for 1 url: Size now is 2.2 Kb (was 44.3 Kb). Saved 42.1 Kb (94.96%).
+#> ℹ Input: 1 url with size 44.2 Kb
+#> ✔ Success for 1 url: Size now is 2.2 Kb (was 44.2 Kb). Saved 42 Kb (94.96%).
 #> See result in directory 'man/figures'.
 ```
 
