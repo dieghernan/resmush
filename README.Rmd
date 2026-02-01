@@ -64,13 +64,16 @@ Some of the features of **reSmush.it** include:
 
 ## Installation
 
+::: pkgdown-release
 Install **resmush** from [**CRAN**](https://CRAN.R-project.org/package=resmush)
 with:
 
 ```{r, eval=FALSE}
 install.packages("resmush")
 ```
+:::
 
+::: pkgdown-devel
 You can install the development version of **resmush** from
 [GitHub](https://github.com/) with:
 
@@ -89,6 +92,7 @@ install.packages("resmush", repos = c(
   "https://cloud.r-project.org"
 ))
 ```
+:::
 
 ## Example
 
@@ -175,7 +179,7 @@ Several other **R** packages also provide image optimization tools:
     `xfun::optipng()` but with more options. Requires additional local software.
 
 | tool | CRAN | Additional software? | Online? | API Key? | Limits? |
-|-----------------|--------|-----------|----------|----------|----------------------|
+|----|----|----|----|----|----|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | No |
 | **tinieR** | No | No | Yes | Yes | 500 files/month (free tier) |
