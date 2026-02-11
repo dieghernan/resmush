@@ -10,7 +10,22 @@ vignette: >
 
 <!-- resmush.qmd is generated from resmush.qmd.orig. Please edit that file -->
 
+```{r}
+#| include: false
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = FALSE,
+  message = FALSE,
+  dev = "ragg_png",
+  tidy = "styler",
+  fig.path = "man/figures/README-",
+  dpi = 120,
+  out.width = "100%"
+)
 
+library(resmush)
+```
 
 **resmush** is a **R** package that allows users to optimize and compress images
 using [**reSmush.it**](https://resmush.it/). reSmush.it is a [free
@@ -36,8 +51,10 @@ Some of the features of **reSmush.it** include:
 
 Compressing an online `jpg` image:
 
-
-``` r
+```{r}
+#| label: example
+#| message: true
+#| eval: false
 library(resmush)
 
 url <- "https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"
@@ -68,8 +85,10 @@ The compression quality for `jpg` files can be adjusted using the `qlty`
 argument. However, it is recommended to keep this value above 90 to maintain
 good image quality.
 
-
-``` r
+```{r}
+#| label: jpgcompresslow
+#| message: true
+#| eval: false
 # Extreme case
 resmush_url(url,
   outfile = tempfile(fileext = ".jpg"), overwrite = TRUE,
@@ -94,8 +113,9 @@ Low quality image due to a high compression rate.
 All the functions return (invisibly) a dataset summarizing the process. The
 following example shows how this works when compressing a local file:
 
-
-``` r
+```{r}
+#| label: tibble_example
+#| eval: false
 png_file <- system.file("extimg/example.png", package = "resmush")
 
 # For the example, copy to a temporary file
