@@ -1,10 +1,11 @@
 # resmush (development version)
 
--   Minimum **R** version required is now 4.1.0. 
+-   Minimum **R** version required is now 4.1.0.
+-   Migrate documentation to Quarto.
 
 # resmush 0.2.2
 
--   Add `httr2::req_headers(referer = "https://dieghernan.github.io/resmush/" )`
+-   Add `httr2::req_headers(referer = "https://dieghernan.github.io/resmush/")`
     on the corresponding calls.
 -   API calls now perform a dry run to ensure that the compressed file exists.
 

@@ -4,7 +4,7 @@ test_that("jpg", {
 
   # jpg
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-jpg-1mb.jpg"
   )
 
@@ -18,7 +18,7 @@ test_that("jpg", {
 
   # jpeg, has space
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-jpeg-1mb .jpeg"
   )
   loc_file <- download_to_temp(url)
@@ -38,7 +38,7 @@ test_that("gif", {
 
   # gif
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-gif-350kb.gif"
   )
 
@@ -59,7 +59,7 @@ test_that("bmp", {
 
   # bmp
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-bmp-798kb.bmp"
   )
 
@@ -79,7 +79,7 @@ test_that("tif", {
 
   # tiff
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-tiff-1mb.tiff"
   )
 

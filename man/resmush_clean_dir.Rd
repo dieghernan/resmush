@@ -33,7 +33,6 @@ Clean a directory (or a list of directories) of files created by
 
 png_file <- system.file("extimg/example.png", package = "resmush")
 
-
 # Copy to a temporary file with a given suffix
 suffix <- "_would_be_removed"
 tmp_png <- file.path(

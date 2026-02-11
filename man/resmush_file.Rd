@@ -83,7 +83,6 @@ summary <- resmush_file(c(tmp_png, tmp_jpg))
 # Similar info in an (invisible) data frame as a result
 summary
 
-
 # Display with png
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])

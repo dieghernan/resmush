@@ -47,7 +47,6 @@
 #'
 #' dest_folder <- file.path(tempdir(), "extimg")
 #'
-#'
 #' # Non-recursive
 #' resmush_dir(dest_folder)
 #' resmush_clean_dir(dest_folder)

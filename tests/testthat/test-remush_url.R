@@ -379,7 +379,7 @@ test_that("Handle duplicate names", {
 })
 
 
-test_that("Use  overwrite", {
+test_that("Use overwrite", {
   skip_on_cran()
   skip_if_offline()
 

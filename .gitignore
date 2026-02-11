@@ -34,3 +34,6 @@ inst/doc
 /Meta/
 /.quarto/
 **/*.quarto_ipynb
+README_files/
+README.html
+**/.quarto/

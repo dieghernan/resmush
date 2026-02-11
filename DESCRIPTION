@@ -1,6 +1,6 @@
 Package: resmush
 Title: Optimize and Compress Image Files with 'reSmush.it'
-Version: 0.2.2.9000
+Version: 0.2.2.9001
 Authors@R: 
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
@@ -20,17 +20,17 @@ Imports:
     utils
 Suggests: 
     grid,
-    knitr,
     png,
-    rmarkdown,
+    quarto,
     testthat (>= 3.0.0)
 VignetteBuilder: 
-    knitr
+    quarto
 Config/Needs/website: dieghernan/gitdevr, xfun, dplyr, tibble, devtools,
-    remotes, pak
+    remotes, pak, knitr
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
-X-schema.org-keywords: r, compress-images, optimize-images, resmushit, api, r-package, cran, cran-r
+X-schema.org-keywords: r, compress-images, optimize-images, resmushit,
+    api, r-package, cran, cran-r
