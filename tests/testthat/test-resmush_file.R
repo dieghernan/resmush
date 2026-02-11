@@ -331,7 +331,7 @@ test_that("Test exif", {
   exif <- tempfile("exif", fileext = ".jpg")
 
   res <- httr2::request(paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-jpg-exif-876kb.jpg"
   ))
 

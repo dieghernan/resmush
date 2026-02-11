@@ -74,7 +74,6 @@ resmush_url(png_url)
 # Several urls
 jpg_url <- paste0(base_url, "/extimg/example.jpg")
 
-
 summary <- resmush_url(c(png_url, jpg_url))
 
 # Returns an (invisible) data frame with a summary of the process

@@ -4,7 +4,7 @@ test_that("jpg", {
 
   # jpg
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-jpg-1mb.jpg"
   )
 
@@ -16,7 +16,7 @@ test_that("jpg", {
 
   # jpeg, has space
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-jpeg-1mb .jpeg"
   )
 
@@ -27,7 +27,7 @@ test_that("jpg", {
 
   # Check exif online
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-jpg-exif-876kb.jpg"
   )
 
@@ -52,7 +52,7 @@ test_that("png", {
 
   # 3Mb
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-png-3mb.png"
   )
 
@@ -65,7 +65,7 @@ test_that("png", {
 
   # png more than 10 Mb
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-png-10mb.png"
   )
 
@@ -81,7 +81,7 @@ test_that("gif", {
 
   # gif
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-gif-350kb.gif"
   )
 
@@ -96,7 +96,7 @@ test_that("bmp", {
 
   # bmp
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-bmp-798kb.bmp"
   )
 
@@ -112,7 +112,7 @@ test_that("tif", {
 
   # tiff
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-tiff-1mb.tiff"
   )
 
@@ -122,7 +122,7 @@ test_that("tif", {
 
   # tif
   url <- paste0(
-    "https://raw.githubusercontent.com/dieghernan/resmush/main/",
+    "https://dieghernan.github.io/resmush/",
     "img/sample-tif-1mb.tif"
   )
 

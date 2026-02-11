@@ -31,7 +31,6 @@
 #' If any value of the vector `outfile` is duplicated, `resmush_url()` would
 #' rename the output with a suffix `_01, _02`, etc.
 #'
-#'
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api/) docs.
 #'
@@ -51,7 +50,6 @@
 #'
 #' # Several urls
 #' jpg_url <- paste0(base_url, "/extimg/example.jpg")
-#'
 #'
 #' summary <- resmush_url(c(png_url, jpg_url))
 #'
