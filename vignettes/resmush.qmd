@@ -10,6 +10,8 @@ vignette: >
 
 <!-- resmush.qmd is generated from resmush.qmd.orig. Please edit that file -->
 
+
+
 **resmush** is a **R** package that allows users to optimize and compress images
 using [**reSmush.it**](https://resmush.it/). reSmush.it is a [free
 API]{.underline} that provides image optimization and has been implemented in
@@ -33,6 +35,7 @@ Some of the features of **reSmush.it** include:
 ## Example
 
 Compressing an online `jpg` image:
+
 
 ``` r
 library(resmush)
@@ -65,6 +68,7 @@ The compression quality for `jpg` files can be adjusted using the `qlty`
 argument. However, it is recommended to keep this value above 90 to maintain
 good image quality.
 
+
 ``` r
 # Extreme case
 resmush_url(url,
@@ -89,6 +93,7 @@ Low quality image due to a high compression rate.
 
 All the functions return (invisibly) a dataset summarizing the process. The
 following example shows how this works when compressing a local file:
+
 
 ``` r
 png_file <- system.file("extimg/example.png", package = "resmush")
@@ -123,7 +128,7 @@ Several other **R** packages also provide image optimization tools:
     `xfun::optipng()` but with more options. Requires additional local software.
 
 | tool | CRAN | Additional software? | Online? | API Key? | Limits? |
-|----|----|----|----|----|----|
+|--------------|--------------|--------------|--------------|--------------|--------------|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | No |
 | **tinieR** | No | No | Yes | Yes | 500 files/month (free tier) |
