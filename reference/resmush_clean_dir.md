@@ -48,7 +48,6 @@ Produces messages with information of the process.
 
 png_file <- system.file("extimg/example.png", package = "resmush")
 
-
 # Copy to a temporary file with a given suffix
 suffix <- "_would_be_removed"
 tmp_png <- file.path(
@@ -66,7 +65,7 @@ file.exists(tmp_png)
 
 # This won't remove it
 resmush_clean_dir(tempdir())
-#> ℹ No files to clean in C:\Users\RUNNER~1\AppData\Local\Temp\RtmpsRE6Vb with suffix "_resmush\\.".
+#> ℹ No files to clean in /tmp/RtmpZt3YBf with suffix "_resmush\\.".
 
 file.exists(tmp_png)
 #> [1] TRUE
@@ -74,7 +73,7 @@ file.exists(tmp_png)
 # Need suffix
 resmush_clean_dir(tempdir(), suffix = suffix)
 #> ℹ Would remove 1 file:
-#> → C:\Users\RUNNER~1\AppData\Local\Temp\RtmpsRE6Vb/example_would_be_removed.png
+#> → /tmp/RtmpZt3YBf/example_would_be_removed.png
 
 file.exists(tmp_png)
 #> [1] FALSE

@@ -19,7 +19,13 @@
 <link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Using resmush">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="resmush_files/libs/quarto-html/popper.min.js"></script><script src="resmush_files/libs/quarto-html/tippy.umd.min.js"></script><link href="resmush_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="resmush_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Using resmush">
+<meta property="og:image" content="https://dieghernan.github.io/resmush/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@dhernangomez">
+<meta name="twitter:site" content="@dhernangomez">
 <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-57GZF8X6PD"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -36,7 +42,7 @@
 
     <a class="navbar-brand me-2" href="../index.html"><img src="../apple-touch-icon.png" alt="resmush logo" height="34" width="34" class="d-inline-block me-1">resmush</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +51,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../articles/resmush.html">Get started</a></li>
+<li class="active nav-item"><a class="nav-link" href="../articles/resmush.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
@@ -67,62 +73,48 @@
 
 
   </div>
-</nav><div class="container template-article">
-
-
-
-
+</nav><div class="container template-quarto">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Using resmush</h1>
-            
-      
-      <small class="dont-index">Source: <a href="https://github.com/dieghernan/resmush/blob/main/vignettes/resmush.Rmd" class="external-link"><code>vignettes/resmush.Rmd</code></a></small>
-      <div class="d-none name"><code>resmush.Rmd</code></div>
+
+
+
+
+      <small class="dont-index">Source: <a href="https://github.com/dieghernan/resmush/blob/main/vignettes/resmush.qmd" class="external-link"><code>vignettes/resmush.qmd</code></a></small>
+      <div class="d-none name"><code></code></div>
     </div>
 
-    
-    
-<!-- resmush.Rmd is generated from resmush.Rmd.orig. Please edit that file -->
-<p><strong>resmush</strong> is a <strong>R</strong> package that allows
-users to optimize and compress images using <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. reSmush.it
-is a <u>free API</u> that provides image optimization and has been
-implemented in <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a>
-and <a href="https://resmush.it/tools/" class="external-link">many other tools</a>.</p>
+
+
+
+
+
+    <!-- resmush.qmd is generated from resmush.qmd.orig. Please edit that file --><p><strong>resmush</strong> is a <strong>R</strong> package that allows users to optimize and compress images using <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. reSmush.it is a <u>free API</u> that provides image optimization and has been implemented in <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a> and <a href="https://resmush.it/tools/" class="external-link">many other tools</a>.</p>
 <p>Some of the features of <strong>reSmush.it</strong> include:</p>
 <ul>
 <li>Free optimization services with <u>no API key required</u>.</li>
 <li>Support for both local and online images.</li>
-<li>Supported image formats: <code>png</code>, <code>jpg/jpeg</code>,
-<code>gif</code>, <code>bmp</code>, <code>tiff</code>.</li>
+<li>Supported image formats: <code>png</code>, <code>jpg/jpeg</code>, <code>gif</code>, <code>bmp</code>, <code>tiff</code>.</li>
 <li>Maximum image size: 5 MB.</li>
 <li>Compression using several algorithms:
 <ul>
 <li>
-<a href="https://pngquant.org/" class="external-link"><strong>PNGQuant</strong></a>:
-Removes unnecessary chunks from <code>png</code> files while preserving
-a full alpha transparency.</li>
+<a href="https://pngquant.org/" class="external-link"><strong>PNGQuant</strong></a>: Removes unnecessary chunks from <code>png</code> files while preserving a full alpha transparency.</li>
 <li>
-<a href="https://github.com/tjko/jpegoptim" class="external-link"><strong>JPEGOptim</strong></a><strong>:</strong>
-Lossless optimization based on Huffman table optimization.</li>
+<a href="https://github.com/tjko/jpegoptim" class="external-link"><strong>JPEGOptim</strong></a><strong>:</strong> Lossless optimization based on Huffman table optimization.</li>
 <li>
-<a href="https://optipng.sourceforge.net/" class="external-link"><strong>OptiPNG</strong></a>: A
-<code>png</code> optimizer used by several online compression
-tools.</li>
+<a href="https://optipng.sourceforge.net/" class="external-link"><strong>OptiPNG</strong></a>: A <code>png</code> optimizer used by several online compression tools.</li>
 </ul>
 </li>
 </ul>
-<div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+<section class="level2"><h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <p>Compressing an online <code>jpg</code> image:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/resmush/">resmush</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>  <span class="st">"https://raw.githubusercontent.com/dieghernan/"</span>,</span>
-<span>  <span class="st">"resmush/main/img/jpg_example_original.jpg"</span></span>
-<span><span class="op">)</span></span>
+<span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/resmush_url.html">resmush_url</a></span><span class="op">(</span><span class="va">url</span>, outfile <span class="op">=</span> <span class="st">"jpg_example_compress.jpg"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ══ resmush summary ═════════════════════════════════════════════════════════════</span></span>
@@ -130,17 +122,12 @@ tools.</li>
 <span><span class="co">#&gt; ✔ Success for 1 url: Size now is 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).</span></span>
 <span><span class="co">#&gt; See result in directory '.'.</span></span></code></pre></div>
 <div class="figure">
-<p><a href="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" class="external-link"><img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" style="width:100.0%" alt="Original uncompressed file"></a></p>
+<p><a href="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"><img src="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg" style="width:100.0%" alt="Original uncompressed file"></a></p>
 <p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg"><img src="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg" style="width:100.0%" alt="Optimized file"></a></p>
-<p class="caption">
-</p>
-<p>Original picture (top): 178.7 Kb; Optimized picture (bottom): 45 Kb
-(Compression: 74.8%). Click to enlarge.</p>
-
+<figcaption class="figure-caption"><p>Original picture (top): 178.7 Kb; Optimized picture (bottom): 45 Kb (Compression: 74.8%). Click to enlarge.</p>
+</figcaption>
 </div>
-<p>The compression quality for <code>jpg</code> files can be adjusted
-using the <code>qlty</code> argument. However, it is recommended to keep
-this value above 90 to maintain good image quality.</p>
+<p>The compression quality for <code>jpg</code> files can be adjusted using the <code>qlty</code> argument. However, it is recommended to keep this value above 90 to maintain good image quality.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Extreme case</span></span>
 <span><span class="fu"><a href="../reference/resmush_url.html">resmush_url</a></span><span class="op">(</span><span class="va">url</span>,</span>
@@ -152,15 +139,11 @@ this value above 90 to maintain good image quality.</p>
 <span><span class="co">#&gt; ✔ Success for 1 url: Size now is 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).</span></span>
 <span><span class="co">#&gt; See result in directory 'tempdir()'.</span></span></code></pre></div>
 <div class="figure">
-<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg"><img src="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg" style="width:100.0%" alt="Low quality figure"></a></p>
-<p class="caption">
-</p>
-<p>Low quality image due to a high compression rate.</p>
-
+<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg"><img src="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg" style="width:100.0%"></a></p>
+<figcaption class="figure-caption"><p>Low quality image due to a high compression rate.</p>
+</figcaption>
 </div>
-<p>All the functions return (invisibly) a dataset summarizing the
-process. The following example shows how this works when compressing a
-local file:</p>
+<p>All the functions return (invisibly) a dataset summarizing the process. The following example shows how this works when compressing a local file:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">png_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extimg/example.png"</span>, package <span class="op">=</span> <span class="st">"resmush"</span><span class="op">)</span></span>
 <span></span>
@@ -176,45 +159,33 @@ local file:</p>
 <span><span class="co">#&gt;   src_size dest_size compress_ratio notes src_bytes dest_bytes</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 239.9 Kb 70.7 Kb   70.54%         OK       245618      72356</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="other-alternatives">Other alternatives<a class="anchor" aria-label="anchor" href="#other-alternatives"></a>
+</section><section class="level2"><h2 id="other-alternatives">Other alternatives<a class="anchor" aria-label="anchor" href="#other-alternatives"></a>
 </h2>
-<p>Several other <strong>R</strong> packages also provide image
-optimization tools:</p>
+<p>Several other <strong>R</strong> packages also provide image optimization tools:</p>
 <ul>
 <li>
-<strong>xfun</strong> <span class="citation">(<a href="#ref-xfun">Xie 2024</a>)</span>, which includes:
+<strong>xfun</strong> <span class="citation" data-cites="xfun">(<a href="#ref-xfun" role="doc-biblioref">Xie 2024</a>)</span>, which includes:
 <ul>
 <li>
-<code><a href="https://rdrr.io/pkg/xfun/man/tinify.html" class="external-link">xfun::tinify()</a></code>: Similar to <code><a href="../reference/resmush_file.html">resmush_file()</a></code>
-but uses <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a> and
-requires an API key.</li>
+<code><a href="https://rdrr.io/pkg/xfun/man/tinify.html" class="external-link">xfun::tinify()</a></code>: Similar to <code><a href="../reference/resmush_file.html">resmush_file()</a></code> but uses <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a> and requires an API key.</li>
 <li>
-<code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code>: Compresses local files using
-<strong>OptiPNG</strong>, which must be installed locally.</li>
+<code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code>: Compresses local files using <strong>OptiPNG</strong>, which must be installed locally.</li>
 </ul>
 </li>
 <li>
-<a href="https://jmablog.github.io/tinieR/" class="external-link"><strong>tinieR</strong></a> by
-<a href="https://jmablog.com/" class="external-link">jmablog</a>: An <strong>R</strong>
-interface to <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a>.</li>
+<a href="https://jmablog.github.io/tinieR/" class="external-link"><strong>tinieR</strong></a> by jmablog: An <strong>R</strong> interface to <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a>.</li>
 <li>
-<a href="https://github.com/coolbutuseless/optout" class="external-link"><strong>optout</strong></a>
-by <a href="https://coolbutuseless.github.io/" class="external-link">@coolbutuseless</a>:
-Similar to <code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> but with more options. Requires
-additional local software.</li>
+<a href="https://github.com/coolbutuseless/optout" class="external-link"><strong>optout</strong></a> by <a href="https://coolbutuseless.github.io/" class="external-link">@coolbutuseless</a>: Similar to <code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> but with more options. Requires additional local software.</li>
 </ul>
-<table style="width:100%;" class="table">
-<caption>Table 1: <strong>R</strong> packages: Comparison of
-alternatives for optimizing images.</caption>
+<table class="table caption-top" style="width:100%;">
+<caption>Table 1: <strong>R</strong> packages: Comparison of alternatives for optimizing images.</caption>
 <colgroup>
-<col width="16%">
-<col width="16%">
-<col width="16%">
-<col width="16%">
-<col width="16%">
-<col width="16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
 </colgroup>
 <thead><tr class="header">
 <th>tool</th>
@@ -267,9 +238,8 @@ alternatives for optimizing images.</caption>
 </tr>
 </tbody>
 </table>
-<table class="table">
-<caption>Table 2: <strong>R</strong> packages: Supported
-formats.</caption>
+<table class="table caption-top">
+<caption>Table 2: <strong>R</strong> packages: Supported formats.</caption>
 <thead><tr class="header">
 <th>tool</th>
 <th>png</th>
@@ -332,22 +302,99 @@ formats.</caption>
 <td>❌</td>
 </tr>
 </tbody>
-</table>
-</div>
-<div class="section level2 unnumbered">
-<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</table></section><section class="level2 unnumbered"><h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-xfun" class="csl-entry">
-Xie, Yihui. 2024. <em><span class="nocase">xfun</span>: Supporting
-Functions for Packages Maintained by <span>Yihui Xie</span></em>. <a href="https://github.com/yihui/xfun" class="external-link">https://github.com/yihui/xfun</a>.
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-xfun" class="csl-entry" role="listitem">
+Xie, Yihui. 2024. <em><span class="nocase">xfun</span>: Supporting Functions for Packages Maintained by <span>Yihui Xie</span></em>. <a href="https://github.com/yihui/xfun" class="external-link">https://github.com/yihui/xfun</a>.
 </div>
 </div>
-</div>
-  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+</section><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config);
+    }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script></main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
-
 
 
     <footer><div class="pkgdown-footer-left">

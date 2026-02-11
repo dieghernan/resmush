@@ -49,20 +49,20 @@ Compressing an online `jpg` image:
 ``` r
 library(resmush)
 
-url <- paste0(
-  "https://raw.githubusercontent.com/dieghernan/",
-  "resmush/main/img/jpg_example_original.jpg"
-)
+url <- "https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"
 
-resmush_url(url, outfile = "man/figures/jpg_example_compress.jpg", overwrite = TRUE)
+resmush_url(url,
+  outfile = "man/figures/jpg_example_compress.jpg",
+  overwrite = TRUE
+)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 44.2 Kb
-#> ✔ Success for 1 url: Size now is 44.2 Kb (was 44.2 Kb). Saved 56 bytes (0.12%).
+#> ℹ Input: 1 url with size 178.7 Kb
+#> ✔ Success for 1 url: Size now is 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
 #> See result in directory 'man/figures'.
 ```
 
 [![Original uncompressed
-file](https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg)](https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg)
+file](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)
 
 [![Optimized
 file](./reference/figures/jpg_example_compress.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
@@ -81,8 +81,8 @@ resmush_url(url,
   qlty = 3
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 44.2 Kb
-#> ✔ Success for 1 url: Size now is 2.2 Kb (was 44.2 Kb). Saved 42 Kb (94.96%).
+#> ℹ Input: 1 url with size 178.7 Kb
+#> ✔ Success for 1 url: Size now is 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
 #> See result in directory 'man/figures'.
 ```
 
@@ -125,9 +125,8 @@ Several other **R** packages also provide image optimization tools:
   - [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html):
     Compresses local files using **OptiPNG**, which must be installed
     locally.
-- [**tinieR**](https://jmablog.github.io/tinieR/) by
-  [jmablog](https://jmablog.com/): An **R** interface to
-  [**TinyPNG**](https://tinypng.com/).
+- [**tinieR**](https://jmablog.github.io/tinieR/) by jmablog: An **R**
+  interface to [**TinyPNG**](https://tinypng.com/).
 - [**optout**](https://github.com/coolbutuseless/optout) by
   [@coolbutuseless](https://coolbutuseless.github.io/): Similar to
   [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) but
@@ -169,7 +168,7 @@ A BibTeX entry for LaTeX users is
   doi = {10.32614/CRAN.package.resmush},
   author = {Diego Hernangómez},
   year = {2026},
-  version = {0.2.2.9000},
+  version = {0.2.2.9001},
   url = {https://dieghernan.github.io/resmush/},
   abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
 }

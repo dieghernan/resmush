@@ -28,10 +28,7 @@ Compressing an online `jpg` image:
 ``` r
 library(resmush)
 
-url <- paste0(
-  "https://raw.githubusercontent.com/dieghernan/",
-  "resmush/main/img/jpg_example_original.jpg"
-)
+url <- "https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"
 
 resmush_url(url, outfile = "jpg_example_compress.jpg", overwrite = TRUE)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
@@ -41,7 +38,7 @@ resmush_url(url, outfile = "jpg_example_compress.jpg", overwrite = TRUE)
 ```
 
 [![Original uncompressed
-file](https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg)](https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg)
+file](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)
 
 [![Optimized
 file](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
@@ -65,8 +62,7 @@ resmush_url(url,
 #> See result in directory 'tempdir()'.
 ```
 
-[![Low quality
-figure](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
+[![](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
 Low quality image due to a high compression rate.
 
@@ -104,9 +100,8 @@ Several other **R** packages also provide image optimization tools:
   - [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html):
     Compresses local files using **OptiPNG**, which must be installed
     locally.
-- [**tinieR**](https://jmablog.github.io/tinieR/) by
-  [jmablog](https://jmablog.com/): An **R** interface to
-  [**TinyPNG**](https://tinypng.com/).
+- [**tinieR**](https://jmablog.github.io/tinieR/) by jmablog: An **R**
+  interface to [**TinyPNG**](https://tinypng.com/).
 - [**optout**](https://github.com/coolbutuseless/optout) by
   [@coolbutuseless](https://coolbutuseless.github.io/): Similar to
   [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) but

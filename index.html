@@ -44,7 +44,7 @@
 
     <a class="navbar-brand me-2" href="index.html"><img src="apple-touch-icon.png" alt="resmush logo" height="34" width="34" class="d-inline-block me-1">resmush</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,23 +129,21 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/resmush/">resmush</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>  <span class="st">"https://raw.githubusercontent.com/dieghernan/"</span>,</span>
-<span>  <span class="st">"resmush/main/img/jpg_example_original.jpg"</span></span>
-<span><span class="op">)</span></span>
+<span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/resmush_url.html">resmush_url</a></span><span class="op">(</span><span class="va">url</span>, outfile <span class="op">=</span> <span class="st">"man/figures/jpg_example_compress.jpg"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/resmush_url.html">resmush_url</a></span><span class="op">(</span><span class="va">url</span>,</span>
+<span>  outfile <span class="op">=</span> <span class="st">"man/figures/jpg_example_compress.jpg"</span>,</span>
+<span>  overwrite <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
 <span><span class="co">#&gt; ══ resmush summary ═════════════════════════════════════════════════════════════</span></span>
-<span><span class="co">#&gt; ℹ Input: 1 url with size 44.2 Kb</span></span>
-<span><span class="co">#&gt; ✔ Success for 1 url: Size now is 44.2 Kb (was 44.2 Kb). Saved 56 bytes (0.12%).</span></span>
+<span><span class="co">#&gt; ℹ Input: 1 url with size 178.7 Kb</span></span>
+<span><span class="co">#&gt; ✔ Success for 1 url: Size now is 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).</span></span>
 <span><span class="co">#&gt; See result in directory 'man/figures'.</span></span></code></pre></div>
 <div class="figure">
-<p><a href="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" class="external-link"><img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" style="width:100.0%" alt="Original uncompressed file"></a></p>
+<p><a href="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"><img src="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg" style="width:100.0%" alt="Original uncompressed file"></a></p>
 <p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg"><img src="./reference/figures/jpg_example_compress.jpg" style="width:100.0%" alt="Optimized file"></a></p>
-<p class="caption">
-</p>
-<p>Original picture (top): 178.7 Kb; Optimized picture (bottom): 45 Kb (Compression: 74.8%). Click to enlarge.</p>
-
+<figcaption class="figure-caption"><p>Original picture (top): 178.7 Kb; Optimized picture (bottom): 45 Kb (Compression: 74.8%). Click to enlarge.</p>
+</figcaption>
 </div>
 <p>The compression quality for <code>jpg</code> files can be adjusted using the <code>qlty</code> argument. However, it is recommended to keep this value above 90 to maintain good image quality.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -155,15 +153,13 @@
 <span>  qlty <span class="op">=</span> <span class="fl">3</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ══ resmush summary ═════════════════════════════════════════════════════════════</span></span>
-<span><span class="co">#&gt; ℹ Input: 1 url with size 44.2 Kb</span></span>
-<span><span class="co">#&gt; ✔ Success for 1 url: Size now is 2.2 Kb (was 44.2 Kb). Saved 42 Kb (94.96%).</span></span>
+<span><span class="co">#&gt; ℹ Input: 1 url with size 178.7 Kb</span></span>
+<span><span class="co">#&gt; ✔ Success for 1 url: Size now is 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).</span></span>
 <span><span class="co">#&gt; See result in directory 'man/figures'.</span></span></code></pre></div>
 <div class="figure">
 <p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg"><img src="reference/figures/jpg_example_compress_low.jpg" style="width:100.0%" alt="Low quality figure"></a></p>
-<p class="caption">
-</p>
-<p>Low quality image due to a high compression rate.</p>
-
+<figcaption class="figure-caption"><p>Low quality image due to a high compression rate.</p>
+</figcaption>
 </div>
 <p>All the functions return (invisibly) a dataset summarizing the process. The following example shows how this works when compressing a local file:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -197,18 +193,18 @@
 </ul>
 </li>
 <li>
-<a href="https://jmablog.github.io/tinieR/" class="external-link"><strong>tinieR</strong></a> by <a href="https://jmablog.com/" class="external-link">jmablog</a>: An <strong>R</strong> interface to <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a>.</li>
+<a href="https://jmablog.github.io/tinieR/" class="external-link"><strong>tinieR</strong></a> by jmablog: An <strong>R</strong> interface to <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a>.</li>
 <li>
 <a href="https://github.com/coolbutuseless/optout" class="external-link"><strong>optout</strong></a> by <a href="https://coolbutuseless.github.io/" class="external-link">@coolbutuseless</a>: Similar to <code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> but with more options. Requires additional local software.</li>
 </ul>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="20%">
-<col width="6%">
-<col width="23%">
-<col width="9%">
-<col width="10%">
-<col width="30%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
 </colgroup>
 <thead><tr class="header">
 <th>tool</th>
@@ -340,7 +336,7 @@ Hernangómez D (2026). <em>resmush: Optimize and Compress Image Files with reSmu
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  doi <span class="ot">=</span> {<span class="fl">10.32614</span><span class="sc">/</span>CRAN.package.resmush},</span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
 <span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2026</span>},</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="dv">2</span>.<span class="fl">2.9000</span>},</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="dv">2</span>.<span class="fl">2.9001</span>},</span>
 <span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>resmush<span class="sc">/</span>},</span>
 <span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>  abstract <span class="ot">=</span> {Compress local and online images using the reSmush.it API service <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>resmush.it<span class="sc">/</span><span class="er">&gt;</span>.},</span>
 <span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>}</span></code></pre></div>
