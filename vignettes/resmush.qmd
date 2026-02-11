@@ -6,24 +6,22 @@ vignette: >
   %\VignetteIndexEntry{resmush}
   %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
+tbl-cap-location: bottom
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    warning: false
+    message: false
+    dev: "ragg_png"
+    tidy: "styler"
+    dpi: 120
+    out.width: "100%"
+    eval: false
 ---
-
-<!-- resmush.qmd is generated from resmush.qmd.orig. Please edit that file -->
 
 ```{r}
 #| include: false
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  warning = FALSE,
-  message = FALSE,
-  dev = "ragg_png",
-  tidy = "styler",
-  fig.path = "man/figures/README-",
-  dpi = 120,
-  out.width = "100%"
-)
-
 library(resmush)
 ```
 
@@ -53,8 +51,6 @@ Compressing an online `jpg` image:
 
 ```{r}
 #| label: example
-#| message: true
-#| eval: false
 library(resmush)
 
 url <- "https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"
@@ -66,19 +62,17 @@ resmush_url(url, outfile = "jpg_example_compress.jpg", overwrite = TRUE)
 #> See result in directory '.'.
 ```
 
-::: figure
-[![](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg){alt="Original uncompressed file"
+::: {#fig-comp layout-ncol="2"}
+[![](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg){#fig-orig
+alt="Original uncompressed file"
 width="100%"}](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)
 
-[![](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg){alt="Optimized file"
+[![](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg){#fig-new
+alt="Optimized file"
 width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 
-<figcaption class="figure-caption">
-
-Original picture (top): 178.7 Kb; Optimized picture (bottom): 45 Kb
+Original picture @fig-orig: 178.7 Kb; Optimized picture @fig-new: 45 Kb
 (Compression: 74.8%). Click to enlarge.
-
-</figcaption>
 :::
 
 The compression quality for `jpg` files can be adjusted using the `qlty`
@@ -87,11 +81,11 @@ good image quality.
 
 ```{r}
 #| label: jpgcompresslow
-#| message: true
-#| eval: false
 # Extreme case
-resmush_url(url,
-  outfile = tempfile(fileext = ".jpg"), overwrite = TRUE,
+resmush_url(
+  url,
+  outfile = tempfile(fileext = ".jpg"),
+  overwrite = TRUE,
   qlty = 3
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
@@ -100,14 +94,10 @@ resmush_url(url,
 #> See result in directory 'tempdir()'.
 ```
 
-::: figure
+::: {#fig-compresslow}
 [![](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg){width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
-<figcaption class="figure-caption">
-
-Low quality image due to a high compression rate.
-
-</figcaption>
+Low quality image due to a high compression rate, compare with @fig-new.
 :::
 
 All the functions return (invisibly) a dataset summarizing the process. The
@@ -115,7 +105,6 @@ following example shows how this works when compressing a local file:
 
 ```{r}
 #| label: tibble_example
-#| eval: false
 png_file <- system.file("extimg/example.png", package = "resmush")
 
 # For the example, copy to a temporary file
@@ -147,6 +136,7 @@ Several other **R** packages also provide image optimization tools:
     [\@coolbutuseless](https://coolbutuseless.github.io/): Similar to
     `xfun::optipng()` but with more options. Requires additional local software.
 
+::: {#tbl-opts}
 | tool | CRAN | Additional software? | Online? | API Key? | Limits? |
 |--------------|--------------|--------------|--------------|--------------|--------------|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
@@ -155,8 +145,10 @@ Several other **R** packages also provide image optimization tools:
 | **optout** | No | Yes | No | No | No |
 | **resmush** | Yes | No | Yes | No | Max size 5 MB |
 
-: Table 1: **R** packages: Comparison of alternatives for optimizing images.
+**R** packages: Comparison of alternatives for optimizing images.
+:::
 
+::: {#tbl-comp}
 | tool              | png | jpg | gif | bmp | tiff | webp | pdf |
 |-------------------|-----|-----|-----|-----|------|------|-----|
 | `xfun::tinify()`  | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
@@ -165,6 +157,7 @@ Several other **R** packages also provide image optimization tools:
 | **optout**        | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
 | **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ❌   | ❌  |
 
-: Table 2: **R** packages: Supported formats.
+**R** packages: Supported formats.
+:::
 
 ## References

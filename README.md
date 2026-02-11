@@ -17,7 +17,7 @@ results](https://badges.cranchecks.info/worst/resmush.svg)](https://cran.r-proje
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/resmush/badge)](https://www.codefactor.io/repository/github/dieghernan/resmush)
 [![r-universe](https://dieghernan.r-universe.dev/badges/resmush)](https://dieghernan.r-universe.dev/resmush)
 [![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.resmush-blue)](https://doi.org/10.32614/CRAN.package.resmush)
-[![Project Status: Active – The project has reached a stable, usable
+[![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![status](https://tinyverse.netlify.app/status/resmush)](https://CRAN.R-project.org/package=resmush)
@@ -73,10 +73,13 @@ Alternatively, install **resmush** using the
 
 ``` r
 # Install resmush in R:
-install.packages("resmush", repos = c(
-  "https://dieghernan.r-universe.dev",
-  "https://cloud.r-project.org"
-))
+install.packages(
+  "resmush",
+  repos = c(
+    "https://dieghernan.r-universe.dev",
+    "https://cloud.r-project.org"
+  )
+)
 ```
 
 </div>
@@ -90,7 +93,8 @@ library(resmush)
 
 url <- "https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"
 
-resmush_url(url,
+resmush_url(
+  url,
   outfile = "man/figures/jpg_example_compress.jpg",
   overwrite = TRUE
 )
@@ -105,16 +109,17 @@ resmush_url(url,
 [<img
 src="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"
 style="width:100.0%" alt="Original uncompressed file" />](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)
+<small class="caption fst-italic">(a)</small>
 
 [<img src="./man/figures/jpg_example_compress.jpg" style="width:100.0%"
 alt="Optimized file" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
+<small class="caption fst-italic">(b)</small>
 
-<figcaption class="figure-caption">
+<p class="caption">
 
-Original picture (top): 178.7 Kb; Optimized picture (bottom): 45 Kb
+Original picture (a): 178.7 Kb; Optimized picture (b): 45 Kb
 (Compression: 74.8%). Click to enlarge.
-
-</figcaption>
+</p>
 
 </div>
 
@@ -124,8 +129,10 @@ maintain good image quality.
 
 ``` r
 # Extreme case
-resmush_url(url,
-  outfile = "man/figures/jpg_example_compress_low.jpg", overwrite = TRUE,
+resmush_url(
+  url,
+  outfile = "man/figures/jpg_example_compress_low.jpg",
+  overwrite = TRUE,
   qlty = 3
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
@@ -139,11 +146,10 @@ resmush_url(url,
 [<img src="man/figures/jpg_example_compress_low.jpg" style="width:100.0%"
 alt="Low quality figure" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
-<figcaption class="figure-caption">
+<p class="caption">
 
 Low quality image due to a high compression rate.
-
-</figcaption>
+</p>
 
 </div>
 
@@ -192,8 +198,11 @@ Several other **R** packages also provide image optimization tools:
 | **optout** | No | Yes | No | No | No |
 | **resmush** | Yes | No | Yes | No | Max size 5 MB |
 
-Table 1: **R** packages: Comparison of alternatives for optimizing
+<p class="caption">
+
+Table 1: **R** packages: Comparison of alternatives for optimizing
 images.
+</p>
 
 | tool              | png | jpg | gif | bmp | tiff | webp | pdf |
 |-------------------|-----|-----|-----|-----|------|------|-----|
@@ -203,7 +212,10 @@ images.
 | **optout**        | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
 | **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ❌   | ❌  |
 
+<p class="caption">
+
 Table 2: **R** packages: Supported formats.
+</p>
 
 ## Citation
 
