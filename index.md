@@ -36,10 +36,13 @@ Alternatively, install **resmush** using the
 
 ``` r
 # Install resmush in R:
-install.packages("resmush", repos = c(
-  "https://dieghernan.r-universe.dev",
-  "https://cloud.r-project.org"
-))
+install.packages(
+  "resmush",
+  repos = c(
+    "https://dieghernan.r-universe.dev",
+    "https://cloud.r-project.org"
+  )
+)
 ```
 
 ## Example
@@ -51,7 +54,8 @@ library(resmush)
 
 url <- "https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"
 
-resmush_url(url,
+resmush_url(
+  url,
   outfile = "man/figures/jpg_example_compress.jpg",
   overwrite = TRUE
 )
@@ -63,11 +67,13 @@ resmush_url(url,
 
 [![Original uncompressed
 file](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)
+(a)
 
 [![Optimized
 file](./reference/figures/jpg_example_compress.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
+(b)
 
-Original picture (top): 178.7 Kb; Optimized picture (bottom): 45 Kb
+Original picture (a): 178.7 Kb; Optimized picture (b): 45 Kb
 (Compression: 74.8%). Click to enlarge.
 
 The compression quality for `jpg` files can be adjusted using the `qlty`
@@ -76,8 +82,10 @@ maintain good image quality.
 
 ``` r
 # Extreme case
-resmush_url(url,
-  outfile = "man/figures/jpg_example_compress_low.jpg", overwrite = TRUE,
+resmush_url(
+  url,
+  outfile = "man/figures/jpg_example_compress_low.jpg",
+  overwrite = TRUE,
   qlty = 3
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
@@ -140,7 +148,7 @@ Several other **R** packages also provide image optimization tools:
 | **optout**                                                     | No   | Yes                  | No      | No       | No                          |
 | **resmush**                                                    | Yes  | No                   | Yes     | No       | Max size 5 MB               |
 
-Table 1: **R** packages: Comparison of alternatives for optimizing
+Table 1: **R** packages: Comparison of alternatives for optimizing
 images.
 
 | tool                                                           | png | jpg | gif | bmp | tiff | webp | pdf |

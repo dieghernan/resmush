@@ -40,11 +40,16 @@ resmush_url(url, outfile = "jpg_example_compress.jpg", overwrite = TRUE)
 [![Original uncompressed
 file](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)
 
+\(a\)
+
 [![Optimized
 file](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 
-Original picture (top): 178.7 Kb; Optimized picture (bottom): 45 Kb
-(Compression: 74.8%). Click to enlarge.
+\(b\)
+
+Figure 1: Original picture [Figure 1 (a)](#fig-orig): 178.7 Kb;
+Optimized picture [Figure 1 (b)](#fig-new): 45 Kb (Compression: 74.8%).
+Click to enlarge.
 
 The compression quality for `jpg` files can be adjusted using the `qlty`
 argument. However, it is recommended to keep this value above 90 to
@@ -52,8 +57,10 @@ maintain good image quality.
 
 ``` r
 # Extreme case
-resmush_url(url,
-  outfile = tempfile(fileext = ".jpg"), overwrite = TRUE,
+resmush_url(
+  url,
+  outfile = tempfile(fileext = ".jpg"),
+  overwrite = TRUE,
   qlty = 3
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
@@ -64,7 +71,8 @@ resmush_url(url,
 
 [![](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
-Low quality image due to a high compression rate.
+Figure 2: Low quality image due to a high compression rate, compare with
+[Figure 1 (b)](#fig-new).
 
 All the functions return (invisibly) a dataset summarizing the process.
 The following example shows how this works when compressing a local
@@ -115,7 +123,7 @@ Several other **R** packages also provide image optimization tools:
 | **optout**                                                     | No   | Yes                  | No      | No       | No                          |
 | **resmush**                                                    | Yes  | No                   | Yes     | No       | Max size 5 MB               |
 
-Table 1: **R** packages: Comparison of alternatives for optimizing
+Table 1: **R** packages: Comparison of alternatives for optimizing
 images.
 
 | tool                                                           | png | jpg | gif | bmp | tiff | webp | pdf |
@@ -126,7 +134,7 @@ images.
 | **optout**                                                     | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
 | **resmush**                                                    | ✅  | ✅  | ✅  | ✅  | ✅   | ❌   | ❌  |
 
-Table 2: **R** packages: Supported formats.
+Table 2: **R** packages: Supported formats.
 
 ## References
 
