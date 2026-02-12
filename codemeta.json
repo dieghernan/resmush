@@ -56,6 +56,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "png",
       "name": "png",
       "provider": {
@@ -149,7 +161,7 @@
     "SystemRequirements": null
   },
   "keywords": ["r", "compress-images", "optimize-images", "resmushit", "api", "r-package", "cran", "cran-r"],
-  "fileSize": "678.286KB",
+  "fileSize": "678.149KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

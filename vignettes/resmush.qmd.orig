@@ -8,6 +8,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 tbl-cap-location: bottom
 ---
+
 <!-- resmush.qmd is generated from resmush.qmd.orig. Please edit that file -->
 
 ```{r}
@@ -141,7 +142,7 @@ Several other **R** packages also provide image optimization tools:
 
 ::: {#tbl-opts}
 | tool | CRAN | Additional software? | Online? | API Key? | Limits? |
-|--------------|--------------|--------------|--------------|--------------|--------------|
+|----|----|----|----|----|----|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | No |
 | **tinieR** | No | No | Yes | Yes | 500 files/month (free tier) |

@@ -60,6 +60,9 @@ install.packages("resmush")
 
 <div class="pkgdown-devel">
 
+Check the docs of the developing version in
+<https://dieghernan.github.io/resmush/dev/>.
+
 You can install the development version of **resmush** from
 [GitHub](https://github.com/) with:
 
@@ -115,11 +118,11 @@ style="width:100.0%" alt="Original uncompressed file" />](https://dieghernan.git
 alt="Optimized file" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 <small class="caption fst-italic">(b)</small>
 
-<p class="caption">
+<figcaption>
 
-Original picture (a): 178.7 Kb; Optimized picture (b): 45 Kb
-(Compression: 74.8%). Click to enlarge.
-</p>
+Figure 1: Original picture <em>(a)</em>: 178.7 Kb; Optimized picture
+<em>(b)</em>: 45 Kb (Compression: 74.8%). Click to enlarge.
+</figcaption>
 
 </div>
 
@@ -146,10 +149,10 @@ resmush_url(
 [<img src="man/figures/jpg_example_compress_low.jpg" style="width:100.0%"
 alt="Low quality figure" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
-<p class="caption">
+<figcaption>
 
-Low quality image due to a high compression rate.
-</p>
+Figure 2: Low quality image due to a high compression rate.
+</figcaption>
 
 </div>
 
@@ -200,8 +203,8 @@ Several other **R** packages also provide image optimization tools:
 
 <p class="caption">
 
-Table 1: **R** packages: Comparison of alternatives for optimizing
-images.
+Table 1: <strong>R</strong> packages: Comparison of alternatives for
+optimizing images.
 </p>
 
 | tool              | png | jpg | gif | bmp | tiff | webp | pdf |
@@ -214,7 +217,7 @@ images.
 
 <p class="caption">
 
-Table 2: **R** packages: Supported formats.
+Table 2: <strong>R</strong> packages: Supported formats.
 </p>
 
 ## Citation

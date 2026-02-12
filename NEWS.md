@@ -1,7 +1,7 @@
 # resmush (development version)
 
 -   Minimum **R** version required is now 4.1.0.
--   Migrate documentation to Quarto.
+-   Migrate documentation to Quarto (#28).
 
 # resmush 0.2.2
 

@@ -20,13 +20,14 @@ Imports:
     utils
 Suggests: 
     grid,
+    knitr,
     png,
     quarto,
     testthat (>= 3.0.0)
 VignetteBuilder: 
     quarto
 Config/Needs/website: dieghernan/gitdevr, xfun, dplyr, tibble, devtools,
-    remotes, pak, knitr
+    remotes, pak
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
