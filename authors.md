@@ -9,7 +9,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/dieghernan/resmush/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/dieghernan/resmush/blob/release/inst/CITATION)
 
 Hernangómez D (2026). *resmush: Optimize and Compress Image Files with
 reSmush.it*.
@@ -21,7 +21,7 @@ reSmush.it*.
       doi = {10.32614/CRAN.package.resmush},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {0.2.2.9001},
+      version = {0.2.2},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
     }

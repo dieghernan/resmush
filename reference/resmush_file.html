@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html"><img src="../apple-touch-icon.png" alt="resmush logo" height="34" width="34" class="d-inline-block me-1">resmush</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Optimize a local file</h1>
-      <small class="dont-index">Source: <a href="https://github.com/dieghernan/resmush/blob/main/R/resmush_file.R" class="external-link"><code>R/resmush_file.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dieghernan/resmush/blob/release/R/resmush_file.R" class="external-link"><code>R/resmush_file.R</code></a></small>
       <div class="d-none name"><code>resmush_file.Rd</code></div>
     </div>
 
@@ -78,9 +78,9 @@ following image files:</p><ul><li><p><code>png</code></p></li>
 
 <dt id="arg-suffix">suffix<a class="anchor" aria-label="anchor" href="#arg-suffix"></a></dt>
 <dd><p>Character, defaults to <code>"_resmush"</code>. By default, a new file
-with this <code>suffix</code> is created in the same directory as <code>file</code>. (i.e.,
+with the suffix is created in the same directory than <code>file</code>. (i.e.,
 optimized <code>example.png</code> would be <code>example_resmush.png</code>). Values <code>""</code>, <code>NA</code>
-and <code>NULL</code> would be the same as <code>overwrite = TRUE</code>.</p></dd>
+and <code>NULL</code> would be the same than <code>overwrite = TRUE</code>.</p></dd>
 
 
 <dt id="arg-overwrite">overwrite<a class="anchor" aria-label="anchor" href="#arg-overwrite"></a></dt>
@@ -98,24 +98,23 @@ console. See also <strong>Value</strong>.</p></dd>
 
 
 <dt id="arg-qlty">qlty<a class="anchor" aria-label="anchor" href="#arg-qlty"></a></dt>
-<dd><p>Only affects <code>jpg</code> files. Integer between <code>0</code> and <code>100</code>
-indicating the optimization level. For optimal results use values above
-<code>90</code>.</p></dd>
+<dd><p>Only affects <code>jpg</code> files. Integer between 0 and 100 indicating
+the optimization level. For optimal results use vales above 90.</p></dd>
 
 
 <dt id="arg-exif-preserve">exif_preserve<a class="anchor" aria-label="anchor" href="#arg-exif-preserve"></a></dt>
 <dd><p>Logical. Should the
-<a href="https://en.wikipedia.org/wiki/Exif" class="external-link">Exif</a> information (if any) be deleted?
+<a href="https://en.wikipedia.org/wiki/Exif" class="external-link">Exif</a> information (if any) deleted?
 Default is to remove it (i.e. <code>exif_preserve = FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>Writes on disk the optimized file if the API call is successful in the
-same directory as <code>file</code>.</p>
+same directory than <code>file</code>.</p>
 <p>With the option <code>report = TRUE</code> a summary report is displayed in the
-console. In all cases, an (<code><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible()</a></code>) data frame with a summary of the
-process used to generate the report is returned.</p>
+console. In all cases, a (invisible) data frame with a summary of the
+process used for generate the report is returned.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -142,7 +141,7 @@ process used to generate the report is returned.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 1 file with size 239.9 Kb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Success for 1 file: Size now is 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/RtmpkE7Fdd</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/RtmpvAMTeF</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Several paths</span></span></span>
 <span class="r-in"><span><span class="va">jpg_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extimg/example.jpg"</span>, package <span class="op">=</span> <span class="st">"resmush"</span><span class="op">)</span></span></span>
@@ -154,24 +153,25 @@ process used to generate the report is returned.</p>
 <span class="r-in"><span><span class="co"># Output summary in console</span></span></span>
 <span class="r-in"><span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu">resmush_file</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">tmp_png</span>, <span class="va">tmp_jpg</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■</span><span style="color: #555555;">□□□□□□□□□□□□□□□</span><span style="color: #00BB00;"> </span>  50% [1ms] | ETA:  0s (1/2 files)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [1.4s] | ETA:  0s (2/2 files)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [1.3s] | ETA:  0s (2/2 files)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 2 files with size 340.2 Kb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Success for 2 files: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See results in directory <span style="color: #0000BB;">/tmp/RtmpkE7Fdd</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> See results in directory <span style="color: #0000BB;">/tmp/RtmpvAMTeF</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Similar info in an (invisible) data frame as a result</span></span></span>
 <span class="r-in"><span><span class="va">summary</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                src_img</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/RtmpkE7Fdd/file1c71507cd7d4.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 /tmp/RtmpkE7Fdd/file1c71409c4ae7.jpg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/RtmpvAMTeF/file1d317a34eebd.png</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 /tmp/RtmpvAMTeF/file1d3149925c81.jpg</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                       dest_img src_size dest_size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/RtmpkE7Fdd/file1c71507cd7d4_resmush.png 239.9 Kb   70.7 Kb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 /tmp/RtmpkE7Fdd/file1c71409c4ae7_resmush.jpg 100.4 Kb   83.2 Kb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/RtmpvAMTeF/file1d317a34eebd_resmush.png 239.9 Kb   70.7 Kb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 /tmp/RtmpvAMTeF/file1d3149925c81_resmush.jpg 100.4 Kb   83.2 Kb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   compress_ratio notes src_bytes dest_bytes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1         70.54%    OK    245618      72356</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         17.15%    OK    102796      85164</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Display with png</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="http://www.rforge.net/png/" class="external-link">"png"</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -185,12 +185,12 @@ process used to generate the report is returned.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 1 file with size 100.4 Kb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Success for 1 file: Size now is 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/RtmpkE7Fdd</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/RtmpvAMTeF</span>.</span>
 <span class="r-in"><span><span class="fu">resmush_file</span><span class="op">(</span><span class="va">tmp_jpg</span>, qlty <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 1 file with size 100.4 Kb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Success for 1 file: Size now is 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/RtmpkE7Fdd</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/RtmpvAMTeF</span>.</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

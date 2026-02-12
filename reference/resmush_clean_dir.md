@@ -26,12 +26,11 @@ resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 
 - recursive:
 
-  Logical. Should the file search recurse into directories?
+  Logical. Should the files to be deleted recurse into directories?
 
 ## Value
 
-An [`invisible()`](https://rdrr.io/r/base/invisible.html) `NULL` value.
-Produces messages with information of the process.
+Nothing. Produce messages with information of the process.
 
 ## See also
 
@@ -47,6 +46,7 @@ Produces messages with information of the process.
 # Simple example
 
 png_file <- system.file("extimg/example.png", package = "resmush")
+
 
 # Copy to a temporary file with a given suffix
 suffix <- "_would_be_removed"
@@ -65,7 +65,7 @@ file.exists(tmp_png)
 
 # This won't remove it
 resmush_clean_dir(tempdir())
-#> ℹ No files to clean in /tmp/RtmpkE7Fdd with suffix "_resmush\\.".
+#> ℹ No files to clean in /tmp/RtmpvAMTeF with suffix "_resmush\\.".
 
 file.exists(tmp_png)
 #> [1] TRUE
@@ -73,7 +73,7 @@ file.exists(tmp_png)
 # Need suffix
 resmush_clean_dir(tempdir(), suffix = suffix)
 #> ℹ Would remove 1 file:
-#> → /tmp/RtmpkE7Fdd/example_would_be_removed.png
+#> → /tmp/RtmpvAMTeF/example_would_be_removed.png
 
 file.exists(tmp_png)
 #> [1] FALSE

@@ -1,18 +1,13 @@
 # Changelog
 
-## resmush (development version)
-
-- Minimum **R** version required is now 4.1.0.
-- Migrate documentation to Quarto.
-
 ## resmush 0.2.2
 
 CRAN release: 2026-01-12
 
 - Add
-  `httr2::req_headers(referer = "https://dieghernan.github.io/resmush/")`
+  `httr2::req_headers(referer = "https://dieghernan.github.io/resmush/" )`
   on the corresponding calls.
-- API calls now perform a dry run to ensure that the compressed file
+- API call now perform a dry run to ensure that the compressed file
   exists.
 
 ## resmush 0.2.1
@@ -25,7 +20,8 @@ CRAN release: 2024-12-18
 
 CRAN release: 2024-07-19
 
-- `webp` format is no longer supported by the API; removed from package.
+- `webp` format is not admitted any more by the API, remove from
+  package.
 
 ## resmush 0.1.1
 
@@ -44,10 +40,10 @@ CRAN release: 2024-02-02
   [`resmush_dir()`](https://dieghernan.github.io/resmush/reference/resmush_dir.md)
   and
   [`resmush_url()`](https://dieghernan.github.io/resmush/reference/resmush_url.md)
-  gain a new argument `overwrite`.
+  gain an new argument `overwrite`.
 - Changes in the API: New messages and use of progress bars with
   [`cli::cli_progress_bar()`](https://cli.r-lib.org/reference/cli_progress_bar.html).
-  These changes also affect the following:
+  These changes also affects the following:
   - New arguments `progress` and `report`.
   - Deprecated the `verbose` argument.
   - [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/reference/resmush_clean_dir.md)

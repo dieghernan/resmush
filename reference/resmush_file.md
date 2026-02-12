@@ -35,10 +35,10 @@ resmush_file(
 
 - suffix:
 
-  Character, defaults to `"_resmush"`. By default, a new file with this
-  `suffix` is created in the same directory as `file`. (i.e., optimized
+  Character, defaults to `"_resmush"`. By default, a new file with the
+  suffix is created in the same directory than `file`. (i.e., optimized
   `example.png` would be `example_resmush.png`). Values `""`, `NA` and
-  `NULL` would be the same as `overwrite = TRUE`.
+  `NULL` would be the same than `overwrite = TRUE`.
 
 - overwrite:
 
@@ -56,24 +56,23 @@ resmush_file(
 
 - qlty:
 
-  Only affects `jpg` files. Integer between `0` and `100` indicating the
-  optimization level. For optimal results use values above `90`.
+  Only affects `jpg` files. Integer between 0 and 100 indicating the
+  optimization level. For optimal results use vales above 90.
 
 - exif_preserve:
 
   Logical. Should the [Exif](https://en.wikipedia.org/wiki/Exif)
-  information (if any) be deleted? Default is to remove it (i.e.
+  information (if any) deleted? Default is to remove it (i.e.
   `exif_preserve = FALSE`).
 
 ## Value
 
 Writes on disk the optimized file if the API call is successful in the
-same directory as `file`.
+same directory than `file`.
 
 With the option `report = TRUE` a summary report is displayed in the
-console. In all cases, an
-([`invisible()`](https://rdrr.io/r/base/invisible.html)) data frame with
-a summary of the process used to generate the report is returned.
+console. In all cases, a (invisible) data frame with a summary of the
+process used for generate the report is returned.
 
 ## See also
 
@@ -103,7 +102,7 @@ resmush_file(tmp_png)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file with size 239.9 Kb
 #> ✔ Success for 1 file: Size now is 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-#> See result in directory /tmp/RtmpkE7Fdd.
+#> See result in directory /tmp/RtmpvAMTeF.
 
 # Several paths
 jpg_file <- system.file("extimg/example.jpg", package = "resmush")
@@ -115,24 +114,25 @@ file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 # Output summary in console
 summary <- resmush_file(c(tmp_png, tmp_jpg))
 #> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.4s] | ETA:  0s (2/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.3s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files with size 340.2 Kb
 #> ✔ Success for 2 files: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/RtmpkE7Fdd.
+#> See results in directory /tmp/RtmpvAMTeF.
 
 # Similar info in an (invisible) data frame as a result
 summary
 #>                                src_img
-#> 1 /tmp/RtmpkE7Fdd/file1c71507cd7d4.png
-#> 2 /tmp/RtmpkE7Fdd/file1c71409c4ae7.jpg
+#> 1 /tmp/RtmpvAMTeF/file1d317a34eebd.png
+#> 2 /tmp/RtmpvAMTeF/file1d3149925c81.jpg
 #>                                       dest_img src_size dest_size
-#> 1 /tmp/RtmpkE7Fdd/file1c71507cd7d4_resmush.png 239.9 Kb   70.7 Kb
-#> 2 /tmp/RtmpkE7Fdd/file1c71409c4ae7_resmush.jpg 100.4 Kb   83.2 Kb
+#> 1 /tmp/RtmpvAMTeF/file1d317a34eebd_resmush.png 239.9 Kb   70.7 Kb
+#> 2 /tmp/RtmpvAMTeF/file1d3149925c81_resmush.jpg 100.4 Kb   83.2 Kb
 #>   compress_ratio notes src_bytes dest_bytes
 #> 1         70.54%    OK    245618      72356
 #> 2         17.15%    OK    102796      85164
+
 
 # Display with png
 if (require("png", quietly = TRUE)) {
@@ -146,11 +146,11 @@ resmush_file(tmp_jpg)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file with size 100.4 Kb
 #> ✔ Success for 1 file: Size now is 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> See result in directory /tmp/RtmpkE7Fdd.
+#> See result in directory /tmp/RtmpvAMTeF.
 resmush_file(tmp_jpg, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file with size 100.4 Kb
 #> ✔ Success for 1 file: Size now is 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> See result in directory /tmp/RtmpkE7Fdd.
+#> See result in directory /tmp/RtmpvAMTeF.
 # }
 ```

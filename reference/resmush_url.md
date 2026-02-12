@@ -36,12 +36,12 @@ resmush_url(
 
 - outfile:
 
-  Path or paths where the optimized files would be stored in your disk.
+  Path or paths where the optimized files would be store in your disk.
   By default, temporary files (see
   [`tempfile()`](https://rdrr.io/r/base/tempfile.html)) with the same
-  [`basename()`](https://rdrr.io/r/base/basename.html) as the file
-  provided in `url` would be created. It should be of the same length as
-  `url` parameter.
+  [`basename()`](https://rdrr.io/r/base/basename.html) than the file
+  provided in `url` would be created. It should be of the same length
+  than `url` parameter.
 
 - overwrite:
 
@@ -60,23 +60,23 @@ resmush_url(
 
 - qlty:
 
-  Only affects `jpg` files. Integer between `0` and `100` indicating the
-  optimization level. For optimal results use values above `90`.
+  Only affects `jpg` files. Integer between 0 and 100 indicating the
+  optimization level. For optimal results use vales above 90.
 
 - exif_preserve:
 
   Logical. Should the [Exif](https://en.wikipedia.org/wiki/Exif)
-  information (if any) be deleted? Default is to remove it (i.e.
+  information (if any) deleted? Default is to remove it (i.e.
   `exif_preserve = FALSE`).
 
 ## Value
 
 Writes on disk the optimized file if the API call is successful. In all
-cases, an ([`invisible()`](https://rdrr.io/r/base/invisible.html)) data
-frame with a summary of the process is returned as well.
+cases, a (invisible) data frame with a summary of the process is
+returned as well.
 
 If any value of the vector `outfile` is duplicated, `resmush_url()`
-would rename the output with a suffix `_01, _02`, etc.
+would rename the output with a suffix `_01. _02`, etc.
 
 ## See also
 
@@ -99,19 +99,20 @@ resmush_url(png_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 url with size 239.9 Kb
 #> ✔ Success for 1 url: Size now is 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-#> See result in directory /tmp/RtmpkE7Fdd.
+#> See result in directory /tmp/RtmpvAMTeF.
 
 # Several urls
 jpg_url <- paste0(base_url, "/extimg/example.jpg")
 
+
 summary <- resmush_url(c(png_url, jpg_url))
 #> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 urls)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.4s] | ETA:  0s (2/2 urls)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1s] | ETA:  0s (2/2 urls)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 urls with size 340.2 Kb
 #> ✔ Success for 2 urls: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/RtmpkE7Fdd.
+#> See results in directory /tmp/RtmpvAMTeF.
 
 # Returns an (invisible) data frame with a summary of the process
 summary
@@ -119,8 +120,8 @@ summary
 #> 1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.png
 #> 2 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.jpg
 #>                         dest_img src_size dest_size compress_ratio notes
-#> 1 /tmp/RtmpkE7Fdd/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK
-#> 2    /tmp/RtmpkE7Fdd/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK
+#> 1 /tmp/RtmpvAMTeF/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK
+#> 2    /tmp/RtmpvAMTeF/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK
 #>   src_bytes dest_bytes
 #> 1    245618      72356
 #> 2    102796      85164
@@ -137,11 +138,11 @@ resmush_url(jpg_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 url with size 100.4 Kb
 #> ✔ Success for 1 url: Size now is 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> See result in directory /tmp/RtmpkE7Fdd.
+#> See result in directory /tmp/RtmpvAMTeF.
 resmush_url(jpg_url, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 url with size 100.4 Kb
 #> ✔ Success for 1 url: Size now is 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> See result in directory /tmp/RtmpkE7Fdd.
+#> See result in directory /tmp/RtmpvAMTeF.
 # }
 ```

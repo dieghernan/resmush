@@ -15,7 +15,7 @@ the  reSmush.it API."><meta property="og:image" content="https://dieghernan.gith
 
     <a class="navbar-brand me-2" href="../index.html"><img src="../apple-touch-icon.png" alt="resmush logo" height="34" width="34" class="d-inline-block me-1">resmush</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,7 @@ the  reSmush.it API."><meta property="og:image" content="https://dieghernan.gith
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Optimize files of several directories</h1>
-      <small class="dont-index">Source: <a href="https://github.com/dieghernan/resmush/blob/main/R/resmush_dir.R" class="external-link"><code>R/resmush_dir.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/dieghernan/resmush/blob/release/R/resmush_dir.R" class="external-link"><code>R/resmush_dir.R</code></a></small>
       <div class="d-none name"><code>resmush_dir.Rd</code></div>
     </div>
 
@@ -85,7 +85,7 @@ by the API.</p></dd>
 <dd><p>Character, defaults to <code>"_resmush"</code>. By default, a new file
 with the suffix is created in the same directory (i.e.,
 optimized <code>example.png</code> would be <code>example_resmush.png</code>). Values <code>""</code>, <code>NA</code>
-and <code>NULL</code> would be the same as <code>overwrite = TRUE</code>.</p></dd>
+and <code>NULL</code> would be the same than <code>overwrite = TRUE</code>.</p></dd>
 
 
 <dt id="arg-overwrite">overwrite<a class="anchor" aria-label="anchor" href="#arg-overwrite"></a></dt>
@@ -103,19 +103,18 @@ console. See also <strong>Value</strong>.</p></dd>
 
 
 <dt id="arg-recursive">recursive<a class="anchor" aria-label="anchor" href="#arg-recursive"></a></dt>
-<dd><p>Logical. Should the <code>dir</code> file search be recursive? See also
+<dd><p>Logical. Should the <code>dir</code> file search recursive? See also
 <code><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Arguments passed on to <code><a href="resmush_file.html">resmush_file</a></code></p><dl><dt><code>qlty</code></dt>
-<dd><p>Only affects <code>jpg</code> files. Integer between <code>0</code> and <code>100</code>
-indicating the optimization level. For optimal results use values above
-<code>90</code>.</p></dd>
+<dd><p>Only affects <code>jpg</code> files. Integer between 0 and 100 indicating
+the optimization level. For optimal results use vales above 90.</p></dd>
 
     <dt><code>exif_preserve</code></dt>
 <dd><p>Logical. Should the
-<a href="https://en.wikipedia.org/wiki/Exif" class="external-link">Exif</a> information (if any) be deleted?
+<a href="https://en.wikipedia.org/wiki/Exif" class="external-link">Exif</a> information (if any) deleted?
 Default is to remove it (i.e. <code>exif_preserve = FALSE</code>).</p></dd>
 
 
@@ -126,7 +125,7 @@ Default is to remove it (i.e. <code>exif_preserve = FALSE</code>).</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>Writes on disk the optimized file if the API call is successful in the
 directories specified in <code>dir</code>.</p>
-<p>In all cases, an (<code><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible()</a></code>) data frame with a summary of the process is
+<p>In all cases, a (invisible) data frame with a summary of the process is
 returned as well.</p>
     </div>
     <div class="section level2">
@@ -151,33 +150,34 @@ returned as well.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">dest_folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"extimg"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Non-recursive</span></span></span>
 <span class="r-in"><span><span class="fu">resmush_dir</span><span class="op">(</span><span class="va">dest_folder</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Resmushing 2 files</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■</span><span style="color: #555555;">□□□□□□□□□□□□□□□</span><span style="color: #00BB00;"> </span>  50% [2ms] | ETA:  0s (1/2 files)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [2.1s] | ETA:  0s (2/2 files)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [1.3s] | ETA:  0s (2/2 files)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 2 files with size 340.2 Kb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Success for 2 files: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See results in directory <span style="color: #0000BB;">/tmp/RtmpkE7Fdd/extimg</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> See results in directory <span style="color: #0000BB;">/tmp/RtmpvAMTeF/extimg</span>.</span>
 <span class="r-in"><span><span class="fu"><a href="resmush_clean_dir.html">resmush_clean_dir</a></span><span class="op">(</span><span class="va">dest_folder</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Would remove 2 files:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> → /tmp/RtmpkE7Fdd/extimg/example_resmush.jpg</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> → /tmp/RtmpkE7Fdd/extimg/example_resmush.png</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → /tmp/RtmpvAMTeF/extimg/example_resmush.jpg</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → /tmp/RtmpvAMTeF/extimg/example_resmush.png</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Recursive</span></span></span>
 <span class="r-in"><span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu">resmush_dir</span><span class="op">(</span><span class="va">dest_folder</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Resmushing 5 files</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■</span><span style="color: #555555;">□□□□□□□□□□□□</span><span style="color: #00BB00;"> </span>  60% [2.5s] | ETA:  2s (3/5 files)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [4.1s] | ETA:  0s (5/5 files)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■</span><span style="color: #555555;">□□□□□□□□□□□□</span><span style="color: #00BB00;"> </span>  60% [2s] | ETA:  1s (3/5 files)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [3.3s] | ETA:  0s (5/5 files)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 5 files with size 401.7 Kb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Success for 5 files: Size now is 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See results in directories <span style="color: #0000BB;">/tmp/RtmpkE7Fdd/extimg</span>,</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">/tmp/RtmpkE7Fdd/extimg/top1/nested</span>, <span style="color: #0000BB;">/tmp/RtmpkE7Fdd/extimg/top1</span>, and</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">/tmp/RtmpkE7Fdd/extimg/top2</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> See results in directories <span style="color: #0000BB;">/tmp/RtmpvAMTeF/extimg</span>,</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">/tmp/RtmpvAMTeF/extimg/top1/nested</span>, <span style="color: #0000BB;">/tmp/RtmpvAMTeF/extimg/top1</span>, and</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">/tmp/RtmpvAMTeF/extimg/top2</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Same info in the invisible df</span></span></span>
 <span class="r-in"><span><span class="va">summary</span><span class="op">[</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">]</span></span></span>

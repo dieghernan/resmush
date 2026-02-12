@@ -36,7 +36,7 @@ resmush_dir(
   Character, defaults to `"_resmush"`. By default, a new file with the
   suffix is created in the same directory (i.e., optimized `example.png`
   would be `example_resmush.png`). Values `""`, `NA` and `NULL` would be
-  the same as `overwrite = TRUE`.
+  the same than `overwrite = TRUE`.
 
 - overwrite:
 
@@ -54,7 +54,7 @@ resmush_dir(
 
 - recursive:
 
-  Logical. Should the `dir` file search be recursive? See also
+  Logical. Should the `dir` file search recursive? See also
   [`list.files()`](https://rdrr.io/r/base/list.files.html).
 
 - ...:
@@ -64,13 +64,13 @@ resmush_dir(
 
   `qlty`
 
-  :   Only affects `jpg` files. Integer between `0` and `100` indicating
-      the optimization level. For optimal results use values above `90`.
+  :   Only affects `jpg` files. Integer between 0 and 100 indicating the
+      optimization level. For optimal results use vales above 90.
 
   `exif_preserve`
 
   :   Logical. Should the [Exif](https://en.wikipedia.org/wiki/Exif)
-      information (if any) be deleted? Default is to remove it (i.e.
+      information (if any) deleted? Default is to remove it (i.e.
       `exif_preserve = FALSE`).
 
 ## Value
@@ -78,9 +78,8 @@ resmush_dir(
 Writes on disk the optimized file if the API call is successful in the
 directories specified in `dir`.
 
-In all cases, an
-([`invisible()`](https://rdrr.io/r/base/invisible.html)) data frame with
-a summary of the process is returned as well.
+In all cases, a (invisible) data frame with a summary of the process is
+returned as well.
 
 ## See also
 
@@ -108,33 +107,34 @@ file.copy(example_dir, temp_dir, recursive = TRUE)
 
 dest_folder <- file.path(tempdir(), "extimg")
 
+
 # Non-recursive
 resmush_dir(dest_folder)
 #> ℹ Resmushing 2 files
 #> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2.1s] | ETA:  0s (2/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.3s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files with size 340.2 Kb
 #> ✔ Success for 2 files: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/RtmpkE7Fdd/extimg.
+#> See results in directory /tmp/RtmpvAMTeF/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Would remove 2 files:
-#> → /tmp/RtmpkE7Fdd/extimg/example_resmush.jpg
-#> → /tmp/RtmpkE7Fdd/extimg/example_resmush.png
+#> → /tmp/RtmpvAMTeF/extimg/example_resmush.jpg
+#> → /tmp/RtmpvAMTeF/extimg/example_resmush.png
 
 # Recursive
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Resmushing 5 files
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [2.5s] | ETA:  2s (3/5 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [4.1s] | ETA:  0s (5/5 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [2s] | ETA:  1s (3/5 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.3s] | ETA:  0s (5/5 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files with size 401.7 Kb
 #> ✔ Success for 5 files: Size now is 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> See results in directories /tmp/RtmpkE7Fdd/extimg,
-#> /tmp/RtmpkE7Fdd/extimg/top1/nested, /tmp/RtmpkE7Fdd/extimg/top1, and
-#> /tmp/RtmpkE7Fdd/extimg/top2.
+#> See results in directories /tmp/RtmpvAMTeF/extimg,
+#> /tmp/RtmpvAMTeF/extimg/top1/nested, /tmp/RtmpvAMTeF/extimg/top1, and
+#> /tmp/RtmpvAMTeF/extimg/top2.
 
 # Same info in the invisible df
 summary[, -c(1, 2)]

@@ -23,26 +23,11 @@ Some of the features of **reSmush.it** include:
 
 ## Installation
 
-You can install the development version of **resmush** from
-[GitHub](https://github.com/) with:
+Install **resmush** from
+[**CRAN**](https://CRAN.R-project.org/package=resmush) with:
 
 ``` r
-# install.packages("pak")
-pak::pak("dieghernan/resmush")
-```
-
-Alternatively, install **resmush** using the
-[r-universe](https://dieghernan.r-universe.dev/resmush):
-
-``` r
-# Install resmush in R:
-install.packages(
-  "resmush",
-  repos = c(
-    "https://dieghernan.r-universe.dev",
-    "https://cloud.r-project.org"
-  )
-)
+install.packages("resmush")
 ```
 
 ## Example
@@ -73,8 +58,8 @@ file](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)](https:
 file](./reference/figures/jpg_example_compress.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 (b)
 
-Original picture (a): 178.7 Kb; Optimized picture (b): 45 Kb
-(Compression: 74.8%). Click to enlarge.
+Figure 1: Original picture *(a)*: 178.7 Kb; Optimized picture *(b)*: 45
+Kb (Compression: 74.8%). Click to enlarge.
 
 The compression quality for `jpg` files can be adjusted using the `qlty`
 argument. However, it is recommended to keep this value above 90 to
@@ -97,7 +82,7 @@ resmush_url(
 [![Low quality
 figure](reference/figures/jpg_example_compress_low.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
-Low quality image due to a high compression rate.
+Figure 2: Low quality image due to a high compression rate.
 
 All the functions return (invisibly) a dataset summarizing the process.
 The following example shows how this works when compressing a local
@@ -176,7 +161,7 @@ A BibTeX entry for LaTeX users is
   doi = {10.32614/CRAN.package.resmush},
   author = {Diego Hernangómez},
   year = {2026},
-  version = {0.2.2.9001},
+  version = {0.2.2},
   url = {https://dieghernan.github.io/resmush/},
   abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
 }
