@@ -32,3 +32,16 @@
 ^_pkgdown\.yml$
 ^[.]?air[.]toml$
 ^\.vscode$
+^jarl\.toml$
+/.quarto/
+[.]quarto_ipynb$
+^vignettes/\.quarto$
+^vignettes/articles/\.quarto$
+^vignettes/articles/*_files$
+^vignettes/articles$
+^vignettes/resmush\.qmd\.orig$
+^vignettes/*_files$
+^README\.qmd$
+^inst/README\.qmd$
+^README_files$
+^README\.html$

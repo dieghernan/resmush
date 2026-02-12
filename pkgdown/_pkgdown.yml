@@ -4,6 +4,12 @@ figures:
   dpi: 300
   fig.retina: 2
 
+development:
+  mode: auto
+
+repo:
+  branch: release
+
 template:
   bootstrap: 5
   package: gitdevr
@@ -11,15 +17,12 @@ template:
     ganalytics: G-57GZF8X6PD
   opengraph:
     twitter:
-      creator: '@dhernangomez'
+      creator: "@dhernangomez"
       card: summary_large_image
 
 authors:
   Diego Hernangómez:
     href: https://dieghernan.github.io/
-
-repo:
-  branch: main
 
 home:
   title: resmush | Optimize and Compress Image Files with reSmush.it
@@ -37,4 +40,3 @@ reference:
   - resmush_clean_dir
 - title: About the package
   contents: resmush-package
-

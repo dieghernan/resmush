@@ -11,7 +11,7 @@ URL: https://dieghernan.github.io/resmush/,
     https://github.com/dieghernan/resmush
 BugReports: https://github.com/dieghernan/resmush/issues
 Depends: 
-    R (>= 3.6.0)
+    R (>= 4.1.0)
 Imports:
     cli,
     curl,
@@ -22,10 +22,10 @@ Suggests:
     grid,
     knitr,
     png,
-    rmarkdown,
+    quarto,
     testthat (>= 3.0.0)
 VignetteBuilder: 
-    knitr
+    quarto
 Config/Needs/website: dieghernan/gitdevr, xfun, dplyr, tibble, devtools,
     remotes, pak
 Config/testthat/edition: 3
