@@ -45,3 +45,5 @@
 ^README\.html$
 ^vignettes/*_files$
 ^vignettes/resmush\.qmd\.orig$
+^\.quarto$
+^\./vignettes/resmush\.qmd\.orig$
