@@ -161,7 +161,7 @@
     "SystemRequirements": null
   },
   "keywords": ["r", "compress-images", "optimize-images", "resmushit", "api", "r-package", "cran", "cran-r"],
-  "fileSize": "678.168KB",
+  "fileSize": "677.982KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -182,6 +182,6 @@
   ],
   "releaseNotes": "https://github.com/dieghernan/resmush/blob/main/NEWS.md",
   "readme": "https://github.com/dieghernan/resmush/blob/main/README.md",
-  "contIntegration": ["https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml", "https://github.com/dieghernan/resmush/actions/workflows/rhub.yaml", "https://app.codecov.io/gh/dieghernan/resmush"],
+  "contIntegration": ["https://github.com/dieghernan/resmush/actions/workflows/check-full.yml", "https://app.codecov.io/gh/dieghernan/resmush"],
   "developmentStatus": "https://www.repostatus.org/#active"
 }

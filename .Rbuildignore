@@ -46,4 +46,5 @@
 ^vignettes/*_files$
 ^vignettes/resmush\.qmd\.orig$
 ^\.quarto$
-^\./vignettes/resmush\.qmd\.orig$
+^vignettes/_quarto\.yaml$
+^vignettes/_quarto\.yml$
