@@ -112,31 +112,30 @@ dest_folder <- file.path(tempdir(), "extimg")
 resmush_dir(dest_folder)
 #> ℹ Resmushing 2 files
 #> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2.1s] | ETA:  0s (2/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.7s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files with size 340.2 Kb
 #> ✔ Success for 2 files: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/RtmpH18w7E/extimg.
+#> See results in directory /tmp/RtmpKvW53V/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Would remove 2 files:
-#> → /tmp/RtmpH18w7E/extimg/example_resmush.jpg
-#> → /tmp/RtmpH18w7E/extimg/example_resmush.png
+#> → /tmp/RtmpKvW53V/extimg/example_resmush.jpg
+#> → /tmp/RtmpKvW53V/extimg/example_resmush.png
 
 # Recursive
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Resmushing 5 files
 #> 🕐  Go! | ■■■■■■■□□□□□□□□□□□□□□□□□□□□□□□□   20% [1ms] | ETA:  0s (1/5 files)
-#> 🕑  Go! | ■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□   40% [1.5s] | ETA:  2s (2/5 files)
-#> 🕒  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■□□□□□□   80% [4.7s] | ETA:  1s (4/5 files)
-#> 🕒  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [6.6s] | ETA:  0s (5/5 files)
+#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [2s] | ETA:  1s (3/5 files)
+#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.3s] | ETA:  0s (5/5 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files with size 401.7 Kb
 #> ✔ Success for 5 files: Size now is 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> See results in directories /tmp/RtmpH18w7E/extimg,
-#> /tmp/RtmpH18w7E/extimg/top1/nested, /tmp/RtmpH18w7E/extimg/top1, and
-#> /tmp/RtmpH18w7E/extimg/top2.
+#> See results in directories /tmp/RtmpKvW53V/extimg,
+#> /tmp/RtmpKvW53V/extimg/top1/nested, /tmp/RtmpKvW53V/extimg/top1, and
+#> /tmp/RtmpKvW53V/extimg/top2.
 
 # Same info in the invisible df
 summary[, -c(1, 2)]
