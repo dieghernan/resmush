@@ -112,30 +112,30 @@ dest_folder <- file.path(tempdir(), "extimg")
 resmush_dir(dest_folder)
 #> ℹ Resmushing 2 files
 #> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [3ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.8s] | ETA:  0s (2/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.9s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files with size 340.2 Kb
 #> ✔ Success for 2 files: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/RtmpKy9JjX/extimg.
+#> See results in directory /tmp/Rtmpdlap4h/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Would remove 2 files:
-#> → /tmp/RtmpKy9JjX/extimg/example_resmush.jpg
-#> → /tmp/RtmpKy9JjX/extimg/example_resmush.png
+#> → /tmp/Rtmpdlap4h/extimg/example_resmush.jpg
+#> → /tmp/Rtmpdlap4h/extimg/example_resmush.png
 
 # Recursive
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Resmushing 5 files
-#> 🕐  Go! | ■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□   40% [1.3s] | ETA:  2s (2/5 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□   40% [1.4s] | ETA:  2s (2/5 files)
 #> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■□□□□□□   80% [3.8s] | ETA:  1s (4/5 files)
-#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [4.5s] | ETA:  0s (5/5 files)
+#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [4.8s] | ETA:  0s (5/5 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files with size 401.7 Kb
 #> ✔ Success for 5 files: Size now is 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> See results in directories /tmp/RtmpKy9JjX/extimg,
-#> /tmp/RtmpKy9JjX/extimg/top1/nested, /tmp/RtmpKy9JjX/extimg/top1, and
-#> /tmp/RtmpKy9JjX/extimg/top2.
+#> See results in directories /tmp/Rtmpdlap4h/extimg,
+#> /tmp/Rtmpdlap4h/extimg/top1/nested, /tmp/Rtmpdlap4h/extimg/top1, and
+#> /tmp/Rtmpdlap4h/extimg/top2.
 
 # Same info in the invisible df
 summary[, -c(1, 2)]

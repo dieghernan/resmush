@@ -142,19 +142,19 @@ rename the output with a suffix <code>_01, _02</code>, etc.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 1 url with size 239.9 Kb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Success for 1 url: Size now is 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/RtmpKy9JjX</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/Rtmpdlap4h</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Several urls</span></span></span>
 <span class="r-in"><span><span class="va">jpg_url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">base_url</span>, <span class="st">"/extimg/example.jpg"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu">resmush_url</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">png_url</span>, <span class="va">jpg_url</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■</span><span style="color: #555555;">□□□□□□□□□□□□□□□</span><span style="color: #00BB00;"> </span>  50% [1ms] | ETA:  0s (1/2 urls)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [913ms] | ETA:  0s (2/2 urls)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [1.4s] | ETA:  0s (2/2 urls)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 2 urls with size 340.2 Kb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Success for 2 urls: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See results in directory <span style="color: #0000BB;">/tmp/RtmpKy9JjX</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> See results in directory <span style="color: #0000BB;">/tmp/Rtmpdlap4h</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Returns an (invisible) data frame with a summary of the process</span></span></span>
 <span class="r-in"><span><span class="va">summary</span></span></span>
@@ -162,8 +162,8 @@ rename the output with a suffix <code>_01, _02</code>, etc.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.png</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.jpg</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         dest_img src_size dest_size compress_ratio notes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/RtmpKy9JjX/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    /tmp/RtmpKy9JjX/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/Rtmpdlap4h/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    /tmp/Rtmpdlap4h/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   src_bytes dest_bytes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    245618      72356</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    102796      85164</span>
@@ -180,12 +180,12 @@ rename the output with a suffix <code>_01, _02</code>, etc.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 1 url with size 100.4 Kb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Success for 1 url: Size now is 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/RtmpKy9JjX</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/Rtmpdlap4h</span>.</span>
 <span class="r-in"><span><span class="fu">resmush_url</span><span class="op">(</span><span class="va">jpg_url</span>, qlty <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 1 url with size 100.4 Kb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Success for 1 url: Size now is 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/RtmpKy9JjX</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/Rtmpdlap4h</span>.</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
