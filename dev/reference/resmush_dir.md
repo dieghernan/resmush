@@ -111,31 +111,30 @@ dest_folder <- file.path(tempdir(), "extimg")
 # Non-recursive
 resmush_dir(dest_folder)
 #> ℹ Resmushing 2 files
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [3ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.6s] | ETA:  0s (2/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2.2s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files with size 340.2 Kb
 #> ✔ Success for 2 files: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/Rtmpo6z4C0/extimg.
+#> See results in directory /tmp/RtmpFcfLO2/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Would remove 2 files:
-#> → /tmp/Rtmpo6z4C0/extimg/example_resmush.jpg
-#> → /tmp/Rtmpo6z4C0/extimg/example_resmush.png
+#> → /tmp/RtmpFcfLO2/extimg/example_resmush.jpg
+#> → /tmp/RtmpFcfLO2/extimg/example_resmush.png
 
 # Recursive
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Resmushing 5 files
-#> 🕐  Go! | ■■■■■■■□□□□□□□□□□□□□□□□□□□□□□□□   20% [1ms] | ETA:  0s (1/5 files)
-#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■□□□□□□   80% [2.7s] | ETA:  1s (4/5 files)
-#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.3s] | ETA:  0s (5/5 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□   40% [1.1s] | ETA:  2s (2/5 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.7s] | ETA:  0s (5/5 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files with size 401.7 Kb
 #> ✔ Success for 5 files: Size now is 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> See results in directories /tmp/Rtmpo6z4C0/extimg,
-#> /tmp/Rtmpo6z4C0/extimg/top1/nested, /tmp/Rtmpo6z4C0/extimg/top1, and
-#> /tmp/Rtmpo6z4C0/extimg/top2.
+#> See results in directories /tmp/RtmpFcfLO2/extimg,
+#> /tmp/RtmpFcfLO2/extimg/top1/nested, /tmp/RtmpFcfLO2/extimg/top1, and
+#> /tmp/RtmpFcfLO2/extimg/top2.
 
 # Same info in the invisible df
 summary[, -c(1, 2)]
