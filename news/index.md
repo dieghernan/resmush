@@ -2,6 +2,8 @@
 
 ## resmush 1.0.0
 
+CRAN release: 2026-03-14
+
 - Bumped the major version to indicate the package has reached a mature
   development state.
 - Minimum R version required: 4.1.0.
