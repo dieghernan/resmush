@@ -10,7 +10,6 @@ make_pretty_size <- function(x) {
   pretty_size
 }
 
-
 #' Add suffix to base name
 #'
 #' @param x A character

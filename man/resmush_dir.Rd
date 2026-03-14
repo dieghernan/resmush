@@ -55,7 +55,7 @@ Default is to remove it (i.e. \code{exif_preserve = FALSE}).}
 Writes on disk the optimized file if the API call is successful in the
 directories specified in \code{dir}.
 
-In all cases, an (\code{\link[=invisible]{invisible()}}) data frame with a summary of the process is
+In all cases, an \code{\link[=invisible]{invisible()}} data frame with a summary of the process is
 returned as well.
 }
 \description{

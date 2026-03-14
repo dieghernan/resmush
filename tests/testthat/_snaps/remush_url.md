@@ -28,7 +28,7 @@
       i Input: 1 url with size 0 bytes
       x Failed for 1 url:
       ! <https://raw.githubusercontent.com/dieghernan/resmush/main/inst/extimg/example.png>:
-        API Not responding, check https://resmush.it/status}.
+        API not responding, check https://resmush.it/status.
 
 ---
 
@@ -39,8 +39,8 @@
       1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst/extimg/example.png
         dest_img src_size dest_size compress_ratio
       1       NA       NA        NA             NA
-                                                       notes src_bytes dest_bytes
-      1 API Not responding, check https://resmush.it/status}        NA         NA
+                                                      notes src_bytes dest_bytes
+      1 API not responding, check https://resmush.it/status        NA         NA
 
 # Test not url
 

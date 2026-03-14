@@ -17,7 +17,7 @@ argument.}
 directories?}
 }
 \value{
-An \code{\link[=invisible]{invisible()}} \code{NULL} value. Produces messages with information of the
+An \code{\link[=invisible]{invisible()}} \code{NULL} value. Produces messages with information about the
 process.
 }
 \description{

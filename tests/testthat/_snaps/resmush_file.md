@@ -13,16 +13,16 @@
     Output
         dest_img dest_size compress_ratio
       1       NA        NA             NA
-                                                       notes dest_bytes
-      1 API Not responding, check https://resmush.it/status}         NA
+                                                      notes dest_bytes
+      1 API not responding, check https://resmush.it/status         NA
 
 # Test not provided file
 
     Code
       dm[, -1]
     Output
-        dest_img src_size dest_size compress_ratio                      notes
-      1       NA       NA        NA             NA Local file does not exists
+        dest_img src_size dest_size compress_ratio                     notes
+      1       NA       NA        NA             NA Local file does not exist
         src_bytes dest_bytes
       1        NA         NA
 

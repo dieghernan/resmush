@@ -3,7 +3,6 @@
 # No url
 turl <- "https://dieghernan.github.io/aaabbbccc.png"
 
-
 # Not valid
 notval <- paste0(
   "https://raw.githubusercontent.com/",

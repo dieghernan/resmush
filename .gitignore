@@ -26,8 +26,6 @@ Rplots.pdf
 .DS_Store
 .quarto
 docs
-dev
-dev/
 docs/
 inst/doc
 /doc/
@@ -37,3 +35,6 @@ inst/doc
 README_files/
 README.html
 **/.quarto/
+index_files/
+*index.html
+pkgdown/*_files

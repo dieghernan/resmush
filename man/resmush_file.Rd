@@ -51,8 +51,8 @@ Default is to remove it (i.e. \code{exif_preserve = FALSE}).}
 Writes on disk the optimized file if the API call is successful in the
 same directory as \code{file}.
 
-With the option \code{report = TRUE} a summary report is displayed in the
-console. In all cases, an (\code{invisible()}) data frame with a summary of the
+With the option \code{report = TRUE}, a summary report is displayed in the
+console. In all cases, an \code{\link[=invisible]{invisible()}} data frame with a summary of the
 process used to generate the report is returned.
 }
 \description{

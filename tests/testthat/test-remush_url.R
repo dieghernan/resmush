@@ -50,7 +50,6 @@ test_that("Test corner", {
   unlink(file.path(tempdir(), basename(dm$src_img)))
 })
 
-
 test_that("Test not url", {
   skip_on_cran()
   skip_if_offline()
@@ -197,7 +196,6 @@ test_that("Test qlty par with jpg", {
 
   expect_lt(out2s, outs)
 })
-
 
 test_that("Test errors in lengths", {
   skip_on_cran()

@@ -127,8 +127,8 @@ width="100%"}](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg
 width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 <small class="caption fst-italic">(b)</small>
 
-<figcaption>Figure 1: Original picture <em>(a)</em>: 178.7 Kb; Optimized picture
-<em>(b)</em>: 45 Kb (Compression: 74.8%). Click to enlarge.</figcaption>
+<figcaption>Figure 1: Original picture <em>(a)</em>: 178.7 KB; Optimized picture
+<em>(b)</em>: 45 KB (Compression: 74.8%). Click to enlarge.</figcaption>
 :::
 
 The compression quality for `jpg` files can be adjusted using the `qlty`
@@ -151,8 +151,8 @@ resmush_url(
 [![](man/figures/jpg_example_compress_low.jpg){alt="Low quality figure"
 width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
-<figcaption>Figure 2: Low quality image due to a high compression
-rate.</figcaption>
+<figcaption>Figure 2: Low-quality image due to high compression
+(`qlty = 3`).</figcaption>
 :::
 
 All the functions return (invisibly) a dataset summarizing the process. The
@@ -187,7 +187,7 @@ Several other **R** packages also provide image optimization tools:
     `xfun::optipng()` but with more options. Requires additional local software.
 
 | tool | CRAN | Additional software? | Online? | API Key? | Limits? |
-|--------------|--------------|--------------|--------------|--------------|--------------|
+|----|----|----|----|----|----|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | No |
 | **tinieR** | No | No | Yes | Yes | 500 files/month (free tier) |

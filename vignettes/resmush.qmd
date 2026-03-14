@@ -59,7 +59,7 @@ width="100%"}](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg
 alt="Optimized file"
 width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 
-Original picture @fig-orig: 178.7 Kb; Optimized picture @fig-new: 45 Kb
+Original picture @fig-orig: 178.7 KB; Optimized picture @fig-new: 45 KB
 (Compression: 74.8%). Click to enlarge.
 :::
 
@@ -85,7 +85,7 @@ resmush_url(
 ::: {#fig-compresslow}
 [![](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg){width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
-Low quality image due to a high compression rate, compare with @fig-new.
+Low-quality image due to high compression (`qlty = 3`), compared with @fig-new.
 :::
 
 All the functions return (invisibly) a dataset summarizing the process. The
@@ -126,7 +126,7 @@ Several other **R** packages also provide image optimization tools:
 
 ::: {#tbl-opts}
 | tool | CRAN | Additional software? | Online? | API Key? | Limits? |
-|----|----|----|----|----|----|
+|--------------|--------------|--------------|--------------|--------------|--------------|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | No |
 | **tinieR** | No | No | Yes | Yes | 500 files/month (free tier) |

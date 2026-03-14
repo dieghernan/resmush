@@ -52,7 +52,6 @@ test_that("gif", {
   unlink(c(dm$dest_img, dm$src_img), force = TRUE)
 })
 
-
 test_that("bmp", {
   skip_on_cran()
   skip_if_offline()

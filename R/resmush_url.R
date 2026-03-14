@@ -25,7 +25,7 @@
 #'
 #' @return
 #' Writes on disk the optimized file if the API call is successful.
-#' In all cases, an ([invisible()]) data frame with a summary of the process is
+#' In all cases, an [invisible()] data frame with a summary of the process is
 #' returned as well.
 #'
 #' If any value of the vector `outfile` is duplicated, `resmush_url()` would
@@ -157,7 +157,6 @@ resmush_url <- function(
   invisible(res_df)
 }
 
-
 resmush_url_single <- function(
   url,
   outfile = file.path(tempdir(), basename(url)),
@@ -205,7 +204,7 @@ resmush_url_single <- function(
 
   # nocov start
   if (!"dest" %in% names(res_get)) {
-    res$notes <- "API Not responding, check https://resmush.it/status}"
+    res$notes <- "API not responding, check https://resmush.it/status"
     return(invisible(res))
   }
   # nocov end
@@ -240,7 +239,7 @@ resmush_url_single <- function(
   # Internal option, for checking purposes only
   test_corner <- getOption("resmush_test_corner", FALSE)
   if (any(httr2::resp_status(dwn_opt) != 200, test_corner)) {
-    res$notes <- "API Not responding, check https://resmush.it/status}"
+    res$notes <- "API not responding, check https://resmush.it/status"
     return(invisible(res))
   }
 
@@ -266,7 +265,6 @@ resmush_url_single <- function(
 
   invisible(res)
 }
-
 
 # Helper function for retrying the call
 # Useful for some cases e.g imgur

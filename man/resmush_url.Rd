@@ -50,7 +50,7 @@ Default is to remove it (i.e. \code{exif_preserve = FALSE}).}
 }
 \value{
 Writes on disk the optimized file if the API call is successful.
-In all cases, an (\code{\link[=invisible]{invisible()}}) data frame with a summary of the process is
+In all cases, an \code{\link[=invisible]{invisible()}} data frame with a summary of the process is
 returned as well.
 
 If any value of the vector \code{outfile} is duplicated, \code{resmush_url()} would

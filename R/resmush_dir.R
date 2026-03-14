@@ -24,7 +24,7 @@
 #' Writes on disk the optimized file if the API call is successful in the
 #' directories specified in `dir`.
 #'
-#' In all cases, an ([invisible()]) data frame with a summary of the process is
+#' In all cases, an [invisible()] data frame with a summary of the process is
 #' returned as well.
 #'
 #' @seealso

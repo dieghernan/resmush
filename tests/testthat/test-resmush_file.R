@@ -115,7 +115,6 @@ test_that("Test default opts with png", {
   unlink(test_dir, recursive = TRUE, force = TRUE)
 })
 
-
 test_that("Test opts with png", {
   skip_on_cran()
   skip_if_offline()

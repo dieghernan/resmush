@@ -119,8 +119,8 @@ alt="Optimized file" />](https://dieghernan.github.io/resmush/reference/figures/
 
 <figcaption>
 
-Figure 1: Original picture <em>(a)</em>: 178.7 Kb; Optimized picture
-<em>(b)</em>: 45 Kb (Compression: 74.8%). Click to enlarge.
+Figure 1: Original picture <em>(a)</em>: 178.7 KB; Optimized picture
+<em>(b)</em>: 45 KB (Compression: 74.8%). Click to enlarge.
 </figcaption>
 
 </div>
@@ -150,7 +150,7 @@ alt="Low quality figure" />](https://dieghernan.github.io/resmush/reference/figu
 
 <figcaption>
 
-Figure 2: Low quality image due to a high compression rate.
+Figure 2: Low-quality image due to high compression (`qlty = 3`).
 </figcaption>
 
 </div>
@@ -236,7 +236,7 @@ A BibTeX entry for LaTeX users is
       doi = {10.32614/CRAN.package.resmush},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {0.2.2.9001},
+      version = {1.0.0},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
     }

@@ -31,8 +31,8 @@
 #' Writes on disk the optimized file if the API call is successful in the
 #' same directory as `file`.
 #'
-#' With the option `report = TRUE` a summary report is displayed in the
-#' console. In all cases, an (`invisible()`) data frame with a summary of the
+#' With the option `report = TRUE`, a summary report is displayed in the
+#' console. In all cases, an [invisible()] data frame with a summary of the
 #' process used to generate the report is returned.
 #'
 #' @seealso
@@ -187,7 +187,7 @@ resmush_file_single <- function(
   }
   # Check if file
   if (!file.exists(file)) {
-    res$notes <- "Local file does not exists"
+    res$notes <- "Local file does not exist"
     return(invisible(res))
   }
 
@@ -208,7 +208,7 @@ resmush_file_single <- function(
 
   # nocov start
   if (!"dest" %in% names(res_post)) {
-    res$notes <- "API Not responding, check https://resmush.it/status}"
+    res$notes <- "API not responding, check https://resmush.it/status"
     return(invisible(res))
   }
   # nocov end
@@ -242,7 +242,7 @@ resmush_file_single <- function(
   # Internal option, for checking purposes only
   test_corner <- getOption("resmush_test_corner", FALSE)
   if (any(httr2::resp_status(dwn_opt) != 200, test_corner)) {
-    res$notes <- "API Not responding, check https://resmush.it/status}"
+    res$notes <- "API not responding, check https://resmush.it/status"
     return(invisible(res))
   }
 
@@ -260,7 +260,6 @@ resmush_file_single <- function(
 
   invisible(res)
 }
-
 
 # Helper function for retrying the call
 smush_from_local <- function(path, qlty, exif_preserve = TRUE) {

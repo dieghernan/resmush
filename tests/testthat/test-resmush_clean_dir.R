@@ -21,7 +21,6 @@ test_that("Message when no files", {
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
-
 test_that("Message with 1 file", {
   png_file <- system.file("extimg/example.png", package = "resmush")
 

@@ -73,7 +73,6 @@ test_that("Testing regex several with suffix", {
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
-
 test_that("Testing nested dirs", {
   skip_on_cran()
   skip_if_offline()
@@ -133,7 +132,6 @@ test_that("Testing nested dirs", {
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
-
 test_that("Testing separated dirs", {
   skip_on_cran()
   skip_if_offline()
@@ -189,7 +187,6 @@ test_that("Testing separated dirs", {
 
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
-
 
 test_that("Overwrite ignore suffix", {
   skip_on_cran()

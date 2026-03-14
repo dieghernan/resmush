@@ -14,7 +14,7 @@
 #'   directories?
 #'
 #' @return
-#' An [invisible()] `NULL` value. Produces messages with information of the
+#' An [invisible()] `NULL` value. Produces messages with information about the
 #' process.
 #'
 #' @seealso

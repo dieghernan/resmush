@@ -45,7 +45,6 @@ test_that("jpg", {
   unlink(yes_exif$dest_img, force = TRUE)
 })
 
-
 test_that("png", {
   skip_on_cran()
   skip_if_offline()
@@ -88,7 +87,6 @@ test_that("gif", {
   expect_silent(dm <- resmush_url(url, report = FALSE))
   unlink(dm$dest_img)
 })
-
 
 test_that("bmp", {
   skip_on_cran()
