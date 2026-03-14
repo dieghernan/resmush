@@ -47,8 +47,8 @@ file](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compres
 
 \(b\)
 
-Figure 1: Original picture [Figure 1 (a)](#fig-orig): 178.7 Kb;
-Optimized picture [Figure 1 (b)](#fig-new): 45 Kb (Compression: 74.8%).
+Figure 1: Original picture [Figure 1 (a)](#fig-orig): 178.7 KB;
+Optimized picture [Figure 1 (b)](#fig-new): 45 KB (Compression: 74.8%).
 Click to enlarge.
 
 The compression quality for `jpg` files can be adjusted using the `qlty`
@@ -71,8 +71,8 @@ resmush_url(
 
 [![](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
-Figure 2: Low quality image due to a high compression rate, compare with
-[Figure 1 (b)](#fig-new).
+Figure 2: Low-quality image due to high compression (`qlty = 3`),
+compared with [Figure 1 (b)](#fig-new).
 
 All the functions return (invisibly) a dataset summarizing the process.
 The following example shows how this works when compressing a local
