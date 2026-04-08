@@ -41,7 +41,7 @@ console. See also \strong{Value}.}
 \code{\link[=list.files]{list.files()}}.}
 
 \item{...}{
-  Arguments passed on to \code{\link[=resmush_file]{resmush_file}}
+  Arguments passed on to \code{\link{resmush_file}}
   \describe{
     \item{\code{qlty}}{Only affects \code{jpg} files. Integer between \code{0} and \code{100}
 indicating the optimization level. For optimal results use values above
@@ -102,7 +102,7 @@ unlink(dest_folder, force = TRUE, recursive = TRUE)
 See \code{\link[=resmush_clean_dir]{resmush_clean_dir()}} to clean a directory of previous runs.
 
 Other functions for optimizing:
-\code{\link{resmush_file}()},
-\code{\link{resmush_url}()}
+\code{\link[=resmush_file]{resmush_file()}},
+\code{\link[=resmush_url]{resmush_url()}}
 }
 \concept{optimize}

@@ -146,12 +146,13 @@ references:
   title: png
   abstract: 'png: Read and write PNG images'
   notes: Suggests
-  url: http://www.rforge.net/png/
+  url: https://www.rforge.net/png/
   repository: https://CRAN.R-project.org/package=png
   authors:
   - family-names: Urbanek
     given-names: Simon
     email: Simon.Urbanek@r-project.org
+    orcid: https://orcid.org/0000-0003-2297-1732
   year: '2026'
   doi: 10.32614/CRAN.package.png
 - type: software

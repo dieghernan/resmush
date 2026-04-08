@@ -101,7 +101,7 @@ resmush_file(tmp_jpg, qlty = 10)
 See \code{\link[=resmush_clean_dir]{resmush_clean_dir()}} to clean a directory of previous runs.
 
 Other functions for optimizing:
-\code{\link{resmush_dir}()},
-\code{\link{resmush_url}()}
+\code{\link[=resmush_dir]{resmush_dir()}},
+\code{\link[=resmush_url]{resmush_url()}}
 }
 \concept{optimize}
