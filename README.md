@@ -225,7 +225,7 @@ Table 2: <strong>R</strong> packages: Supported formats.
 
 Hernangómez D (2026). <em>resmush: Optimize and Compress Image Files
 with reSmush.it</em>.
-<a href="https://doi.org/10.32614/CRAN.package.resmush">doi:10.32614/CRAN.package.resmush</a>,
+<a href="https://doi.org/10.32614/CRAN.package.resmush">doi:10.32614/CRAN.package.resmush</a>.
 <a href="https://dieghernan.github.io/resmush/">https://dieghernan.github.io/resmush/</a>.
 </p>
 
