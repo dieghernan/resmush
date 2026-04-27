@@ -123,8 +123,8 @@ Several other **R** packages also provide image optimization tools:
 | **optout**                                                     | No   | Yes                  | No      | No       | No                          |
 | **resmush**                                                    | Yes  | No                   | Yes     | No       | Max size 5 MB               |
 
-Table 1: Table 1: **R** packages: Comparison of alternatives for
-optimizing images.
+Table 1: **R** packages: Comparison of alternatives for optimizing
+images.
 
 | tool                                                           | png | jpg | gif | bmp | tiff | webp | pdf |
 |----------------------------------------------------------------|-----|-----|-----|-----|------|------|-----|
@@ -134,7 +134,7 @@ optimizing images.
 | **optout**                                                     | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
 | **resmush**                                                    | ✅  | ✅  | ✅  | ✅  | ✅   | ❌   | ❌  |
 
-Table 2: Table 2: **R** packages: Supported formats.
+Table 2: **R** packages: Supported formats.
 
 ## References
 
