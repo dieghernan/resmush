@@ -13,7 +13,7 @@ Several ways to optimize images with <https://resmush.it/>.
 
 ## Helper functions
 
-Helpers included in the package
+Helpers included in the package.
 
 - [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/reference/resmush_clean_dir.md)
   :
