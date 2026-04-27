@@ -150,7 +150,7 @@ Table 2: **R** packages: Supported formats.
 
 Hernangómez D (2026). *resmush: Optimize and Compress Image Files with
 reSmush.it*.
-[doi:10.32614/CRAN.package.resmush](https://doi.org/10.32614/CRAN.package.resmush),
+[doi:10.32614/CRAN.package.resmush](https://doi.org/10.32614/CRAN.package.resmush).
 <https://dieghernan.github.io/resmush/>.
 
 A BibTeX entry for LaTeX users is

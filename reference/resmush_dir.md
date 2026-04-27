@@ -110,30 +110,30 @@ dest_folder <- file.path(tempdir(), "extimg")
 # Non-recursive
 resmush_dir(dest_folder)
 #> ℹ Resmushing 2 files
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.8s] | ETA:  0s (2/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [3ms] | ETA:  0s (1/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.4s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files with size 340.2 Kb
 #> ✔ Success for 2 files: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/RtmptzNfZX/extimg.
+#> See results in directory /tmp/Rtmpa2sOft/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Would remove 2 files:
-#> → /tmp/RtmptzNfZX/extimg/example_resmush.jpg
-#> → /tmp/RtmptzNfZX/extimg/example_resmush.png
+#> → /tmp/Rtmpa2sOft/extimg/example_resmush.jpg
+#> → /tmp/Rtmpa2sOft/extimg/example_resmush.png
 
 # Recursive
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Resmushing 5 files
-#> 🕐  Go! | ■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□   40% [883ms] | ETA:  1s (2/5 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.7s] | ETA:  0s (5/5 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□   40% [1.9s] | ETA:  3s (2/5 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.9s] | ETA:  0s (5/5 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files with size 401.7 Kb
 #> ✔ Success for 5 files: Size now is 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> See results in directories /tmp/RtmptzNfZX/extimg,
-#> /tmp/RtmptzNfZX/extimg/top1/nested, /tmp/RtmptzNfZX/extimg/top1, and
-#> /tmp/RtmptzNfZX/extimg/top2.
+#> See results in directories /tmp/Rtmpa2sOft/extimg,
+#> /tmp/Rtmpa2sOft/extimg/top1/nested, /tmp/Rtmpa2sOft/extimg/top1, and
+#> /tmp/Rtmpa2sOft/extimg/top2.
 
 # Same info in the invisible df
 summary[, -c(1, 2)]
