@@ -47,8 +47,8 @@ console. See also \strong{Value}.}
 indicating the optimization level. For optimal results use values above
 \code{90}.}
     \item{\code{exif_preserve}}{Logical. Should the
-\href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) be deleted?
-Default is to remove it (i.e. \code{exif_preserve = FALSE}).}
+\href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) be
+preserved? Default is \code{FALSE} (i.e., remove it).}
   }}
 }
 \value{

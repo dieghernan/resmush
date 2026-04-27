@@ -34,7 +34,7 @@ reference:
   desc: Several ways to optimize images with <https://resmush.it/>.
   contents: has_concept("optimize")
 - title: Helper functions
-  desc: Helpers included in the package
+  desc: Helpers included in the package.
   contents:
   - has_concept("helpers")
   - resmush_clean_dir

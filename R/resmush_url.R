@@ -111,7 +111,7 @@ resmush_url <- function(
     )
   }
 
-  # Call single with loop, cli::cli_progress_bar does not work on applys yet
+  # Call single with loop, cli::cli_progress_bar does not work on applies yet
   res_df <- NULL
 
   for (i in n_seq) {
@@ -167,7 +167,7 @@ resmush_url_single <- function(
   # Avoid duplicates if requested
   outfile <- make_unique_paths(outfile, overwrite)
 
-  # Create dir if it doesn't exists
+  # Create dir if it doesn't exist
   the_dir <- dirname(outfile)
   if (!dir.exists(the_dir)) {
     dir.create(the_dir, recursive = TRUE)

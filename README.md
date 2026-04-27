@@ -202,8 +202,8 @@ Several other **R** packages also provide image optimization tools:
 
 <p class="caption">
 
-Table 1: <strong>R</strong> packages: Comparison of alternatives for
-optimizing images.
+Table 1: **R** packages: Comparison of alternatives for optimizing
+images.
 </p>
 
 | tool              | png | jpg | gif | bmp | tiff | webp | pdf |
@@ -216,7 +216,7 @@ optimizing images.
 
 <p class="caption">
 
-Table 2: <strong>R</strong> packages: Supported formats.
+Table 2: **R** packages: Supported formats.
 </p>
 
 ## Citation

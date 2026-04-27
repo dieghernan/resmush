@@ -199,7 +199,7 @@ Several other **R** packages also provide image optimization tools:
 #| results: asis
 cat(
   paste0(
-    "<p class=\"caption\">Table 1: <strong>R</strong> packages: ",
+    "<p class=\"caption\">Table 1: **R** packages: ",
     "Comparison of alternatives for optimizing images.</p>"
   )
 )
@@ -219,7 +219,7 @@ cat(
 cat(
   paste0(
     "<p class=\"caption\">Table 2: ",
-    "<strong>R</strong> packages: Supported formats.</p>"
+    "**R** packages: Supported formats.</p>"
   )
 )
 ```

@@ -24,8 +24,8 @@
 #'   indicating the optimization level. For optimal results use values above
 #'   `90`.
 #' @param exif_preserve Logical. Should the
-#'   [Exif](https://en.wikipedia.org/wiki/Exif) information (if any) be deleted?
-#'   Default is to remove it (i.e. `exif_preserve = FALSE`).
+#'   [Exif](https://en.wikipedia.org/wiki/Exif) information (if any) be
+#'   preserved? Default is `FALSE` (i.e., remove it).
 #'
 #' @return
 #' Writes on disk the optimized file if the API call is successful in the
@@ -110,7 +110,7 @@ resmush_file <- function(
       clear = FALSE
     )
   }
-  # Call single with loop, cli::cli_progress_bar does not work on applys yet
+  # Call single with loop, cli::cli_progress_bar does not work on applies yet
   res_df <- NULL
 
   for (i in n_seq) {

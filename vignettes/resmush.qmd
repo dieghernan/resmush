@@ -133,7 +133,7 @@ Several other **R** packages also provide image optimization tools:
 | **optout** | No | Yes | No | No | No |
 | **resmush** | Yes | No | Yes | No | Max size 5 MB |
 
-**R** packages: Comparison of alternatives for optimizing images.
+Table 1: **R** packages: Comparison of alternatives for optimizing images.
 :::
 
 ::: {#tbl-comp}
@@ -145,7 +145,7 @@ Several other **R** packages also provide image optimization tools:
 | **optout**        | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
 | **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ❌   | ❌  |
 
-**R** packages: Supported formats.
+Table 2: **R** packages: Supported formats.
 :::
 
 ## References
