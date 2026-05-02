@@ -27,6 +27,7 @@ Install **resmush** from
 [**CRAN**](https://CRAN.R-project.org/package=resmush) with:
 
 ``` r
+
 install.packages("resmush")
 ```
 
@@ -35,6 +36,7 @@ install.packages("resmush")
 Compressing an online `jpg` image:
 
 ``` r
+
 library(resmush)
 
 url <- "https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"
@@ -66,6 +68,7 @@ argument. However, it is recommended to keep this value above 90 to
 maintain good image quality.
 
 ``` r
+
 # Extreme case
 resmush_url(
   url,
@@ -89,6 +92,7 @@ The following example shows how this works when compressing a local
 file:
 
 ``` r
+
 png_file <- system.file("extimg/example.png", package = "resmush")
 
 # For the example, copy to a temporary file
@@ -125,24 +129,24 @@ Several other **R** packages also provide image optimization tools:
   [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) but
   with more options. Requires additional local software.
 
-| tool                                                           | CRAN | Additional software? | Online? | API Key? | Limits?                     |
-|----------------------------------------------------------------|------|----------------------|---------|----------|-----------------------------|
-| [`xfun::tinify()`](https://rdrr.io/pkg/xfun/man/tinify.html)   | Yes  | No                   | Yes     | Yes      | 500 files/month (free tier) |
-| [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) | Yes  | Yes                  | No      | No       | No                          |
-| **tinieR**                                                     | No   | No                   | Yes     | Yes      | 500 files/month (free tier) |
-| **optout**                                                     | No   | Yes                  | No      | No       | No                          |
-| **resmush**                                                    | Yes  | No                   | Yes     | No       | Max size 5 MB               |
+| tool | CRAN | Additional software? | Online? | API Key? | Limits? |
+|----|----|----|----|----|----|
+| [`xfun::tinify()`](https://rdrr.io/pkg/xfun/man/tinify.html) | Yes | No | Yes | Yes | 500 files/month (free tier) |
+| [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) | Yes | Yes | No | No | No |
+| **tinieR** | No | No | Yes | Yes | 500 files/month (free tier) |
+| **optout** | No | Yes | No | No | No |
+| **resmush** | Yes | No | Yes | No | Max size 5 MB |
 
 Table 1: **R** packages: Comparison of alternatives for optimizing
 images.
 
-| tool                                                           | png | jpg | gif | bmp | tiff | webp | pdf |
-|----------------------------------------------------------------|-----|-----|-----|-----|------|------|-----|
-| [`xfun::tinify()`](https://rdrr.io/pkg/xfun/man/tinify.html)   | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
-| [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) | ✅  | ❌  | ❌  | ❌  | ❌   | ❌   | ❌  |
-| **tinieR**                                                     | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
-| **optout**                                                     | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
-| **resmush**                                                    | ✅  | ✅  | ✅  | ✅  | ✅   | ❌   | ❌  |
+| tool | png | jpg | gif | bmp | tiff | webp | pdf |
+|----|----|----|----|----|----|----|----|
+| [`xfun::tinify()`](https://rdrr.io/pkg/xfun/man/tinify.html) | ✅ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
+| [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **tinieR** | ✅ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
+| **optout** | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **resmush** | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 
 Table 2: **R** packages: Supported formats.
 
