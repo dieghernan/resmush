@@ -29,7 +29,7 @@ VignetteBuilder:
     quarto
 Config/Needs/website: dieghernan/gitdevr, xfun, dplyr, tibble, devtools,
     remotes, pak
-Config/roxygen2/version: 7.3.3.9000
+Config/roxygen2/version: 8.0.0.9000
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
