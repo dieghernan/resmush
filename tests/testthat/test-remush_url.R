@@ -97,9 +97,7 @@ test_that("Test default opts with png", {
   # Recover options
 
   optsinit <- options()
-  expect_false(
-    isTRUE(optsinit$cli.progress_bar_style == "aaa")
-  )
+  expect_false(isTRUE(optsinit$cli.progress_bar_style == "aaa"))
   options(
     cli.progress_bar_style = "aaa",
     cli.progress_show_after = 1000,
@@ -146,9 +144,7 @@ test_that("Test opts with png", {
 
   outf <- tempfile(fileext = ".png")
   expect_false(file.exists(outf))
-  expect_message(
-    dm <- resmush_url(png_url, outf)
-  )
+  expect_message(dm <- resmush_url(png_url, outf))
 
   expect_true(file.exists(outf))
   expect_s3_class(dm, "data.frame")
@@ -175,9 +171,7 @@ test_that("Test qlty par with jpg", {
 
   outf <- tempfile(fileext = ".jpg")
   expect_false(file.exists(outf))
-  expect_message(
-    dm <- resmush_url(jpg_url, outf)
-  )
+  expect_message(dm <- resmush_url(jpg_url, outf))
 
   expect_true(file.exists(outf))
   expect_s3_class(dm, "data.frame")
@@ -215,10 +209,7 @@ test_that("Test errors in lengths", {
   two_input <- c(png_url, jpg_url)
   several_outputs <- LETTERS[1:3]
 
-  expect_snapshot(
-    dm <- resmush_url(two_input, several_outputs),
-    error = TRUE
-  )
+  expect_snapshot(dm <- resmush_url(two_input, several_outputs), error = TRUE)
 })
 
 test_that("Test full vectors without outfile", {
@@ -251,9 +242,7 @@ test_that("Test full vectors without outfile", {
   # Recover options
 
   optsinit <- options()
-  expect_false(
-    isTRUE(optsinit$cli.progress_bar_style == "aaa")
-  )
+  expect_false(isTRUE(optsinit$cli.progress_bar_style == "aaa"))
   options(
     cli.progress_bar_style = "aaa",
     cli.progress_show_after = 1000,
@@ -320,9 +309,7 @@ test_that("Test full vectors with outfile", {
 
   expect_length(unique(all_outs), 4)
 
-  expect_message(
-    dm <- resmush_url(all_in, all_outs),
-  )
+  expect_message(dm <- resmush_url(all_in, all_outs), )
 
   expect_equal(nrow(dm), 4)
   expect_equal(dm$src_img, all_in)

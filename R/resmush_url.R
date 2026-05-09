@@ -273,11 +273,7 @@ smush_from_url <- function(url, qlty, exif_preserve = TRUE, n_rep = 3) {
   exif_preserve <- isTRUE(exif_preserve)
 
   api_url <- httr2::url_parse("http://api.resmush.it/ws.php")
-  api_url$query <- list(
-    qlty = qlty,
-    exif = exif_preserve,
-    img = url
-  )
+  api_url$query <- list(qlty = qlty, exif = exif_preserve, img = url)
   api_url <- httr2::url_build(api_url)
   the_req <- httr2::request(api_url)
   the_req <- httr2::req_headers(

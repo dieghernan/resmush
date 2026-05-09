@@ -19,10 +19,7 @@ test_that("Testing regex", {
 
   resmush_clean_dir(dir_temp)
   # Only one
-  expect_message(
-    dm <- resmush_dir(dir_temp, ext = "png$"),
-    "Resmushing 1 file"
-  )
+  expect_message(dm <- resmush_dir(dir_temp, ext = "png$"), "Resmushing 1 file")
 
   expect_s3_class(dm, "data.frame")
   expect_equal(basename(dm$dest_img), "example_resmush.png")
@@ -60,9 +57,7 @@ test_that("Testing regex several with suffix", {
 
   resmush_clean_dir(dir_temp, "_some_error")
   # All ext
-  expect_message(
-    dm <- resmush_dir(dir_temp, ext = "*", suffix = "_some_error")
-  )
+  expect_message(dm <- resmush_dir(dir_temp, ext = "*", suffix = "_some_error"))
 
   expect_s3_class(dm, "data.frame")
   expect_equal(nrow(dm), 2)
@@ -97,10 +92,7 @@ test_that("Testing nested dirs", {
   expect_s3_class(dm, "data.frame")
   expect_equal(nrow(dm), 2)
 
-  expect_equal(
-    basename(dm$src_img),
-    c("sample_nested.jpg", "sample_top1.png")
-  )
+  expect_equal(basename(dm$src_img), c("sample_nested.jpg", "sample_top1.png"))
   expect_equal(
     basename(dm$dest_img),
     add_suffix(c("sample_nested.jpg", "sample_top1.png"))
@@ -212,14 +204,8 @@ test_that("Overwrite ignore suffix", {
   expect_s3_class(dm, "data.frame")
   expect_equal(nrow(dm), 2)
 
-  expect_equal(
-    basename(dm$src_img),
-    c("sample_nested.jpg", "sample_top1.png")
-  )
-  expect_equal(
-    basename(dm$dest_img),
-    c("sample_nested.jpg", "sample_top1.png")
-  )
+  expect_equal(basename(dm$src_img), c("sample_nested.jpg", "sample_top1.png"))
+  expect_equal(basename(dm$dest_img), c("sample_nested.jpg", "sample_top1.png"))
 
   # total files should be 2 since be overwrite
   l_end <- list.files(dir_temp1, recursive = TRUE, pattern = "\\.(png|jpg)$")

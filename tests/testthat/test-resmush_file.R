@@ -127,9 +127,7 @@ test_that("Test opts with png", {
   # Make output
   theout <- add_suffix(test_png, suffix = "_resmush")
   expect_false(file.exists(theout))
-  expect_message(
-    dm <- resmush_file(test_png, suffix = "")
-  )
+  expect_message(dm <- resmush_file(test_png, suffix = ""))
 
   expect_false(file.exists(theout))
   expect_s3_class(dm, "data.frame")
@@ -211,9 +209,7 @@ test_that("Test full vectors", {
   # Recover options
 
   optsinit <- options()
-  expect_false(
-    isTRUE(optsinit$cli.progress_bar_style == "aaa")
-  )
+  expect_false(isTRUE(optsinit$cli.progress_bar_style == "aaa"))
   options(
     cli.progress_bar_style = "aaa",
     cli.progress_show_after = 1000,
@@ -224,10 +220,7 @@ test_that("Test full vectors", {
 
   expect_true(optinit2$cli.progress_bar_style == "aaa")
 
-  expect_message(
-    dm <- resmush_file(all_in),
-    "Go!"
-  )
+  expect_message(dm <- resmush_file(all_in), "Go!")
 
   # Restored options
   expect_identical(options(), optinit2)
@@ -243,17 +236,10 @@ test_that("Test full vectors", {
   expect_equal(dm$src_img, all_in)
   expect_equal(
     basename(dm$dest_img),
-    basename(c(
-      res_all[1],
-      NA,
-      res_all[3],
-      NA
-    ))
+    basename(c(res_all[1], NA, res_all[3], NA))
   )
 
-  expect_message(
-    resmush_clean_dir(tempdir())
-  )
+  expect_message(resmush_clean_dir(tempdir()))
   unlink(all_in, force = TRUE, recursive = TRUE)
 })
 test_that("Test full vectors silent", {
@@ -280,9 +266,7 @@ test_that("Test full vectors silent", {
   # Recover options
 
   optsinit <- options()
-  expect_false(
-    isTRUE(optsinit$cli.progress_bar_style == "aaa")
-  )
+  expect_false(isTRUE(optsinit$cli.progress_bar_style == "aaa"))
   options(
     cli.progress_bar_style = "aaa",
     cli.progress_show_after = 1000,
@@ -292,9 +276,7 @@ test_that("Test full vectors silent", {
   optinit2 <- options()
 
   expect_true(optinit2$cli.progress_bar_style == "aaa")
-  expect_silent(
-    dm <- resmush_file(all_in, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_file(all_in, progress = FALSE, report = FALSE))
 
   # Restored options
   expect_identical(options(), optinit2)
@@ -310,17 +292,10 @@ test_that("Test full vectors silent", {
   expect_equal(dm$src_img, all_in)
   expect_equal(
     basename(dm$dest_img),
-    basename(c(
-      res_all[1],
-      NA,
-      res_all[3],
-      NA
-    ))
+    basename(c(res_all[1], NA, res_all[3], NA))
   )
 
-  expect_message(
-    resmush_clean_dir(tempdir())
-  )
+  expect_message(resmush_clean_dir(tempdir()))
   unlink(all_in, force = TRUE, recursive = TRUE)
 })
 
@@ -345,14 +320,8 @@ test_that("Test exif", {
   dm2 <- resmush_file(exif, "_with_exif", exif_preserve = TRUE)
 
   expect_lt(file.size(dm$dest_img), file.size(dm2$dest_img))
-  expect_message(
-    resmush_clean_dir(tempdir(), "_without_exif"),
-    "Would remove"
-  )
-  expect_message(
-    resmush_clean_dir(tempdir(), "_with_exif"),
-    "Would remove"
-  )
+  expect_message(resmush_clean_dir(tempdir(), "_without_exif"), "Would remove")
+  expect_message(resmush_clean_dir(tempdir(), "_with_exif"), "Would remove")
   unlink(exif, force = TRUE)
 })
 

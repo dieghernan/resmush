@@ -85,9 +85,7 @@ resmush_dir <- function(
   )
 
   if (length(allfiles) < 1) {
-    cli::cli_alert_info(
-      "No files found in {.path {dir}} with ext {.val {ext}}"
-    )
+    cli::cli_alert_info("No files found in {.path {dir}} with ext {.val {ext}}")
     return(invisible(NULL))
   }
   if (report) {

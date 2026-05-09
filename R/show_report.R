@@ -16,22 +16,14 @@ show_report <- function(res_df, summary_type = "file") {
 
   # nolint end
 
-  heading <- cli::cli_div(
-    theme = list(
-      rule = list(
-        "line-type" = "double"
-      )
-    )
-  )
+  heading <- cli::cli_div(theme = list(rule = list("line-type" = "double")))
   cli::cli_rule(left = "{.pkg resmush} summary")
   cli::cli_end(heading)
-  cli::cli_alert_info(
-    paste0(
-      "Input: {nrow(res_df)} ",
-      name_cli,
-      " with size {totinit_pretty}"
-    )
-  )
+  cli::cli_alert_info(paste0(
+    "Input: {nrow(res_df)} ",
+    name_cli,
+    " with size {totinit_pretty}"
+  ))
 
   nok <- res_df[res_df$notes != "OK", ]
   ok <- res_df[res_df$notes == "OK", ]
@@ -50,14 +42,12 @@ show_report <- function(res_df, summary_type = "file") {
     okdirs <- unique(dirname(ok$dest_img))
     # nolint end
 
-    cli::cli_alert_success(
-      paste0(
-        "Success for {nrow(ok)} ",
-        name_cli,
-        ": Size now is {okend_pretty} ",
-        "(was {okinit_pretty}). Saved {okdif} ({okperc_pretty})."
-      )
-    )
+    cli::cli_alert_success(paste0(
+      "Success for {nrow(ok)} ",
+      name_cli,
+      ": Size now is {okend_pretty} ",
+      "(was {okinit_pretty}). Saved {okdif} ({okperc_pretty})."
+    ))
     cli::cli_bullets(paste0(
       "See {cli::qty(nrow(ok))} result{?s} in ",
       "{cli::qty(okdirs)} director{?y/ies} ",
@@ -90,12 +80,10 @@ show_report <- function(res_df, summary_type = "file") {
         makebull
       )
 
-      cli::cli_alert_danger(
-        paste0(
-          "Failed for {nrow(nok)} file{?s} in ",
-          "{cli::qty(nokdirs)}director{?y/ies} {.path {nokdirs}}."
-        )
-      )
+      cli::cli_alert_danger(paste0(
+        "Failed for {nrow(nok)} file{?s} in ",
+        "{cli::qty(nokdirs)}director{?y/ies} {.path {nokdirs}}."
+      ))
     } else {
       # Prepare bullets
       makebull <- sprintf(

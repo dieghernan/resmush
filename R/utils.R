@@ -18,14 +18,7 @@ make_pretty_size <- function(x) {
 #' @noRd
 add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
   # Handle suffix
-  if (
-    any(
-      is.null(suffix),
-      is.na(suffix),
-      suffix == "",
-      overwrite
-    )
-  ) {
+  if (any(is.null(suffix), is.na(suffix), suffix == "", overwrite)) {
     return(x)
   }
 
