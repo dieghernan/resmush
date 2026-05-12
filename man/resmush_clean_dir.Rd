@@ -3,13 +3,13 @@
 \encoding{UTF-8}
 \name{resmush_clean_dir}
 \alias{resmush_clean_dir}
-\title{Helper function for cleaning files created by \CRANpkg{resmush}}
+\title{Clean files created by \CRANpkg{resmush}}
 \usage{
 resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 }
 \arguments{
-\item{dir}{A character vector of full path names. See \code{\link[=list.files]{list.files()}}, \code{path}
-argument.}
+\item{dir}{A character vector of full path names. See the \code{path} argument in
+\code{\link[=list.files]{list.files()}}.}
 
 \item{suffix}{Character, defaults to \code{"_resmush"}. See \code{\link[=resmush_file]{resmush_file()}}.}
 
@@ -17,11 +17,10 @@ argument.}
 directories?}
 }
 \value{
-An \code{\link[=invisible]{invisible()}} \code{NULL} value. Produces messages with information about the
-process.
+An \code{\link[=invisible]{invisible()}} \code{NULL} value. Produces messages summarizing the process.
 }
 \description{
-\strong{Use with caution}. This would remove files from your computer.
+\strong{Use with caution}. This removes files from your computer.
 
 Clean a directory (or a list of directories) of files created by
 \code{\link[=resmush_file]{resmush_file()}}.
@@ -45,12 +44,12 @@ file.copy(png_file, tmp_png, overwrite = TRUE)
 
 file.exists(tmp_png)
 
-# This won't remove it
+# This does not remove it
 resmush_clean_dir(tempdir())
 
 file.exists(tmp_png)
 
-# Need suffix
+# A suffix is needed
 resmush_clean_dir(tempdir(), suffix = suffix)
 
 file.exists(tmp_png)

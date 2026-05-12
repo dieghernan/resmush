@@ -4,8 +4,8 @@ Version: 1.0.0
 Authors@R: 
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
-Description: Compress local and online images using the 'reSmush.it' API
-    service <https://resmush.it/>.
+Description: Optimize and compress local and online image files using the
+    'reSmush.it' API <https://resmush.it/>.
 License: MIT + file LICENSE
 URL: https://dieghernan.github.io/resmush/,
     https://github.com/dieghernan/resmush

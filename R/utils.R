@@ -1,6 +1,6 @@
 #' Create a pretty `object_size` object from an integer
 #'
-#' @param x An integer
+#' @param x An integer.
 #' @noRd
 make_pretty_size <- function(x) {
   x <- as.integer(x)
@@ -10,10 +10,10 @@ make_pretty_size <- function(x) {
   pretty_size
 }
 
-#' Add suffix to base name
+#' Add a suffix to a base name
 #'
-#' @param x A character
-#' @param suffix Suffix to be added
+#' @param x A character vector.
+#' @param suffix Suffix to add.
 #'
 #' @noRd
 add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
@@ -22,7 +22,7 @@ add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
     return(x)
   }
 
-  # If not handle suffix
+  # Add suffix
   base_file <- tools::file_path_sans_ext(x)
   ext_file <- tools::file_ext(x)
 
@@ -30,9 +30,9 @@ add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
   newname
 }
 
-#' Create unique paths to files to avoid overriding
+#' Create unique file paths to avoid overwriting
 #'
-#' @param x A path
+#' @param x A path.
 #'
 #' @noRd
 make_unique_paths <- function(x, overwrite) {
@@ -55,7 +55,7 @@ make_unique_paths <- function(x, overwrite) {
   new_name
 }
 
-# Utils for testing
+# Utilities for testing
 load_inst_to_temp <- function(file, subdir = NULL) {
   f <- system.file(paste0("extimg/", file), package = "resmush")
   if (!is.null(subdir)) {
@@ -77,7 +77,7 @@ load_inst_to_temp <- function(file, subdir = NULL) {
 load_dir_to_temp <- function(n = 4) {
   inst_dir <- system.file("extimg", package = "resmush")
 
-  # random name
+  # Random name
   temp_name <- paste0(sample(LETTERS, n, replace = TRUE), collapse = "")
 
   dest_dir <- file.path(tempdir(), temp_name)

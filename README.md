@@ -23,7 +23,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 <!-- badges: end -->
 
-**resmush** is a **R** package that allows users to optimize and
+**resmush** is an **R** package that allows users to optimize and
 compress images using [**reSmush.it**](https://resmush.it/). reSmush.it
 is a <u>free API</u> that provides image optimization and has been
 implemented in
@@ -38,7 +38,7 @@ Some of the features of **reSmush.it** include:
 - Maximum image size: 5 MB.
 - Compression using several algorithms:
   - [**PNGQuant**](https://pngquant.org/): Removes unnecessary chunks
-    from `png` files while preserving a full alpha transparency.
+    from `png` files while preserving full alpha transparency.
   - [**JPEGOptim**](https://github.com/tjko/jpegoptim)**:** Lossless
     optimization based on Huffman table optimization.
   - [**OptiPNG**](https://optipng.sourceforge.net/): A `png` optimizer
@@ -59,7 +59,7 @@ install.packages("resmush")
 
 <div class="pkgdown-devel">
 
-Check the docs of the developing version in
+Check the documentation for the development version at
 <https://dieghernan.github.io/resmush/dev/>.
 
 You can install the development version of **resmush** from
@@ -70,7 +70,7 @@ You can install the development version of **resmush** from
 pak::pak("dieghernan/resmush")
 ```
 
-Alternatively, install **resmush** using the
+Alternatively, install **resmush** from
 [r-universe](https://dieghernan.r-universe.dev/resmush):
 
 ``` r
@@ -119,15 +119,14 @@ alt="Optimized file" />](https://dieghernan.github.io/resmush/reference/figures/
 
 <figcaption>
 
-Figure 1: Original picture <em>(a)</em>: 178.7 KB; Optimized picture
-<em>(b)</em>: 45 KB (Compression: 74.8%). Click to enlarge.
+Figure 1: Original picture <em>(a)</em>: 178.7 KB; optimized picture
+<em>(b)</em>: 45 KB (compression: 74.8%). Click to enlarge.
 </figcaption>
 
 </div>
 
-The compression quality for `jpg` files can be adjusted using the `qlty`
-argument. However, it is recommended to keep this value above 90 to
-maintain good image quality.
+You can adjust the compression quality for `jpg` files with the `qlty`
+argument. Keep this value above 90 to maintain good image quality.
 
 ``` r
 # Extreme case
@@ -155,9 +154,8 @@ Figure 2: Low-quality image due to high compression (`qlty = 3`).
 
 </div>
 
-All the functions return (invisibly) a dataset summarizing the process.
-The following example shows how this works when compressing a local
-file:
+All functions invisibly return a data frame that summarizes the process.
+The following example shows this output when compressing a local file:
 
 ``` r
 png_file <- system.file("extimg/example.png", package = "resmush")
@@ -176,7 +174,7 @@ tibble::as_tibble(summary[, -c(1, 2)])
 #> 1 239.9 Kb 70.7 Kb   70.54%         OK       245618      72356
 ```
 
-## Other alternatives
+## Alternatives
 
 Several other **R** packages also provide image optimization tools:
 
@@ -192,7 +190,7 @@ Several other **R** packages also provide image optimization tools:
   `xfun::optipng()` but with more options. Requires additional local
   software.
 
-| tool | CRAN | Additional software? | Online? | API Key? | Limits? |
+| tool | CRAN | Additional software? | Online? | API key? | Limits? |
 |----|----|----|----|----|----|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | No |
@@ -202,8 +200,7 @@ Several other **R** packages also provide image optimization tools:
 
 <p class="caption">
 
-Table 1: **R** packages: Comparison of alternatives for optimizing
-images.
+Table 1: **R** packages: Comparison of image optimization alternatives.
 </p>
 
 | tool              | png | jpg | gif | bmp | tiff | webp | pdf |
@@ -238,7 +235,7 @@ A BibTeX entry for LaTeX users is
       year = {2026},
       version = {1.0.0},
       url = {https://dieghernan.github.io/resmush/},
-      abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
+      abstract = {Optimize and compress local and online image files using the reSmush.it API <https://resmush.it/>.},
     }
 
 ## References

@@ -1,21 +1,20 @@
-#' Helper function for cleaning files created by \CRANpkg{resmush}
+#' Clean files created by \CRANpkg{resmush}
 #'
 #' @description
-#' **Use with caution**. This would remove files from your computer.
+#' **Use with caution**. This removes files from your computer.
 #'
 #' Clean a directory (or a list of directories) of files created by
 #' [resmush_file()].
 #'
-#' @param dir A character vector of full path names. See [list.files()], `path`
-#'   argument.
+#' @param dir A character vector of full path names. See the `path` argument in
+#'   [list.files()].
 #' @param suffix Character, defaults to `"_resmush"`. See [resmush_file()].
 #'
 #' @param recursive Logical. Should the file search recurse into
 #'   directories?
 #'
 #' @return
-#' An [invisible()] `NULL` value. Produces messages with information about the
-#' process.
+#' An [invisible()] `NULL` value. Produces messages summarizing the process.
 #'
 #' @seealso
 #' [resmush_file()], [resmush_dir()], [list.files()], [unlink()]
@@ -42,12 +41,12 @@
 #'
 #' file.exists(tmp_png)
 #'
-#' # This won't remove it
+#' # This does not remove it
 #' resmush_clean_dir(tempdir())
 #'
 #' file.exists(tmp_png)
 #'
-#' # Need suffix
+#' # A suffix is needed
 #' resmush_clean_dir(tempdir(), suffix = suffix)
 #'
 #' file.exists(tmp_png)

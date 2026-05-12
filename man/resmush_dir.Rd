@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{resmush_dir}
 \alias{resmush_dir}
-\title{Optimize files of several directories}
+\title{Optimize local files in directories}
 \usage{
 resmush_dir(
   dir,
@@ -17,20 +17,18 @@ resmush_dir(
 )
 }
 \arguments{
-\item{dir}{Character or vector of characters representing paths of local
-directories.}
+\item{dir}{Character vector representing paths to local directories.}
 
 \item{ext}{\code{\link[base:regex]{regex}} indicating the extensions of the files to
-be optimized. The default value would capture all the extensions admitted
-by the API.}
+optimize. The default value captures all extensions supported by the API.}
 
 \item{suffix}{Character, defaults to \code{"_resmush"}. By default, a new file
 with the suffix is created in the same directory (i.e.,
-optimized \code{example.png} would be \code{example_resmush.png}). Values \code{""}, \code{NA}
-and \code{NULL} would be the same as \code{overwrite = TRUE}.}
+optimized \code{example.png} becomes \code{example_resmush.png}). Values \code{""}, \code{NA}
+and \code{NULL} are equivalent to \code{overwrite = TRUE}.}
 
 \item{overwrite}{Logical. Should the files in \code{dir} be overwritten? If \code{TRUE}
-\code{suffix} would be ignored.}
+\code{suffix} is ignored.}
 
 \item{progress}{Logical. Display a progress bar when needed.}
 
@@ -48,29 +46,29 @@ indicating the optimization level. For optimal results use values above
 \code{90}.}
     \item{\code{exif_preserve}}{Logical. Should the
 \href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) be
-preserved? Default is \code{FALSE} (i.e., remove it).}
+preserved? The default is \code{FALSE} (i.e., remove it).}
   }}
 }
 \value{
-Writes on disk the optimized file if the API call is successful in the
-directories specified in \code{dir}.
+Writes optimized files to disk in the directories specified in \code{dir} if the
+API call is successful.
 
-In all cases, an \code{\link[=invisible]{invisible()}} data frame with a summary of the process is
-returned as well.
+In all cases, an \code{\link[=invisible]{invisible()}} data frame summarizing the process is returned
+as well.
 }
 \description{
-Optimize all the local files of a directory (or list of directories) using
-the  \href{https://resmush.it/}{reSmush.it API}.
+Optimize all local files in a directory (or list of directories) using the
+\href{https://resmush.it/}{reSmush.it API}.
 }
 \examples{
 \dontshow{if (curl::has_internet()) withAutoprint(\{ # examplesIf}
 \donttest{
-# Get example dir and copy
+# Get example directory and copy it
 example_dir <- system.file("extimg", package = "resmush")
 temp_dir <- tempdir()
 file.copy(example_dir, temp_dir, recursive = TRUE)
 
-# Dest folder
+# Destination folder
 
 dest_folder <- file.path(tempdir(), "extimg")
 
@@ -81,10 +79,10 @@ resmush_clean_dir(dest_folder)
 # Recursive
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 
-# Same info in the invisible df
+# Same information in the invisible data frame
 summary[, -c(1, 2)]
 
-# Display with png
+# Display the png output
 if (require("png", quietly = TRUE)) {
   a_png <- grepl("png$", summary$dest_img)
   my_png <- png::readPNG(summary[a_png, ]$dest_img[2])

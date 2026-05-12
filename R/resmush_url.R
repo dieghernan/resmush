@@ -4,32 +4,32 @@
 #' Optimize and download an online image using the
 #' [reSmush.it API](https://resmush.it/).
 #'
-#' @param url url or a vector of urls pointing to hosted image files.
-#' **reSmush** can optimize the following image files:
-#'  * `png`
-#'  * `jpg/jpeg`
-#'  * `gif`
-#'  * `bmp`
-#'  * `tiff`
+#' @param url URL or vector of URLs pointing to hosted image files.
+#' **reSmush** can optimize these image formats:
+#'   * `png`
+#'   * `jpg/jpeg`
+#'   * `gif`
+#'   * `bmp`
+#'   * `tiff`
 #'
-#' @param outfile Path or paths where the optimized files would be stored in
-#'  your disk. By default, temporary files (see [tempfile()]) with the same
-#'  [basename()] as the file provided in `url` would be created. It should be
-#'  of the same length as `url` parameter.
+#' @param outfile Path or paths where optimized files are stored on disk. By
+#'   default, temporary files (see [tempfile()]) with the same [basename()] as
+#'   the file provided in `url` are created. It must have the same length as
+#'   `url`.
 #'
-#' @param overwrite Logical. Should `outfile` be overwritten (if already
-#'   exists)? If `FALSE` and `outfile` exists it would create a copy with
-#'   a numerical suffix (i.e. `<outfile>.png`, `<outfile>_01.png`, etc.).
+#' @param overwrite Logical. Should `outfile` be overwritten if it already
+#'   exists? If `FALSE` and `outfile` exists, a copy is created with a
+#'   numerical suffix (i.e. `<outfile>.png`, `<outfile>_01.png`, etc.).
 #'
 #' @inheritParams resmush_file
 #'
 #' @return
-#' Writes on disk the optimized file if the API call is successful.
-#' In all cases, an [invisible()] data frame with a summary of the process is
-#' returned as well.
+#' Writes the optimized file to disk if the API call is successful.
+#' In all cases, an [invisible()] data frame summarizing the process is returned
+#' as well.
 #'
-#' If any value of the vector `outfile` is duplicated, `resmush_url()` would
-#' rename the output with a suffix `_01, _02`, etc.
+#' If any value of the vector `outfile` is duplicated, `resmush_url()` renames
+#' the output with a suffix `_01, _02`, etc.
 #'
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api/) docs.
@@ -42,13 +42,13 @@
 #'
 #' \donttest{
 #'
-#' # Base url
+#' # Base URL
 #' base_url <- "https://raw.githubusercontent.com/dieghernan/resmush/main/inst/"
 #'
 #' png_url <- paste0(base_url, "/extimg/example.png")
 #' resmush_url(png_url)
 #'
-#' # Several urls
+#' # Several URLs
 #' jpg_url <- paste0(base_url, "/extimg/example.jpg")
 #'
 #' summary <- resmush_url(c(png_url, jpg_url))
@@ -56,7 +56,7 @@
 #' # Returns an (invisible) data frame with a summary of the process
 #' summary
 #'
-#' # Display with png
+#' # Display the png output
 #' if (require("png", quietly = TRUE)) {
 #'   my_png <- png::readPNG(summary$dest_img[1])
 #'   grid::grid.raster(my_png)
@@ -75,7 +75,7 @@ resmush_url <- function(
   qlty = 92,
   exif_preserve = FALSE
 ) {
-  # High level function for vectors
+  # High-level function for vectors
 
   # Check lengths
   l1 <- length(url)
@@ -111,7 +111,8 @@ resmush_url <- function(
     )
   }
 
-  # Call single with loop, cli::cli_progress_bar does not work on applies yet
+  # Call single with a loop.
+  # cli::cli_progress_bar does not work on applies yet.
   res_df <- NULL
 
   for (i in n_seq) {
@@ -138,7 +139,7 @@ resmush_url <- function(
     }
   }
 
-  # restore options
+  # Restore options
   if (progress) {
     options(
       cli.progress_bar_style = opts$cli.progress_bar_style,
@@ -147,12 +148,12 @@ resmush_url <- function(
     )
   }
 
-  # report
+  # Report
   if (report) {
     show_report(res_df = res_df, summary_type = "url")
   }
 
-  # output
+  # Output
 
   invisible(res_df)
 }
@@ -167,13 +168,13 @@ resmush_url_single <- function(
   # Avoid duplicates if requested
   outfile <- make_unique_paths(outfile, overwrite)
 
-  # Create dir if it doesn't exist
+  # Create the output directory if it does not exist
   the_dir <- dirname(outfile)
   if (!dir.exists(the_dir)) {
     dir.create(the_dir, recursive = TRUE)
   }
 
-  # Master table with results
+  # Results table
   res <- data.frame(
     src_img = url,
     dest_img = NA,
@@ -185,7 +186,7 @@ resmush_url_single <- function(
     dest_bytes = NA
   )
 
-  # Check access
+  # Check internet access
   # Internal option, for checking purposes only
   test <- getOption("resmush_test_offline", FALSE)
   if (any(isFALSE(curl::has_internet()), test)) {
@@ -193,7 +194,7 @@ resmush_url_single <- function(
     return(invisible(res))
   }
 
-  # API Calls -----
+  # API calls -----
 
   res_get <- smush_from_url(url, qlty, exif_preserve, n_rep = 3)
 
@@ -209,7 +210,7 @@ resmush_url_single <- function(
   }
   # nocov end
 
-  ##  2. Download from dest ----
+  ## 2. Download from destination URL -----
   dwn_opt <- httr2::request(res_get$dest)
 
   dwn_opt <- httr2::req_headers(
@@ -217,7 +218,7 @@ resmush_url_single <- function(
     referer = "https://dieghernan.github.io/resmush/"
   )
 
-  # First dry-run
+  # First dry run
   req_head <- httr2::req_method(dwn_opt, "HEAD")
   req_head <- httr2::req_error(req_head, is_error = function(x) {
     FALSE
@@ -225,14 +226,14 @@ resmush_url_single <- function(
   resp_head <- httr2::req_perform(req_head)
   test_no_file <- getOption("resmush_test_no_file", FALSE)
   if (any(httr2::resp_is_error(resp_head), test_no_file)) {
-    # Get code and error and return NULL
+    # Get code and error, then return NULL
     err_code <- httr2::resp_status(resp_head) # nolint
     err <- httr2::resp_status_desc(resp_head) # nolint
     cli::cli_alert_danger("HTTP {err_code} {err} for url:\n {.url {url}}")
     return(NULL)
   }
 
-  # Finally
+  # Download the optimized file
   dwn_opt <- httr2::req_perform(dwn_opt, path = outfile)
 
   # Corner case
@@ -243,7 +244,7 @@ resmush_url_single <- function(
     return(invisible(res))
   }
 
-  # Finally
+  # Store the output path
   res$dest_img <- outfile
 
   src_size <- res_get$src_size
@@ -258,7 +259,7 @@ resmush_url_single <- function(
   res$dest_size <- out_size_pretty
   res$dest_bytes <- out_size
 
-  # Reduction ratio
+  # Compression ratio
   red_ratio <- 1 - out_size / src_size
   res$compress_ratio <- sprintf("%0.2f%%", red_ratio * 100)
   res$notes <- "OK"
@@ -266,10 +267,10 @@ resmush_url_single <- function(
   invisible(res)
 }
 
-# Helper function for retrying the call
-# Useful for some cases e.g imgur
+# Helper function for retrying the URL API call
+# Useful for some cases, e.g. imgur.
 smush_from_url <- function(url, qlty, exif_preserve = TRUE, n_rep = 3) {
-  # Make logical
+  # Convert to logical
   exif_preserve <- isTRUE(exif_preserve)
 
   api_url <- httr2::url_parse("http://api.resmush.it/ws.php")

@@ -16,8 +16,8 @@ resmush_url(
 )
 }
 \arguments{
-\item{url}{url or a vector of urls pointing to hosted image files.
-\strong{reSmush} can optimize the following image files:
+\item{url}{URL or vector of URLs pointing to hosted image files.
+\strong{reSmush} can optimize these image formats:
 \itemize{
 \item \code{png}
 \item \code{jpg/jpeg}
@@ -26,14 +26,14 @@ resmush_url(
 \item \code{tiff}
 }}
 
-\item{outfile}{Path or paths where the optimized files would be stored in
-your disk. By default, temporary files (see \code{\link[=tempfile]{tempfile()}}) with the same
-\code{\link[=basename]{basename()}} as the file provided in \code{url} would be created. It should be
-of the same length as \code{url} parameter.}
+\item{outfile}{Path or paths where optimized files are stored on disk. By
+default, temporary files (see \code{\link[=tempfile]{tempfile()}}) with the same \code{\link[=basename]{basename()}} as
+the file provided in \code{url} are created. It must have the same length as
+\code{url}.}
 
-\item{overwrite}{Logical. Should \code{outfile} be overwritten (if already
-exists)? If \code{FALSE} and \code{outfile} exists it would create a copy with
-a numerical suffix (i.e. \verb{<outfile>.png}, \verb{<outfile>_01.png}, etc.).}
+\item{overwrite}{Logical. Should \code{outfile} be overwritten if it already
+exists? If \code{FALSE} and \code{outfile} exists, a copy is created with a
+numerical suffix (i.e. \verb{<outfile>.png}, \verb{<outfile>_01.png}, etc.).}
 
 \item{progress}{Logical. Display a progress bar when needed.}
 
@@ -46,15 +46,15 @@ indicating the optimization level. For optimal results use values above
 
 \item{exif_preserve}{Logical. Should the
 \href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) be
-preserved? Default is \code{FALSE} (i.e., remove it).}
+preserved? The default is \code{FALSE} (i.e., remove it).}
 }
 \value{
-Writes on disk the optimized file if the API call is successful.
-In all cases, an \code{\link[=invisible]{invisible()}} data frame with a summary of the process is
-returned as well.
+Writes the optimized file to disk if the API call is successful.
+In all cases, an \code{\link[=invisible]{invisible()}} data frame summarizing the process is returned
+as well.
 
-If any value of the vector \code{outfile} is duplicated, \code{resmush_url()} would
-rename the output with a suffix \verb{_01, _02}, etc.
+If any value of the vector \code{outfile} is duplicated, \code{resmush_url()} renames
+the output with a suffix \verb{_01, _02}, etc.
 }
 \description{
 Optimize and download an online image using the
@@ -65,13 +65,13 @@ Optimize and download an online image using the
 
 \donttest{
 
-# Base url
+# Base URL
 base_url <- "https://raw.githubusercontent.com/dieghernan/resmush/main/inst/"
 
 png_url <- paste0(base_url, "/extimg/example.png")
 resmush_url(png_url)
 
-# Several urls
+# Several URLs
 jpg_url <- paste0(base_url, "/extimg/example.jpg")
 
 summary <- resmush_url(c(png_url, jpg_url))
@@ -79,7 +79,7 @@ summary <- resmush_url(c(png_url, jpg_url))
 # Returns an (invisible) data frame with a summary of the process
 summary
 
-# Display with png
+# Display the png output
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])
   grid::grid.raster(my_png)

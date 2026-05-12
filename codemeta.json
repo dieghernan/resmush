@@ -2,7 +2,7 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "resmush",
-  "description": "Compress local and online images using the 'reSmush.it' API service <https://resmush.it/>.",
+  "description": "Optimize and compress local and online image files using the 'reSmush.it' API <https://resmush.it/>.",
   "name": "resmush: Optimize and Compress Image Files with 'reSmush.it'",
   "relatedLink": ["https://dieghernan.github.io/resmush/", "https://CRAN.R-project.org/package=resmush"],
   "codeRepository": "https://github.com/dieghernan/resmush",
@@ -173,7 +173,7 @@
     "SystemRequirements": null
   },
   "keywords": ["r", "compress-images", "optimize-images", "resmushit", "api", "r-package", "cran", "cran-r"],
-  "fileSize": "675.138KB",
+  "fileSize": "674.985KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

@@ -1,31 +1,29 @@
-#' Optimize files of several directories
+#' Optimize local files in directories
 #'
 #' @description
-#' Optimize all the local files of a directory (or list of directories) using
-#' the  [reSmush.it API](https://resmush.it/).
+#' Optimize all local files in a directory (or list of directories) using the
+#' [reSmush.it API](https://resmush.it/).
 #'
-#' @param dir Character or vector of characters representing paths of local
-#'   directories.
+#' @param dir Character vector representing paths to local directories.
 #' @param ext [`regex`][base::regex] indicating the extensions of the files to
-#'   be optimized. The default value would capture all the extensions admitted
-#'   by the API.
+#'   optimize. The default value captures all extensions supported by the API.
 #' @param suffix Character, defaults to `"_resmush"`. By default, a new file
 #'   with the suffix is created in the same directory (i.e.,
-#'   optimized `example.png` would be `example_resmush.png`). Values `""`, `NA`
-#'   and `NULL` would be the same as `overwrite = TRUE`.
+#'   optimized `example.png` becomes `example_resmush.png`). Values `""`, `NA`
+#'   and `NULL` are equivalent to `overwrite = TRUE`.
 #' @param overwrite Logical. Should the files in `dir` be overwritten? If `TRUE`
-#'   `suffix` would be ignored.
+#'   `suffix` is ignored.
 #' @param recursive Logical. Should the `dir` file search be recursive? See also
 #'   [list.files()].
 #' @inheritParams resmush_file
 #' @inheritDotParams resmush_file qlty exif_preserve
 #'
 #' @return
-#' Writes on disk the optimized file if the API call is successful in the
-#' directories specified in `dir`.
+#' Writes optimized files to disk in the directories specified in `dir` if the
+#' API call is successful.
 #'
-#' In all cases, an [invisible()] data frame with a summary of the process is
-#' returned as well.
+#' In all cases, an [invisible()] data frame summarizing the process is returned
+#' as well.
 #'
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api/) docs.
@@ -38,12 +36,12 @@
 #'
 #' @examplesIf curl::has_internet()
 #' \donttest{
-#' # Get example dir and copy
+#' # Get example directory and copy it
 #' example_dir <- system.file("extimg", package = "resmush")
 #' temp_dir <- tempdir()
 #' file.copy(example_dir, temp_dir, recursive = TRUE)
 #'
-#' # Dest folder
+#' # Destination folder
 #'
 #' dest_folder <- file.path(tempdir(), "extimg")
 #'
@@ -54,10 +52,10 @@
 #' # Recursive
 #' summary <- resmush_dir(dest_folder, recursive = TRUE)
 #'
-#' # Same info in the invisible df
+#' # Same information in the invisible data frame
 #' summary[, -c(1, 2)]
 #'
-#' # Display with png
+#' # Display the png output
 #' if (require("png", quietly = TRUE)) {
 #'   a_png <- grepl("png$", summary$dest_img)
 #'   my_png <- png::readPNG(summary[a_png, ]$dest_img[2])
@@ -95,7 +93,7 @@ resmush_dir <- function(
     cli::cli_alert_info("Resmushing {nf} file{?s}")
   }
 
-  # Call resmush_file
+  # Call resmush_file()
 
   resmush_file(
     allfiles,

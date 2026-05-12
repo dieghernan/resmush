@@ -16,8 +16,8 @@ resmush_file(
 )
 }
 \arguments{
-\item{file}{Path or paths to local files. \strong{reSmush} can optimize the
-following image files:
+\item{file}{Path or paths to local files. \strong{reSmush} can optimize these
+image formats:
 \itemize{
 \item \code{png}
 \item \code{jpg/jpeg}
@@ -27,12 +27,12 @@ following image files:
 }}
 
 \item{suffix}{Character, defaults to \code{"_resmush"}. By default, a new file
-with this \code{suffix} is created in the same directory as \code{file}. (i.e.,
-optimized \code{example.png} would be \code{example_resmush.png}). Values \code{""}, \code{NA}
-and \code{NULL} would be the same as \code{overwrite = TRUE}.}
+with this \code{suffix} is created in the same directory as \code{file} (i.e.,
+optimized \code{example.png} becomes \code{example_resmush.png}). Values \code{""}, \code{NA}
+and \code{NULL} are equivalent to \code{overwrite = TRUE}.}
 
 \item{overwrite}{Logical. Should the file in \code{file} be overwritten? If \code{TRUE}
-\code{suffix} would be ignored.}
+\code{suffix} is ignored.}
 
 \item{progress}{Logical. Display a progress bar when needed.}
 
@@ -45,15 +45,14 @@ indicating the optimization level. For optimal results use values above
 
 \item{exif_preserve}{Logical. Should the
 \href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) be
-preserved? Default is \code{FALSE} (i.e., remove it).}
+preserved? The default is \code{FALSE} (i.e., remove it).}
 }
 \value{
-Writes on disk the optimized file if the API call is successful in the
-same directory as \code{file}.
+Writes the optimized file to disk in the same directory as \code{file} if the API
+call is successful.
 
-With the option \code{report = TRUE}, a summary report is displayed in the
-console. In all cases, an \code{\link[=invisible]{invisible()}} data frame with a summary of the
-process used to generate the report is returned.
+With \code{report = TRUE}, a summary report is displayed in the console. In all
+cases, an \code{\link[=invisible]{invisible()}} data frame summarizing the process is returned.
 }
 \description{
 Optimize local images using the \href{https://resmush.it/}{reSmush.it API}.
@@ -77,19 +76,19 @@ tmp_jpg <- tempfile(fileext = ".jpg")
 
 file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 
-# Output summary in console
+# Output summary in the console
 summary <- resmush_file(c(tmp_png, tmp_jpg))
 
-# Similar info in an (invisible) data frame as a result
+# Similar information in the invisible data frame
 summary
 
-# Display with png
+# Display the png output
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])
   grid::grid.raster(my_png)
 }
 
-# With parameters
+# Use with jpg and parameters
 resmush_file(tmp_jpg)
 resmush_file(tmp_jpg, qlty = 10)
 }

@@ -55,7 +55,7 @@ show_report <- function(res_df, summary_type = "file") {
     ))
   }
 
-  # Fails
+  # Failures
   if (nrow(nok) > 0) {
     # nolint start
     nokdirs <- unique(dirname(nok$src_img))

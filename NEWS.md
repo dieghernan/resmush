@@ -8,13 +8,13 @@
 
 # resmush 0.2.2
 
-- Add `httr2::req_headers(referer = "https://dieghernan.github.io/resmush/")` to
-  the relevant API calls.
+- Added `httr2::req_headers(referer = "https://dieghernan.github.io/resmush/")`
+  to the relevant API calls.
 - API calls now perform a dry run to ensure the compressed file exists.
 
 # resmush 0.2.1
 
-- Update documentation.
+- Updated documentation.
 
 # resmush 0.2.0
 
@@ -23,14 +23,14 @@
 
 # resmush 0.1.1
 
-- Update documentation.
+- Updated documentation.
 
 # resmush 0.1.0
 
 - Accepted on **CRAN**.
 - Switched from `httr` to `httr2`.
 - Added DOI: <https://doi.org/10.5281/zenodo.10556679>.
-- `resmush_file()`, `resmush_dir()`, and `resmush_url()` gain a new `overwrite`
+- `resmush_file()`, `resmush_dir()` and `resmush_url()` gain a new `overwrite`
   argument.
 - API changes: new messages and progress bars using `cli::cli_progress_bar()`.
   These changes also include:
