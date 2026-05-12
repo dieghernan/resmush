@@ -5,7 +5,7 @@
 Several ways to optimize images with <https://resmush.it/>.
 
 - [`resmush_dir()`](https://dieghernan.github.io/resmush/reference/resmush_dir.md)
-  : Optimize files of several directories
+  : Optimize local files in directories
 - [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md)
   : Optimize a local file
 - [`resmush_url()`](https://dieghernan.github.io/resmush/reference/resmush_url.md)
@@ -18,7 +18,7 @@ Helpers included in the package.
 - [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/reference/resmush_clean_dir.md)
   :
 
-  Helper function for cleaning files created by
+  Clean files created by
   [resmush](https://CRAN.R-project.org/package=resmush)
 
 ## About the package

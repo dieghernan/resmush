@@ -1,7 +1,7 @@
 # resmush: Optimize and Compress Image Files with 'reSmush.it'
 
-Compress local and online images using the 'reSmush.it' API service
-<https://resmush.it/>.
+Optimize and compress local and online image files using the
+'reSmush.it' API <https://resmush.it/>.
 
 ## See also
 

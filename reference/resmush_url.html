@@ -70,8 +70,8 @@ reSmush.it API."><meta property="og:image" content="https://dieghernan.github.io
 
 
 <dl><dt id="arg-url">url<a class="anchor" aria-label="anchor" href="#arg-url"></a></dt>
-<dd><p>url or a vector of urls pointing to hosted image files.
-<strong>reSmush</strong> can optimize the following image files:</p><ul><li><p><code>png</code></p></li>
+<dd><p>URL or vector of URLs pointing to hosted image files.
+<strong>reSmush</strong> can optimize these image formats:</p><ul><li><p><code>png</code></p></li>
 <li><p><code>jpg/jpeg</code></p></li>
 <li><p><code>gif</code></p></li>
 <li><p><code>bmp</code></p></li>
@@ -80,16 +80,16 @@ reSmush.it API."><meta property="og:image" content="https://dieghernan.github.io
 
 
 <dt id="arg-outfile">outfile<a class="anchor" aria-label="anchor" href="#arg-outfile"></a></dt>
-<dd><p>Path or paths where the optimized files would be stored in
-your disk. By default, temporary files (see <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile()</a></code>) with the same
-<code><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename()</a></code> as the file provided in <code>url</code> would be created. It should be
-of the same length as <code>url</code> parameter.</p></dd>
+<dd><p>Path or paths where optimized files are stored on disk. By
+default, temporary files (see <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile()</a></code>) with the same <code><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename()</a></code> as
+the file provided in <code>url</code> are created. It must have the same length as
+<code>url</code>.</p></dd>
 
 
 <dt id="arg-overwrite">overwrite<a class="anchor" aria-label="anchor" href="#arg-overwrite"></a></dt>
-<dd><p>Logical. Should <code>outfile</code> be overwritten (if already
-exists)? If <code>FALSE</code> and <code>outfile</code> exists it would create a copy with
-a numerical suffix (i.e. <code>&lt;outfile&gt;.png</code>, <code>&lt;outfile&gt;_01.png</code>, etc.).</p></dd>
+<dd><p>Logical. Should <code>outfile</code> be overwritten if it already
+exists? If <code>FALSE</code> and <code>outfile</code> exists, a copy is created with a
+numerical suffix (i.e. <code>&lt;outfile&gt;.png</code>, <code>&lt;outfile&gt;_01.png</code>, etc.).</p></dd>
 
 
 <dt id="arg-progress">progress<a class="anchor" aria-label="anchor" href="#arg-progress"></a></dt>
@@ -110,16 +110,16 @@ indicating the optimization level. For optimal results use values above
 <dt id="arg-exif-preserve">exif_preserve<a class="anchor" aria-label="anchor" href="#arg-exif-preserve"></a></dt>
 <dd><p>Logical. Should the
 <a href="https://en.wikipedia.org/wiki/Exif" class="external-link">Exif</a> information (if any) be
-preserved? Default is <code>FALSE</code> (i.e., remove it).</p></dd>
+preserved? The default is <code>FALSE</code> (i.e., remove it).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Writes on disk the optimized file if the API call is successful.
-In all cases, an <code><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible()</a></code> data frame with a summary of the process is
-returned as well.</p>
-<p>If any value of the vector <code>outfile</code> is duplicated, <code>resmush_url()</code> would
-rename the output with a suffix <code>_01, _02</code>, etc.</p>
+    <p>Writes the optimized file to disk if the API call is successful.
+In all cases, an <code><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible()</a></code> data frame summarizing the process is returned
+as well.</p>
+<p>If any value of the vector <code>outfile</code> is duplicated, <code>resmush_url()</code> renames
+the output with a suffix <code>_01, _02</code>, etc.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -134,7 +134,7 @@ rename the output with a suffix <code>_01, _02</code>, etc.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Base url</span></span></span>
+<span class="r-in"><span><span class="co"># Base URL</span></span></span>
 <span class="r-in"><span><span class="va">base_url</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/dieghernan/resmush/main/inst/"</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">png_url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">base_url</span>, <span class="st">"/extimg/example.png"</span><span class="op">)</span></span></span>
@@ -142,19 +142,19 @@ rename the output with a suffix <code>_01, _02</code>, etc.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 1 url with size 239.9 Kb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Success for 1 url: Size now is 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/Rtmpbe2vsj</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/Rtmp4JfkxK</span>.</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Several urls</span></span></span>
+<span class="r-in"><span><span class="co"># Several URLs</span></span></span>
 <span class="r-in"><span><span class="va">jpg_url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">base_url</span>, <span class="st">"/extimg/example.jpg"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu">resmush_url</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">png_url</span>, <span class="va">jpg_url</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■</span><span style="color: #555555;">□□□□□□□□□□□□□□□</span><span style="color: #00BB00;"> </span>  50% [1ms] | ETA:  0s (1/2 urls)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [1.5s] | ETA:  0s (2/2 urls)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [981ms] | ETA:  0s (2/2 urls)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 2 urls with size 340.2 Kb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Success for 2 urls: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See results in directory <span style="color: #0000BB;">/tmp/Rtmpbe2vsj</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> See results in directory <span style="color: #0000BB;">/tmp/Rtmp4JfkxK</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Returns an (invisible) data frame with a summary of the process</span></span></span>
 <span class="r-in"><span><span class="va">summary</span></span></span>
@@ -162,13 +162,13 @@ rename the output with a suffix <code>_01, _02</code>, etc.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.png</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.jpg</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         dest_img src_size dest_size compress_ratio notes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/Rtmpbe2vsj/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    /tmp/Rtmpbe2vsj/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/Rtmp4JfkxK/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    /tmp/Rtmp4JfkxK/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   src_bytes dest_bytes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    245618      72356</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    102796      85164</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Display with png</span></span></span>
+<span class="r-in"><span><span class="co"># Display the png output</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://www.rforge.net/png/" class="external-link">"png"</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="va">my_png</span> <span class="op">&lt;-</span> <span class="fu">png</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/png/man/readPNG.html" class="external-link">readPNG</a></span><span class="op">(</span><span class="va">summary</span><span class="op">$</span><span class="va">dest_img</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">grid</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grid/grid.raster.html" class="external-link">grid.raster</a></span><span class="op">(</span><span class="va">my_png</span><span class="op">)</span></span></span>
@@ -180,12 +180,12 @@ rename the output with a suffix <code>_01, _02</code>, etc.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 1 url with size 100.4 Kb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Success for 1 url: Size now is 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/Rtmpbe2vsj</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/Rtmp4JfkxK</span>.</span>
 <span class="r-in"><span><span class="fu">resmush_url</span><span class="op">(</span><span class="va">jpg_url</span>, qlty <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 1 url with size 100.4 Kb</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Success for 1 url: Size now is 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/Rtmpbe2vsj</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> See result in directory <span style="color: #0000BB;">/tmp/Rtmp4JfkxK</span>.</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

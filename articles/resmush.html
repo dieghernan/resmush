@@ -91,7 +91,7 @@
 
 
 
-    <!-- resmush.qmd is generated from resmush.qmd.orig. Please edit that file --><p><strong>resmush</strong> is a <strong>R</strong> package that allows users to optimize and compress images using <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. reSmush.it is a <u>free API</u> that provides image optimization and has been implemented in <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a> and <a href="https://resmush.it/tools/" class="external-link">many other tools</a>.</p>
+    <!-- resmush.qmd is generated from resmush.qmd.orig. Please edit that file --><p><strong>resmush</strong> is an <strong>R</strong> package that allows users to optimize and compress images using <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. reSmush.it is a <u>free API</u> that provides image optimization and has been implemented in <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a> and <a href="https://resmush.it/tools/" class="external-link">many other tools</a>.</p>
 <p>Some of the features of <strong>reSmush.it</strong> include:</p>
 <ul>
 <li>Free optimization services with <u>no API key required</u>.</li>
@@ -101,7 +101,7 @@
 <li>Compression using several algorithms:
 <ul>
 <li>
-<a href="https://pngquant.org/" class="external-link"><strong>PNGQuant</strong></a>: Removes unnecessary chunks from <code>png</code> files while preserving a full alpha transparency.</li>
+<a href="https://pngquant.org/" class="external-link"><strong>PNGQuant</strong></a>: Removes unnecessary chunks from <code>png</code> files while preserving full alpha transparency.</li>
 <li>
 <a href="https://github.com/tjko/jpegoptim" class="external-link"><strong>JPEGOptim</strong></a><strong>:</strong> Lossless optimization based on Huffman table optimization.</li>
 <li>
@@ -148,10 +148,10 @@
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 1: Original picture <a href="#fig-orig" class="quarto-xref">Figure 1 (a)</a>: 178.7 KB; Optimized picture <a href="#fig-new" class="quarto-xref">Figure 1 (b)</a>: 45 KB (Compression: 74.8%). Click to enlarge.
+Figure 1: Original picture <a href="#fig-orig" class="quarto-xref">Figure 1 (a)</a>: 178.7 KB; optimized picture <a href="#fig-new" class="quarto-xref">Figure 1 (b)</a>: 45 KB (compression: 74.8%). Click to enlarge.
 </figcaption></figure>
 </div>
-<p>The compression quality for <code>jpg</code> files can be adjusted using the <code>qlty</code> argument. However, it is recommended to keep this value above 90 to maintain good image quality.</p>
+<p>You can adjust the compression quality for <code>jpg</code> files with the <code>qlty</code> argument. Keep this value above 90 to maintain good image quality.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Extreme case</span></span>
 <span><span class="fu"><a href="../reference/resmush_url.html">resmush_url</a></span><span class="op">(</span></span>
@@ -172,7 +172,7 @@ Figure 1: Original picture <a href="#fig-orig" class="quarto-xref">Figure 1 (a
 Figure 2: Low-quality image due to high compression (<code>qlty = 3</code>), compared with <a href="#fig-new" class="quarto-xref">Figure 1 (b)</a>.
 </figcaption></figure>
 </div>
-<p>All the functions return (invisibly) a dataset summarizing the process. The following example shows how this works when compressing a local file:</p>
+<p>All functions invisibly return a data frame that summarizes the process. The following example shows this output when compressing a local file:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">png_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extimg/example.png"</span>, package <span class="op">=</span> <span class="st">"resmush"</span><span class="op">)</span></span>
 <span></span>
@@ -188,7 +188,7 @@ Figure 2: Low-quality image due to high compression (<code>qlty = 3</code>), co
 <span><span class="co">#&gt;   src_size dest_size compress_ratio notes src_bytes dest_bytes</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 239.9 Kb 70.7 Kb   70.54%         OK       245618      72356</span></span></code></pre></div>
-</section><section class="level2"><h2 id="other-alternatives">Other alternatives<a class="anchor" aria-label="anchor" href="#other-alternatives"></a>
+</section><section class="level2"><h2 id="alternatives">Alternatives<a class="anchor" aria-label="anchor" href="#alternatives"></a>
 </h2>
 <p>Several other <strong>R</strong> packages also provide image optimization tools:</p>
 <ul>
@@ -222,7 +222,7 @@ Figure 2: Low-quality image due to high compression (<code>qlty = 3</code>), co
 <th>CRAN</th>
 <th>Additional software?</th>
 <th>Online?</th>
-<th>API Key?</th>
+<th>API key?</th>
 <th>Limits?</th>
 </tr></thead>
 <tbody>
@@ -270,7 +270,7 @@ Figure 2: Low-quality image due to high compression (<code>qlty = 3</code>), co
 </table>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-opts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table 1: <strong>R</strong> packages: Comparison of alternatives for optimizing images.
+Table 1: <strong>R</strong> packages: Comparison of image optimization alternatives.
 </figcaption></figure>
 </div>
 <div id="tbl-comp" class="quarto-float quarto-figure quarto-figure-center">

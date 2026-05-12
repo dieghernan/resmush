@@ -1,6 +1,6 @@
-# Helper function for cleaning files created by [resmush](https://CRAN.R-project.org/package=resmush)
+# Clean files created by [resmush](https://CRAN.R-project.org/package=resmush)
 
-**Use with caution**. This would remove files from your computer.
+**Use with caution**. This removes files from your computer.
 
 Clean a directory (or a list of directories) of files created by
 [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md).
@@ -15,9 +15,8 @@ resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 
 - dir:
 
-  A character vector of full path names. See
-  [`list.files()`](https://rdrr.io/r/base/list.files.html), `path`
-  argument.
+  A character vector of full path names. See the `path` argument in
+  [`list.files()`](https://rdrr.io/r/base/list.files.html).
 
 - suffix:
 
@@ -31,7 +30,7 @@ resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 ## Value
 
 An [`invisible()`](https://rdrr.io/r/base/invisible.html) `NULL` value.
-Produces messages with information about the process.
+Produces messages summarizing the process.
 
 ## See also
 
@@ -63,17 +62,17 @@ file.copy(png_file, tmp_png, overwrite = TRUE)
 file.exists(tmp_png)
 #> [1] TRUE
 
-# This won't remove it
+# This does not remove it
 resmush_clean_dir(tempdir())
-#> ℹ No files to clean in /tmp/Rtmpbe2vsj with suffix "_resmush\\.".
+#> ℹ No files to clean in /tmp/Rtmp4JfkxK with suffix "_resmush\\.".
 
 file.exists(tmp_png)
 #> [1] TRUE
 
-# Need suffix
+# A suffix is needed
 resmush_clean_dir(tempdir(), suffix = suffix)
 #> ℹ Would remove 1 file:
-#> → /tmp/Rtmpbe2vsj/example_would_be_removed.png
+#> → /tmp/Rtmp4JfkxK/example_would_be_removed.png
 
 file.exists(tmp_png)
 #> [1] FALSE

@@ -14,7 +14,7 @@ CRAN release: 2026-03-14
 
 CRAN release: 2026-01-12
 
-- Add
+- Added
   `httr2::req_headers(referer = "https://dieghernan.github.io/resmush/")`
   to the relevant API calls.
 - API calls now perform a dry run to ensure the compressed file exists.
@@ -23,7 +23,7 @@ CRAN release: 2026-01-12
 
 CRAN release: 2024-12-18
 
-- Update documentation.
+- Updated documentation.
 
 ## resmush 0.2.0
 
@@ -36,7 +36,7 @@ CRAN release: 2024-07-19
 
 CRAN release: 2024-05-22
 
-- Update documentation.
+- Updated documentation.
 
 ## resmush 0.1.0
 
@@ -46,7 +46,7 @@ CRAN release: 2024-02-02
 - Switched from `httr` to `httr2`.
 - Added DOI: <https://doi.org/10.5281/zenodo.10556679>.
 - [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md),
-  [`resmush_dir()`](https://dieghernan.github.io/resmush/reference/resmush_dir.md),
+  [`resmush_dir()`](https://dieghernan.github.io/resmush/reference/resmush_dir.md)
   and
   [`resmush_url()`](https://dieghernan.github.io/resmush/reference/resmush_url.md)
   gain a new `overwrite` argument.

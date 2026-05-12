@@ -20,8 +20,8 @@ resmush_file(
 
 - file:
 
-  Path or paths to local files. **reSmush** can optimize the following
-  image files:
+  Path or paths to local files. **reSmush** can optimize these image
+  formats:
 
   - `png`
 
@@ -36,14 +36,14 @@ resmush_file(
 - suffix:
 
   Character, defaults to `"_resmush"`. By default, a new file with this
-  `suffix` is created in the same directory as `file`. (i.e., optimized
-  `example.png` would be `example_resmush.png`). Values `""`, `NA` and
-  `NULL` would be the same as `overwrite = TRUE`.
+  `suffix` is created in the same directory as `file` (i.e., optimized
+  `example.png` becomes `example_resmush.png`). Values `""`, `NA` and
+  `NULL` are equivalent to `overwrite = TRUE`.
 
 - overwrite:
 
   Logical. Should the file in `file` be overwritten? If `TRUE` `suffix`
-  would be ignored.
+  is ignored.
 
 - progress:
 
@@ -62,18 +62,17 @@ resmush_file(
 - exif_preserve:
 
   Logical. Should the [Exif](https://en.wikipedia.org/wiki/Exif)
-  information (if any) be preserved? Default is `FALSE` (i.e., remove
-  it).
+  information (if any) be preserved? The default is `FALSE` (i.e.,
+  remove it).
 
 ## Value
 
-Writes on disk the optimized file if the API call is successful in the
-same directory as `file`.
+Writes the optimized file to disk in the same directory as `file` if the
+API call is successful.
 
-With the option `report = TRUE`, a summary report is displayed in the
-console. In all cases, an
-[`invisible()`](https://rdrr.io/r/base/invisible.html) data frame with a
-summary of the process used to generate the report is returned.
+With `report = TRUE`, a summary report is displayed in the console. In
+all cases, an [`invisible()`](https://rdrr.io/r/base/invisible.html)
+data frame summarizing the process is returned.
 
 ## See also
 
@@ -104,7 +103,7 @@ resmush_file(tmp_png)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file with size 239.9 Kb
 #> ✔ Success for 1 file: Size now is 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-#> See result in directory /tmp/Rtmpbe2vsj.
+#> See result in directory /tmp/Rtmp4JfkxK.
 
 # Several paths
 jpg_file <- system.file("extimg/example.jpg", package = "resmush")
@@ -113,45 +112,45 @@ tmp_jpg <- tempfile(fileext = ".jpg")
 file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 #> [1] TRUE
 
-# Output summary in console
+# Output summary in the console
 summary <- resmush_file(c(tmp_png, tmp_jpg))
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1s] | ETA:  0s (2/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.4s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files with size 340.2 Kb
 #> ✔ Success for 2 files: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/Rtmpbe2vsj.
+#> See results in directory /tmp/Rtmp4JfkxK.
 
-# Similar info in an (invisible) data frame as a result
+# Similar information in the invisible data frame
 summary
 #>                                src_img
-#> 1 /tmp/Rtmpbe2vsj/file1b004ebddd53.png
-#> 2 /tmp/Rtmpbe2vsj/file1b0055c8390b.jpg
+#> 1 /tmp/Rtmp4JfkxK/file1bb949f01ccf.png
+#> 2 /tmp/Rtmp4JfkxK/file1bb93ecb4d7f.jpg
 #>                                       dest_img src_size dest_size
-#> 1 /tmp/Rtmpbe2vsj/file1b004ebddd53_resmush.png 239.9 Kb   70.7 Kb
-#> 2 /tmp/Rtmpbe2vsj/file1b0055c8390b_resmush.jpg 100.4 Kb   83.2 Kb
+#> 1 /tmp/Rtmp4JfkxK/file1bb949f01ccf_resmush.png 239.9 Kb   70.7 Kb
+#> 2 /tmp/Rtmp4JfkxK/file1bb93ecb4d7f_resmush.jpg 100.4 Kb   83.2 Kb
 #>   compress_ratio notes src_bytes dest_bytes
 #> 1         70.54%    OK    245618      72356
 #> 2         17.15%    OK    102796      85164
 
-# Display with png
+# Display the png output
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])
   grid::grid.raster(my_png)
 }
 
 
-# With parameters
+# Use with jpg and parameters
 resmush_file(tmp_jpg)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file with size 100.4 Kb
 #> ✔ Success for 1 file: Size now is 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> See result in directory /tmp/Rtmpbe2vsj.
+#> See result in directory /tmp/Rtmp4JfkxK.
 resmush_file(tmp_jpg, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file with size 100.4 Kb
 #> ✔ Success for 1 file: Size now is 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> See result in directory /tmp/Rtmpbe2vsj.
+#> See result in directory /tmp/Rtmp4JfkxK.
 # }
 ```

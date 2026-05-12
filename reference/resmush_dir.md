@@ -1,7 +1,7 @@
-# Optimize files of several directories
+# Optimize local files in directories
 
-Optimize all the local files of a directory (or list of directories)
-using the [reSmush.it API](https://resmush.it/).
+Optimize all local files in a directory (or list of directories) using
+the [reSmush.it API](https://resmush.it/).
 
 ## Usage
 
@@ -22,26 +22,25 @@ resmush_dir(
 
 - dir:
 
-  Character or vector of characters representing paths of local
-  directories.
+  Character vector representing paths to local directories.
 
 - ext:
 
   [`regex`](https://rdrr.io/r/base/regex.html) indicating the extensions
-  of the files to be optimized. The default value would capture all the
-  extensions admitted by the API.
+  of the files to optimize. The default value captures all extensions
+  supported by the API.
 
 - suffix:
 
   Character, defaults to `"_resmush"`. By default, a new file with the
   suffix is created in the same directory (i.e., optimized `example.png`
-  would be `example_resmush.png`). Values `""`, `NA` and `NULL` would be
-  the same as `overwrite = TRUE`.
+  becomes `example_resmush.png`). Values `""`, `NA` and `NULL` are
+  equivalent to `overwrite = TRUE`.
 
 - overwrite:
 
   Logical. Should the files in `dir` be overwritten? If `TRUE` `suffix`
-  would be ignored.
+  is ignored.
 
 - progress:
 
@@ -70,16 +69,16 @@ resmush_dir(
   `exif_preserve`
 
   :   Logical. Should the [Exif](https://en.wikipedia.org/wiki/Exif)
-      information (if any) be preserved? Default is `FALSE` (i.e.,
+      information (if any) be preserved? The default is `FALSE` (i.e.,
       remove it).
 
 ## Value
 
-Writes on disk the optimized file if the API call is successful in the
-directories specified in `dir`.
+Writes optimized files to disk in the directories specified in `dir` if
+the API call is successful.
 
 In all cases, an [`invisible()`](https://rdrr.io/r/base/invisible.html)
-data frame with a summary of the process is returned as well.
+data frame summarizing the process is returned as well.
 
 ## See also
 
@@ -97,45 +96,45 @@ Other functions for optimizing:
 
 ``` r
 # \donttest{
-# Get example dir and copy
+# Get example directory and copy it
 example_dir <- system.file("extimg", package = "resmush")
 temp_dir <- tempdir()
 file.copy(example_dir, temp_dir, recursive = TRUE)
 #> [1] TRUE
 
-# Dest folder
+# Destination folder
 
 dest_folder <- file.path(tempdir(), "extimg")
 
 # Non-recursive
 resmush_dir(dest_folder)
 #> ℹ Resmushing 2 files
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [3ms] | ETA:  0s (1/2 files)
 #> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.8s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files with size 340.2 Kb
 #> ✔ Success for 2 files: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/Rtmpbe2vsj/extimg.
+#> See results in directory /tmp/Rtmp4JfkxK/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Would remove 2 files:
-#> → /tmp/Rtmpbe2vsj/extimg/example_resmush.jpg
-#> → /tmp/Rtmpbe2vsj/extimg/example_resmush.png
+#> → /tmp/Rtmp4JfkxK/extimg/example_resmush.jpg
+#> → /tmp/Rtmp4JfkxK/extimg/example_resmush.png
 
 # Recursive
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Resmushing 5 files
-#> 🕐  Go! | ■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□   40% [1.3s] | ETA:  2s (2/5 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□   40% [1.1s] | ETA:  2s (2/5 files)
 #> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.9s] | ETA:  0s (5/5 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files with size 401.7 Kb
 #> ✔ Success for 5 files: Size now is 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> See results in directories /tmp/Rtmpbe2vsj/extimg,
-#> /tmp/Rtmpbe2vsj/extimg/top1/nested, /tmp/Rtmpbe2vsj/extimg/top1, and
-#> /tmp/Rtmpbe2vsj/extimg/top2.
+#> See results in directories /tmp/Rtmp4JfkxK/extimg,
+#> /tmp/Rtmp4JfkxK/extimg/top1/nested, /tmp/Rtmp4JfkxK/extimg/top1, and
+#> /tmp/Rtmp4JfkxK/extimg/top2.
 
-# Same info in the invisible df
+# Same information in the invisible data frame
 summary[, -c(1, 2)]
 #>   src_size dest_size compress_ratio notes src_bytes dest_bytes
 #> 1 100.4 Kb   83.2 Kb         17.15%    OK    102796      85164
@@ -144,7 +143,7 @@ summary[, -c(1, 2)]
 #> 4  25.9 Kb    7.7 Kb         70.09%    OK     26499       7926
 #> 5  17.8 Kb      6 Kb         66.48%    OK     18214       6105
 
-# Display with png
+# Display the png output
 if (require("png", quietly = TRUE)) {
   a_png <- grepl("png$", summary$dest_img)
   my_png <- png::readPNG(summary[a_png, ]$dest_img[2])
