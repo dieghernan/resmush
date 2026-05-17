@@ -22,13 +22,13 @@ resmush_dir(
 
 - dir:
 
-  Character vector representing paths to local directories.
+  A character vector of paths to local directories.
 
 - ext:
 
-  [`regex`](https://rdrr.io/r/base/regex.html) indicating the extensions
-  of the files to optimize. The default value captures all extensions
-  supported by the API.
+  A [`regex`](https://rdrr.io/r/base/regex.html) indicating the
+  extensions of the files to optimize. The default value captures all
+  extensions supported by the API.
 
 - suffix:
 
@@ -53,7 +53,7 @@ resmush_dir(
 
 - recursive:
 
-  Logical. Should the `dir` file search be recursive? See also
+  Logical. Should file search within `dir` be recursive? See also
   [`list.files()`](https://rdrr.io/r/base/list.files.html).
 
 - ...:
@@ -63,8 +63,9 @@ resmush_dir(
 
   `qlty`
 
-  :   Only affects `jpg` files. Integer between `0` and `100` indicating
-      the optimization level. For optimal results use values above `90`.
+  :   Only affects `jpg` files. An integer between `0` and `100`
+      indicating the optimization level. For optimal results, use values
+      above `90`.
 
   `exif_preserve`
 
@@ -96,45 +97,45 @@ Other functions for optimizing:
 
 ``` r
 # \donttest{
-# Get example directory and copy it
+# Copy the example directory.
 example_dir <- system.file("extimg", package = "resmush")
 temp_dir <- tempdir()
 file.copy(example_dir, temp_dir, recursive = TRUE)
 #> [1] TRUE
 
-# Destination folder
-
+# Create the destination folder path.
 dest_folder <- file.path(tempdir(), "extimg")
 
-# Non-recursive
+# Non-recursive.
 resmush_dir(dest_folder)
 #> ℹ Resmushing 2 files
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [3ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.8s] | ETA:  0s (2/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2.1s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files with size 340.2 Kb
 #> ✔ Success for 2 files: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/Rtmp4JfkxK/extimg.
+#> See results in directory /tmp/RtmpaBc3ne/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Would remove 2 files:
-#> → /tmp/Rtmp4JfkxK/extimg/example_resmush.jpg
-#> → /tmp/Rtmp4JfkxK/extimg/example_resmush.png
+#> → /tmp/RtmpaBc3ne/extimg/example_resmush.jpg
+#> → /tmp/RtmpaBc3ne/extimg/example_resmush.png
 
-# Recursive
+# Recursive.
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Resmushing 5 files
-#> 🕐  Go! | ■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□   40% [1.1s] | ETA:  2s (2/5 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.9s] | ETA:  0s (5/5 files)
+#> 🕐  Go! | ■■■■■■■□□□□□□□□□□□□□□□□□□□□□□□□   20% [1ms] | ETA:  0s (1/5 files)
+#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■□□□□□□   80% [3.1s] | ETA:  1s (4/5 files)
+#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.8s] | ETA:  0s (5/5 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files with size 401.7 Kb
 #> ✔ Success for 5 files: Size now is 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> See results in directories /tmp/Rtmp4JfkxK/extimg,
-#> /tmp/Rtmp4JfkxK/extimg/top1/nested, /tmp/Rtmp4JfkxK/extimg/top1, and
-#> /tmp/Rtmp4JfkxK/extimg/top2.
+#> See results in directories /tmp/RtmpaBc3ne/extimg,
+#> /tmp/RtmpaBc3ne/extimg/top1/nested, /tmp/RtmpaBc3ne/extimg/top1, and
+#> /tmp/RtmpaBc3ne/extimg/top2.
 
-# Same information in the invisible data frame
+# Return the same information in the invisible data frame.
 summary[, -c(1, 2)]
 #>   src_size dest_size compress_ratio notes src_bytes dest_bytes
 #> 1 100.4 Kb   83.2 Kb         17.15%    OK    102796      85164
@@ -143,7 +144,7 @@ summary[, -c(1, 2)]
 #> 4  25.9 Kb    7.7 Kb         70.09%    OK     26499       7926
 #> 5  17.8 Kb      6 Kb         66.48%    OK     18214       6105
 
-# Display the png output
+# Display the PNG output.
 if (require("png", quietly = TRUE)) {
   a_png <- grepl("png$", summary$dest_img)
   my_png <- png::readPNG(summary[a_png, ]$dest_img[2])
@@ -151,7 +152,7 @@ if (require("png", quietly = TRUE)) {
 }
 
 
-# Clean up example
+# Clean up the example files.
 unlink(dest_folder, force = TRUE, recursive = TRUE)
 # }
 ```

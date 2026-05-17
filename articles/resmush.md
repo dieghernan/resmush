@@ -1,9 +1,8 @@
 # Using resmush
 
-**resmush** is an **R** package that allows users to optimize and
-compress images using [**reSmush.it**](https://resmush.it/). reSmush.it
-is a *free API* that provides image optimization and has been
-implemented in
+**resmush** is an **R** package that lets users optimize and compress
+images using [**reSmush.it**](https://resmush.it/). **reSmush.it** is a
+*free API* that provides image optimization and has been implemented in
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/)
 and [many other tools](https://resmush.it/tools/).
 
@@ -16,7 +15,7 @@ Some of the features of **reSmush.it** include:
 - Compression using several algorithms:
   - [**PNGQuant**](https://pngquant.org/): Removes unnecessary chunks
     from `png` files while preserving full alpha transparency.
-  - [**JPEGOptim**](https://github.com/tjko/jpegoptim)**:** Lossless
+  - [**JPEGOptim**](https://github.com/tjko/jpegoptim): Lossless
     optimization based on Huffman table optimization.
   - [**OptiPNG**](https://optipng.sourceforge.net/): A `png` optimizer
     used by several online compression tools.
@@ -57,7 +56,7 @@ argument. Keep this value above 90 to maintain good image quality.
 
 ``` r
 
-# Extreme case
+# Extreme case.
 resmush_url(
   url,
   outfile = tempfile(fileext = ".jpg"),
@@ -70,7 +69,8 @@ resmush_url(
 #> See result in directory 'tempdir()'.
 ```
 
-[![](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
+[![Low quality
+figure](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
 Figure 2: Low-quality image due to high compression (`qlty = 3`),
 compared with [Figure 1 (b)](#fig-new).
@@ -82,7 +82,7 @@ The following example shows this output when compressing a local file:
 
 png_file <- system.file("extimg/example.png", package = "resmush")
 
-# For the example, copy to a temporary file
+# Copy to a temporary file for this example.
 tmp_png <- tempfile(fileext = ".png")
 file.copy(png_file, tmp_png, overwrite = TRUE)
 #> [1] TRUE
@@ -116,7 +116,7 @@ Several other **R** packages also provide image optimization tools:
   [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) but
   with more options. Requires additional local software.
 
-| tool | CRAN | Additional software? | Online? | API key? | Limits? |
+| Tool | CRAN | Additional software? | Online? | API key? | Limits? |
 |----|----|----|----|----|----|
 | [`xfun::tinify()`](https://rdrr.io/pkg/xfun/man/tinify.html) | Yes | No | Yes | Yes | 500 files/month (free tier) |
 | [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) | Yes | Yes | No | No | No |
@@ -126,7 +126,7 @@ Several other **R** packages also provide image optimization tools:
 
 Table 1: **R** packages: Comparison of image optimization alternatives.
 
-| tool | png | jpg | gif | bmp | tiff | webp | pdf |
+| Tool | png | jpg | gif | bmp | tiff | webp | pdf |
 |----|----|----|----|----|----|----|----|
 | [`xfun::tinify()`](https://rdrr.io/pkg/xfun/man/tinify.html) | ✅ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
 | [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |

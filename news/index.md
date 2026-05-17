@@ -6,7 +6,7 @@ CRAN release: 2026-03-14
 
 - Bumped the major version to indicate the package has reached a mature
   development state.
-- Minimum R version required: 4.1.0.
+- Minimum **R** version required: 4.1.0.
 - Migrated documentation to Quarto.
 - Corrected typos.
 
@@ -43,13 +43,13 @@ CRAN release: 2024-05-22
 CRAN release: 2024-02-02
 
 - Accepted on **CRAN**.
-- Switched from `httr` to `httr2`.
+- Switched from **httr** to **httr2**.
 - Added DOI: <https://doi.org/10.5281/zenodo.10556679>.
 - [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md),
   [`resmush_dir()`](https://dieghernan.github.io/resmush/reference/resmush_dir.md)
   and
   [`resmush_url()`](https://dieghernan.github.io/resmush/reference/resmush_url.md)
-  gain a new `overwrite` argument.
+  gained a new `overwrite` argument.
 - API changes: new messages and progress bars using
   [`cli::cli_progress_bar()`](https://cli.r-lib.org/reference/cli_progress_bar.html).
   These changes also include:

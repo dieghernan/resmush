@@ -56,8 +56,8 @@ resmush_file(
 
 - qlty:
 
-  Only affects `jpg` files. Integer between `0` and `100` indicating the
-  optimization level. For optimal results use values above `90`.
+  Only affects `jpg` files. An integer between `0` and `100` indicating
+  the optimization level. For optimal results, use values above `90`.
 
 - exif_preserve:
 
@@ -93,7 +93,7 @@ Other functions for optimizing:
 # \donttest{
 png_file <- system.file("extimg/example.png", package = "resmush")
 
-# For the example, copy to a temporary file
+# Copy to a temporary file for this example.
 tmp_png <- tempfile(fileext = ".png")
 
 file.copy(png_file, tmp_png, overwrite = TRUE)
@@ -103,54 +103,54 @@ resmush_file(tmp_png)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file with size 239.9 Kb
 #> ✔ Success for 1 file: Size now is 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-#> See result in directory /tmp/Rtmp4JfkxK.
+#> See result in directory /tmp/RtmpaBc3ne.
 
-# Several paths
+# Several paths.
 jpg_file <- system.file("extimg/example.jpg", package = "resmush")
 tmp_jpg <- tempfile(fileext = ".jpg")
 
 file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 #> [1] TRUE
 
-# Output summary in the console
+# Output the summary in the console.
 summary <- resmush_file(c(tmp_png, tmp_jpg))
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.4s] | ETA:  0s (2/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.1s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files with size 340.2 Kb
 #> ✔ Success for 2 files: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/Rtmp4JfkxK.
+#> See results in directory /tmp/RtmpaBc3ne.
 
-# Similar information in the invisible data frame
+# Similar information in the invisible data frame.
 summary
 #>                                src_img
-#> 1 /tmp/Rtmp4JfkxK/file1bb949f01ccf.png
-#> 2 /tmp/Rtmp4JfkxK/file1bb93ecb4d7f.jpg
+#> 1 /tmp/RtmpaBc3ne/file1a9b383970e3.png
+#> 2 /tmp/RtmpaBc3ne/file1a9b7d51de47.jpg
 #>                                       dest_img src_size dest_size
-#> 1 /tmp/Rtmp4JfkxK/file1bb949f01ccf_resmush.png 239.9 Kb   70.7 Kb
-#> 2 /tmp/Rtmp4JfkxK/file1bb93ecb4d7f_resmush.jpg 100.4 Kb   83.2 Kb
+#> 1 /tmp/RtmpaBc3ne/file1a9b383970e3_resmush.png 239.9 Kb   70.7 Kb
+#> 2 /tmp/RtmpaBc3ne/file1a9b7d51de47_resmush.jpg 100.4 Kb   83.2 Kb
 #>   compress_ratio notes src_bytes dest_bytes
 #> 1         70.54%    OK    245618      72356
 #> 2         17.15%    OK    102796      85164
 
-# Display the png output
+# Display the PNG output.
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])
   grid::grid.raster(my_png)
 }
 
 
-# Use with jpg and parameters
+# Use with JPG and parameters.
 resmush_file(tmp_jpg)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file with size 100.4 Kb
 #> ✔ Success for 1 file: Size now is 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> See result in directory /tmp/Rtmp4JfkxK.
+#> See result in directory /tmp/RtmpaBc3ne.
 resmush_file(tmp_jpg, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file with size 100.4 Kb
 #> ✔ Success for 1 file: Size now is 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> See result in directory /tmp/Rtmp4JfkxK.
+#> See result in directory /tmp/RtmpaBc3ne.
 # }
 ```

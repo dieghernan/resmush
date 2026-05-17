@@ -13,8 +13,8 @@
 <link rel="manifest" href="../site.webmanifest">
 <!-- katex math --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><script src="../katex-auto.js"></script><script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Inter-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Inter-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/Inter_Tight-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/Fira_Code-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet">
@@ -91,7 +91,7 @@
 
 
 
-    <!-- resmush.qmd is generated from resmush.qmd.orig. Please edit that file --><p><strong>resmush</strong> is an <strong>R</strong> package that allows users to optimize and compress images using <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. reSmush.it is a <u>free API</u> that provides image optimization and has been implemented in <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a> and <a href="https://resmush.it/tools/" class="external-link">many other tools</a>.</p>
+    <!-- resmush.qmd is generated from resmush.qmd.orig. Please edit that file --><p><strong>resmush</strong> is an <strong>R</strong> package that lets users optimize and compress images using <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. <strong>reSmush.it</strong> is a <u>free API</u> that provides image optimization and has been implemented in <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a> and <a href="https://resmush.it/tools/" class="external-link">many other tools</a>.</p>
 <p>Some of the features of <strong>reSmush.it</strong> include:</p>
 <ul>
 <li>Free optimization services with <u>no API key required</u>.</li>
@@ -103,7 +103,7 @@
 <li>
 <a href="https://pngquant.org/" class="external-link"><strong>PNGQuant</strong></a>: Removes unnecessary chunks from <code>png</code> files while preserving full alpha transparency.</li>
 <li>
-<a href="https://github.com/tjko/jpegoptim" class="external-link"><strong>JPEGOptim</strong></a><strong>:</strong> Lossless optimization based on Huffman table optimization.</li>
+<a href="https://github.com/tjko/jpegoptim" class="external-link"><strong>JPEGOptim</strong></a>: Lossless optimization based on Huffman table optimization.</li>
 <li>
 <a href="https://optipng.sourceforge.net/" class="external-link"><strong>OptiPNG</strong></a>: A <code>png</code> optimizer used by several online compression tools.</li>
 </ul>
@@ -153,7 +153,7 @@ Figure 1: Original picture <a href="#fig-orig" class="quarto-xref">Figure 1 (a
 </div>
 <p>You can adjust the compression quality for <code>jpg</code> files with the <code>qlty</code> argument. Keep this value above 90 to maintain good image quality.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Extreme case</span></span>
+<code class="sourceCode R"><span><span class="co"># Extreme case.</span></span>
 <span><span class="fu"><a href="../reference/resmush_url.html">resmush_url</a></span><span class="op">(</span></span>
 <span>  <span class="va">url</span>,</span>
 <span>  outfile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".jpg"</span><span class="op">)</span>,</span>
@@ -166,7 +166,7 @@ Figure 1: Original picture <a href="#fig-orig" class="quarto-xref">Figure 1 (a
 <span><span class="co">#&gt; See result in directory 'tempdir()'.</span></span></code></pre></div>
 <div id="fig-compresslow" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-compresslow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg"><img src="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg" style="width:100.0%"></a></p>
+<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg"><img src="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg" style="width:100.0%" alt="Low quality figure"></a></p>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-compresslow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure 2: Low-quality image due to high compression (<code>qlty = 3</code>), compared with <a href="#fig-new" class="quarto-xref">Figure 1 (b)</a>.
@@ -176,7 +176,7 @@ Figure 2: Low-quality image due to high compression (<code>qlty = 3</code>), co
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">png_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extimg/example.png"</span>, package <span class="op">=</span> <span class="st">"resmush"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># For the example, copy to a temporary file</span></span>
+<span><span class="co"># Copy to a temporary file for this example.</span></span>
 <span><span class="va">tmp_png</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".png"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.copy</a></span><span class="op">(</span><span class="va">png_file</span>, <span class="va">tmp_png</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span>
@@ -218,7 +218,7 @@ Figure 2: Low-quality image due to high compression (<code>qlty = 3</code>), co
 <col style="width: 16%">
 </colgroup>
 <thead><tr class="header">
-<th>tool</th>
+<th>Tool</th>
 <th>CRAN</th>
 <th>Additional software?</th>
 <th>Online?</th>
@@ -277,7 +277,7 @@ Table 1: <strong>R</strong> packages: Comparison of image optimization alternat
 <figure class="quarto-float quarto-float-tbl"><div aria-describedby="tbl-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
 <thead><tr class="header">
-<th>tool</th>
+<th>Tool</th>
 <th>png</th>
 <th>jpg</th>
 <th>gif</th>

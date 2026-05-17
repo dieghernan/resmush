@@ -40,7 +40,8 @@ resmush_url(
   temporary files (see
   [`tempfile()`](https://rdrr.io/r/base/tempfile.html)) with the same
   [`basename()`](https://rdrr.io/r/base/basename.html) as the file
-  provided in `url` are created. It must have the same length as `url`.
+  provided in `url` are created. `outfile` must have the same length as
+  `url`.
 
 - overwrite:
 
@@ -59,8 +60,8 @@ resmush_url(
 
 - qlty:
 
-  Only affects `jpg` files. Integer between `0` and `100` indicating the
-  optimization level. For optimal results use values above `90`.
+  Only affects `jpg` files. An integer between `0` and `100` indicating
+  the optimization level. For optimal results, use values above `90`.
 
 - exif_preserve:
 
@@ -75,7 +76,7 @@ cases, an [`invisible()`](https://rdrr.io/r/base/invisible.html) data
 frame summarizing the process is returned as well.
 
 If any value of the vector `outfile` is duplicated, `resmush_url()`
-renames the output with a suffix `_01, _02`, etc.
+renames the output with suffixes such as `_01`, `_02`, etc.
 
 ## See also
 
@@ -91,7 +92,7 @@ Other functions for optimizing:
 
 # \donttest{
 
-# Base URL
+# Base URL.
 base_url <- "https://raw.githubusercontent.com/dieghernan/resmush/main/inst/"
 
 png_url <- paste0(base_url, "/extimg/example.png")
@@ -99,49 +100,49 @@ resmush_url(png_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 url with size 239.9 Kb
 #> ✔ Success for 1 url: Size now is 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-#> See result in directory /tmp/Rtmp4JfkxK.
+#> See result in directory /tmp/RtmpaBc3ne.
 
-# Several URLs
+# Several URLs.
 jpg_url <- paste0(base_url, "/extimg/example.jpg")
 
 summary <- resmush_url(c(png_url, jpg_url))
 #> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 urls)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [981ms] | ETA:  0s (2/2 urls)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.1s] | ETA:  0s (2/2 urls)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 urls with size 340.2 Kb
 #> ✔ Success for 2 urls: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/Rtmp4JfkxK.
+#> See results in directory /tmp/RtmpaBc3ne.
 
-# Returns an (invisible) data frame with a summary of the process
+# Return an invisible data frame with a summary of the process.
 summary
 #>                                                                              src_img
 #> 1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.png
 #> 2 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.jpg
 #>                         dest_img src_size dest_size compress_ratio notes
-#> 1 /tmp/Rtmp4JfkxK/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK
-#> 2    /tmp/Rtmp4JfkxK/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK
+#> 1 /tmp/RtmpaBc3ne/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK
+#> 2    /tmp/RtmpaBc3ne/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK
 #>   src_bytes dest_bytes
 #> 1    245618      72356
 #> 2    102796      85164
 
-# Display the png output
+# Display the PNG output.
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])
   grid::grid.raster(my_png)
 }
 
 
-# Use with jpg and parameters
+# Use with JPG and parameters.
 resmush_url(jpg_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 url with size 100.4 Kb
 #> ✔ Success for 1 url: Size now is 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> See result in directory /tmp/Rtmp4JfkxK.
+#> See result in directory /tmp/RtmpaBc3ne.
 resmush_url(jpg_url, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 url with size 100.4 Kb
 #> ✔ Success for 1 url: Size now is 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> See result in directory /tmp/Rtmp4JfkxK.
+#> See result in directory /tmp/RtmpaBc3ne.
 # }
 ```

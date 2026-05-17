@@ -1,6 +1,6 @@
 # Clean files created by [resmush](https://CRAN.R-project.org/package=resmush)
 
-**Use with caution**. This removes files from your computer.
+**Use with caution.** This removes files from your computer.
 
 Clean a directory (or a list of directories) of files created by
 [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md).
@@ -29,25 +29,25 @@ resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 
 ## Value
 
-An [`invisible()`](https://rdrr.io/r/base/invisible.html) `NULL` value.
-Produces messages summarizing the process.
+Returns an [`invisible()`](https://rdrr.io/r/base/invisible.html) `NULL`
+value and produces messages summarizing the process.
 
 ## See also
 
 [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md),
 [`resmush_dir()`](https://dieghernan.github.io/resmush/reference/resmush_dir.md),
 [`list.files()`](https://rdrr.io/r/base/list.files.html),
-[`unlink()`](https://rdrr.io/r/base/unlink.html)
+[`unlink()`](https://rdrr.io/r/base/unlink.html).
 
 ## Examples
 
 ``` r
 # \donttest{
-# Simple example
+# Simple example.
 
 png_file <- system.file("extimg/example.png", package = "resmush")
 
-# Copy to a temporary file with a given suffix
+# Copy to a temporary file with a given suffix.
 suffix <- "_would_be_removed"
 tmp_png <- file.path(
   tempdir(),
@@ -62,17 +62,17 @@ file.copy(png_file, tmp_png, overwrite = TRUE)
 file.exists(tmp_png)
 #> [1] TRUE
 
-# This does not remove it
+# Run with the default suffix; this should not remove the file.
 resmush_clean_dir(tempdir())
-#> ℹ No files to clean in /tmp/Rtmp4JfkxK with suffix "_resmush\\.".
+#> ℹ No files to clean in /tmp/RtmpaBc3ne with suffix "_resmush\\.".
 
 file.exists(tmp_png)
 #> [1] TRUE
 
-# A suffix is needed
+# Use the matching suffix to remove the file.
 resmush_clean_dir(tempdir(), suffix = suffix)
 #> ℹ Would remove 1 file:
-#> → /tmp/Rtmp4JfkxK/example_would_be_removed.png
+#> → /tmp/RtmpaBc3ne/example_would_be_removed.png
 
 file.exists(tmp_png)
 #> [1] FALSE
