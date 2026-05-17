@@ -3,7 +3,7 @@ show_report <- function(res_df, summary_type = "file") {
     return(invisible(NULL))
   }
 
-  # Heading
+  # Print heading.
 
   name_cli <- switch(summary_type,
     "file" = "file{?s}",
@@ -28,7 +28,7 @@ show_report <- function(res_df, summary_type = "file") {
   nok <- res_df[res_df$notes != "OK", ]
   ok <- res_df[res_df$notes == "OK", ]
 
-  # Success
+  # Report successful conversions.
 
   if (nrow(ok) > 0) {
     # nolint start
@@ -63,7 +63,7 @@ show_report <- function(res_df, summary_type = "file") {
     # nolint end
 
     if (summary_type == "file") {
-      # Prepare bullets
+      # Prepare bullets.
       makebull <- sprintf(
         paste0(
           "{.path {nok$src_img[%s]}} ",
@@ -85,7 +85,7 @@ show_report <- function(res_df, summary_type = "file") {
         "{cli::qty(nokdirs)}director{?y/ies} {.path {nokdirs}}."
       ))
     } else {
-      # Prepare bullets
+      # Prepare bullets.
       makebull <- sprintf(
         "{.url {nok$src_img[%s]}}: {nok$notes[%s]}.",
         noks,

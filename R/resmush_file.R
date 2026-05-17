@@ -5,11 +5,11 @@
 #'
 #' @param file Path or paths to local files. **reSmush** can optimize these
 #'   image formats:
-#'   * `png`
-#'   * `jpg/jpeg`
-#'   * `gif`
-#'   * `bmp`
-#'   * `tiff`
+#'   - `png`
+#'   - `jpg/jpeg`
+#'   - `gif`
+#'   - `bmp`
+#'   - `tiff`
 #'
 #' @param suffix Character, defaults to `"_resmush"`. By default, a new file
 #'   with this `suffix` is created in the same directory as `file` (i.e.,
@@ -20,8 +20,8 @@
 #' @param progress Logical. Display a progress bar when needed.
 #' @param report Logical. Display a summary report of the process in the
 #'   console. See also **Value**.
-#' @param qlty Only affects `jpg` files. Integer between `0` and `100`
-#'   indicating the optimization level. For optimal results use values above
+#' @param qlty Only affects `jpg` files. An integer between `0` and `100`
+#'   indicating the optimization level. For optimal results, use values above
 #'   `90`.
 #' @param exif_preserve Logical. Should the
 #'   [Exif](https://en.wikipedia.org/wiki/Exif) information (if any) be
@@ -48,32 +48,32 @@
 #' \donttest{
 #' png_file <- system.file("extimg/example.png", package = "resmush")
 #'
-#' # For the example, copy to a temporary file
+#' # Copy to a temporary file for this example.
 #' tmp_png <- tempfile(fileext = ".png")
 #'
 #' file.copy(png_file, tmp_png, overwrite = TRUE)
 #'
 #' resmush_file(tmp_png)
 #'
-#' # Several paths
+#' # Several paths.
 #' jpg_file <- system.file("extimg/example.jpg", package = "resmush")
 #' tmp_jpg <- tempfile(fileext = ".jpg")
 #'
 #' file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 #'
-#' # Output summary in the console
+#' # Output the summary in the console.
 #' summary <- resmush_file(c(tmp_png, tmp_jpg))
 #'
-#' # Similar information in the invisible data frame
+#' # Similar information in the invisible data frame.
 #' summary
 #'
-#' # Display the png output
+#' # Display the PNG output.
 #' if (require("png", quietly = TRUE)) {
 #'   my_png <- png::readPNG(summary$dest_img[1])
 #'   grid::grid.raster(my_png)
 #' }
 #'
-#' # Use with jpg and parameters
+#' # Use with JPG and parameters.
 #' resmush_file(tmp_jpg)
 #' resmush_file(tmp_jpg, qlty = 10)
 #' }
@@ -87,7 +87,7 @@ resmush_file <- function(
   qlty = 92,
   exif_preserve = FALSE
 ) {
-  # Prepare progress bar
+  # Prepare progress bar.
   n_files <- length(file)
   n_seq <- seq_len(n_files)
 
@@ -109,8 +109,8 @@ resmush_file <- function(
       clear = FALSE
     )
   }
-  # Call single with a loop.
-  # cli::cli_progress_bar does not work on applies yet.
+  # Call `resmush_file_single()` in a loop.
+  # cli::cli_progress_bar() does not work with apply-family calls yet.
   res_df <- NULL
 
   for (i in n_seq) {
@@ -137,7 +137,7 @@ resmush_file <- function(
     }
   }
 
-  # Restore options
+  # Restore options.
   if (progress) {
     options(
       cli.progress_bar_style = opts$cli.progress_bar_style,
@@ -146,18 +146,17 @@ resmush_file <- function(
     )
   }
 
-  # Report
+  # Display report.
   if (report) {
     show_report(res_df = res_df)
   }
 
-  # Output
+  # Return output.
 
   invisible(res_df)
 }
 
-
-# Single-file call
+# Single-file helper.
 resmush_file_single <- function(
   file,
   suffix = "_resmush",
@@ -166,7 +165,7 @@ resmush_file_single <- function(
   exif_preserve = FALSE
 ) {
   outfile <- add_suffix(file, suffix, overwrite)
-  # Results table
+  # Create the results table.
   res <- data.frame(
     src_img = file,
     dest_img = NA,
@@ -178,20 +177,20 @@ resmush_file_single <- function(
     dest_bytes = NA
   )
 
-  # Check internet access
-  # Internal option, for checking purposes only
+  # Check internet access.
+  # Internal option, for checking purposes only.
   test <- getOption("resmush_test_offline", FALSE)
   if (any(isFALSE(curl::has_internet()), test)) {
     res$notes <- "Offline"
     return(invisible(res))
   }
-  # Check file exists
+  # Check that the file exists.
   if (!file.exists(file)) {
     res$notes <- "Local file does not exist"
     return(invisible(res))
   }
 
-  # Initial file size on disk
+  # Store the initial file size on disk.
   src_size <- file.size(file)
   res$src_bytes <- src_size
   res$src_size <- make_pretty_size(src_size)
@@ -220,7 +219,7 @@ resmush_file_single <- function(
     referer = "https://dieghernan.github.io/resmush/"
   )
 
-  # First dry run
+  # Run a first dry run.
   req_head <- httr2::req_method(dwn_opt, "HEAD")
   req_head <- httr2::req_error(req_head, is_error = function(x) {
     FALSE
@@ -228,32 +227,32 @@ resmush_file_single <- function(
   resp_head <- httr2::req_perform(req_head)
   test_no_file <- getOption("resmush_test_no_file", FALSE)
   if (any(httr2::resp_is_error(resp_head), test_no_file)) {
-    # Get code and error, then return NULL
+    # Get the status code and error, then return `NULL`.
     err_code <- httr2::resp_status(resp_head) # nolint
     err <- httr2::resp_status_desc(resp_head) # nolint
     cli::cli_alert_danger("HTTP {err_code} {err} for file:\n {.path {file}}")
     return(NULL)
   }
 
-  # Download the optimized file
+  # Download the optimized file.
   dwn_opt <- httr2::req_perform(dwn_opt, path = outfile)
 
-  # Corner case
-  # Internal option, for checking purposes only
+  # Handle failed optimized-file downloads.
+  # Internal option, for checking purposes only.
   test_corner <- getOption("resmush_test_corner", FALSE)
   if (any(httr2::resp_status(dwn_opt) != 200, test_corner)) {
     res$notes <- "API not responding, check https://resmush.it/status"
     return(invisible(res))
   }
 
-  # Store the output path
+  # Store the output path.
   res$dest_img <- outfile
 
   out_size <- file.size(outfile)
   res$dest_bytes <- out_size
   res$dest_size <- make_pretty_size(out_size)
 
-  # Compression ratio
+  # Compute the compression ratio.
   red_ratio <- 1 - out_size / src_size
   res$compress_ratio <- sprintf("%0.2f%%", red_ratio * 100)
   res$notes <- "OK"
@@ -261,9 +260,9 @@ resmush_file_single <- function(
   invisible(res)
 }
 
-# Helper function for the local API call
+# Helper function for the local API call.
 smush_from_local <- function(path, qlty, exif_preserve = TRUE) {
-  # Convert to logical
+  # Normalize `exif_preserve` to a scalar logical.
   exif_preserve <- isTRUE(exif_preserve)
 
   api_url <- httr2::url_parse("http://api.resmush.it/")

@@ -23,9 +23,9 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 <!-- badges: end -->
 
-**resmush** is an **R** package that allows users to optimize and
-compress images using [**reSmush.it**](https://resmush.it/). reSmush.it
-is a <u>free API</u> that provides image optimization and has been
+**resmush** is an **R** package that lets users optimize and compress
+images using [**reSmush.it**](https://resmush.it/). **reSmush.it** is a
+<u>free API</u> that provides image optimization and has been
 implemented in
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/)
 and [many other tools](https://resmush.it/tools/).
@@ -39,7 +39,7 @@ Some of the features of **reSmush.it** include:
 - Compression using several algorithms:
   - [**PNGQuant**](https://pngquant.org/): Removes unnecessary chunks
     from `png` files while preserving full alpha transparency.
-  - [**JPEGOptim**](https://github.com/tjko/jpegoptim)**:** Lossless
+  - [**JPEGOptim**](https://github.com/tjko/jpegoptim): Lossless
     optimization based on Huffman table optimization.
   - [**OptiPNG**](https://optipng.sourceforge.net/): A `png` optimizer
     used by several online compression tools.
@@ -129,7 +129,7 @@ You can adjust the compression quality for `jpg` files with the `qlty`
 argument. Keep this value above 90 to maintain good image quality.
 
 ``` r
-# Extreme case
+# Extreme case.
 resmush_url(
   url,
   outfile = "man/figures/jpg_example_compress_low.jpg",
@@ -160,7 +160,7 @@ The following example shows this output when compressing a local file:
 ``` r
 png_file <- system.file("extimg/example.png", package = "resmush")
 
-# For the example, copy to a temporary file
+# Copy to a temporary file for this example.
 tmp_png <- tempfile(fileext = ".png")
 file.copy(png_file, tmp_png, overwrite = TRUE)
 #> [1] TRUE
@@ -190,7 +190,7 @@ Several other **R** packages also provide image optimization tools:
   `xfun::optipng()` but with more options. Requires additional local
   software.
 
-| tool | CRAN | Additional software? | Online? | API key? | Limits? |
+| Tool | CRAN | Additional software? | Online? | API key? | Limits? |
 |----|----|----|----|----|----|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | No |
@@ -203,7 +203,7 @@ Several other **R** packages also provide image optimization tools:
 Table 1: **R** packages: Comparison of image optimization alternatives.
 </p>
 
-| tool              | png | jpg | gif | bmp | tiff | webp | pdf |
+| Tool              | png | jpg | gif | bmp | tiff | webp | pdf |
 |-------------------|-----|-----|-----|-----|------|------|-----|
 | `xfun::tinify()`  | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
 | `xfun::optipng()` | ✅  | ❌  | ❌  | ❌  | ❌   | ❌   | ❌  |
@@ -235,7 +235,7 @@ A BibTeX entry for LaTeX users is
       year = {2026},
       version = {1.0.0},
       url = {https://dieghernan.github.io/resmush/},
-      abstract = {Optimize and compress local and online image files using the reSmush.it API <https://resmush.it/>.},
+      abstract = {Optimize and compress local and online image files using the reSmush.it API <https://resmush.it/>, with support for png, jpg/jpeg, gif, bmp and tiff files.},
     }
 
 ## References

@@ -28,8 +28,8 @@ resmush_url(
 
 \item{outfile}{Path or paths where optimized files are stored on disk. By
 default, temporary files (see \code{\link[=tempfile]{tempfile()}}) with the same \code{\link[=basename]{basename()}} as
-the file provided in \code{url} are created. It must have the same length as
-\code{url}.}
+the file provided in \code{url} are created. \code{outfile} must have the same length
+as \code{url}.}
 
 \item{overwrite}{Logical. Should \code{outfile} be overwritten if it already
 exists? If \code{FALSE} and \code{outfile} exists, a copy is created with a
@@ -40,8 +40,8 @@ numerical suffix (i.e. \verb{<outfile>.png}, \verb{<outfile>_01.png}, etc.).}
 \item{report}{Logical. Display a summary report of the process in the
 console. See also \strong{Value}.}
 
-\item{qlty}{Only affects \code{jpg} files. Integer between \code{0} and \code{100}
-indicating the optimization level. For optimal results use values above
+\item{qlty}{Only affects \code{jpg} files. An integer between \code{0} and \code{100}
+indicating the optimization level. For optimal results, use values above
 \code{90}.}
 
 \item{exif_preserve}{Logical. Should the
@@ -54,7 +54,7 @@ In all cases, an \code{\link[=invisible]{invisible()}} data frame summarizing th
 as well.
 
 If any value of the vector \code{outfile} is duplicated, \code{resmush_url()} renames
-the output with a suffix \verb{_01, _02}, etc.
+the output with suffixes such as \verb{_01}, \verb{_02}, etc.
 }
 \description{
 Optimize and download an online image using the
@@ -65,27 +65,27 @@ Optimize and download an online image using the
 
 \donttest{
 
-# Base URL
+# Base URL.
 base_url <- "https://raw.githubusercontent.com/dieghernan/resmush/main/inst/"
 
 png_url <- paste0(base_url, "/extimg/example.png")
 resmush_url(png_url)
 
-# Several URLs
+# Several URLs.
 jpg_url <- paste0(base_url, "/extimg/example.jpg")
 
 summary <- resmush_url(c(png_url, jpg_url))
 
-# Returns an (invisible) data frame with a summary of the process
+# Return an invisible data frame with a summary of the process.
 summary
 
-# Display the png output
+# Display the PNG output.
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])
   grid::grid.raster(my_png)
 }
 
-# Use with jpg and parameters
+# Use with JPG and parameters.
 resmush_url(jpg_url)
 resmush_url(jpg_url, qlty = 10)
 }

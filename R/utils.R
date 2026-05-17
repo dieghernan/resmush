@@ -1,4 +1,4 @@
-#' Create a pretty `object_size` object from an integer
+#' Create a formatted `object_size` object from an integer
 #'
 #' @param x An integer.
 #' @noRd
@@ -13,16 +13,16 @@ make_pretty_size <- function(x) {
 #' Add a suffix to a base name
 #'
 #' @param x A character vector.
-#' @param suffix Suffix to add.
+#' @param suffix A suffix to add.
 #'
 #' @noRd
 add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
-  # Handle suffix
+  # Return unchanged paths when overwriting or no suffix is requested.
   if (any(is.null(suffix), is.na(suffix), suffix == "", overwrite)) {
     return(x)
   }
 
-  # Add suffix
+  # Append suffix before file extensions.
   base_file <- tools::file_path_sans_ext(x)
   ext_file <- tools::file_ext(x)
 
@@ -55,7 +55,7 @@ make_unique_paths <- function(x, overwrite) {
   new_name
 }
 
-# Utilities for testing
+# Utilities for testing.
 load_inst_to_temp <- function(file, subdir = NULL) {
   f <- system.file(paste0("extimg/", file), package = "resmush")
   if (!is.null(subdir)) {
@@ -77,7 +77,7 @@ load_inst_to_temp <- function(file, subdir = NULL) {
 load_dir_to_temp <- function(n = 4) {
   inst_dir <- system.file("extimg", package = "resmush")
 
-  # Random name
+  # Create a random temporary directory name.
   temp_name <- paste0(sample(LETTERS, n, replace = TRUE), collapse = "")
 
   dest_dir <- file.path(tempdir(), temp_name)
@@ -86,7 +86,7 @@ load_dir_to_temp <- function(n = 4) {
     dir.create(dest_dir, recursive = TRUE)
   }
 
-  # Copy files
+  # Copy installed example files.
   lf <- list.files(inst_dir, full.names = TRUE)
   file.copy(lf, dest_dir, recursive = TRUE)
 

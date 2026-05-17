@@ -4,17 +4,18 @@
 #' Optimize all local files in a directory (or list of directories) using the
 #' [reSmush.it API](https://resmush.it/).
 #'
-#' @param dir Character vector representing paths to local directories.
-#' @param ext [`regex`][base::regex] indicating the extensions of the files to
-#'   optimize. The default value captures all extensions supported by the API.
+#' @param dir A character vector of paths to local directories.
+#' @param ext A [`regex`][base::regex] indicating the extensions of the files
+#'   to optimize. The default value captures all extensions supported by the
+#'   API.
 #' @param suffix Character, defaults to `"_resmush"`. By default, a new file
 #'   with the suffix is created in the same directory (i.e.,
 #'   optimized `example.png` becomes `example_resmush.png`). Values `""`, `NA`
 #'   and `NULL` are equivalent to `overwrite = TRUE`.
 #' @param overwrite Logical. Should the files in `dir` be overwritten? If `TRUE`
 #'   `suffix` is ignored.
-#' @param recursive Logical. Should the `dir` file search be recursive? See also
-#'   [list.files()].
+#' @param recursive Logical. Should file search within `dir` be recursive? See
+#'   also [list.files()].
 #' @inheritParams resmush_file
 #' @inheritDotParams resmush_file qlty exif_preserve
 #'
@@ -36,33 +37,32 @@
 #'
 #' @examplesIf curl::has_internet()
 #' \donttest{
-#' # Get example directory and copy it
+#' # Copy the example directory.
 #' example_dir <- system.file("extimg", package = "resmush")
 #' temp_dir <- tempdir()
 #' file.copy(example_dir, temp_dir, recursive = TRUE)
 #'
-#' # Destination folder
-#'
+#' # Create the destination folder path.
 #' dest_folder <- file.path(tempdir(), "extimg")
 #'
-#' # Non-recursive
+#' # Non-recursive.
 #' resmush_dir(dest_folder)
 #' resmush_clean_dir(dest_folder)
 #'
-#' # Recursive
+#' # Recursive.
 #' summary <- resmush_dir(dest_folder, recursive = TRUE)
 #'
-#' # Same information in the invisible data frame
+#' # Return the same information in the invisible data frame.
 #' summary[, -c(1, 2)]
 #'
-#' # Display the png output
+#' # Display the PNG output.
 #' if (require("png", quietly = TRUE)) {
 #'   a_png <- grepl("png$", summary$dest_img)
 #'   my_png <- png::readPNG(summary[a_png, ]$dest_img[2])
 #'   grid::grid.raster(my_png)
 #' }
 #'
-#' # Clean up example
+#' # Clean up the example files.
 #' unlink(dest_folder, force = TRUE, recursive = TRUE)
 #' }
 resmush_dir <- function(
@@ -93,7 +93,7 @@ resmush_dir <- function(
     cli::cli_alert_info("Resmushing {nf} file{?s}")
   }
 
-  # Call resmush_file()
+  # Call `resmush_file()`.
 
   resmush_file(
     allfiles,

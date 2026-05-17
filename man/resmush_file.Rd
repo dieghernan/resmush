@@ -39,8 +39,8 @@ and \code{NULL} are equivalent to \code{overwrite = TRUE}.}
 \item{report}{Logical. Display a summary report of the process in the
 console. See also \strong{Value}.}
 
-\item{qlty}{Only affects \code{jpg} files. Integer between \code{0} and \code{100}
-indicating the optimization level. For optimal results use values above
+\item{qlty}{Only affects \code{jpg} files. An integer between \code{0} and \code{100}
+indicating the optimization level. For optimal results, use values above
 \code{90}.}
 
 \item{exif_preserve}{Logical. Should the
@@ -63,32 +63,32 @@ Optimize local images using the \href{https://resmush.it/}{reSmush.it API}.
 \donttest{
 png_file <- system.file("extimg/example.png", package = "resmush")
 
-# For the example, copy to a temporary file
+# Copy to a temporary file for this example.
 tmp_png <- tempfile(fileext = ".png")
 
 file.copy(png_file, tmp_png, overwrite = TRUE)
 
 resmush_file(tmp_png)
 
-# Several paths
+# Several paths.
 jpg_file <- system.file("extimg/example.jpg", package = "resmush")
 tmp_jpg <- tempfile(fileext = ".jpg")
 
 file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 
-# Output summary in the console
+# Output the summary in the console.
 summary <- resmush_file(c(tmp_png, tmp_jpg))
 
-# Similar information in the invisible data frame
+# Similar information in the invisible data frame.
 summary
 
-# Display the png output
+# Display the PNG output.
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])
   grid::grid.raster(my_png)
 }
 
-# Use with jpg and parameters
+# Use with JPG and parameters.
 resmush_file(tmp_jpg)
 resmush_file(tmp_jpg, qlty = 10)
 }

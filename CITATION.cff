@@ -14,7 +14,8 @@ identifiers:
 - type: doi
   value: 10.32614/CRAN.package.resmush
 abstract: Optimize and compress local and online image files using the 'reSmush.it'
-  API <https://resmush.it/>.
+  API <https://resmush.it/>, with support for 'png', 'jpg/jpeg', 'gif', 'bmp' and
+  'tiff' files.
 authors:
 - family-names: Hernangómez
   given-names: Diego
@@ -33,7 +34,7 @@ preferred-citation:
   version: 1.0.0
   url: https://dieghernan.github.io/resmush/
   abstract: Optimize and compress local and online image files using the reSmush.it
-    API <https://resmush.it/>.
+    API <https://resmush.it/>, with support for png, jpg/jpeg, gif, bmp and tiff files.
 repository: https://CRAN.R-project.org/package=resmush
 repository-code: https://github.com/dieghernan/resmush
 url: https://dieghernan.github.io/resmush/

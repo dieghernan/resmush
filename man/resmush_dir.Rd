@@ -17,10 +17,11 @@ resmush_dir(
 )
 }
 \arguments{
-\item{dir}{Character vector representing paths to local directories.}
+\item{dir}{A character vector of paths to local directories.}
 
-\item{ext}{\code{\link[base:regex]{regex}} indicating the extensions of the files to
-optimize. The default value captures all extensions supported by the API.}
+\item{ext}{A \code{\link[base:regex]{regex}} indicating the extensions of the files
+to optimize. The default value captures all extensions supported by the
+API.}
 
 \item{suffix}{Character, defaults to \code{"_resmush"}. By default, a new file
 with the suffix is created in the same directory (i.e.,
@@ -35,14 +36,14 @@ and \code{NULL} are equivalent to \code{overwrite = TRUE}.}
 \item{report}{Logical. Display a summary report of the process in the
 console. See also \strong{Value}.}
 
-\item{recursive}{Logical. Should the \code{dir} file search be recursive? See also
-\code{\link[=list.files]{list.files()}}.}
+\item{recursive}{Logical. Should file search within \code{dir} be recursive? See
+also \code{\link[=list.files]{list.files()}}.}
 
 \item{...}{
   Arguments passed on to \code{\link{resmush_file}}
   \describe{
-    \item{\code{qlty}}{Only affects \code{jpg} files. Integer between \code{0} and \code{100}
-indicating the optimization level. For optimal results use values above
+    \item{\code{qlty}}{Only affects \code{jpg} files. An integer between \code{0} and \code{100}
+indicating the optimization level. For optimal results, use values above
 \code{90}.}
     \item{\code{exif_preserve}}{Logical. Should the
 \href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) be
@@ -63,33 +64,32 @@ Optimize all local files in a directory (or list of directories) using the
 \examples{
 \dontshow{if (curl::has_internet()) withAutoprint(\{ # examplesIf}
 \donttest{
-# Get example directory and copy it
+# Copy the example directory.
 example_dir <- system.file("extimg", package = "resmush")
 temp_dir <- tempdir()
 file.copy(example_dir, temp_dir, recursive = TRUE)
 
-# Destination folder
-
+# Create the destination folder path.
 dest_folder <- file.path(tempdir(), "extimg")
 
-# Non-recursive
+# Non-recursive.
 resmush_dir(dest_folder)
 resmush_clean_dir(dest_folder)
 
-# Recursive
+# Recursive.
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 
-# Same information in the invisible data frame
+# Return the same information in the invisible data frame.
 summary[, -c(1, 2)]
 
-# Display the png output
+# Display the PNG output.
 if (require("png", quietly = TRUE)) {
   a_png <- grepl("png$", summary$dest_img)
   my_png <- png::readPNG(summary[a_png, ]$dest_img[2])
   grid::grid.raster(my_png)
 }
 
-# Clean up example
+# Clean up the example files.
 unlink(dest_folder, force = TRUE, recursive = TRUE)
 }
 \dontshow{\}) # examplesIf}

@@ -17,10 +17,11 @@ resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 directories?}
 }
 \value{
-An \code{\link[=invisible]{invisible()}} \code{NULL} value. Produces messages summarizing the process.
+Returns an \code{\link[=invisible]{invisible()}} \code{NULL} value and produces messages summarizing the
+process.
 }
 \description{
-\strong{Use with caution}. This removes files from your computer.
+\strong{Use with caution.} This removes files from your computer.
 
 Clean a directory (or a list of directories) of files created by
 \code{\link[=resmush_file]{resmush_file()}}.
@@ -28,11 +29,11 @@ Clean a directory (or a list of directories) of files created by
 \examples{
 \dontshow{if (curl::has_internet()) withAutoprint(\{ # examplesIf}
 \donttest{
-# Simple example
+# Simple example.
 
 png_file <- system.file("extimg/example.png", package = "resmush")
 
-# Copy to a temporary file with a given suffix
+# Copy to a temporary file with a given suffix.
 suffix <- "_would_be_removed"
 tmp_png <- file.path(
   tempdir(),
@@ -44,12 +45,12 @@ file.copy(png_file, tmp_png, overwrite = TRUE)
 
 file.exists(tmp_png)
 
-# This does not remove it
+# Run with the default suffix; this should not remove the file.
 resmush_clean_dir(tempdir())
 
 file.exists(tmp_png)
 
-# A suffix is needed
+# Use the matching suffix to remove the file.
 resmush_clean_dir(tempdir(), suffix = suffix)
 
 file.exists(tmp_png)
@@ -57,7 +58,7 @@ file.exists(tmp_png)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=resmush_file]{resmush_file()}}, \code{\link[=resmush_dir]{resmush_dir()}}, \code{\link[=list.files]{list.files()}}, \code{\link[=unlink]{unlink()}}
+\code{\link[=resmush_file]{resmush_file()}}, \code{\link[=resmush_dir]{resmush_dir()}}, \code{\link[=list.files]{list.files()}}, \code{\link[=unlink]{unlink()}}.
 }
 \concept{helpers}
 \keyword{internal}
