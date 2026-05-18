@@ -70,12 +70,11 @@ resmush_file()."><meta property="og:image" content="https://dieghernan.github.io
 
 
 <dt id="arg-suffix">suffix<a class="anchor" aria-label="anchor" href="#arg-suffix"></a></dt>
-<dd><p>Character, defaults to <code>"_resmush"</code>. See <code><a href="resmush_file.html">resmush_file()</a></code>.</p></dd>
+<dd><p>Character. Defaults to <code>"_resmush"</code>. See <code><a href="resmush_file.html">resmush_file()</a></code>.</p></dd>
 
 
 <dt id="arg-recursive">recursive<a class="anchor" aria-label="anchor" href="#arg-recursive"></a></dt>
-<dd><p>Logical. Should the file search recurse into
-directories?</p></dd>
+<dd><p>Logical. Should the file search recurse into directories?</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -112,7 +111,7 @@ process.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Run with the default suffix; this should not remove the file.</span></span></span>
 <span class="r-in"><span><span class="fu">resmush_clean_dir</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> No files to clean in <span style="color: #0000BB;">/tmp/RtmpaBc3ne</span> with suffix <span style="color: #0000BB;">"_resmush\\."</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> No files to clean in <span style="color: #0000BB;">/tmp/RtmpQUM2Yl</span> with suffix <span style="color: #0000BB;">"_resmush\\."</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">tmp_png</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
@@ -120,7 +119,7 @@ process.</p>
 <span class="r-in"><span><span class="co"># Use the matching suffix to remove the file.</span></span></span>
 <span class="r-in"><span><span class="fu">resmush_clean_dir</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, suffix <span class="op">=</span> <span class="va">suffix</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Would remove 1 file:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> → /tmp/RtmpaBc3ne/example_would_be_removed.png</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → /tmp/RtmpQUM2Yl/example_would_be_removed.png</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">tmp_png</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>

@@ -6,11 +6,12 @@ images using [**reSmush.it**](https://resmush.it/). **reSmush.it** is a
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/)
 and [many other tools](https://resmush.it/tools/).
 
-Some of the features of **reSmush.it** include:
+Features of **reSmush.it** include:
 
 - Free optimization services with *no API key required*.
 - Support for both local and online images.
-- Supported image formats: `png`, `jpg/jpeg`, `gif`, `bmp`, `tiff`.
+- Supported image formats are `png`, `jpg/jpeg`, `gif`, `bmp` and
+  `tiff`.
 - Maximum image size: 5 MB.
 - Compression using several algorithms:
   - [**PNGQuant**](https://pngquant.org/): Removes unnecessary chunks
@@ -22,7 +23,7 @@ Some of the features of **reSmush.it** include:
 
 ## Example
 
-Compressing an online `jpg` image:
+Compress an online `jpg` image:
 
 ``` r
 
@@ -32,8 +33,8 @@ url <- "https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"
 
 resmush_url(url, outfile = "jpg_example_compress.jpg", overwrite = TRUE)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 178.7 Kb
-#> ✔ Success for 1 url: Size now is 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
+#> ℹ Input: 1 URL with size 178.7 Kb
+#> ✔ Success for 1 URL: Size is now 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
 #> See result in directory '.'.
 ```
 
@@ -47,9 +48,9 @@ file](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compres
 
 \(b\)
 
-Figure 1: Original picture [Figure 1 (a)](#fig-orig): 178.7 KB;
-optimized picture [Figure 1 (b)](#fig-new): 45 KB (compression: 74.8%).
-Click to enlarge.
+Figure 1: Original image [Figure 1 (a)](#fig-orig): 178.7 KB; optimized
+image [Figure 1 (b)](#fig-new): 45 KB (compression: 74.8%). Click to
+enlarge.
 
 You can adjust the compression quality for `jpg` files with the `qlty`
 argument. Keep this value above 90 to maintain good image quality.
@@ -64,13 +65,13 @@ resmush_url(
   qlty = 3
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 178.7 Kb
-#> ✔ Success for 1 url: Size now is 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
+#> ℹ Input: 1 URL with size 178.7 Kb
+#> ✔ Success for 1 URL: Size is now 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
 #> See result in directory 'tempdir()'.
 ```
 
-[![Low quality
-figure](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
+[![Low-quality
+image](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
 Figure 2: Low-quality image due to high compression (`qlty = 3`),
 compared with [Figure 1 (b)](#fig-new).

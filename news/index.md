@@ -4,7 +4,7 @@
 
 CRAN release: 2026-03-14
 
-- Bumped the major version to indicate the package has reached a mature
+- Updated the major version to indicate the package has reached a mature
   development state.
 - Minimum **R** version required: 4.1.0.
 - Migrated documentation to Quarto.
@@ -50,7 +50,7 @@ CRAN release: 2024-02-02
   and
   [`resmush_url()`](https://dieghernan.github.io/resmush/reference/resmush_url.md)
   gained a new `overwrite` argument.
-- API changes: new messages and progress bars using
+- Added new messages and progress bars using
   [`cli::cli_progress_bar()`](https://cli.r-lib.org/reference/cli_progress_bar.html).
   These changes also include:
   - New arguments `progress` and `report`.

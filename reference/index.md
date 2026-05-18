@@ -2,14 +2,14 @@
 
 ## Optimize images
 
-Optimize local files, directories and online images.
+Optimize local files, directories and online images with reSmush.it.
 
 - [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md)
   : Optimize a local file
 - [`resmush_dir()`](https://dieghernan.github.io/resmush/reference/resmush_dir.md)
   : Optimize local files in directories
 - [`resmush_url()`](https://dieghernan.github.io/resmush/reference/resmush_url.md)
-  : Optimize an online file
+  : Optimize an online image
 
 ## Helper functions
 

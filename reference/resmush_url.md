@@ -1,4 +1,4 @@
-# Optimize an online file
+# Optimize an online image
 
 Optimize and download an online image using the [reSmush.it
 API](https://resmush.it/).
@@ -22,17 +22,7 @@ resmush_url(
 - url:
 
   URL or vector of URLs pointing to hosted image files. **reSmush** can
-  optimize these image formats:
-
-  - `png`
-
-  - `jpg/jpeg`
-
-  - `gif`
-
-  - `bmp`
-
-  - `tiff`
+  optimize `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
 
 - outfile:
 
@@ -73,7 +63,7 @@ resmush_url(
 
 Writes the optimized file to disk if the API call is successful. In all
 cases, an [`invisible()`](https://rdrr.io/r/base/invisible.html) data
-frame summarizing the process is returned as well.
+frame summarizing the process is returned.
 
 If any value of the vector `outfile` is duplicated, `resmush_url()`
 renames the output with suffixes such as `_01`, `_02`, etc.
@@ -98,21 +88,21 @@ base_url <- "https://raw.githubusercontent.com/dieghernan/resmush/main/inst/"
 png_url <- paste0(base_url, "/extimg/example.png")
 resmush_url(png_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 239.9 Kb
-#> ✔ Success for 1 url: Size now is 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-#> See result in directory /tmp/RtmpaBc3ne.
+#> ℹ Input: 1 URL with size 239.9 Kb
+#> ✔ Success for 1 URL: Size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
+#> See result in directory /tmp/RtmpQUM2Yl.
 
 # Several URLs.
 jpg_url <- paste0(base_url, "/extimg/example.jpg")
 
 summary <- resmush_url(c(png_url, jpg_url))
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 urls)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.1s] | ETA:  0s (2/2 urls)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 URLs)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [991ms] | ETA:  0s (2/2 URLs)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 2 urls with size 340.2 Kb
-#> ✔ Success for 2 urls: Size now is 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/RtmpaBc3ne.
+#> ℹ Input: 2 URLs with size 340.2 Kb
+#> ✔ Success for 2 URLs: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
+#> See results in directory /tmp/RtmpQUM2Yl.
 
 # Return an invisible data frame with a summary of the process.
 summary
@@ -120,8 +110,8 @@ summary
 #> 1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.png
 #> 2 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.jpg
 #>                         dest_img src_size dest_size compress_ratio notes
-#> 1 /tmp/RtmpaBc3ne/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK
-#> 2    /tmp/RtmpaBc3ne/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK
+#> 1 /tmp/RtmpQUM2Yl/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK
+#> 2    /tmp/RtmpQUM2Yl/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK
 #>   src_bytes dest_bytes
 #> 1    245618      72356
 #> 2    102796      85164
@@ -136,13 +126,13 @@ if (require("png", quietly = TRUE)) {
 # Use with JPG and parameters.
 resmush_url(jpg_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 100.4 Kb
-#> ✔ Success for 1 url: Size now is 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> See result in directory /tmp/RtmpaBc3ne.
+#> ℹ Input: 1 URL with size 100.4 Kb
+#> ✔ Success for 1 URL: Size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
+#> See result in directory /tmp/RtmpQUM2Yl.
 resmush_url(jpg_url, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 100.4 Kb
-#> ✔ Success for 1 url: Size now is 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> See result in directory /tmp/RtmpaBc3ne.
+#> ℹ Input: 1 URL with size 100.4 Kb
+#> ✔ Success for 1 URL: Size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
+#> See result in directory /tmp/RtmpQUM2Yl.
 # }
 ```
