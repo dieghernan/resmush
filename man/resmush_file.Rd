@@ -16,17 +16,10 @@ resmush_file(
 )
 }
 \arguments{
-\item{file}{Path or paths to local files. \strong{reSmush} can optimize these
-image formats:
-\itemize{
-\item \code{png}
-\item \code{jpg/jpeg}
-\item \code{gif}
-\item \code{bmp}
-\item \code{tiff}
-}}
+\item{file}{Path or paths to local files. \strong{reSmush} can optimize \code{png},
+\code{jpg/jpeg}, \code{gif}, \code{bmp} and \code{tiff} files.}
 
-\item{suffix}{Character, defaults to \code{"_resmush"}. By default, a new file
+\item{suffix}{Character. Defaults to \code{"_resmush"}. By default, a new file
 with this \code{suffix} is created in the same directory as \code{file} (i.e.,
 optimized \code{example.png} becomes \code{example_resmush.png}). Values \code{""}, \code{NA}
 and \code{NULL} are equivalent to \code{overwrite = TRUE}.}

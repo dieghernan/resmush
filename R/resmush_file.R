@@ -3,15 +3,10 @@
 #' @description
 #' Optimize local images using the [reSmush.it API](https://resmush.it/).
 #'
-#' @param file Path or paths to local files. **reSmush** can optimize these
-#'   image formats:
-#'   - `png`
-#'   - `jpg/jpeg`
-#'   - `gif`
-#'   - `bmp`
-#'   - `tiff`
+#' @param file Path or paths to local files. **reSmush** can optimize `png`,
+#'   `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
 #'
-#' @param suffix Character, defaults to `"_resmush"`. By default, a new file
+#' @param suffix Character. Defaults to `"_resmush"`. By default, a new file
 #'   with this `suffix` is created in the same directory as `file` (i.e.,
 #'   optimized `example.png` becomes `example_resmush.png`). Values `""`, `NA`
 #'   and `NULL` are equivalent to `overwrite = TRUE`.
@@ -152,7 +147,6 @@ resmush_file <- function(
   }
 
   # Return output.
-
   invisible(res_df)
 }
 
@@ -219,7 +213,7 @@ resmush_file_single <- function(
     referer = "https://dieghernan.github.io/resmush/"
   )
 
-  # Run a first dry run.
+  # Check whether the optimized file can be downloaded.
   req_head <- httr2::req_method(dwn_opt, "HEAD")
   req_head <- httr2::req_error(req_head, is_error = function(x) {
     FALSE

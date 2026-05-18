@@ -23,7 +23,7 @@ resmush_dir(
 to optimize. The default value captures all extensions supported by the
 API.}
 
-\item{suffix}{Character, defaults to \code{"_resmush"}. By default, a new file
+\item{suffix}{Character. Defaults to \code{"_resmush"}. By default, a new file
 with the suffix is created in the same directory (i.e.,
 optimized \code{example.png} becomes \code{example_resmush.png}). Values \code{""}, \code{NA}
 and \code{NULL} are equivalent to \code{overwrite = TRUE}.}

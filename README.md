@@ -30,11 +30,12 @@ implemented in
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/)
 and [many other tools](https://resmush.it/tools/).
 
-Some of the features of **reSmush.it** include:
+Features of **reSmush.it** include:
 
 - Free optimization services with <u>no API key required</u>.
 - Support for both local and online images.
-- Supported image formats: `png`, `jpg/jpeg`, `gif`, `bmp`, `tiff`.
+- Supported image formats are `png`, `jpg/jpeg`, `gif`, `bmp` and
+  `tiff`.
 - Maximum image size: 5 MB.
 - Compression using several algorithms:
   - [**PNGQuant**](https://pngquant.org/): Removes unnecessary chunks
@@ -88,7 +89,7 @@ install.packages(
 
 ## Example
 
-Compressing an online `jpg` image:
+Compress an online `jpg` image:
 
 ``` r
 library(resmush)
@@ -101,8 +102,8 @@ resmush_url(
   overwrite = TRUE
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 178.7 Kb
-#> ✔ Success for 1 url: Size now is 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
+#> ℹ Input: 1 URL with size 178.7 Kb
+#> ✔ Success for 1 URL: Size is now 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
 #> See result in directory 'man/figures'.
 ```
 
@@ -119,7 +120,7 @@ alt="Optimized file" />](https://dieghernan.github.io/resmush/reference/figures/
 
 <figcaption>
 
-Figure 1: Original picture <em>(a)</em>: 178.7 KB; optimized picture
+Figure 1: Original image <em>(a)</em>: 178.7 KB; optimized image
 <em>(b)</em>: 45 KB (compression: 74.8%). Click to enlarge.
 </figcaption>
 
@@ -137,15 +138,15 @@ resmush_url(
   qlty = 3
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 url with size 178.7 Kb
-#> ✔ Success for 1 url: Size now is 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
+#> ℹ Input: 1 URL with size 178.7 Kb
+#> ✔ Success for 1 URL: Size is now 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
 #> See result in directory 'man/figures'.
 ```
 
 <div class="figure">
 
 [<img src="man/figures/jpg_example_compress_low.jpg" style="width:100.0%"
-alt="Low quality figure" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
+alt="Low-quality image" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
 <figcaption>
 
@@ -226,7 +227,7 @@ with reSmush.it</em>.
 <a href="https://dieghernan.github.io/resmush/">https://dieghernan.github.io/resmush/</a>.
 </p>
 
-A BibTeX entry for LaTeX users is
+A BibTeX entry for LaTeX users:
 
     @Manual{R-resmush,
       title = {{resmush}: Optimize and Compress Image Files with {reSmush.it}},

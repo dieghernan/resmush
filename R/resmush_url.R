@@ -1,16 +1,11 @@
-#' Optimize an online file
+#' Optimize an online image
 #'
 #' @description
 #' Optimize and download an online image using the
 #' [reSmush.it API](https://resmush.it/).
 #'
-#' @param url URL or vector of URLs pointing to hosted image files.
-#'   **reSmush** can optimize these image formats:
-#'   - `png`
-#'   - `jpg/jpeg`
-#'   - `gif`
-#'   - `bmp`
-#'   - `tiff`
+#' @param url URL or vector of URLs pointing to hosted image files. **reSmush**
+#'   can optimize `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
 #'
 #' @param outfile Path or paths where optimized files are stored on disk. By
 #'   default, temporary files (see [tempfile()]) with the same [basename()] as
@@ -24,9 +19,8 @@
 #' @inheritParams resmush_file
 #'
 #' @return
-#' Writes the optimized file to disk if the API call is successful.
-#' In all cases, an [invisible()] data frame summarizing the process is returned
-#' as well.
+#' Writes the optimized file to disk if the API call is successful. In all
+#' cases, an [invisible()] data frame summarizing the process is returned.
 #'
 #' If any value of the vector `outfile` is duplicated, `resmush_url()` renames
 #' the output with suffixes such as `_01`, `_02`, etc.
@@ -83,8 +77,8 @@ resmush_url <- function(
 
   if (l1 != l2) {
     cli::cli_abort(paste0(
-      "Lengths of {.arg url} and {.arg outfile}",
-      "should be the same  ({l1} vs. {l2})"
+      "Lengths of {.arg url} and {.arg outfile} ",
+      "should be the same ({l1} vs. {l2})"
     ))
   }
 
@@ -104,7 +98,7 @@ resmush_url <- function(
       format = paste0(
         "{cli::pb_spin} Go! | {cli::pb_bar} ",
         "{cli::pb_percent} [{cli::pb_elapsed}] | ETA: {cli::pb_eta} ",
-        "({cli::pb_current}/{cli::pb_total} urls)"
+        "({cli::pb_current}/{cli::pb_total} URLs)"
       ),
       total = n_urls,
       clear = FALSE
@@ -154,7 +148,6 @@ resmush_url <- function(
   }
 
   # Return output.
-
   invisible(res_df)
 }
 
@@ -229,7 +222,7 @@ resmush_url_single <- function(
     # Get the status code and error, then return `NULL`.
     err_code <- httr2::resp_status(resp_head) # nolint
     err <- httr2::resp_status_desc(resp_head) # nolint
-    cli::cli_alert_danger("HTTP {err_code} {err} for url:\n {.url {url}}")
+    cli::cli_alert_danger("HTTP {err_code} {err} for URL:\n {.url {url}}")
     return(NULL)
   }
 

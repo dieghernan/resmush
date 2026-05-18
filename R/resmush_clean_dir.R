@@ -8,10 +8,8 @@
 #'
 #' @param dir A character vector of full path names. See the `path` argument in
 #'   [list.files()].
-#' @param suffix Character, defaults to `"_resmush"`. See [resmush_file()].
-#'
-#' @param recursive Logical. Should the file search recurse into
-#'   directories?
+#' @param suffix Character. Defaults to `"_resmush"`. See [resmush_file()].
+#' @param recursive Logical. Should the file search recurse into directories?
 #'
 #' @return
 #' Returns an [invisible()] `NULL` value and produces messages summarizing the

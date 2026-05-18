@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{resmush_url}
 \alias{resmush_url}
-\title{Optimize an online file}
+\title{Optimize an online image}
 \usage{
 resmush_url(
   url,
@@ -16,15 +16,8 @@ resmush_url(
 )
 }
 \arguments{
-\item{url}{URL or vector of URLs pointing to hosted image files.
-\strong{reSmush} can optimize these image formats:
-\itemize{
-\item \code{png}
-\item \code{jpg/jpeg}
-\item \code{gif}
-\item \code{bmp}
-\item \code{tiff}
-}}
+\item{url}{URL or vector of URLs pointing to hosted image files. \strong{reSmush}
+can optimize \code{png}, \code{jpg/jpeg}, \code{gif}, \code{bmp} and \code{tiff} files.}
 
 \item{outfile}{Path or paths where optimized files are stored on disk. By
 default, temporary files (see \code{\link[=tempfile]{tempfile()}}) with the same \code{\link[=basename]{basename()}} as
@@ -49,9 +42,8 @@ indicating the optimization level. For optimal results, use values above
 preserved? The default is \code{FALSE} (i.e., remove it).}
 }
 \value{
-Writes the optimized file to disk if the API call is successful.
-In all cases, an \code{\link[=invisible]{invisible()}} data frame summarizing the process is returned
-as well.
+Writes the optimized file to disk if the API call is successful. In all
+cases, an \code{\link[=invisible]{invisible()}} data frame summarizing the process is returned.
 
 If any value of the vector \code{outfile} is duplicated, \code{resmush_url()} renames
 the output with suffixes such as \verb{_01}, \verb{_02}, etc.

@@ -4,10 +4,9 @@ show_report <- function(res_df, summary_type = "file") {
   }
 
   # Print heading.
-
   name_cli <- switch(summary_type,
     "file" = "file{?s}",
-    "url" = "url{?s}"
+    "url" = "URL{?s}"
   )
 
   # nolint start
@@ -29,7 +28,6 @@ show_report <- function(res_df, summary_type = "file") {
   ok <- res_df[res_df$notes == "OK", ]
 
   # Report successful conversions.
-
   if (nrow(ok) > 0) {
     # nolint start
     okinit <- sum(ok$src_bytes, na.rm = TRUE)
@@ -45,7 +43,7 @@ show_report <- function(res_df, summary_type = "file") {
     cli::cli_alert_success(paste0(
       "Success for {nrow(ok)} ",
       name_cli,
-      ": Size now is {okend_pretty} ",
+      ": Size is now {okend_pretty} ",
       "(was {okinit_pretty}). Saved {okdif} ({okperc_pretty})."
     ))
     cli::cli_bullets(paste0(
@@ -55,7 +53,7 @@ show_report <- function(res_df, summary_type = "file") {
     ))
   }
 
-  # Failures
+  # Report failed conversions.
   if (nrow(nok) > 0) {
     # nolint start
     nokdirs <- unique(dirname(nok$src_img))
@@ -67,7 +65,7 @@ show_report <- function(res_df, summary_type = "file") {
       makebull <- sprintf(
         paste0(
           "{.path {nok$src_img[%s]}} ",
-          "({nok$src_size[%s]}):  {nok$notes[%s]}."
+          "({nok$src_size[%s]}): {nok$notes[%s]}."
         ),
         noks,
         noks,
@@ -93,7 +91,7 @@ show_report <- function(res_df, summary_type = "file") {
       )
 
       names(makebull) <- rep("!", nrow(nok))
-      cli::cli_alert_danger("Failed for {nrow(nok)} url{?s}:")
+      cli::cli_alert_danger("Failed for {nrow(nok)} URL{?s}:")
     }
 
     cli::cli_bullets(makebull)

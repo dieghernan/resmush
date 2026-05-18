@@ -8,7 +8,7 @@
 #' @param ext A [`regex`][base::regex] indicating the extensions of the files
 #'   to optimize. The default value captures all extensions supported by the
 #'   API.
-#' @param suffix Character, defaults to `"_resmush"`. By default, a new file
+#' @param suffix Character. Defaults to `"_resmush"`. By default, a new file
 #'   with the suffix is created in the same directory (i.e.,
 #'   optimized `example.png` becomes `example_resmush.png`). Values `""`, `NA`
 #'   and `NULL` are equivalent to `overwrite = TRUE`.
@@ -94,7 +94,6 @@ resmush_dir <- function(
   }
 
   # Call `resmush_file()`.
-
   resmush_file(
     allfiles,
     suffix = suffix,

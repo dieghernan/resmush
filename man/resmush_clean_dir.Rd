@@ -11,10 +11,9 @@ resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 \item{dir}{A character vector of full path names. See the \code{path} argument in
 \code{\link[=list.files]{list.files()}}.}
 
-\item{suffix}{Character, defaults to \code{"_resmush"}. See \code{\link[=resmush_file]{resmush_file()}}.}
+\item{suffix}{Character. Defaults to \code{"_resmush"}. See \code{\link[=resmush_file]{resmush_file()}}.}
 
-\item{recursive}{Logical. Should the file search recurse into
-directories?}
+\item{recursive}{Logical. Should the file search recurse into directories?}
 }
 \value{
 Returns an \code{\link[=invisible]{invisible()}} \code{NULL} value and produces messages summarizing the

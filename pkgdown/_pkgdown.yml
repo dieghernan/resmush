@@ -27,12 +27,12 @@ authors:
 home:
   title: resmush | Optimize and compress image files with reSmush.it
   description: |
-    Optimize and compress local and online image files in R with the
-    reSmush.it API.
+    Optimize and compress local files, directories and online images in R with
+    the reSmush.it API.
 
 reference:
 - title: Optimize images
-  desc: Optimize local files, directories and online images.
+  desc: Optimize local files, directories and online images with reSmush.it.
   contents:
   - resmush_file
   - resmush_dir

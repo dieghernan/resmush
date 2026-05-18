@@ -1,6 +1,6 @@
 # resmush 1.0.0
 
-- Bumped the major version to indicate the package has reached a mature
+- Updated the major version to indicate the package has reached a mature
   development state.
 - Minimum **R** version required: 4.1.0.
 - Migrated documentation to Quarto.
@@ -32,8 +32,8 @@
 - Added DOI: <https://doi.org/10.5281/zenodo.10556679>.
 - `resmush_file()`, `resmush_dir()` and `resmush_url()` gained a new `overwrite`
   argument.
-- API changes: new messages and progress bars using `cli::cli_progress_bar()`.
-  These changes also include:
+- Added new messages and progress bars using `cli::cli_progress_bar()`. These
+  changes also include:
   - New arguments `progress` and `report`.
   - Deprecation of the `verbose` argument.
   - `resmush_clean_dir()` now shows a summary message.
