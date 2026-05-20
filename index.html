@@ -21,11 +21,11 @@
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="resmush | Optimize and compress image files with reSmush.it">
-<meta name="description" content="Optimize and compress local files, directories and online images in R with
-the reSmush.it API.
+<meta name="description" content="Optimize and compress local image files, directories and online images in
+R with the reSmush.it API.
 ">
-<meta property="og:description" content="Optimize and compress local files, directories and online images in R with
-the reSmush.it API.
+<meta property="og:description" content="Optimize and compress local image files, directories and online images in
+R with the reSmush.it API.
 ">
 <meta property="og:image" content="https://dieghernan.github.io/resmush/logo.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -89,12 +89,12 @@ the reSmush.it API.
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p><strong>resmush</strong> is an <strong>R</strong> package that lets users optimize and compress images using <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. <strong>reSmush.it</strong> is a <u>free API</u> that provides image optimization and has been implemented in <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a> and <a href="https://resmush.it/tools/" class="external-link">many other tools</a>.</p>
-<p>Features of <strong>reSmush.it</strong> include:</p>
+<p><strong>resmush</strong> is an <strong>R</strong> package that helps users optimize and compress images using <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. <strong>reSmush.it</strong> is a <u>free API</u> that provides image optimization and has been implemented in <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a> and <a href="https://resmush.it/tools/" class="external-link">many other tools</a>.</p>
+<p><strong>reSmush.it</strong> includes:</p>
 <ul>
-<li>Free optimization services with <u>no API key required</u>.</li>
-<li>Support for both local and online images.</li>
-<li>Supported image formats are <code>png</code>, <code>jpg/jpeg</code>, <code>gif</code>, <code>bmp</code> and <code>tiff</code>.</li>
+<li>Free image optimization with <u>no API key required</u>.</li>
+<li>Support for local and online images.</li>
+<li>Support for <code>png</code>, <code>jpg/jpeg</code>, <code>gif</code>, <code>bmp</code> and <code>tiff</code> files.</li>
 <li>Maximum image size: 5 MB.</li>
 <li>Compression using several algorithms:
 <ul>
@@ -139,12 +139,12 @@ the reSmush.it API.
 <p><a href="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"><img src="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg" style="width:100.0%" alt="Original uncompressed file"></a> <small class="caption fst-italic">(a)</small></p>
 <p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg"><img src="./reference/figures/jpg_example_compress.jpg" style="width:100.0%" alt="Optimized file"></a> <small class="caption fst-italic">(b)</small></p>
 <figcaption>
-Figure 1: Original image <em>(a)</em>: 178.7 KB; optimized image <em>(b)</em>: 45 KB (compression: 74.8%). Click to enlarge.
+Figure 1: Original image <em>(a)</em>: 178.7 KB, optimized image <em>(b)</em>: 45 KB (compression: 74.8%). Click to enlarge.
 </figcaption>
 </div>
 <p>You can adjust the compression quality for <code>jpg</code> files with the <code>qlty</code> argument. Keep this value above 90 to maintain good image quality.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Extreme case.</span></span>
+<code class="sourceCode R"><span><span class="co"># Use an extreme compression setting.</span></span>
 <span><span class="fu"><a href="reference/resmush_url.html">resmush_url</a></span><span class="op">(</span></span>
 <span>  <span class="va">url</span>,</span>
 <span>  outfile <span class="op">=</span> <span class="st">"man/figures/jpg_example_compress_low.jpg"</span>,</span>
@@ -158,7 +158,7 @@ Figure 1: Original image <em>(a)</em>: 178.7 KB; optimized image <em>(b)</em>: 4
 <div class="figure">
 <p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg"><img src="reference/figures/jpg_example_compress_low.jpg" style="width:100.0%" alt="Low-quality image"></a></p>
 <figcaption>
-Figure 2: Low-quality image due to high compression (<code>qlty = 3</code>).
+Figure 2: Low-quality image caused by high compression (<code>qlty = 3</code>).
 </figcaption>
 </div>
 <p>All functions invisibly return a data frame that summarizes the process. The following example shows this output when compressing a local file:</p>
@@ -183,8 +183,7 @@ Figure 2: Low-quality image due to high compression (<code>qlty = 3</code>).
 </h2>
 <p>Several other <strong>R</strong> packages also provide image optimization tools:</p>
 <ul>
-<li>
-<strong>xfun</strong> (<a href="#ref-xfun">Xie 2024</a>), which includes:
+<li>The <strong>xfun</strong> package (<a href="#ref-xfun">Xie 2024</a>), which includes:
 <ul>
 <li>
 <code><a href="https://rdrr.io/pkg/xfun/man/tinify.html" class="external-link">xfun::tinify()</a></code>: Similar to <code><a href="reference/resmush_file.html">resmush_file()</a></code> but uses <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a> and requires an API key.</li>
@@ -192,10 +191,9 @@ Figure 2: Low-quality image due to high compression (<code>qlty = 3</code>).
 <code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code>: Compresses local files using <strong>OptiPNG</strong>, which must be installed locally.</li>
 </ul>
 </li>
-<li>
-<a href="https://jmablog.github.io/tinieR/" class="external-link"><strong>tinieR</strong></a> by jmablog: An <strong>R</strong> interface to <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a>.</li>
-<li>
-<a href="https://github.com/coolbutuseless/optout" class="external-link"><strong>optout</strong></a> by <a href="https://coolbutuseless.github.io/" class="external-link">@coolbutuseless</a>: Similar to <code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> but with more options. Requires additional local software.</li>
+<li>The <a href="https://jmablog.github.io/tinieR/" class="external-link"><strong>tinieR</strong></a> package by jmablog: An <strong>R</strong> interface to <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a>.</li>
+<li>The <strong>tinyimg</strong> package (<a href="#ref-tinyimg">Xie 2026</a>): Optimizes local <code>png</code> and <code>jpg/jpeg</code> files using Rust libraries.</li>
+<li>The <a href="https://github.com/coolbutuseless/optout" class="external-link"><strong>optout</strong></a> package by <a href="https://coolbutuseless.github.io/" class="external-link">@coolbutuseless</a>: Similar to <code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> but with more options. Requires additional local software.</li>
 </ul>
 <table style="width:100%;" class="table">
 <colgroup>
@@ -240,6 +238,14 @@ Figure 2: Low-quality image due to high compression (<code>qlty = 3</code>).
 <td>500 files/month (free tier)</td>
 </tr>
 <tr>
+<td><strong>tinyimg</strong></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
 <td><strong>optout</strong></td>
 <td>No</td>
 <td>Yes</td>
@@ -258,7 +264,7 @@ Figure 2: Low-quality image due to high compression (<code>qlty = 3</code>).
 </tbody>
 </table>
 <p class="caption">
-Table 1: <strong>R</strong> packages: Comparison of image optimization alternatives.
+Table 1: <strong>R</strong> packages: comparison of image optimization alternatives.
 </p>
 <table class="table">
 <thead><tr>
@@ -303,6 +309,16 @@ Table 1: <strong>R</strong> packages: Comparison of image optimization alternati
 <td>❌</td>
 </tr>
 <tr>
+<td><strong>tinyimg</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
 <td><strong>optout</strong></td>
 <td>✅</td>
 <td>✅</td>
@@ -325,7 +341,7 @@ Table 1: <strong>R</strong> packages: Comparison of image optimization alternati
 </tbody>
 </table>
 <p class="caption">
-Table 2: <strong>R</strong> packages: Supported formats.
+Table 2: <strong>R</strong> packages: supported formats.
 </p>
 </div>
 <div class="section level2">
@@ -342,7 +358,7 @@ Hernangómez D (2026). <em>resmush: Optimize and Compress Image Files with reSmu
 <span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2026</span>},</span>
 <span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">1</span>.<span class="fl">0.0</span>},</span>
 <span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>dieghernan.github.io<span class="sc">/</span>resmush<span class="sc">/</span>},</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>  abstract <span class="ot">=</span> {Optimize and compress local and online image files using the reSmush.it API <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>resmush.it<span class="sc">/</span><span class="er">&gt;</span>, with support <span class="cf">for</span> png, jpg<span class="sc">/</span>jpeg, gif, bmp and tiff files.},</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>  abstract <span class="ot">=</span> {Optimize and compress local image files, directories and online images using the reSmush.it API <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>resmush.it<span class="sc">/</span><span class="er">&gt;</span>, with support <span class="cf">for</span> png, jpg<span class="sc">/</span>jpeg, gif, bmp and tiff files.},</span>
 <span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level2">
@@ -351,6 +367,9 @@ Hernangómez D (2026). <em>resmush: Optimize and Compress Image Files with reSmu
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-xfun" class="csl-entry">
 Xie, Yihui. 2024. <em><span class="nocase">xfun</span>: Supporting Functions for Packages Maintained by Yihui Xie</em>. <a href="https://github.com/yihui/xfun" class="external-link uri">https://github.com/yihui/xfun</a>.
+</div>
+<div id="ref-tinyimg" class="csl-entry">
+Xie, Yihui. 2026. <em><span class="nocase">tinyimg</span>: Optimize and Compress Images</em>. <a href="https://doi.org/10.32614/CRAN.package.tinyimg" class="external-link uri">https://doi.org/10.32614/CRAN.package.tinyimg</a>.
 </div>
 </div>
 </div>

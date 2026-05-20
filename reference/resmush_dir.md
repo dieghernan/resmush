@@ -109,30 +109,31 @@ dest_folder <- file.path(tempdir(), "extimg")
 # Non-recursive.
 resmush_dir(dest_folder)
 #> ℹ Resmushing 2 files
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [3ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.9s] | ETA:  0s (2/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2.2s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files with size 340.2 Kb
 #> ✔ Success for 2 files: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/RtmpQUM2Yl/extimg.
+#> See results in directory /tmp/RtmpmiQt8u/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Would remove 2 files:
-#> → /tmp/RtmpQUM2Yl/extimg/example_resmush.jpg
-#> → /tmp/RtmpQUM2Yl/extimg/example_resmush.png
+#> → /tmp/RtmpmiQt8u/extimg/example_resmush.jpg
+#> → /tmp/RtmpmiQt8u/extimg/example_resmush.png
 
 # Recursive.
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Resmushing 5 files
-#> 🕐  Go! | ■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□   40% [981ms] | ETA:  1s (2/5 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.9s] | ETA:  0s (5/5 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□   40% [1.4s] | ETA:  2s (2/5 files)
+#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [3.2s] | ETA:  2s (3/5 files)
+#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [4.5s] | ETA:  0s (5/5 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files with size 401.7 Kb
 #> ✔ Success for 5 files: Size is now 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> See results in directories /tmp/RtmpQUM2Yl/extimg,
-#> /tmp/RtmpQUM2Yl/extimg/top1/nested, /tmp/RtmpQUM2Yl/extimg/top1, and
-#> /tmp/RtmpQUM2Yl/extimg/top2.
+#> See results in directories /tmp/RtmpmiQt8u/extimg,
+#> /tmp/RtmpmiQt8u/extimg/top1/nested, /tmp/RtmpmiQt8u/extimg/top1, and
+#> /tmp/RtmpmiQt8u/extimg/top2.
 
 # Return the same information in the invisible data frame.
 summary[, -c(1, 2)]
