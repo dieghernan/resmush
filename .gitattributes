@@ -1,12 +1,46 @@
 * text=auto eol=lf
 
+# R binary data
+*.rda binary
+*.RData binary
+*.rds binary
+
+# Images
 *.bmp binary
 *.gif binary
 *.ico binary
 *.jpg binary
 *.jpeg binary
 *.png binary
-*.rda binary
 *.tif binary
 *.tiff binary
 *.webp binary
+
+# Documents and archives
+*.doc binary
+*.docx binary
+*.pdf binary
+*.ppt binary
+*.pptx binary
+*.xls binary
+*.xlsx binary
+*.7z binary
+*.gz binary
+*.rar binary
+*.tar binary
+*.tgz binary
+*.zip binary
+
+# Fonts
+*.eot binary
+*.otf binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+
+# Compiled objects and libraries
+*.dll binary
+*.dylib binary
+*.exe binary
+*.o binary
+*.so binary

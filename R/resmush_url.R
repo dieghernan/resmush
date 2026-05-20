@@ -261,7 +261,7 @@ resmush_url_single <- function(
 }
 
 # Helper function for retrying the URL API call.
-# Useful for some cases, e.g. imgur.
+# Useful for some cases, such as imgur.
 smush_from_url <- function(url, qlty, exif_preserve = TRUE, n_rep = 3) {
   # Normalize `exif_preserve` to a scalar logical.
   exif_preserve <- isTRUE(exif_preserve)

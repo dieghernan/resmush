@@ -44,7 +44,7 @@ file.copy(png_file, tmp_png, overwrite = TRUE)
 
 file.exists(tmp_png)
 
-# Run with the default suffix; this should not remove the file.
+# Run with the default suffix. This should not remove the file.
 resmush_clean_dir(tempdir())
 
 file.exists(tmp_png)

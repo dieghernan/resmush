@@ -13,17 +13,17 @@ tbl-cap-location: bottom
 
 
 
-**resmush** is an **R** package that lets users optimize and compress images
+**resmush** is an **R** package that helps users optimize and compress images
 using [**reSmush.it**](https://resmush.it/). **reSmush.it** is a [free
 API]{.underline} that provides image optimization and has been implemented in
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/) and
 [many other tools](https://resmush.it/tools/).
 
-Features of **reSmush.it** include:
+**reSmush.it** includes:
 
-- Free optimization services with [no API key required]{.underline}.
-- Support for both local and online images.
-- Supported image formats are `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff`.
+- Free image optimization with [no API key required]{.underline}.
+- Support for local and online images.
+- Support for `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
 - Maximum image size: 5 MB.
 - Compression using several algorithms:
   - [**PNGQuant**](https://pngquant.org/): Removes unnecessary chunks from `png`
@@ -59,7 +59,7 @@ width="100%"}](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg
 alt="Optimized file"
 width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 
-Original image @fig-orig: 178.7 KB; optimized image @fig-new: 45 KB
+Original image @fig-orig: 178.7 KB, optimized image @fig-new: 45 KB
 (compression: 74.8%). Click to enlarge.
 :::
 
@@ -68,7 +68,7 @@ argument. Keep this value above 90 to maintain good image quality.
 
 
 ``` r
-# Extreme case.
+# Use an extreme compression setting.
 resmush_url(
   url,
   outfile = tempfile(fileext = ".jpg"),
@@ -85,7 +85,8 @@ resmush_url(
 [![](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg){alt="Low-quality image"
 width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
-Low-quality image due to high compression (`qlty = 3`), compared with @fig-new.
+Low-quality image caused by high compression (`qlty = 3`), compared with
+@fig-new.
 :::
 
 All functions invisibly return a data frame that summarizes the process. The
@@ -113,27 +114,30 @@ tibble::as_tibble(summary[, -c(1, 2)])
 
 Several other **R** packages also provide image optimization tools:
 
-- **xfun** [@xfun], which includes:
+- The **xfun** package [@xfun], which includes:
   - `xfun::tinify()`: Similar to `resmush_file()` but uses
     [**TinyPNG**](https://tinypng.com/) and requires an API key.
   - `xfun::optipng()`: Compresses local files using **OptiPNG**, which must be
     installed locally.
-- [**tinieR**](https://jmablog.github.io/tinieR/) by jmablog: An **R** interface
-  to [**TinyPNG**](https://tinypng.com/).
-- [**optout**](https://github.com/coolbutuseless/optout) by
+- The [**tinieR**](https://jmablog.github.io/tinieR/) package by jmablog: An
+  **R** interface to [**TinyPNG**](https://tinypng.com/).
+- The **tinyimg** package [@tinyimg]: Optimizes local `png` and `jpg/jpeg` files
+  using Rust libraries.
+- The [**optout**](https://github.com/coolbutuseless/optout) package by
   [\@coolbutuseless](https://coolbutuseless.github.io/): Similar to
   `xfun::optipng()` but with more options. Requires additional local software.
 
 ::: {#tbl-opts}
 | Tool | CRAN | Additional software? | Online? | API key? | Limits? |
-|----|----|----|----|----|----|
+|--------------|--------------|--------------|--------------|--------------|--------------|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | No |
 | **tinieR** | No | No | Yes | Yes | 500 files/month (free tier) |
+| **tinyimg** | Yes | Yes | No | No | No |
 | **optout** | No | Yes | No | No | No |
 | **resmush** | Yes | No | Yes | No | Max size 5 MB |
 
-**R** packages: Comparison of image optimization alternatives.
+**R** packages: comparison of image optimization alternatives.
 :::
 
 ::: {#tbl-comp}
@@ -142,10 +146,11 @@ Several other **R** packages also provide image optimization tools:
 | `xfun::tinify()`  | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
 | `xfun::optipng()` | ✅  | ❌  | ❌  | ❌  | ❌   | ❌   | ❌  |
 | **tinieR**        | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
+| **tinyimg**       | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ❌  |
 | **optout**        | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
 | **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ❌   | ❌  |
 
-**R** packages: Supported formats.
+**R** packages: supported formats.
 :::
 
 ## References

@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Optimize and compress local and online image files using the 'reSmush.it' API \url{https://resmush.it/}, with support for 'png', 'jpg/jpeg', 'gif', 'bmp' and 'tiff' files.
+Optimize and compress local image files, directories and online images using the 'reSmush.it' API \url{https://resmush.it/}, with support for 'png', 'jpg/jpeg', 'gif', 'bmp' and 'tiff' files.
 }
 \seealso{
 Useful links:

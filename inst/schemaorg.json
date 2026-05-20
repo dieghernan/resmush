@@ -14,7 +14,7 @@
         "familyName": "Hernangómez",
         "givenName": "Diego"
       },
-      "description": "Optimize and compress local and online image files using the 'reSmush.it' API <https://resmush.it/>, with support for 'png', 'jpg/jpeg', 'gif', 'bmp' and 'tiff' files.",
+      "description": "Optimize and compress local image files, directories and online images using the 'reSmush.it' API <https://resmush.it/>, with support for 'png', 'jpg/jpeg', 'gif', 'bmp' and 'tiff' files.",
       "license": "https://spdx.org/licenses/MIT",
       "name": "resmush: Optimize and Compress Image Files with 'reSmush.it'",
       "programmingLanguage": {

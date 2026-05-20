@@ -23,19 +23,18 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 <!-- badges: end -->
 
-**resmush** is an **R** package that lets users optimize and compress
+**resmush** is an **R** package that helps users optimize and compress
 images using [**reSmush.it**](https://resmush.it/). **reSmush.it** is a
 <u>free API</u> that provides image optimization and has been
 implemented in
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/)
 and [many other tools](https://resmush.it/tools/).
 
-Features of **reSmush.it** include:
+**reSmush.it** includes:
 
-- Free optimization services with <u>no API key required</u>.
-- Support for both local and online images.
-- Supported image formats are `png`, `jpg/jpeg`, `gif`, `bmp` and
-  `tiff`.
+- Free image optimization with <u>no API key required</u>.
+- Support for local and online images.
+- Support for `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
 - Maximum image size: 5 MB.
 - Compression using several algorithms:
   - [**PNGQuant**](https://pngquant.org/): Removes unnecessary chunks
@@ -120,7 +119,7 @@ alt="Optimized file" />](https://dieghernan.github.io/resmush/reference/figures/
 
 <figcaption>
 
-Figure 1: Original image <em>(a)</em>: 178.7 KB; optimized image
+Figure 1: Original image <em>(a)</em>: 178.7 KB, optimized image
 <em>(b)</em>: 45 KB (compression: 74.8%). Click to enlarge.
 </figcaption>
 
@@ -130,7 +129,7 @@ You can adjust the compression quality for `jpg` files with the `qlty`
 argument. Keep this value above 90 to maintain good image quality.
 
 ``` r
-# Extreme case.
+# Use an extreme compression setting.
 resmush_url(
   url,
   outfile = "man/figures/jpg_example_compress_low.jpg",
@@ -150,7 +149,7 @@ alt="Low-quality image" />](https://dieghernan.github.io/resmush/reference/figur
 
 <figcaption>
 
-Figure 2: Low-quality image due to high compression (`qlty = 3`).
+Figure 2: Low-quality image caused by high compression (`qlty = 3`).
 </figcaption>
 
 </div>
@@ -179,14 +178,16 @@ tibble::as_tibble(summary[, -c(1, 2)])
 
 Several other **R** packages also provide image optimization tools:
 
-- **xfun** ([Xie 2024](#ref-xfun)), which includes:
+- The **xfun** package ([Xie 2024](#ref-xfun)), which includes:
   - `xfun::tinify()`: Similar to `resmush_file()` but uses
     [**TinyPNG**](https://tinypng.com/) and requires an API key.
   - `xfun::optipng()`: Compresses local files using **OptiPNG**, which
     must be installed locally.
-- [**tinieR**](https://jmablog.github.io/tinieR/) by jmablog: An **R**
-  interface to [**TinyPNG**](https://tinypng.com/).
-- [**optout**](https://github.com/coolbutuseless/optout) by
+- The [**tinieR**](https://jmablog.github.io/tinieR/) package by
+  jmablog: An **R** interface to [**TinyPNG**](https://tinypng.com/).
+- The **tinyimg** package ([Xie 2026](#ref-tinyimg)): Optimizes local
+  `png` and `jpg/jpeg` files using Rust libraries.
+- The [**optout**](https://github.com/coolbutuseless/optout) package by
   [@coolbutuseless](https://coolbutuseless.github.io/): Similar to
   `xfun::optipng()` but with more options. Requires additional local
   software.
@@ -196,12 +197,13 @@ Several other **R** packages also provide image optimization tools:
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | No |
 | **tinieR** | No | No | Yes | Yes | 500 files/month (free tier) |
+| **tinyimg** | Yes | Yes | No | No | No |
 | **optout** | No | Yes | No | No | No |
 | **resmush** | Yes | No | Yes | No | Max size 5 MB |
 
 <p class="caption">
 
-Table 1: **R** packages: Comparison of image optimization alternatives.
+Table 1: **R** packages: comparison of image optimization alternatives.
 </p>
 
 | Tool              | png | jpg | gif | bmp | tiff | webp | pdf |
@@ -209,12 +211,13 @@ Table 1: **R** packages: Comparison of image optimization alternatives.
 | `xfun::tinify()`  | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
 | `xfun::optipng()` | ✅  | ❌  | ❌  | ❌  | ❌   | ❌   | ❌  |
 | **tinieR**        | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
+| **tinyimg**       | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ❌  |
 | **optout**        | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
 | **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ❌   | ❌  |
 
 <p class="caption">
 
-Table 2: **R** packages: Supported formats.
+Table 2: **R** packages: supported formats.
 </p>
 
 ## Citation
@@ -236,7 +239,7 @@ A BibTeX entry for LaTeX users:
       year = {2026},
       version = {1.0.0},
       url = {https://dieghernan.github.io/resmush/},
-      abstract = {Optimize and compress local and online image files using the reSmush.it API <https://resmush.it/>, with support for png, jpg/jpeg, gif, bmp and tiff files.},
+      abstract = {Optimize and compress local image files, directories and online images using the reSmush.it API <https://resmush.it/>, with support for png, jpg/jpeg, gif, bmp and tiff files.},
     }
 
 ## References
@@ -248,6 +251,13 @@ A BibTeX entry for LaTeX users:
 Xie, Yihui. 2024. *<span class="nocase">xfun</span>: Supporting
 Functions for Packages Maintained by Yihui Xie*.
 <https://github.com/yihui/xfun>.
+
+</div>
+
+<div id="ref-tinyimg" class="csl-entry">
+
+Xie, Yihui. 2026. *<span class="nocase">tinyimg</span>: Optimize and
+Compress Images*. <https://doi.org/10.32614/CRAN.package.tinyimg>.
 
 </div>
 
