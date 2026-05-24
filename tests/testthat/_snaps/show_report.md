@@ -4,11 +4,11 @@
       show_report(test_f)
     Message
       == resmush summary =============================================================
-      i Input: 4 files with size 340.2 Kb
-      v Success for 2 files: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-      See results in directory 'some_folder'.
-      x Failed for 2 files in directories 'https://raw.githubusercontent.com/dieghernan/resmush/main' and 'https://dieghernan.github.io'.
-      i Files not converted:
+      i Input: 4 files, total size 340.2 Kb.
+      v Optimized 2 files: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
+      Saved results in directory 'some_folder'.
+      x Failed to optimize 2 files in directories 'https://raw.githubusercontent.com/dieghernan/resmush/main' and 'https://dieghernan.github.io'.
+      i Files not optimized:
       ! 'https://raw.githubusercontent.com/dieghernan/resmush/main/README.md' (NA):
         403: Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
       ! 'https://dieghernan.github.io/aaabbbccc.png' (NA): 401: Cannot copy from
@@ -20,9 +20,9 @@
       show_report(res_example[2, ])
     Message
       == resmush summary =============================================================
-      i Input: 1 file with size 0 bytes
-      x Failed for 1 file in directory 'https://raw.githubusercontent.com/dieghernan/resmush/main'.
-      i File not converted:
+      i Input: 1 file, total size 0 bytes.
+      x Failed to optimize 1 file in directory 'https://raw.githubusercontent.com/dieghernan/resmush/main'.
+      i File not optimized:
       ! 'https://raw.githubusercontent.com/dieghernan/resmush/main/README.md' (NA):
         403: Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
 
@@ -32,9 +32,9 @@
       show_report(res_example[c(2, 4), ])
     Message
       == resmush summary =============================================================
-      i Input: 2 files with size 0 bytes
-      x Failed for 2 files in directories 'https://raw.githubusercontent.com/dieghernan/resmush/main' and 'https://dieghernan.github.io'.
-      i Files not converted:
+      i Input: 2 files, total size 0 bytes.
+      x Failed to optimize 2 files in directories 'https://raw.githubusercontent.com/dieghernan/resmush/main' and 'https://dieghernan.github.io'.
+      i Files not optimized:
       ! 'https://raw.githubusercontent.com/dieghernan/resmush/main/README.md' (NA):
         403: Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
       ! 'https://dieghernan.github.io/aaabbbccc.png' (NA): 401: Cannot copy from
@@ -46,9 +46,9 @@
       show_report(res_example[1, ])
     Message
       == resmush summary =============================================================
-      i Input: 1 file with size 239.9 Kb
-      v Success for 1 file: Size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-      See result in directory 'some_folder'.
+      i Input: 1 file, total size 239.9 Kb.
+      v Optimized 1 file: Size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
+      Saved result in directory 'some_folder'.
 
 ---
 
@@ -56,9 +56,9 @@
       show_report(res_example[-c(2, 4), ])
     Message
       == resmush summary =============================================================
-      i Input: 2 files with size 340.2 Kb
-      v Success for 2 files: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-      See results in directory 'some_folder'.
+      i Input: 2 files, total size 340.2 Kb.
+      v Optimized 2 files: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
+      Saved results in directory 'some_folder'.
 
 # Report for url
 
@@ -66,10 +66,10 @@
       show_report(test_f, "url")
     Message
       == resmush summary =============================================================
-      i Input: 4 URLs with size 340.2 Kb
-      v Success for 2 URLs: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-      See results in directory 'some_folder'.
-      x Failed for 2 URLs:
+      i Input: 4 URLs, total size 340.2 Kb.
+      v Optimized 2 URLs: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
+      Saved results in directory 'some_folder'.
+      x Failed to optimize 2 URLs:
       ! <https://raw.githubusercontent.com/dieghernan/resmush/main/README.md>: 403:
         Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
       ! <https://dieghernan.github.io/aaabbbccc.png>: 401: Cannot copy from remote
@@ -81,8 +81,8 @@
       show_report(res_example[2, ], "url")
     Message
       == resmush summary =============================================================
-      i Input: 1 URL with size 0 bytes
-      x Failed for 1 URL:
+      i Input: 1 URL, total size 0 bytes.
+      x Failed to optimize 1 URL:
       ! <https://raw.githubusercontent.com/dieghernan/resmush/main/README.md>: 403:
         Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
 
@@ -92,8 +92,8 @@
       show_report(res_example[c(2, 4), ], "url")
     Message
       == resmush summary =============================================================
-      i Input: 2 URLs with size 0 bytes
-      x Failed for 2 URLs:
+      i Input: 2 URLs, total size 0 bytes.
+      x Failed to optimize 2 URLs:
       ! <https://raw.githubusercontent.com/dieghernan/resmush/main/README.md>: 403:
         Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
       ! <https://dieghernan.github.io/aaabbbccc.png>: 401: Cannot copy from remote
@@ -105,9 +105,9 @@
       show_report(res_example[1, ], "url")
     Message
       == resmush summary =============================================================
-      i Input: 1 URL with size 239.9 Kb
-      v Success for 1 URL: Size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-      See result in directory 'some_folder'.
+      i Input: 1 URL, total size 239.9 Kb.
+      v Optimized 1 URL: Size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
+      Saved result in directory 'some_folder'.
 
 ---
 
@@ -115,7 +115,7 @@
       show_report(res_example[-c(2, 4), ], "url")
     Message
       == resmush summary =============================================================
-      i Input: 2 URLs with size 340.2 Kb
-      v Success for 2 URLs: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-      See results in directory 'some_folder'.
+      i Input: 2 URLs, total size 340.2 Kb.
+      v Optimized 2 URLs: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
+      Saved results in directory 'some_folder'.
 

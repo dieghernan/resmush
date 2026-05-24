@@ -1,41 +1,38 @@
-#' Optimize an online image
+#' Optimize online image files
 #'
 #' @description
-#' Optimize and download an online image using the
+#' Optimize and download one or more online image files with the
 #' [reSmush.it API](https://resmush.it/).
 #'
-#' @param url URL or vector of URLs pointing to hosted image files. **reSmush**
-#'   can optimize `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
+#' @param url URL or vector of URLs pointing to hosted image files. The API can
+#'   optimize `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
 #'
 #' @param outfile Path or paths where optimized files are stored on disk. By
-#'   default, temporary files (see [tempfile()]) with the same [basename()] as
-#'   the file provided in `url` are created. `outfile` must have the same length
-#'   as `url`.
+#'   default, temporary files are created with [tempfile()] and the same
+#'   [basename()] as the file provided in `url`. `outfile` must have the same
+#'   length as `url`.
 #'
 #' @param overwrite Logical. Should `outfile` be overwritten if it already
 #'   exists? If `FALSE` and `outfile` exists, a copy is created with a
-#'   numerical suffix (i.e. `<outfile>.png`, `<outfile>_01.png`, etc.).
+#'   numerical suffix, such as `<outfile>_01.png`.
 #'
 #' @inheritParams resmush_file
 #'
 #' @return
-#' Writes the optimized file to disk if the API call is successful. In all
-#' cases, an [invisible()] data frame summarizing the process is returned.
-#'
-#' If any value of the vector `outfile` is duplicated, `resmush_url()` renames
-#' the output with suffixes such as `_01`, `_02`, etc.
+#' Writes optimized files to disk when the API call is successful. Invisibly
+#' returns a data frame summarizing the process. If any value in `outfile` is
+#' duplicated, `resmush_url()` renames the outputs with suffixes such as `_01`
+#' and `_02`.
 #'
 #' @seealso
-#' [reSmush.it API](https://resmush.it/api/) docs.
+#' [reSmush.it API](https://resmush.it/api/) documentation.
 #'
 #' @family optimize
-#'
 #' @export
 #' @encoding UTF-8
 #' @examplesIf curl::has_internet()
 #'
 #' \donttest{
-#'
 #' # Base URL.
 #' base_url <- "https://raw.githubusercontent.com/dieghernan/resmush/main/inst/"
 #'
@@ -47,16 +44,16 @@
 #'
 #' summary <- resmush_url(c(png_url, jpg_url))
 #'
-#' # Return an invisible data frame with a summary of the process.
+#' # The invisible data frame contains a summary of the process.
 #' summary
 #'
-#' # Display the PNG output.
+#' # Display the `png` output.
 #' if (require("png", quietly = TRUE)) {
 #'   my_png <- png::readPNG(summary$dest_img[1])
 #'   grid::grid.raster(my_png)
 #' }
 #'
-#' # Use with JPG and parameters.
+#' # Use with `jpg` files and parameters.
 #' resmush_url(jpg_url)
 #' resmush_url(jpg_url, qlty = 10)
 #' }
@@ -69,85 +66,37 @@ resmush_url <- function(
   qlty = 92,
   exif_preserve = FALSE
 ) {
-  # Handle vectorized URL input.
-
   # Ensure `url` and `outfile` have matching lengths.
   l1 <- length(url)
   l2 <- length(outfile)
 
   if (l1 != l2) {
     cli::cli_abort(paste0(
-      "Lengths of {.arg url} and {.arg outfile} ",
-      "should be the same ({l1} vs. {l2})"
+      "Lengths of {.arg url} and {.arg outfile} must match ",
+      "({l1} vs. {l2})."
     ))
   }
 
-  # Prepare progress bar.
-  n_urls <- l1
-  n_seq <- seq_len(n_urls)
-
-  if (progress) {
-    opts <- options()
-    options(
-      cli.progress_bar_style = "fillsquares",
-      cli.progress_show_after = 0,
-      cli.spinner = "clock"
-    )
-
-    cli::cli_progress_bar(
-      format = paste0(
-        "{cli::pb_spin} Go! | {cli::pb_bar} ",
-        "{cli::pb_percent} [{cli::pb_elapsed}] | ETA: {cli::pb_eta} ",
-        "({cli::pb_current}/{cli::pb_total} URLs)"
-      ),
-      total = n_urls,
-      clear = FALSE
-    )
-  }
-
-  # Call `resmush_url_single()` in a loop.
-  # cli::cli_progress_bar() does not work with apply-family calls yet.
-  res_df <- NULL
-
-  for (i in n_seq) {
-    if (progress) {
-      cli::cli_progress_update()
+  res_df <- resmush_map(
+    inputs = url,
+    progress = progress,
+    progress_label = "URLs",
+    worker = function(i) {
+      resmush_url_single(
+        url = url[i],
+        outfile = outfile[i],
+        overwrite = overwrite,
+        qlty = qlty,
+        exif_preserve = exif_preserve
+      )
     }
+  )
 
-    df <- resmush_url_single(
-      url = url[i],
-      outfile = outfile[i],
-      overwrite = overwrite,
-      qlty = qlty,
-      exif_preserve = exif_preserve
-    )
-
-    if (is.null(df)) {
-      next
-    }
-
-    if (is.null(res_df)) {
-      res_df <- df
-    } else {
-      res_df <- rbind(res_df, df)
-    }
-  }
-
-  # Restore options.
-  if (progress) {
-    options(
-      cli.progress_bar_style = opts$cli.progress_bar_style,
-      cli.progress_show_after = opts$cli.progress_show_after,
-      cli.spinner = opts$cli.spinner
-    )
-  }
-
-  # Display report.
+  # Display the optional optimization report.
   if (report) {
     show_report(res_df = res_df, summary_type = "url")
   }
 
-  # Return output.
   invisible(res_df)
 }
 
@@ -167,27 +116,14 @@ resmush_url_single <- function(
     dir.create(the_dir, recursive = TRUE)
   }
 
-  # Create the results table.
-  res <- data.frame(
-    src_img = url,
-    dest_img = NA,
-    src_size = NA,
-    dest_size = NA,
-    compress_ratio = NA,
-    notes = NA,
-    src_bytes = NA,
-    dest_bytes = NA
-  )
+  res <- new_resmush_result(url)
 
-  # Check internet access.
   # Internal option, for checking purposes only.
   test <- getOption("resmush_test_offline", FALSE)
   if (any(isFALSE(curl::has_internet()), test)) {
     res$notes <- "Offline"
     return(invisible(res))
   }
-
-  # API calls -----
 
   res_get <- smush_from_url(url, qlty, exif_preserve, n_rep = 3)
 
@@ -203,33 +139,16 @@ resmush_url_single <- function(
   }
   # nocov end
 
-  ## 2. Download from destination URL -----
-  dwn_opt <- httr2::request(res_get$dest)
-
-  dwn_opt <- httr2::req_headers(
-    dwn_opt,
-    referer = "https://dieghernan.github.io/resmush/"
+  dwn_opt <- download_optimized_file(
+    url = res_get$dest,
+    outfile = outfile,
+    src = url,
+    source_type = "url"
   )
-
-  # Check whether the optimized file can be downloaded.
-  req_head <- httr2::req_method(dwn_opt, "HEAD")
-  req_head <- httr2::req_error(req_head, is_error = function(x) {
-    FALSE
-  })
-  resp_head <- httr2::req_perform(req_head)
-  test_no_file <- getOption("resmush_test_no_file", FALSE)
-  if (any(httr2::resp_is_error(resp_head), test_no_file)) {
-    # Get the status code and error, then return `NULL`.
-    err_code <- httr2::resp_status(resp_head) # nolint
-    err <- httr2::resp_status_desc(resp_head) # nolint
-    cli::cli_alert_danger("HTTP {err_code} {err} for URL:\n {.url {url}}")
+  if (is.null(dwn_opt)) {
     return(NULL)
   }
 
-  # Download the optimized file.
-  dwn_opt <- httr2::req_perform(dwn_opt, path = outfile)
-
-  # Handle failed optimized-file downloads.
   # Internal option, for checking purposes only.
   test_corner <- getOption("resmush_test_corner", FALSE)
   if (any(httr2::resp_status(dwn_opt) != 200, test_corner)) {
@@ -237,31 +156,18 @@ resmush_url_single <- function(
     return(invisible(res))
   }
 
-  # Store the output path.
   res$dest_img <- outfile
 
-  src_size <- res_get$src_size
-  src_size_pretty <- make_pretty_size(src_size)
-
-  res$src_size <- src_size_pretty
-  res$src_bytes <- src_size
-
-  out_size <- file.size(outfile)
-  out_size_pretty <- make_pretty_size(out_size)
-
-  res$dest_size <- out_size_pretty
-  res$dest_bytes <- out_size
-
-  # Compute the compression ratio.
-  red_ratio <- 1 - out_size / src_size
-  res$compress_ratio <- sprintf("%0.2f%%", red_ratio * 100)
-  res$notes <- "OK"
+  res <- add_size_summary(
+    res,
+    src_size = res_get$src_size,
+    dest_size = file.size(outfile)
+  )
 
   invisible(res)
 }
 
-# Helper function for retrying the URL API call.
-# Useful for some cases, such as imgur.
+# Retry the URL API call for hosts that need more than one attempt.
 smush_from_url <- function(url, qlty, exif_preserve = TRUE, n_rep = 3) {
   # Normalize `exif_preserve` to a scalar logical.
   exif_preserve <- isTRUE(exif_preserve)

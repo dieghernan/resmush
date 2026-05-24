@@ -39,9 +39,9 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 <!-- badges: end -->
 
-**resmush** is an **R** package that helps users optimize and compress images
-using [**reSmush.it**](https://resmush.it/). **reSmush.it** is a [free
-API]{.underline} that provides image optimization and has been implemented in
+**resmush** is an **R** package for optimizing and compressing images with
+[**reSmush.it**](https://resmush.it/). **reSmush.it** is a [free
+API]{.underline} for image optimization and is available through
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/) and [many
 other tools](https://resmush.it/tools/).
 
@@ -51,7 +51,7 @@ other tools](https://resmush.it/tools/).
 - Support for local and online images.
 - Support for `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
 - Maximum image size: 5 MB.
-- Compression using several algorithms:
+- Compression powered by several algorithms:
   - [**PNGQuant**](https://pngquant.org/): Removes unnecessary chunks from `png`
     files while preserving full alpha transparency.
   - [**JPEGOptim**](https://github.com/tjko/jpegoptim): Lossless optimization
@@ -102,7 +102,7 @@ install.packages(
 
 ## Example
 
-Compress an online `jpg` image:
+Compress an online `jpg` image with `resmush_url()`:
 
 ```{r}
 #| label: example
@@ -119,11 +119,11 @@ resmush_url(
 ```
 
 ::: figure
-[![](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg){alt="Original uncompressed file"
+[![](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg){alt="Original uncompressed JPEG image"
 width="100%"}](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)
 <small class="caption fst-italic">(a)</small>
 
-[![](./man/figures/jpg_example_compress.jpg){alt="Optimized file"
+[![](./man/figures/jpg_example_compress.jpg){alt="Optimized JPEG image"
 width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 <small class="caption fst-italic">(b)</small>
 
@@ -131,8 +131,8 @@ width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_exampl
 <em>(b)</em>: 45 KB (compression: 74.8%). Click to enlarge.</figcaption>
 :::
 
-You can adjust the compression quality for `jpg` files with the `qlty` argument.
-Keep this value above 90 to maintain good image quality.
+Use the `qlty` argument to adjust compression quality for `jpg` files. Keep
+this value above 90 to maintain good image quality.
 
 ```{r}
 #| label: jpgcompresslow
@@ -147,15 +147,15 @@ resmush_url(
 ```
 
 ::: figure
-[![](man/figures/jpg_example_compress_low.jpg){alt="Low-quality image"
+[![](man/figures/jpg_example_compress_low.jpg){alt="JPEG image with visible compression artifacts"
 width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
-<figcaption>Figure 2: Low-quality image caused by high compression
-(`qlty = 3`).</figcaption>
+<figcaption>Figure 2: Image with visible compression artifacts caused by high
+compression (`qlty = 3`).</figcaption>
 :::
 
-All functions invisibly return a data frame that summarizes the process. The
-following example shows this output when compressing a local file:
+All optimization functions invisibly return a data frame that summarizes the
+process. The following example shows this output when compressing a local file:
 
 ```{r}
 #| label: pngfile
@@ -187,14 +187,14 @@ Several other **R** packages also provide image optimization tools:
   [\@coolbutuseless](https://coolbutuseless.github.io/): Similar to
   `xfun::optipng()` but with more options. Requires additional local software.
 
-| Tool | CRAN | Additional software? | Online? | API key? | Limits? |
+| Tool | CRAN | Additional software | Online images | API key required | Limits |
 |--------------|--------------|--------------|--------------|--------------|--------------|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | No |
 | **tinieR** | No | No | Yes | Yes | 500 files/month (free tier) |
 | **tinyimg** | Yes | Yes | No | No | No |
 | **optout** | No | Yes | No | No | No |
-| **resmush** | Yes | No | Yes | No | Max size 5 MB |
+| **resmush** | Yes | No | Yes | No | Maximum size: 5 MB |
 
 ```{r}
 #| echo: false

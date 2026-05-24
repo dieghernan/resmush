@@ -2,13 +2,13 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "resmush",
-  "description": "Optimize and compress local image files, directories and online images using the 'reSmush.it' API <https://resmush.it/>, with support for 'png', 'jpg/jpeg', 'gif', 'bmp' and 'tiff' files.",
+  "description": "Optimize and compress local image files, directories and online images with the 'reSmush.it' API <https://resmush.it/>. Supports 'png', 'jpg/jpeg', 'gif', 'bmp' and 'tiff' files.",
   "name": "resmush: Optimize and Compress Image Files with 'reSmush.it'",
   "relatedLink": ["https://dieghernan.github.io/resmush/", "https://CRAN.R-project.org/package=resmush"],
   "codeRepository": "https://github.com/dieghernan/resmush",
   "issueTracker": "https://github.com/dieghernan/resmush/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.0",
+  "version": "1.0.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -173,7 +173,7 @@
     "SystemRequirements": null
   },
   "keywords": ["r", "compress-images", "optimize-images", "resmushit", "api", "r-package", "cran", "cran-r"],
-  "fileSize": "677.033KB",
+  "fileSize": "676.27KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

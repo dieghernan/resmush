@@ -1,10 +1,8 @@
 #' Clean files created by \CRANpkg{resmush}
 #'
 #' @description
-#' **Use with caution.** This removes files from your computer.
-#'
-#' Clean a directory (or a list of directories) of files created by
-#' [resmush_file()].
+#' **Use with caution.** This removes files from your computer. Clean one or
+#' more directories of files created by [resmush_file()].
 #'
 #' @param dir A character vector of full path names. See the `path` argument in
 #'   [list.files()].
@@ -17,8 +15,8 @@
 #'
 #' @seealso
 #' [resmush_file()], [resmush_dir()], [list.files()], [unlink()].
-#' @family helpers
 #'
+#' @family helpers
 #' @export
 #' @keywords internal
 #' @encoding UTF-8
@@ -60,12 +58,12 @@ resmush_clean_dir <- function(dir, suffix = "_resmush", recursive = FALSE) {
 
   if (length(allfiles) < 1) {
     cli::cli_alert_info(
-      "No files to clean in {.path {dir}} with suffix {.val {suffix}\\.}."
+      "No files to clean in {.path {dir}} with suffix {.val {suffix}}."
     )
     return(invisible(NULL))
   }
 
-  cli::cli_alert_info("Would remove {length(allfiles)} file{?s}:")
+  cli::cli_alert_info("Removing {length(allfiles)} file{?s}:")
 
   make_bull <- allfiles
   names(make_bull) <- rep(">", length(make_bull))

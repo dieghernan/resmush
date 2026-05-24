@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{resmush_file}
 \alias{resmush_file}
-\title{Optimize a local file}
+\title{Optimize local image files}
 \usage{
 resmush_file(
   file,
@@ -16,39 +16,36 @@ resmush_file(
 )
 }
 \arguments{
-\item{file}{Path or paths to local files. \strong{reSmush} can optimize \code{png},
-\code{jpg/jpeg}, \code{gif}, \code{bmp} and \code{tiff} files.}
+\item{file}{Path or paths to local image files. The API can optimize
+\code{png}, \code{jpg/jpeg}, \code{gif}, \code{bmp} and \code{tiff} files.}
 
-\item{suffix}{Character. Defaults to \code{"_resmush"}. By default, a new file
-with this \code{suffix} is created in the same directory as \code{file} (i.e.,
-optimized \code{example.png} becomes \code{example_resmush.png}). Values \code{""}, \code{NA}
-and \code{NULL} are equivalent to \code{overwrite = TRUE}.}
+\item{suffix}{Character. Defaults to \code{"_resmush"}. By default, the optimized
+file is saved in the same directory as \code{file} with this suffix. For
+example, \code{example.png} becomes \code{example_resmush.png}. Values \code{""}, \code{NA} and
+\code{NULL} are equivalent to \code{overwrite = TRUE}.}
 
 \item{overwrite}{Logical. Should the file in \code{file} be overwritten? If \code{TRUE}
 \code{suffix} is ignored.}
 
-\item{progress}{Logical. Display a progress bar when needed.}
+\item{progress}{Logical. Should a progress bar be displayed?}
 
-\item{report}{Logical. Display a summary report of the process in the
-console. See also \strong{Value}.}
+\item{report}{Logical. Should a summary report be displayed in the console?}
 
-\item{qlty}{Only affects \code{jpg} files. An integer between \code{0} and \code{100}
-indicating the optimization level. For optimal results, use values above
-\code{90}.}
+\item{qlty}{Integer between \code{0} and \code{100} indicating the optimization level.
+This only affects \code{jpg} files. For optimal results, use values above \code{90}.}
 
-\item{exif_preserve}{Logical. Should the
-\href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) be
-preserved? The default is \code{FALSE} (i.e., remove it).}
+\item{exif_preserve}{Logical. Should
+\href{https://en.wikipedia.org/wiki/Exif}{Exif} metadata be preserved? The
+default is \code{FALSE}, which removes it.}
 }
 \value{
-Writes the optimized file to disk in the same directory as \code{file} if the API
-call is successful.
-
-With \code{report = TRUE}, a summary report is displayed in the console. In all
-cases, an \code{\link[=invisible]{invisible()}} data frame summarizing the process is returned.
+Writes optimized files to disk when the API call is successful. Invisibly
+returns a data frame summarizing the process. With \code{report = TRUE}, a summary
+report is also displayed in the console.
 }
 \description{
-Optimize local images using the \href{https://resmush.it/}{reSmush.it API}.
+Optimize one or more local image files with the
+\href{https://resmush.it/}{reSmush.it API}.
 }
 \examples{
 \dontshow{if (curl::has_internet()) withAutoprint(\{ # examplesIf}
@@ -69,26 +66,26 @@ tmp_jpg <- tempfile(fileext = ".jpg")
 
 file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 
-# Output the summary in the console.
+# Display a summary in the console.
 summary <- resmush_file(c(tmp_png, tmp_jpg))
 
-# Similar information in the invisible data frame.
+# The invisible data frame contains the same information.
 summary
 
-# Display the PNG output.
+# Display the `png` output.
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])
   grid::grid.raster(my_png)
 }
 
-# Use with JPG and parameters.
+# Use with `jpg` files and parameters.
 resmush_file(tmp_jpg)
 resmush_file(tmp_jpg, qlty = 10)
 }
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\href{https://resmush.it/api/}{reSmush.it API} docs.
+\href{https://resmush.it/api/}{reSmush.it API} documentation.
 
 See \code{\link[=resmush_clean_dir]{resmush_clean_dir()}} to clean a directory of previous runs.
 

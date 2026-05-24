@@ -4,8 +4,8 @@
       dm <- resmush_url(png_url)
     Message
       == resmush summary =============================================================
-      i Input: 1 URL with size 0 bytes
-      x Failed for 1 URL:
+      i Input: 1 URL, total size 0 bytes.
+      x Failed to optimize 1 URL:
       ! <https://raw.githubusercontent.com/dieghernan/resmush/main/inst/extimg/example.png>:
         Offline.
 
@@ -25,8 +25,8 @@
       dm <- resmush_url(png_url)
     Message
       == resmush summary =============================================================
-      i Input: 1 URL with size 0 bytes
-      x Failed for 1 URL:
+      i Input: 1 URL, total size 0 bytes.
+      x Failed to optimize 1 URL:
       ! <https://raw.githubusercontent.com/dieghernan/resmush/main/inst/extimg/example.png>:
         API not responding, check https://resmush.it/status.
 
@@ -48,8 +48,8 @@
       dm <- resmush_url(turl)
     Message
       == resmush summary =============================================================
-      i Input: 1 URL with size 0 bytes
-      x Failed for 1 URL:
+      i Input: 1 URL, total size 0 bytes.
+      x Failed to optimize 1 URL:
       ! <https://dieghernan.github.io/aaabbbccc.png>: 401: Cannot copy from remote
         url.
 
@@ -69,8 +69,8 @@
       dm <- resmush_url(turl)
     Message
       == resmush summary =============================================================
-      i Input: 1 URL with size 0 bytes
-      x Failed for 1 URL:
+      i Input: 1 URL, total size 0 bytes.
+      x Failed to optimize 1 URL:
       ! <https://raw.githubusercontent.com/dieghernan/resmush/main/README.md>: 403:
         Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
 
@@ -94,13 +94,13 @@
       dm <- resmush_url(two_input, several_outputs)
     Condition
       Error in `resmush_url()`:
-      ! Lengths of `url` and `outfile` should be the same (2 vs. 3)
+      ! Lengths of `url` and `outfile` must match (2 vs. 3).
 
 # Test no file
 
     Code
       dm <- resmush_url(png_url)
     Message
-      x HTTP 200 OK for URL:
+      x Cannot download optimized URL: HTTP 200 OK.
       <https://raw.githubusercontent.com/dieghernan/resmush/main/inst/extimg/example.png>
 

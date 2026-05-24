@@ -10,6 +10,144 @@ make_pretty_size <- function(x) {
   pretty_size
 }
 
+#' Create an empty result table
+#'
+#' @param src Input image path or URL.
+#'
+#' @noRd
+new_resmush_result <- function(src) {
+  data.frame(
+    src_img = src,
+    dest_img = NA,
+    src_size = NA,
+    dest_size = NA,
+    compress_ratio = NA,
+    notes = NA,
+    src_bytes = NA,
+    dest_bytes = NA
+  )
+}
+
+#' Add size and compression metadata to a result table
+#'
+#' @param res Result table created by `new_resmush_result()`.
+#' @param src_size,dest_size Source and destination sizes in bytes.
+#'
+#' @noRd
+add_size_summary <- function(res, src_size, dest_size) {
+  res$src_bytes <- src_size
+  res$src_size <- make_pretty_size(src_size)
+  res$dest_bytes <- dest_size
+  res$dest_size <- make_pretty_size(dest_size)
+
+  reduction_ratio <- 1 - dest_size / src_size
+  res$compress_ratio <- sprintf("%0.2f%%", reduction_ratio * 100)
+  res$notes <- "OK"
+
+  res
+}
+
+#' Process inputs with optional progress reporting
+#'
+#' @param inputs Input vector.
+#' @param worker Function called once per input position.
+#' @param progress Logical. Display progress bar?
+#' @param progress_label Label displayed after the progress counter.
+#'
+#' @noRd
+resmush_map <- function(inputs, worker, progress, progress_label) {
+  if (progress) {
+    opts <- options()
+    on.exit(options(
+      cli.progress_bar_style = opts$cli.progress_bar_style,
+      cli.progress_show_after = opts$cli.progress_show_after,
+      cli.spinner = opts$cli.spinner
+    ))
+
+    options(
+      cli.progress_bar_style = "fillsquares",
+      cli.progress_show_after = 0,
+      cli.spinner = "clock"
+    )
+
+    cli::cli_progress_bar(
+      format = paste0(
+        "{cli::pb_spin} Go! | {cli::pb_bar} ",
+        "{cli::pb_percent} [{cli::pb_elapsed}] | ETA: {cli::pb_eta} ",
+        "({cli::pb_current}/{cli::pb_total} ",
+        progress_label,
+        ")"
+      ),
+      total = length(inputs),
+      clear = FALSE
+    )
+  }
+
+  res_df <- NULL
+
+  for (i in seq_along(inputs)) {
+    if (progress) {
+      cli::cli_progress_update()
+    }
+
+    df <- worker(i)
+
+    if (is.null(df)) {
+      next
+    }
+
+    if (is.null(res_df)) {
+      res_df <- df
+    } else {
+      res_df <- rbind(res_df, df)
+    }
+  }
+
+  res_df
+}
+
+#' Download an optimized file returned by the API
+#'
+#' @param url Optimized image URL returned by the API.
+#' @param outfile Destination path.
+#' @param src Original source used in error messages.
+#' @param source_type Either `"file"` or `"url"`.
+#'
+#' @noRd
+download_optimized_file <- function(url, outfile, src, source_type) {
+  dwn_opt <- httr2::request(url)
+  dwn_opt <- httr2::req_headers(
+    dwn_opt,
+    referer = "https://dieghernan.github.io/resmush/"
+  )
+
+  req_head <- httr2::req_method(dwn_opt, "HEAD")
+  req_head <- httr2::req_error(req_head, is_error = function(x) {
+    FALSE
+  })
+  resp_head <- httr2::req_perform(req_head)
+
+  test_no_file <- getOption("resmush_test_no_file", FALSE)
+  if (any(httr2::resp_is_error(resp_head), test_no_file)) {
+    err_code <- httr2::resp_status(resp_head) # nolint
+    err <- httr2::resp_status_desc(resp_head) # nolint
+
+    if (source_type == "file") {
+      cli::cli_alert_danger(
+        "Cannot download optimized file: HTTP {err_code} {err}.\n{.path {src}}"
+      )
+    } else {
+      cli::cli_alert_danger(
+        "Cannot download optimized URL: HTTP {err_code} {err}.\n{.url {src}}"
+      )
+    }
+
+    return(NULL)
+  }
+
+  httr2::req_perform(dwn_opt, path = outfile)
+}
+
 #' Add a suffix to a base name
 #'
 #' @param x A character vector.

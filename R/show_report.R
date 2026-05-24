@@ -3,7 +3,7 @@ show_report <- function(res_df, summary_type = "file") {
     return(invisible(NULL))
   }
 
-  # Print heading.
+  # Print the optimization report heading.
   name_cli <- switch(summary_type,
     "file" = "file{?s}",
     "url" = "URL{?s}"
@@ -21,13 +21,13 @@ show_report <- function(res_df, summary_type = "file") {
   cli::cli_alert_info(paste0(
     "Input: {nrow(res_df)} ",
     name_cli,
-    " with size {totinit_pretty}"
+    ", total size {totinit_pretty}."
   ))
 
   nok <- res_df[res_df$notes != "OK", ]
   ok <- res_df[res_df$notes == "OK", ]
 
-  # Report successful conversions.
+  # Report successful optimizations.
   if (nrow(ok) > 0) {
     # nolint start
     okinit <- sum(ok$src_bytes, na.rm = TRUE)
@@ -41,19 +41,19 @@ show_report <- function(res_df, summary_type = "file") {
     # nolint end
 
     cli::cli_alert_success(paste0(
-      "Success for {nrow(ok)} ",
+      "Optimized {nrow(ok)} ",
       name_cli,
       ": Size is now {okend_pretty} ",
       "(was {okinit_pretty}). Saved {okdif} ({okperc_pretty})."
     ))
     cli::cli_bullets(paste0(
-      "See {cli::qty(nrow(ok))} result{?s} in ",
-      "{cli::qty(okdirs)} director{?y/ies} ",
+      "Saved {cli::qty(nrow(ok))} result{?s} in ",
+      "{cli::qty(okdirs)}director{?y/ies} ",
       "{.path {okdirs}}."
     ))
   }
 
-  # Report failed conversions.
+  # Report failed optimizations.
   if (nrow(nok) > 0) {
     # nolint start
     nokdirs <- unique(dirname(nok$src_img))
@@ -61,7 +61,7 @@ show_report <- function(res_df, summary_type = "file") {
     # nolint end
 
     if (summary_type == "file") {
-      # Prepare bullets.
+      # Prepare failed-file bullets.
       makebull <- sprintf(
         paste0(
           "{.path {nok$src_img[%s]}} ",
@@ -74,16 +74,16 @@ show_report <- function(res_df, summary_type = "file") {
 
       names(makebull) <- rep("!", nrow(nok))
       makebull <- c(
-        "i" = "File{cli::qty(nrow(nok))}{?s} not converted:",
+        "i" = "File{cli::qty(nrow(nok))}{?s} not optimized:",
         makebull
       )
 
       cli::cli_alert_danger(paste0(
-        "Failed for {nrow(nok)} file{?s} in ",
+        "Failed to optimize {nrow(nok)} file{?s} in ",
         "{cli::qty(nokdirs)}director{?y/ies} {.path {nokdirs}}."
       ))
     } else {
-      # Prepare bullets.
+      # Prepare failed-URL bullets.
       makebull <- sprintf(
         "{.url {nok$src_img[%s]}}: {nok$notes[%s]}.",
         noks,
@@ -91,7 +91,7 @@ show_report <- function(res_df, summary_type = "file") {
       )
 
       names(makebull) <- rep("!", nrow(nok))
-      cli::cli_alert_danger("Failed for {nrow(nok)} URL{?s}:")
+      cli::cli_alert_danger("Failed to optimize {nrow(nok)} URL{?s}:")
     }
 
     cli::cli_bullets(makebull)
