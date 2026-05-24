@@ -23,10 +23,9 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 <!-- badges: end -->
 
-**resmush** is an **R** package that helps users optimize and compress
-images using [**reSmush.it**](https://resmush.it/). **reSmush.it** is a
-<u>free API</u> that provides image optimization and has been
-implemented in
+**resmush** is an **R** package for optimizing and compressing images
+with [**reSmush.it**](https://resmush.it/). **reSmush.it** is a <u>free
+API</u> for image optimization and is available through
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/)
 and [many other tools](https://resmush.it/tools/).
 
@@ -36,7 +35,7 @@ and [many other tools](https://resmush.it/tools/).
 - Support for local and online images.
 - Support for `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
 - Maximum image size: 5 MB.
-- Compression using several algorithms:
+- Compression powered by several algorithms:
   - [**PNGQuant**](https://pngquant.org/): Removes unnecessary chunks
     from `png` files while preserving full alpha transparency.
   - [**JPEGOptim**](https://github.com/tjko/jpegoptim): Lossless
@@ -88,7 +87,7 @@ install.packages(
 
 ## Example
 
-Compress an online `jpg` image:
+Compress an online `jpg` image with `resmush_url()`:
 
 ``` r
 library(resmush)
@@ -101,20 +100,20 @@ resmush_url(
   overwrite = TRUE
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 URL with size 178.7 Kb
-#> ✔ Success for 1 URL: Size is now 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
-#> See result in directory 'man/figures'.
+#> ℹ Input: 1 URL, total size 178.7 Kb.
+#> ✔ Optimized 1 URL: Size is now 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
+#> Saved result in directory 'man/figures'.
 ```
 
 <div class="figure">
 
 [<img
 src="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"
-style="width:100.0%" alt="Original uncompressed file" />](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)
+style="width:100.0%" alt="Original uncompressed JPEG image" />](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)
 <small class="caption fst-italic">(a)</small>
 
 [<img src="./man/figures/jpg_example_compress.jpg" style="width:100.0%"
-alt="Optimized file" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
+alt="Optimized JPEG image" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 <small class="caption fst-italic">(b)</small>
 
 <figcaption>
@@ -125,8 +124,8 @@ Figure 1: Original image <em>(a)</em>: 178.7 KB, optimized image
 
 </div>
 
-You can adjust the compression quality for `jpg` files with the `qlty`
-argument. Keep this value above 90 to maintain good image quality.
+Use the `qlty` argument to adjust compression quality for `jpg` files.
+Keep this value above 90 to maintain good image quality.
 
 ``` r
 # Use an extreme compression setting.
@@ -137,25 +136,27 @@ resmush_url(
   qlty = 3
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 URL with size 178.7 Kb
-#> ✔ Success for 1 URL: Size is now 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
-#> See result in directory 'man/figures'.
+#> ℹ Input: 1 URL, total size 178.7 Kb.
+#> ✔ Optimized 1 URL: Size is now 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
+#> Saved result in directory 'man/figures'.
 ```
 
 <div class="figure">
 
 [<img src="man/figures/jpg_example_compress_low.jpg" style="width:100.0%"
-alt="Low-quality image" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
+alt="JPEG image with visible compression artifacts" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
 <figcaption>
 
-Figure 2: Low-quality image caused by high compression (`qlty = 3`).
+Figure 2: Image with visible compression artifacts caused by high
+compression (`qlty = 3`).
 </figcaption>
 
 </div>
 
-All functions invisibly return a data frame that summarizes the process.
-The following example shows this output when compressing a local file:
+All optimization functions invisibly return a data frame that summarizes
+the process. The following example shows this output when compressing a
+local file:
 
 ``` r
 png_file <- system.file("extimg/example.png", package = "resmush")
@@ -192,14 +193,14 @@ Several other **R** packages also provide image optimization tools:
   `xfun::optipng()` but with more options. Requires additional local
   software.
 
-| Tool | CRAN | Additional software? | Online? | API key? | Limits? |
+| Tool | CRAN | Additional software | Online images | API key required | Limits |
 |----|----|----|----|----|----|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | No |
 | **tinieR** | No | No | Yes | Yes | 500 files/month (free tier) |
 | **tinyimg** | Yes | Yes | No | No | No |
 | **optout** | No | Yes | No | No | No |
-| **resmush** | Yes | No | Yes | No | Max size 5 MB |
+| **resmush** | Yes | No | Yes | No | Maximum size: 5 MB |
 
 <p class="caption">
 
@@ -237,9 +238,9 @@ A BibTeX entry for LaTeX users:
       doi = {10.32614/CRAN.package.resmush},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {1.0.0},
+      version = {1.0.0.9000},
       url = {https://dieghernan.github.io/resmush/},
-      abstract = {Optimize and compress local image files, directories and online images using the reSmush.it API <https://resmush.it/>, with support for png, jpg/jpeg, gif, bmp and tiff files.},
+      abstract = {Optimize and compress local image files, directories and online images with the reSmush.it API <https://resmush.it/>. Supports png, jpg/jpeg, gif, bmp and tiff files.},
     }
 
 ## References

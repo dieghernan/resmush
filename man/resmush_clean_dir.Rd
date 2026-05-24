@@ -20,10 +20,8 @@ Returns an \code{\link[=invisible]{invisible()}} \code{NULL} value and produces 
 process.
 }
 \description{
-\strong{Use with caution.} This removes files from your computer.
-
-Clean a directory (or a list of directories) of files created by
-\code{\link[=resmush_file]{resmush_file()}}.
+\strong{Use with caution.} This removes files from your computer. Clean one or
+more directories of files created by \code{\link[=resmush_file]{resmush_file()}}.
 }
 \examples{
 \dontshow{if (curl::has_internet()) withAutoprint(\{ # examplesIf}

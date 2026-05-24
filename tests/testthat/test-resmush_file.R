@@ -320,8 +320,8 @@ test_that("Test exif", {
   dm2 <- resmush_file(exif, "_with_exif", exif_preserve = TRUE)
 
   expect_lt(file.size(dm$dest_img), file.size(dm2$dest_img))
-  expect_message(resmush_clean_dir(tempdir(), "_without_exif"), "Would remove")
-  expect_message(resmush_clean_dir(tempdir(), "_with_exif"), "Would remove")
+  expect_message(resmush_clean_dir(tempdir(), "_without_exif"), "Removing")
+  expect_message(resmush_clean_dir(tempdir(), "_with_exif"), "Removing")
   unlink(exif, force = TRUE)
 })
 
@@ -374,7 +374,7 @@ test_that("Test no file", {
 
   expect_true("resmush_test_no_file" %in% names(options()))
 
-  expect_message(dm <- resmush_file(test_png), regexp = "for file")
+  expect_message(dm <- resmush_file(test_png), regexp = "optimized file")
   expect_null(dm)
 
   # Reset ops

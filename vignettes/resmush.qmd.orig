@@ -29,9 +29,9 @@ knitr::opts_chunk$set(
 library(resmush)
 ```
 
-**resmush** is an **R** package that helps users optimize and compress images
-using [**reSmush.it**](https://resmush.it/). **reSmush.it** is a [free
-API]{.underline} that provides image optimization and has been implemented in
+**resmush** is an **R** package for optimizing and compressing images with
+[**reSmush.it**](https://resmush.it/). **reSmush.it** is a [free
+API]{.underline} for image optimization and is available through
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/) and
 [many other tools](https://resmush.it/tools/).
 
@@ -41,7 +41,7 @@ API]{.underline} that provides image optimization and has been implemented in
 - Support for local and online images.
 - Support for `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
 - Maximum image size: 5 MB.
-- Compression using several algorithms:
+- Compression powered by several algorithms:
   - [**PNGQuant**](https://pngquant.org/): Removes unnecessary chunks from `png`
     files while preserving full alpha transparency.
   - [**JPEGOptim**](https://github.com/tjko/jpegoptim): Lossless
@@ -51,7 +51,7 @@ API]{.underline} that provides image optimization and has been implemented in
 
 ## Example
 
-Compress an online `jpg` image:
+Compress an online `jpg` image with `resmush_url()`:
 
 ```{r}
 #| label: example
@@ -61,26 +61,26 @@ url <- "https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"
 
 resmush_url(url, outfile = "jpg_example_compress.jpg", overwrite = TRUE)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 URL with size 178.7 Kb
-#> ✔ Success for 1 URL: Size is now 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
-#> See result in directory '.'.
+#> ℹ Input: 1 URL, total size 178.7 Kb.
+#> ✔ Optimized 1 URL: Size is now 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
+#> Saved result in directory '.'.
 ```
 
 ::: {#fig-comp layout-ncol="2"}
 [![](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg){#fig-orig
-alt="Original uncompressed file"
+alt="Original uncompressed JPEG image"
 width="100%"}](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)
 
 [![](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg){#fig-new
-alt="Optimized file"
+alt="Optimized JPEG image"
 width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 
 Original image @fig-orig: 178.7 KB, optimized image @fig-new: 45 KB
 (compression: 74.8%). Click to enlarge.
 :::
 
-You can adjust the compression quality for `jpg` files with the `qlty`
-argument. Keep this value above 90 to maintain good image quality.
+Use the `qlty` argument to adjust compression quality for `jpg` files. Keep
+this value above 90 to maintain good image quality.
 
 ```{r}
 #| label: jpgcompresslow
@@ -92,21 +92,21 @@ resmush_url(
   qlty = 3
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 URL with size 178.7 Kb
-#> ✔ Success for 1 URL: Size is now 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
-#> See result in directory 'tempdir()'.
+#> ℹ Input: 1 URL, total size 178.7 Kb.
+#> ✔ Optimized 1 URL: Size is now 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
+#> Saved result in directory 'tempdir()'.
 ```
 
 ::: {#fig-compresslow}
-[![](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg){alt="Low-quality image"
+[![](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg){alt="JPEG image with visible compression artifacts"
 width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
-Low-quality image caused by high compression (`qlty = 3`), compared with
-@fig-new.
+Image with visible compression artifacts caused by high compression
+(`qlty = 3`), compared with @fig-new.
 :::
 
-All functions invisibly return a data frame that summarizes the process. The
-following example shows this output when compressing a local file:
+All optimization functions invisibly return a data frame that summarizes the
+process. The following example shows this output when compressing a local file:
 
 ```{r}
 #| label: tibble_example
@@ -144,14 +144,14 @@ Several other **R** packages also provide image optimization tools:
   `xfun::optipng()` but with more options. Requires additional local software.
 
 ::: {#tbl-opts}
-| Tool | CRAN | Additional software? | Online? | API key? | Limits? |
+| Tool | CRAN | Additional software | Online images | API key required | Limits |
 |--------------|--------------|--------------|--------------|--------------|--------------|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | No |
 | **tinieR** | No | No | Yes | Yes | 500 files/month (free tier) |
 | **tinyimg** | Yes | Yes | No | No | No |
 | **optout** | No | Yes | No | No | No |
-| **resmush** | Yes | No | Yes | No | Max size 5 MB |
+| **resmush** | Yes | No | Yes | No | Maximum size: 5 MB |
 
 **R** packages: comparison of image optimization alternatives.
 :::

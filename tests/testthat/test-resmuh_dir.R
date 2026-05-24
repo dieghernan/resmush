@@ -19,7 +19,7 @@ test_that("Testing regex", {
 
   resmush_clean_dir(dir_temp)
   # Only one
-  expect_message(dm <- resmush_dir(dir_temp, ext = "png$"), "Resmushing 1 file")
+  expect_message(dm <- resmush_dir(dir_temp, ext = "png$"), "Optimizing 1 file")
 
   expect_s3_class(dm, "data.frame")
   expect_equal(basename(dm$dest_img), "example_resmush.png")
@@ -86,7 +86,7 @@ test_that("Testing nested dirs", {
   # All ext recursive
   expect_message(
     dm <- resmush_dir(nested, recursive = TRUE),
-    "Resmushing 2 files"
+    "Optimizing 2 files"
   )
 
   expect_s3_class(dm, "data.frame")
@@ -112,12 +112,12 @@ test_that("Testing nested dirs", {
   # Now without recursive
   expect_message(
     resmush_clean_dir(nested, "_resmush", recursive = TRUE),
-    "Would remove 2 files"
+    "Removing 2 files"
   )
 
   expect_message(
     dm <- resmush_dir(nested, recursive = FALSE),
-    "Resmushing 1 file"
+    "Optimizing 1 file"
   )
 
   expect_equal(nrow(dm), 1)
@@ -151,7 +151,7 @@ test_that("Testing separated dirs", {
       qlty = 10,
       recursive = TRUE
     ),
-    "Resmushing 3 files"
+    "Optimizing 3 files"
   )
 
   expect_s3_class(dm, "data.frame")

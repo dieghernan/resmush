@@ -1,43 +1,39 @@
-#' Optimize a local file
+#' Optimize local image files
 #'
 #' @description
-#' Optimize local images using the [reSmush.it API](https://resmush.it/).
+#' Optimize one or more local image files with the
+#' [reSmush.it API](https://resmush.it/).
 #'
-#' @param file Path or paths to local files. **reSmush** can optimize `png`,
-#'   `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
+#' @param file Path or paths to local image files. The API can optimize
+#'   `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
 #'
-#' @param suffix Character. Defaults to `"_resmush"`. By default, a new file
-#'   with this `suffix` is created in the same directory as `file` (i.e.,
-#'   optimized `example.png` becomes `example_resmush.png`). Values `""`, `NA`
-#'   and `NULL` are equivalent to `overwrite = TRUE`.
+#' @param suffix Character. Defaults to `"_resmush"`. By default, the optimized
+#'   file is saved in the same directory as `file` with this suffix. For
+#'   example, `example.png` becomes `example_resmush.png`. Values `""`, `NA` and
+#'   `NULL` are equivalent to `overwrite = TRUE`.
 #' @param overwrite Logical. Should the file in `file` be overwritten? If `TRUE`
 #'   `suffix` is ignored.
-#' @param progress Logical. Display a progress bar when needed.
-#' @param report Logical. Display a summary report of the process in the
-#'   console. See also **Value**.
-#' @param qlty Only affects `jpg` files. An integer between `0` and `100`
-#'   indicating the optimization level. For optimal results, use values above
-#'   `90`.
-#' @param exif_preserve Logical. Should the
-#'   [Exif](https://en.wikipedia.org/wiki/Exif) information (if any) be
-#'   preserved? The default is `FALSE` (i.e., remove it).
+#' @param progress Logical. Should a progress bar be displayed?
+#' @param report Logical. Should a summary report be displayed in the console?
+#' @param qlty Integer between `0` and `100` indicating the optimization level.
+#'   This only affects `jpg` files. For optimal results, use values above `90`.
+#' @param exif_preserve Logical. Should
+#'   [Exif](https://en.wikipedia.org/wiki/Exif) metadata be preserved? The
+#'   default is `FALSE`, which removes it.
 #'
 #' @return
-#' Writes the optimized file to disk in the same directory as `file` if the API
-#' call is successful.
-#'
-#' With `report = TRUE`, a summary report is displayed in the console. In all
-#' cases, an [invisible()] data frame summarizing the process is returned.
+#' Writes optimized files to disk when the API call is successful. Invisibly
+#' returns a data frame summarizing the process. With `report = TRUE`, a summary
+#' report is also displayed in the console.
 #'
 #' @seealso
-#' [reSmush.it API](https://resmush.it/api/) docs.
+#' [reSmush.it API](https://resmush.it/api/) documentation.
 #'
 #' See [resmush_clean_dir()] to clean a directory of previous runs.
 #'
 #' @family optimize
-#' @encoding UTF-8
 #' @export
-#'
+#' @encoding UTF-8
 #' @examplesIf curl::has_internet()
 #'
 #' \donttest{
@@ -56,19 +52,19 @@
 #'
 #' file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 #'
-#' # Output the summary in the console.
+#' # Display a summary in the console.
 #' summary <- resmush_file(c(tmp_png, tmp_jpg))
 #'
-#' # Similar information in the invisible data frame.
+#' # The invisible data frame contains the same information.
 #' summary
 #'
-#' # Display the PNG output.
+#' # Display the `png` output.
 #' if (require("png", quietly = TRUE)) {
 #'   my_png <- png::readPNG(summary$dest_img[1])
 #'   grid::grid.raster(my_png)
 #' }
 #'
-#' # Use with JPG and parameters.
+#' # Use with `jpg` files and parameters.
 #' resmush_file(tmp_jpg)
 #' resmush_file(tmp_jpg, qlty = 10)
 #' }
@@ -82,71 +78,26 @@ resmush_file <- function(
   qlty = 92,
   exif_preserve = FALSE
 ) {
-  # Prepare progress bar.
-  n_files <- length(file)
-  n_seq <- seq_len(n_files)
-
-  if (progress) {
-    opts <- options()
-    options(
-      cli.progress_bar_style = "fillsquares",
-      cli.progress_show_after = 0,
-      cli.spinner = "clock"
-    )
-
-    cli::cli_progress_bar(
-      format = paste0(
-        "{cli::pb_spin} Go! | {cli::pb_bar} ",
-        "{cli::pb_percent} [{cli::pb_elapsed}] | ETA: {cli::pb_eta} ",
-        "({cli::pb_current}/{cli::pb_total} files)"
-      ),
-      total = n_files,
-      clear = FALSE
-    )
-  }
-  # Call `resmush_file_single()` in a loop.
-  # cli::cli_progress_bar() does not work with apply-family calls yet.
-  res_df <- NULL
-
-  for (i in n_seq) {
-    if (progress) {
-      cli::cli_progress_update()
+  res_df <- resmush_map(
+    inputs = file,
+    progress = progress,
+    progress_label = "files",
+    worker = function(i) {
+      resmush_file_single(
+        file[i],
+        suffix = suffix,
+        overwrite = overwrite,
+        qlty = qlty,
+        exif_preserve = exif_preserve
+      )
     }
+  )
 
-    df <- resmush_file_single(
-      file[i],
-      suffix = suffix,
-      overwrite = overwrite,
-      qlty = qlty,
-      exif_preserve = exif_preserve
-    )
-
-    if (is.null(df)) {
-      next
-    }
-
-    if (is.null(res_df)) {
-      res_df <- df
-    } else {
-      res_df <- rbind(res_df, df)
-    }
-  }
-
-  # Restore options.
-  if (progress) {
-    options(
-      cli.progress_bar_style = opts$cli.progress_bar_style,
-      cli.progress_show_after = opts$cli.progress_show_after,
-      cli.spinner = opts$cli.spinner
-    )
-  }
-
-  # Display report.
+  # Display the optional optimization report.
   if (report) {
     show_report(res_df = res_df)
   }
 
-  # Return output.
   invisible(res_df)
 }
 
@@ -159,38 +110,22 @@ resmush_file_single <- function(
   exif_preserve = FALSE
 ) {
   outfile <- add_suffix(file, suffix, overwrite)
-  # Create the results table.
-  res <- data.frame(
-    src_img = file,
-    dest_img = NA,
-    src_size = NA,
-    dest_size = NA,
-    compress_ratio = NA,
-    notes = NA,
-    src_bytes = NA,
-    dest_bytes = NA
-  )
+  res <- new_resmush_result(file)
 
-  # Check internet access.
   # Internal option, for checking purposes only.
   test <- getOption("resmush_test_offline", FALSE)
   if (any(isFALSE(curl::has_internet()), test)) {
     res$notes <- "Offline"
     return(invisible(res))
   }
-  # Check that the file exists.
   if (!file.exists(file)) {
     res$notes <- "Local file does not exist"
     return(invisible(res))
   }
 
-  # Store the initial file size on disk.
   src_size <- file.size(file)
   res$src_bytes <- src_size
   res$src_size <- make_pretty_size(src_size)
-
-  # API calls -----
-  ## 1. Send local file -----
 
   res_post <- smush_from_local(file, qlty, exif_preserve)
 
@@ -206,32 +141,16 @@ resmush_file_single <- function(
   }
   # nocov end
 
-  ## 2. Download from destination URL -----
-  dwn_opt <- httr2::request(res_post$dest)
-  dwn_opt <- httr2::req_headers(
-    dwn_opt,
-    referer = "https://dieghernan.github.io/resmush/"
+  dwn_opt <- download_optimized_file(
+    url = res_post$dest,
+    outfile = outfile,
+    src = file,
+    source_type = "file"
   )
-
-  # Check whether the optimized file can be downloaded.
-  req_head <- httr2::req_method(dwn_opt, "HEAD")
-  req_head <- httr2::req_error(req_head, is_error = function(x) {
-    FALSE
-  })
-  resp_head <- httr2::req_perform(req_head)
-  test_no_file <- getOption("resmush_test_no_file", FALSE)
-  if (any(httr2::resp_is_error(resp_head), test_no_file)) {
-    # Get the status code and error, then return `NULL`.
-    err_code <- httr2::resp_status(resp_head) # nolint
-    err <- httr2::resp_status_desc(resp_head) # nolint
-    cli::cli_alert_danger("HTTP {err_code} {err} for file:\n {.path {file}}")
+  if (is.null(dwn_opt)) {
     return(NULL)
   }
 
-  # Download the optimized file.
-  dwn_opt <- httr2::req_perform(dwn_opt, path = outfile)
-
-  # Handle failed optimized-file downloads.
   # Internal option, for checking purposes only.
   test_corner <- getOption("resmush_test_corner", FALSE)
   if (any(httr2::resp_status(dwn_opt) != 200, test_corner)) {
@@ -239,17 +158,13 @@ resmush_file_single <- function(
     return(invisible(res))
   }
 
-  # Store the output path.
   res$dest_img <- outfile
 
-  out_size <- file.size(outfile)
-  res$dest_bytes <- out_size
-  res$dest_size <- make_pretty_size(out_size)
-
-  # Compute the compression ratio.
-  red_ratio <- 1 - out_size / src_size
-  res$compress_ratio <- sprintf("%0.2f%%", red_ratio * 100)
-  res$notes <- "OK"
+  res <- add_size_summary(
+    res,
+    src_size = src_size,
+    dest_size = file.size(outfile)
+  )
 
   invisible(res)
 }

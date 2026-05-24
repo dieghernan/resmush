@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{resmush_dir}
 \alias{resmush_dir}
-\title{Optimize local files in directories}
+\title{Optimize image files in directories}
 \usage{
 resmush_dir(
   dir,
@@ -20,21 +20,19 @@ resmush_dir(
 \item{dir}{A character vector of paths to local directories.}
 
 \item{ext}{A \code{\link[base:regex]{regex}} indicating the extensions of the files
-to optimize. The default value captures all extensions supported by the
-API.}
+to optimize. The default captures all extensions supported by the API.}
 
-\item{suffix}{Character. Defaults to \code{"_resmush"}. By default, a new file
-with the suffix is created in the same directory (i.e.,
-optimized \code{example.png} becomes \code{example_resmush.png}). Values \code{""}, \code{NA}
-and \code{NULL} are equivalent to \code{overwrite = TRUE}.}
+\item{suffix}{Character. Defaults to \code{"_resmush"}. By default, optimized
+files are saved in the same directory with this suffix. For example,
+\code{example.png} becomes \code{example_resmush.png}. Values \code{""}, \code{NA} and \code{NULL}
+are equivalent to \code{overwrite = TRUE}.}
 
 \item{overwrite}{Logical. Should the files in \code{dir} be overwritten? If \code{TRUE}
 \code{suffix} is ignored.}
 
-\item{progress}{Logical. Display a progress bar when needed.}
+\item{progress}{Logical. Should a progress bar be displayed?}
 
-\item{report}{Logical. Display a summary report of the process in the
-console. See also \strong{Value}.}
+\item{report}{Logical. Should a summary report be displayed in the console?}
 
 \item{recursive}{Logical. Should file search within \code{dir} be recursive? See
 also \code{\link[=list.files]{list.files()}}.}
@@ -42,23 +40,19 @@ also \code{\link[=list.files]{list.files()}}.}
 \item{...}{
   Arguments passed on to \code{\link{resmush_file}}
   \describe{
-    \item{\code{qlty}}{Only affects \code{jpg} files. An integer between \code{0} and \code{100}
-indicating the optimization level. For optimal results, use values above
-\code{90}.}
-    \item{\code{exif_preserve}}{Logical. Should the
-\href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) be
-preserved? The default is \code{FALSE} (i.e., remove it).}
+    \item{\code{qlty}}{Integer between \code{0} and \code{100} indicating the optimization level.
+This only affects \code{jpg} files. For optimal results, use values above \code{90}.}
+    \item{\code{exif_preserve}}{Logical. Should
+\href{https://en.wikipedia.org/wiki/Exif}{Exif} metadata be preserved? The
+default is \code{FALSE}, which removes it.}
   }}
 }
 \value{
-Writes optimized files to disk in the directories specified in \code{dir} if the
-API call is successful.
-
-In all cases, an \code{\link[=invisible]{invisible()}} data frame summarizing the process is returned
-as well.
+Writes optimized files to disk when the API call is successful. Invisibly
+returns a data frame summarizing the process.
 }
 \description{
-Optimize all local files in a directory (or list of directories) using the
+Optimize supported image files in one or more directories with the
 \href{https://resmush.it/}{reSmush.it API}.
 }
 \examples{
@@ -82,7 +76,7 @@ summary <- resmush_dir(dest_folder, recursive = TRUE)
 # Return the same information in the invisible data frame.
 summary[, -c(1, 2)]
 
-# Display the PNG output.
+# Display the `png` output.
 if (require("png", quietly = TRUE)) {
   a_png <- grepl("png$", summary$dest_img)
   my_png <- png::readPNG(summary[a_png, ]$dest_img[2])
@@ -95,7 +89,7 @@ unlink(dest_folder, force = TRUE, recursive = TRUE)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\href{https://resmush.it/api/}{reSmush.it API} docs.
+\href{https://resmush.it/api/}{reSmush.it API} documentation.
 
 See \code{\link[=resmush_clean_dir]{resmush_clean_dir()}} to clean a directory of previous runs.
 

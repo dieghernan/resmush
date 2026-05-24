@@ -8,14 +8,14 @@ message: 'To cite package "resmush" in publications use:'
 type: software
 license: MIT
 title: 'resmush: Optimize and Compress Image Files with ''reSmush.it'''
-version: 1.0.0
+version: 1.0.0.9000
 doi: 10.32614/CRAN.package.resmush
 identifiers:
 - type: doi
   value: 10.32614/CRAN.package.resmush
-abstract: Optimize and compress local image files, directories and online images using
-  the 'reSmush.it' API <https://resmush.it/>, with support for 'png', 'jpg/jpeg',
-  'gif', 'bmp' and 'tiff' files.
+abstract: Optimize and compress local image files, directories and online images with
+  the 'reSmush.it' API <https://resmush.it/>. Supports 'png', 'jpg/jpeg', 'gif', 'bmp'
+  and 'tiff' files.
 authors:
 - family-names: Hernangómez
   given-names: Diego
@@ -31,11 +31,11 @@ preferred-citation:
     orcid: https://orcid.org/0000-0001-8457-4658
   doi: 10.32614/CRAN.package.resmush
   year: '2026'
-  version: 1.0.0
+  version: 1.0.0.9000
   url: https://dieghernan.github.io/resmush/
   abstract: Optimize and compress local image files, directories and online images
-    using the reSmush.it API <https://resmush.it/>, with support for png, jpg/jpeg,
-    gif, bmp and tiff files.
+    with the reSmush.it API <https://resmush.it/>. Supports png, jpg/jpeg, gif, bmp
+    and tiff files.
 repository: https://CRAN.R-project.org/package=resmush
 repository-code: https://github.com/dieghernan/resmush
 url: https://dieghernan.github.io/resmush/

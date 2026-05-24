@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{resmush_url}
 \alias{resmush_url}
-\title{Optimize an online image}
+\title{Optimize online image files}
 \usage{
 resmush_url(
   url,
@@ -16,47 +16,43 @@ resmush_url(
 )
 }
 \arguments{
-\item{url}{URL or vector of URLs pointing to hosted image files. \strong{reSmush}
-can optimize \code{png}, \code{jpg/jpeg}, \code{gif}, \code{bmp} and \code{tiff} files.}
+\item{url}{URL or vector of URLs pointing to hosted image files. The API can
+optimize \code{png}, \code{jpg/jpeg}, \code{gif}, \code{bmp} and \code{tiff} files.}
 
 \item{outfile}{Path or paths where optimized files are stored on disk. By
-default, temporary files (see \code{\link[=tempfile]{tempfile()}}) with the same \code{\link[=basename]{basename()}} as
-the file provided in \code{url} are created. \code{outfile} must have the same length
-as \code{url}.}
+default, temporary files are created with \code{\link[=tempfile]{tempfile()}} and the same
+\code{\link[=basename]{basename()}} as the file provided in \code{url}. \code{outfile} must have the same
+length as \code{url}.}
 
 \item{overwrite}{Logical. Should \code{outfile} be overwritten if it already
 exists? If \code{FALSE} and \code{outfile} exists, a copy is created with a
-numerical suffix (i.e. \verb{<outfile>.png}, \verb{<outfile>_01.png}, etc.).}
+numerical suffix, such as \verb{<outfile>_01.png}.}
 
-\item{progress}{Logical. Display a progress bar when needed.}
+\item{progress}{Logical. Should a progress bar be displayed?}
 
-\item{report}{Logical. Display a summary report of the process in the
-console. See also \strong{Value}.}
+\item{report}{Logical. Should a summary report be displayed in the console?}
 
-\item{qlty}{Only affects \code{jpg} files. An integer between \code{0} and \code{100}
-indicating the optimization level. For optimal results, use values above
-\code{90}.}
+\item{qlty}{Integer between \code{0} and \code{100} indicating the optimization level.
+This only affects \code{jpg} files. For optimal results, use values above \code{90}.}
 
-\item{exif_preserve}{Logical. Should the
-\href{https://en.wikipedia.org/wiki/Exif}{Exif} information (if any) be
-preserved? The default is \code{FALSE} (i.e., remove it).}
+\item{exif_preserve}{Logical. Should
+\href{https://en.wikipedia.org/wiki/Exif}{Exif} metadata be preserved? The
+default is \code{FALSE}, which removes it.}
 }
 \value{
-Writes the optimized file to disk if the API call is successful. In all
-cases, an \code{\link[=invisible]{invisible()}} data frame summarizing the process is returned.
-
-If any value of the vector \code{outfile} is duplicated, \code{resmush_url()} renames
-the output with suffixes such as \verb{_01}, \verb{_02}, etc.
+Writes optimized files to disk when the API call is successful. Invisibly
+returns a data frame summarizing the process. If any value in \code{outfile} is
+duplicated, \code{resmush_url()} renames the outputs with suffixes such as \verb{_01}
+and \verb{_02}.
 }
 \description{
-Optimize and download an online image using the
+Optimize and download one or more online image files with the
 \href{https://resmush.it/}{reSmush.it API}.
 }
 \examples{
 \dontshow{if (curl::has_internet()) withAutoprint(\{ # examplesIf}
 
 \donttest{
-
 # Base URL.
 base_url <- "https://raw.githubusercontent.com/dieghernan/resmush/main/inst/"
 
@@ -68,23 +64,23 @@ jpg_url <- paste0(base_url, "/extimg/example.jpg")
 
 summary <- resmush_url(c(png_url, jpg_url))
 
-# Return an invisible data frame with a summary of the process.
+# The invisible data frame contains a summary of the process.
 summary
 
-# Display the PNG output.
+# Display the `png` output.
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])
   grid::grid.raster(my_png)
 }
 
-# Use with JPG and parameters.
+# Use with `jpg` files and parameters.
 resmush_url(jpg_url)
 resmush_url(jpg_url, qlty = 10)
 }
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\href{https://resmush.it/api/}{reSmush.it API} docs.
+\href{https://resmush.it/api/}{reSmush.it API} documentation.
 
 Other functions for optimizing:
 \code{\link[=resmush_dir]{resmush_dir()}},

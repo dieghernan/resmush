@@ -33,7 +33,7 @@ test_that("Message with 1 file", {
   expect_true(file.copy(png_file, tmp_png, overwrite = TRUE))
 
   # Message
-  expect_message(resmush_clean_dir(dir_temp), "Would remove 1 file")
+  expect_message(resmush_clean_dir(dir_temp), "Removing 1 file")
 
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
@@ -55,7 +55,7 @@ test_that("Message with 2 files", {
   expect_true(file.copy(png_file, tmp_png2, overwrite = TRUE))
 
   # Message
-  expect_message(resmush_clean_dir(dir_temp), "Would remove 2 files")
+  expect_message(resmush_clean_dir(dir_temp), "Removing 2 files")
 
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
