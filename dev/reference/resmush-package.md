@@ -1,7 +1,8 @@
 # resmush: Optimize and Compress Image Files with 'reSmush.it'
 
-Compress local and online images using the 'reSmush.it' API service
-<https://resmush.it/>.
+Optimize and compress local image files, directories and online images
+with the 'reSmush.it' API <https://resmush.it/>. Supports 'png',
+'jpg/jpeg', 'gif', 'bmp' and 'tiff' files.
 
 ## See also
 
@@ -17,3 +18,8 @@ Useful links:
 
 **Maintainer**: Diego Hernangómez <diego.hernangomezherrero@gmail.com>
 ([ORCID](https://orcid.org/0000-0001-8457-4658)) \[copyright holder\]
+
+Authors:
+
+- Diego Hernangómez <diego.hernangomezherrero@gmail.com>
+  ([ORCID](https://orcid.org/0000-0001-8457-4658)) \[copyright holder\]
