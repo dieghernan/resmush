@@ -105,30 +105,30 @@ dest_folder <- file.path(tempdir(), "extimg")
 resmush_dir(dest_folder)
 #> ℹ Optimizing 2 files.
 #> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [3ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.4s] | ETA:  0s (2/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.9s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files, total size 340.2 Kb.
 #> ✔ Optimized 2 files: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> Saved results in directory /tmp/Rtmpwc2eX3/extimg.
+#> Saved results in directory /tmp/Rtmpae8Dwc/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Removing 2 files:
-#> → /tmp/Rtmpwc2eX3/extimg/example_resmush.jpg
-#> → /tmp/Rtmpwc2eX3/extimg/example_resmush.png
+#> → /tmp/Rtmpae8Dwc/extimg/example_resmush.jpg
+#> → /tmp/Rtmpae8Dwc/extimg/example_resmush.png
 
 # Recursive.
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Optimizing 5 files.
 #> 🕐  Go! | ■■■■■■■□□□□□□□□□□□□□□□□□□□□□□□□   20% [1ms] | ETA:  0s (1/5 files)
-#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [2.3s] | ETA:  2s (3/5 files)
-#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.2s] | ETA:  0s (5/5 files)
+#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [2.6s] | ETA:  2s (3/5 files)
+#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.9s] | ETA:  0s (5/5 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files, total size 401.7 Kb.
 #> ✔ Optimized 5 files: Size is now 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> Saved results in directories /tmp/Rtmpwc2eX3/extimg,
-#> /tmp/Rtmpwc2eX3/extimg/top1/nested, /tmp/Rtmpwc2eX3/extimg/top1, and
-#> /tmp/Rtmpwc2eX3/extimg/top2.
+#> Saved results in directories /tmp/Rtmpae8Dwc/extimg,
+#> /tmp/Rtmpae8Dwc/extimg/top1/nested, /tmp/Rtmpae8Dwc/extimg/top1, and
+#> /tmp/Rtmpae8Dwc/extimg/top2.
 
 # Return the same information in the invisible data frame.
 summary[, -c(1, 2)]
