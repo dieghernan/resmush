@@ -105,29 +105,30 @@ dest_folder <- file.path(tempdir(), "extimg")
 resmush_dir(dest_folder)
 #> ℹ Optimizing 2 files.
 #> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.4s] | ETA:  0s (2/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.9s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files, total size 340.2 Kb.
 #> ✔ Optimized 2 files: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> Saved results in directory /tmp/RtmpBqWMon/extimg.
+#> Saved results in directory /tmp/Rtmp2oDTaZ/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Removing 2 files:
-#> → /tmp/RtmpBqWMon/extimg/example_resmush.jpg
-#> → /tmp/RtmpBqWMon/extimg/example_resmush.png
+#> → /tmp/Rtmp2oDTaZ/extimg/example_resmush.jpg
+#> → /tmp/Rtmp2oDTaZ/extimg/example_resmush.png
 
 # Recursive.
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Optimizing 5 files.
-#> 🕐  Go! | ■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□   40% [700ms] | ETA:  1s (2/5 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2.4s] | ETA:  0s (5/5 files)
+#> 🕐  Go! | ■■■■■■■□□□□□□□□□□□□□□□□□□□□□□□□   20% [1ms] | ETA:  0s (1/5 files)
+#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■□□□□□□   80% [3.5s] | ETA:  1s (4/5 files)
+#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [4.2s] | ETA:  0s (5/5 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files, total size 401.7 Kb.
 #> ✔ Optimized 5 files: Size is now 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> Saved results in directories /tmp/RtmpBqWMon/extimg,
-#> /tmp/RtmpBqWMon/extimg/top1/nested, /tmp/RtmpBqWMon/extimg/top1, and
-#> /tmp/RtmpBqWMon/extimg/top2.
+#> Saved results in directories /tmp/Rtmp2oDTaZ/extimg,
+#> /tmp/Rtmp2oDTaZ/extimg/top1/nested, /tmp/Rtmp2oDTaZ/extimg/top1, and
+#> /tmp/Rtmp2oDTaZ/extimg/top2.
 
 # Return the same information in the invisible data frame.
 summary[, -c(1, 2)]
