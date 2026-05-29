@@ -1,6 +1,7 @@
-# Optimize a local file
+# Optimize local image files
 
-Optimize local images using the [reSmush.it API](https://resmush.it/).
+Optimize one or more local image files with the [reSmush.it
+API](https://resmush.it/).
 
 ## Usage
 
@@ -20,14 +21,14 @@ resmush_file(
 
 - file:
 
-  Path or paths to local files. **reSmush** can optimize `png`,
+  Path or paths to local image files. The API can optimize `png`,
   `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
 
 - suffix:
 
-  Character. Defaults to `"_resmush"`. By default, a new file with this
-  `suffix` is created in the same directory as `file` (i.e., optimized
-  `example.png` becomes `example_resmush.png`). Values `""`, `NA` and
+  Character. Defaults to `"_resmush"`. By default, the optimized file is
+  saved in the same directory as `file` with this suffix. For example,
+  `example.png` becomes `example_resmush.png`. Values `""`, `NA` and
   `NULL` are equivalent to `overwrite = TRUE`.
 
 - overwrite:
@@ -37,36 +38,31 @@ resmush_file(
 
 - progress:
 
-  Logical. Display a progress bar when needed.
+  Logical. Should a progress bar be displayed?
 
 - report:
 
-  Logical. Display a summary report of the process in the console. See
-  also **Value**.
+  Logical. Should a summary report be displayed in the console?
 
 - qlty:
 
-  Only affects `jpg` files. An integer between `0` and `100` indicating
-  the optimization level. For optimal results, use values above `90`.
+  Integer between `0` and `100` indicating the optimization level. This
+  only affects `jpg` files. For optimal results, use values above `90`.
 
 - exif_preserve:
 
-  Logical. Should the [Exif](https://en.wikipedia.org/wiki/Exif)
-  information (if any) be preserved? The default is `FALSE` (i.e.,
-  remove it).
+  Logical. Should [Exif](https://en.wikipedia.org/wiki/Exif) metadata be
+  preserved? The default is `FALSE`, which removes it.
 
 ## Value
 
-Writes the optimized file to disk in the same directory as `file` if the
-API call is successful.
-
-With `report = TRUE`, a summary report is displayed in the console. In
-all cases, an [`invisible()`](https://rdrr.io/r/base/invisible.html)
-data frame summarizing the process is returned.
+Writes optimized files to disk when the API call is successful.
+Invisibly returns a data frame summarizing the process. With
+`report = TRUE`, a summary report is also displayed in the console.
 
 ## See also
 
-[reSmush.it API](https://resmush.it/api/) docs.
+[reSmush.it API](https://resmush.it/api/) documentation.
 
 See
 [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/reference/resmush_clean_dir.md)
@@ -91,9 +87,9 @@ file.copy(png_file, tmp_png, overwrite = TRUE)
 
 resmush_file(tmp_png)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 file with size 239.9 Kb
-#> ✔ Success for 1 file: Size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-#> See result in directory /tmp/RtmpmiQt8u.
+#> ℹ Input: 1 file, total size 239.9 Kb.
+#> ✔ Optimized 1 file: Size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
+#> Saved result in directory /tmp/RtmpBqWMon.
 
 # Several paths.
 jpg_file <- system.file("extimg/example.jpg", package = "resmush")
@@ -102,45 +98,45 @@ tmp_jpg <- tempfile(fileext = ".jpg")
 file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 #> [1] TRUE
 
-# Output the summary in the console.
+# Display a summary in the console.
 summary <- resmush_file(c(tmp_png, tmp_jpg))
 #> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.2s] | ETA:  0s (2/2 files)
+#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [822ms] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 2 files with size 340.2 Kb
-#> ✔ Success for 2 files: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> See results in directory /tmp/RtmpmiQt8u.
+#> ℹ Input: 2 files, total size 340.2 Kb.
+#> ✔ Optimized 2 files: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
+#> Saved results in directory /tmp/RtmpBqWMon.
 
-# Similar information in the invisible data frame.
+# The invisible data frame contains the same information.
 summary
 #>                                src_img
-#> 1 /tmp/RtmpmiQt8u/file19f84983d06c.png
-#> 2 /tmp/RtmpmiQt8u/file19f871e39cd8.jpg
+#> 1 /tmp/RtmpBqWMon/file1aee1a5936f0.png
+#> 2 /tmp/RtmpBqWMon/file1aee71f051d3.jpg
 #>                                       dest_img src_size dest_size
-#> 1 /tmp/RtmpmiQt8u/file19f84983d06c_resmush.png 239.9 Kb   70.7 Kb
-#> 2 /tmp/RtmpmiQt8u/file19f871e39cd8_resmush.jpg 100.4 Kb   83.2 Kb
+#> 1 /tmp/RtmpBqWMon/file1aee1a5936f0_resmush.png 239.9 Kb   70.7 Kb
+#> 2 /tmp/RtmpBqWMon/file1aee71f051d3_resmush.jpg 100.4 Kb   83.2 Kb
 #>   compress_ratio notes src_bytes dest_bytes
 #> 1         70.54%    OK    245618      72356
 #> 2         17.15%    OK    102796      85164
 
-# Display the PNG output.
+# Display the `png` output.
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])
   grid::grid.raster(my_png)
 }
 
 
-# Use with JPG and parameters.
+# Use with `jpg` files and parameters.
 resmush_file(tmp_jpg)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 file with size 100.4 Kb
-#> ✔ Success for 1 file: Size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> See result in directory /tmp/RtmpmiQt8u.
+#> ℹ Input: 1 file, total size 100.4 Kb.
+#> ✔ Optimized 1 file: Size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
+#> Saved result in directory /tmp/RtmpBqWMon.
 resmush_file(tmp_jpg, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 file with size 100.4 Kb
-#> ✔ Success for 1 file: Size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> See result in directory /tmp/RtmpmiQt8u.
+#> ℹ Input: 1 file, total size 100.4 Kb.
+#> ✔ Optimized 1 file: Size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
+#> Saved result in directory /tmp/RtmpBqWMon.
 # }
 ```

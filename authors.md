@@ -21,7 +21,7 @@ reSmush.it*.
       doi = {10.32614/CRAN.package.resmush},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {1.0.0},
+      version = {1.0.1},
       url = {https://dieghernan.github.io/resmush/},
-      abstract = {Optimize and compress local image files, directories and online images using the reSmush.it API <https://resmush.it/>, with support for png, jpg/jpeg, gif, bmp and tiff files.},
+      abstract = {Optimize and compress local image files, directories and online images with the reSmush.it API <https://resmush.it/>. Supports png, jpg/jpeg, gif, bmp and tiff files.},
     }

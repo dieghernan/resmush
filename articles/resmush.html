@@ -43,7 +43,7 @@
 
     <a class="navbar-brand me-2" href="../index.html"><img src="../apple-touch-icon.png" alt="resmush logo" height="34" width="34" class="d-inline-block me-1">resmush</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,14 +91,14 @@
 
 
 
-    <!-- resmush.qmd is generated from resmush.qmd.orig. Please edit that file --><p><strong>resmush</strong> is an <strong>R</strong> package that helps users optimize and compress images using <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. <strong>reSmush.it</strong> is a <u>free API</u> that provides image optimization and has been implemented in <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a> and <a href="https://resmush.it/tools/" class="external-link">many other tools</a>.</p>
+    <!-- resmush.qmd is generated from resmush.qmd.orig. Please edit that file --><p><strong>resmush</strong> is an <strong>R</strong> package for optimizing and compressing images with <a href="https://resmush.it/" class="external-link"><strong>reSmush.it</strong></a>. <strong>reSmush.it</strong> is a <u>free API</u> for image optimization and is available through <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a> and <a href="https://resmush.it/tools/" class="external-link">many other tools</a>.</p>
 <p><strong>reSmush.it</strong> includes:</p>
 <ul>
 <li>Free image optimization with <u>no API key required</u>.</li>
 <li>Support for local and online images.</li>
 <li>Support for <code>png</code>, <code>jpg/jpeg</code>, <code>gif</code>, <code>bmp</code> and <code>tiff</code> files.</li>
 <li>Maximum image size: 5 MB.</li>
-<li>Compression using several algorithms:
+<li>Compression powered by several algorithms:
 <ul>
 <li>
 <a href="https://pngquant.org/" class="external-link"><strong>PNGQuant</strong></a>: Removes unnecessary chunks from <code>png</code> files while preserving full alpha transparency.</li>
@@ -111,7 +111,7 @@
 </ul>
 <section class="level2"><h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>Compress an online <code>jpg</code> image:</p>
+<p>Compress an online <code>jpg</code> image with <code><a href="../reference/resmush_url.html">resmush_url()</a></code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/resmush/">resmush</a></span><span class="op">)</span></span>
 <span></span>
@@ -119,16 +119,16 @@
 <span></span>
 <span><span class="fu"><a href="../reference/resmush_url.html">resmush_url</a></span><span class="op">(</span><span class="va">url</span>, outfile <span class="op">=</span> <span class="st">"jpg_example_compress.jpg"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ══ resmush summary ═════════════════════════════════════════════════════════════</span></span>
-<span><span class="co">#&gt; ℹ Input: 1 URL with size 178.7 Kb</span></span>
-<span><span class="co">#&gt; ✔ Success for 1 URL: Size is now 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).</span></span>
-<span><span class="co">#&gt; See result in directory '.'.</span></span></code></pre></div>
+<span><span class="co">#&gt; ℹ Input: 1 URL, total size 178.7 Kb.</span></span>
+<span><span class="co">#&gt; ✔ Optimized 1 URL: Size is now 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).</span></span>
+<span><span class="co">#&gt; Saved result in directory '.'.</span></span></code></pre></div>
 <div id="fig-comp" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-comp" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-orig" class="quarto-float quarto-figure quarto-figure-center" alt="Original uncompressed file">
+<div id="fig-orig" class="quarto-float quarto-figure quarto-figure-center" alt="Original uncompressed JPEG image">
 <figure class="quarto-float quarto-subfloat-fig"><div aria-describedby="fig-orig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"><img src="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg" style="width:100.0%" alt="Original uncompressed file" data-ref-parent="fig-comp"></a>
+<a href="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"><img src="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg" style="width:100.0%" alt="Original uncompressed JPEG image" data-ref-parent="fig-comp"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-orig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a)
@@ -136,9 +136,9 @@
 </div>
 </div>
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-comp" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-new" class="quarto-float quarto-figure quarto-figure-center" alt="Optimized file">
+<div id="fig-new" class="quarto-float quarto-figure quarto-figure-center" alt="Optimized JPEG image">
 <figure class="quarto-float quarto-subfloat-fig"><div aria-describedby="fig-new-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg"><img src="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg" style="width:100.0%" alt="Optimized file" data-ref-parent="fig-comp"></a>
+<a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg"><img src="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg" style="width:100.0%" alt="Optimized JPEG image" data-ref-parent="fig-comp"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-new-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b)
@@ -151,7 +151,7 @@
 Figure 1: Original image <a href="#fig-orig" class="quarto-xref">Figure 1 (a)</a>: 178.7 KB, optimized image <a href="#fig-new" class="quarto-xref">Figure 1 (b)</a>: 45 KB (compression: 74.8%). Click to enlarge.
 </figcaption></figure>
 </div>
-<p>You can adjust the compression quality for <code>jpg</code> files with the <code>qlty</code> argument. Keep this value above 90 to maintain good image quality.</p>
+<p>Use the <code>qlty</code> argument to adjust compression quality for <code>jpg</code> files. Keep this value above 90 to maintain good image quality.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Use an extreme compression setting.</span></span>
 <span><span class="fu"><a href="../reference/resmush_url.html">resmush_url</a></span><span class="op">(</span></span>
@@ -161,18 +161,18 @@ Figure 1: Original image <a href="#fig-orig" class="quarto-xref">Figure 1 (a)<
 <span>  qlty <span class="op">=</span> <span class="fl">3</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ══ resmush summary ═════════════════════════════════════════════════════════════</span></span>
-<span><span class="co">#&gt; ℹ Input: 1 URL with size 178.7 Kb</span></span>
-<span><span class="co">#&gt; ✔ Success for 1 URL: Size is now 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).</span></span>
-<span><span class="co">#&gt; See result in directory 'tempdir()'.</span></span></code></pre></div>
+<span><span class="co">#&gt; ℹ Input: 1 URL, total size 178.7 Kb.</span></span>
+<span><span class="co">#&gt; ✔ Optimized 1 URL: Size is now 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).</span></span>
+<span><span class="co">#&gt; Saved result in directory 'tempdir()'.</span></span></code></pre></div>
 <div id="fig-compresslow" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-compresslow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg"><img src="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg" style="width:100.0%" alt="Low-quality image"></a></p>
+<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg"><img src="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg" style="width:100.0%" alt="JPEG image with visible compression artifacts"></a></p>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-compresslow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 2: Low-quality image caused by high compression (<code>qlty = 3</code>), compared with <a href="#fig-new" class="quarto-xref">Figure 1 (b)</a>.
+Figure 2: Image with visible compression artifacts caused by high compression (<code>qlty = 3</code>), compared with <a href="#fig-new" class="quarto-xref">Figure 1 (b)</a>.
 </figcaption></figure>
 </div>
-<p>All functions invisibly return a data frame that summarizes the process. The following example shows this output when compressing a local file:</p>
+<p>All optimization functions invisibly return a data frame that summarizes the process. The following example shows this output when compressing a local file:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">png_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extimg/example.png"</span>, package <span class="op">=</span> <span class="st">"resmush"</span><span class="op">)</span></span>
 <span></span>
@@ -218,10 +218,10 @@ Figure 2: Low-quality image caused by high compression (<code>qlty = 3</code>),
 <thead><tr class="header">
 <th>Tool</th>
 <th>CRAN</th>
-<th>Additional software?</th>
-<th>Online?</th>
-<th>API key?</th>
-<th>Limits?</th>
+<th>Additional software</th>
+<th>Online images</th>
+<th>API key required</th>
+<th>Limits</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -270,7 +270,7 @@ Figure 2: Low-quality image caused by high compression (<code>qlty = 3</code>),
 <td>No</td>
 <td>Yes</td>
 <td>No</td>
-<td>Max size 5 MB</td>
+<td>Maximum size: 5 MB</td>
 </tr>
 </tbody>
 </table>

@@ -1,8 +1,7 @@
 # Clean files created by [resmush](https://CRAN.R-project.org/package=resmush)
 
-**Use with caution.** This removes files from your computer.
-
-Clean a directory (or a list of directories) of files created by
+**Use with caution.** This removes files from your computer. Clean one
+or more directories of files created by
 [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md).
 
 ## Usage
@@ -64,15 +63,15 @@ file.exists(tmp_png)
 
 # Run with the default suffix. This should not remove the file.
 resmush_clean_dir(tempdir())
-#> ℹ No files to clean in /tmp/RtmpmiQt8u with suffix "_resmush\\.".
+#> ℹ No files to clean in /tmp/RtmpBqWMon with suffix "_resmush".
 
 file.exists(tmp_png)
 #> [1] TRUE
 
 # Use the matching suffix to remove the file.
 resmush_clean_dir(tempdir(), suffix = suffix)
-#> ℹ Would remove 1 file:
-#> → /tmp/RtmpmiQt8u/example_would_be_removed.png
+#> ℹ Removing 1 file:
+#> → /tmp/RtmpBqWMon/example_would_be_removed.png
 
 file.exists(tmp_png)
 #> [1] FALSE

@@ -1,8 +1,8 @@
 # resmush: Optimize and Compress Image Files with 'reSmush.it'
 
 Optimize and compress local image files, directories and online images
-using the 'reSmush.it' API <https://resmush.it/>, with support for
-'png', 'jpg/jpeg', 'gif', 'bmp' and 'tiff' files.
+with the 'reSmush.it' API <https://resmush.it/>. Supports 'png',
+'jpg/jpeg', 'gif', 'bmp' and 'tiff' files.
 
 ## See also
 
