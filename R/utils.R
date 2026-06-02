@@ -67,7 +67,7 @@ resmush_map <- function(inputs, worker, progress, progress_label) {
     options(
       cli.progress_bar_style = "fillsquares",
       cli.progress_show_after = 0,
-      cli.spinner = "clock"
+      cli.spinner = "point"
     )
 
     cli::cli_progress_bar(
