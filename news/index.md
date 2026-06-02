@@ -2,6 +2,8 @@
 
 ## resmush 1.0.1
 
+CRAN release: 2026-05-29
+
 - Improved console messages for optimization reports and cleanup
   helpers.
 - Refactored internal code and updated function documentation with AI
