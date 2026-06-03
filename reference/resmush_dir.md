@@ -105,30 +105,30 @@ dest_folder <- file.path(tempdir(), "extimg")
 resmush_dir(dest_folder)
 #> ℹ Optimizing 2 files.
 #> ●∙∙ Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [3ms] | ETA:  0s (1/2 files)
-#> ●∙∙ Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2.2s] | ETA:  0s (2/2 files)
+#> ●∙∙ Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.4s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files, total size 340.2 Kb.
 #> ✔ Optimized 2 files: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> Saved results in directory /tmp/RtmpY8Pwau/extimg.
+#> Saved results in directory /tmp/RtmpG47MWj/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Removing 2 files:
-#> → /tmp/RtmpY8Pwau/extimg/example_resmush.jpg
-#> → /tmp/RtmpY8Pwau/extimg/example_resmush.png
+#> → /tmp/RtmpG47MWj/extimg/example_resmush.jpg
+#> → /tmp/RtmpG47MWj/extimg/example_resmush.png
 
 # Recursive.
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Optimizing 5 files.
 #> ●∙∙ Go! | ■■■■■■■□□□□□□□□□□□□□□□□□□□□□□□□   20% [1ms] | ETA:  0s (1/5 files)
-#> ∙●∙ Go! | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [3.6s] | ETA:  2s (3/5 files)
-#> ∙●∙ Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [5.3s] | ETA:  0s (5/5 files)
+#> ∙●∙ Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■□□□□□□   80% [2.4s] | ETA:  1s (4/5 files)
+#> ∙●∙ Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2.8s] | ETA:  0s (5/5 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files, total size 401.7 Kb.
 #> ✔ Optimized 5 files: Size is now 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> Saved results in directories /tmp/RtmpY8Pwau/extimg,
-#> /tmp/RtmpY8Pwau/extimg/top1/nested, /tmp/RtmpY8Pwau/extimg/top1, and
-#> /tmp/RtmpY8Pwau/extimg/top2.
+#> Saved results in directories /tmp/RtmpG47MWj/extimg,
+#> /tmp/RtmpG47MWj/extimg/top1/nested, /tmp/RtmpG47MWj/extimg/top1, and
+#> /tmp/RtmpG47MWj/extimg/top2.
 
 # Return the same information in the invisible data frame.
 summary[, -c(1, 2)]
