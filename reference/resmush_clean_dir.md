@@ -63,7 +63,7 @@ file.exists(tmp_png)
 
 # Run with the default suffix. This should not remove the file.
 resmush_clean_dir(tempdir())
-#> ℹ No files to clean in /tmp/Rtmp0E80cN with suffix "_resmush".
+#> ℹ No files to clean in /tmp/Rtmp1Aglb0 with suffix "_resmush".
 
 file.exists(tmp_png)
 #> [1] TRUE
@@ -71,7 +71,7 @@ file.exists(tmp_png)
 # Use the matching suffix to remove the file.
 resmush_clean_dir(tempdir(), suffix = suffix)
 #> ℹ Removing 1 file:
-#> → /tmp/Rtmp0E80cN/example_would_be_removed.png
+#> → /tmp/Rtmp1Aglb0/example_would_be_removed.png
 
 file.exists(tmp_png)
 #> [1] FALSE
