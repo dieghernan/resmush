@@ -25,6 +25,14 @@ reSmush.it API."><meta property="og:image" content="https://dieghernan.github.io
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/resmush.html">Get started</a></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Blog posts</h6></li>
+    <li><a class="external-link dropdown-item" href="https://dieghernan.github.io/202402_optimize-images-r/">Optimize your images with R and reSmush.it</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="../articles/index.html">More articles...</a></li>
+  </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -148,30 +156,29 @@ returns a data frame summarizing the process.</p>
 <span class="r-in"><span><span class="fu">resmush_dir</span><span class="op">(</span><span class="va">dest_folder</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Optimizing 2 files.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ●∙∙ Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■</span><span style="color: #555555;">□□□□□□□□□□□□□□□</span><span style="color: #00BB00;"> </span>  50% [3ms] | ETA:  0s (1/2 files)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ●∙∙ Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [1.9s] | ETA:  0s (2/2 files)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ●∙∙ Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [1.6s] | ETA:  0s (2/2 files)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 2 files, total size 340.2 Kb.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimized 2 files: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved results in directory <span style="color: #0000BB;">/tmp/Rtmp1Aglb0/extimg</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved results in directory <span style="color: #0000BB;">/tmp/Rtmp04WD5Y/extimg</span>.</span>
 <span class="r-in"><span><span class="fu"><a href="resmush_clean_dir.html">resmush_clean_dir</a></span><span class="op">(</span><span class="va">dest_folder</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Removing 2 files:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> → /tmp/Rtmp1Aglb0/extimg/example_resmush.jpg</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> → /tmp/Rtmp1Aglb0/extimg/example_resmush.png</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → /tmp/Rtmp04WD5Y/extimg/example_resmush.jpg</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → /tmp/Rtmp04WD5Y/extimg/example_resmush.png</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Recursive.</span></span></span>
 <span class="r-in"><span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu">resmush_dir</span><span class="op">(</span><span class="va">dest_folder</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Optimizing 5 files.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ●∙∙ Go! | <span style="color: #00BB00;">■■■■■■■</span><span style="color: #555555;">□□□□□□□□□□□□□□□□□□□□□□□□</span><span style="color: #00BB00;"> </span>  20% [1ms] | ETA:  0s (1/5 files)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ∙●∙ Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■</span><span style="color: #555555;">□□□□□□□□□□□□</span><span style="color: #00BB00;"> </span>  60% [2.6s] | ETA:  2s (3/5 files)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ∙●∙ Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [3.7s] | ETA:  0s (5/5 files)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ●∙∙ Go! | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [2.9s] | ETA:  0s (5/5 files)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: 5 files, total size 401.7 Kb.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimized 5 files: Size is now 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved results in directories <span style="color: #0000BB;">/tmp/Rtmp1Aglb0/extimg</span>,</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">/tmp/Rtmp1Aglb0/extimg/top1/nested</span>, <span style="color: #0000BB;">/tmp/Rtmp1Aglb0/extimg/top1</span>, and</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">/tmp/Rtmp1Aglb0/extimg/top2</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved results in directories <span style="color: #0000BB;">/tmp/Rtmp04WD5Y/extimg</span>,</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">/tmp/Rtmp04WD5Y/extimg/top1/nested</span>, <span style="color: #0000BB;">/tmp/Rtmp04WD5Y/extimg/top1</span>, and</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">/tmp/Rtmp04WD5Y/extimg/top2</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Return the same information in the invisible data frame.</span></span></span>
 <span class="r-in"><span><span class="va">summary</span><span class="op">[</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">]</span></span></span>
