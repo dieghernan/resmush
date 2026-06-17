@@ -30,21 +30,32 @@ home:
     Optimize and compress local image files, directories and online images
     from R with the reSmush.it API.
 
-articles:
-- title: Get started
-  contents:
-  - resmush
-
 reference:
 - title: Optimization functions
   desc: Optimize local image files, directories and URLs with the reSmush.it API.
 - contents:
-  - resmush_file
-  - resmush_dir
-  - resmush_url
-- title: Helper functions
-  desc: Clean files created by previous optimization runs.
+  - has_concept("optimize")
+- title: Utilities
+  desc: Helper functions.
 - contents:
-  - resmush_clean_dir
+  - has_concept("helpers")
 - title: About the package
 - contents: resmush-package
+
+articles:
+- title: Get started
+  contents:
+  - resmush
+- title: From the blog
+  navbar: Blog posts
+  desc: >
+    Blog posts tagged with **resmush** on One World.
+  contents:
+  - blog-introducing-resmush
+
+external-articles:
+- name: blog-introducing-resmush
+  title: "Optimize your images with R and reSmush.it"
+  description: "Introducing the resmush package"
+  href: https://dieghernan.github.io/202402_optimize-images-r/
+
