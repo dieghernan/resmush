@@ -32,20 +32,19 @@ home:
 
 articles:
 - title: Get started
-  navbar: ~
   contents:
   - resmush
 
 reference:
 - title: Optimization functions
   desc: Optimize local image files, directories and URLs with the reSmush.it API.
-  contents:
+- contents:
   - resmush_file
   - resmush_dir
   - resmush_url
 - title: Helper functions
   desc: Clean files created by previous optimization runs.
-  contents:
+- contents:
   - resmush_clean_dir
 - title: About the package
-  contents: resmush-package
+- contents: resmush-package
