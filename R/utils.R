@@ -156,7 +156,7 @@ download_optimized_file <- function(url, outfile, src, source_type) {
 #' @noRd
 add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
   # Return unchanged paths when overwriting or no suffix is requested.
-  if (any(is.null(suffix), is.na(suffix), suffix == "", overwrite)) {
+  if (any(is.null(suffix), is.na(suffix), !nzchar(suffix), overwrite)) {
     return(x)
   }
 
