@@ -9,7 +9,7 @@
 #' @param suffix Character. Defaults to `"_resmush"`. See [resmush_file()].
 #' @param recursive Logical. Should the file search recurse into directories?
 #'
-#' @return
+#' @returns
 #' Returns an [invisible()] `NULL` value and produces messages summarizing the
 #' process.
 #'
@@ -17,8 +17,8 @@
 #' [resmush_file()], [resmush_dir()], [list.files()], [unlink()].
 #'
 #' @family helpers
-#' @export
 #' @keywords internal
+#' @export
 #' @encoding UTF-8
 #' @examplesIf curl::has_internet()
 #' \donttest{

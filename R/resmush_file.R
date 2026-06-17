@@ -21,7 +21,7 @@
 #'   [Exif](https://en.wikipedia.org/wiki/Exif) metadata be preserved? The
 #'   default is `FALSE`, which removes it.
 #'
-#' @return
+#' @returns
 #' Writes optimized files to disk when the API call is successful. Invisibly
 #' returns a data frame summarizing the process. With `report = TRUE`, a summary
 #' report is also displayed in the console.

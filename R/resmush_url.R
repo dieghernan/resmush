@@ -18,7 +18,7 @@
 #'
 #' @inheritParams resmush_file
 #'
-#' @return
+#' @returns
 #' Writes optimized files to disk when the API call is successful. Invisibly
 #' returns a data frame summarizing the process. If any value in `outfile` is
 #' duplicated, `resmush_url()` renames the outputs with suffixes such as `_01`

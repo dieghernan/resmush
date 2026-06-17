@@ -18,7 +18,7 @@
 #' @inheritParams resmush_file
 #' @inheritDotParams resmush_file qlty exif_preserve
 #'
-#' @return
+#' @returns
 #' Writes optimized files to disk when the API call is successful. Invisibly
 #' returns a data frame summarizing the process.
 #'
