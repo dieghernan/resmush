@@ -2,15 +2,17 @@
 #'
 #' @description
 #' Optimize one or more local image files with the
-#' [reSmush.it API](https://resmush.it/).
+#' [reSmush.it API](https://resmush.it/api/). The API is free for personal use
+#' and accepts files smaller than 5 MB.
 #'
 #' @param file A character vector of paths to local image files. The API can
 #'   optimize PNG, JPEG, GIF, BMP and TIFF files.
 #'
-#' @param suffix A character string appended to output file names. The default
-#'   is `"_resmush"`, so `example.png` becomes `example_resmush.png`. Values
-#'   `""`, `NA` and `NULL` are equivalent to `overwrite = TRUE`.
-#' @param overwrite Logical. Should the file in `file` be overwritten? If `TRUE`
+#' @param suffix A character string inserted before each output file extension.
+#'   The default is `"_resmush"`, so `example.png` becomes
+#'   `example_resmush.png`. Values `""`, `NA` and `NULL` are equivalent to
+#'   `overwrite = TRUE`.
+#' @param overwrite Logical. Should the input files be overwritten? If `TRUE`,
 #'   `suffix` is ignored.
 #' @param progress Logical. Should a progress bar be displayed?
 #' @param report Logical. Should a summary report be displayed in the console?
@@ -18,13 +20,14 @@
 #'   level. This only affects JPEG files. For optimal results, use values above
 #'   `90`.
 #' @param exif_preserve Logical. Should
-#'   [Exif](https://en.wikipedia.org/wiki/Exif) metadata be preserved? The
+#'   [EXIF](https://en.wikipedia.org/wiki/Exif) metadata be preserved? The
 #'   default is `FALSE`, which removes it.
 #'
 #' @returns
-#' A data frame summarizing the optimization, returned invisibly. Successful
-#' API calls also write the optimized files to disk. If `report = TRUE`, a
-#' summary is displayed in the console.
+#' A data frame with source and destination paths, file sizes, compression
+#' ratios and status notes, returned invisibly. Successful API calls also write
+#' the optimized files to disk. If `report = TRUE`, a summary is displayed in
+#' the console.
 #'
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api/) documentation.
@@ -34,7 +37,7 @@
 #' @family optimize
 #' @export
 #' @encoding UTF-8
-#' @examplesIf curl::has_internet()
+#' @examplesIf httr2::is_online()
 #'
 #' \donttest{
 #' png_file <- system.file("extimg/example.png", package = "resmush")
@@ -46,7 +49,7 @@
 #'
 #' resmush_file(tmp_png)
 #'
-#' # Several paths.
+#' # Optimize multiple files.
 #' jpg_file <- system.file("extimg/example.jpg", package = "resmush")
 #' tmp_jpg <- tempfile(fileext = ".jpg")
 #'
@@ -55,7 +58,7 @@
 #' # Display a summary in the console.
 #' summary <- resmush_file(c(tmp_png, tmp_jpg))
 #'
-#' # The invisible data frame contains the same information.
+#' # Inspect the returned optimization summary.
 #' summary
 #'
 #' # Display the PNG output.
@@ -64,7 +67,7 @@
 #'   grid::grid.raster(my_png)
 #' }
 #'
-#' # Use with JPEG files and parameters.
+#' # Adjust the optimization level for a JPEG file.
 #' resmush_file(tmp_jpg)
 #' resmush_file(tmp_jpg, qlty = 10)
 #' }
@@ -101,7 +104,7 @@ resmush_file <- function(
   invisible(res_df)
 }
 
-# Single-file helper.
+# Handle one local image file at a time.
 resmush_file_single <- function(
   file,
   suffix = "_resmush",
@@ -112,9 +115,9 @@ resmush_file_single <- function(
   outfile <- add_suffix(file, suffix, overwrite)
   res <- new_resmush_result(file)
 
-  # Internal option, for checking purposes only.
+  # Allow checks to simulate offline mode.
   test <- getOption("resmush_test_offline", FALSE)
-  if (any(isFALSE(curl::has_internet()), test)) {
+  if (any(isFALSE(httr2::is_online()), test)) {
     res$notes <- "Offline"
     return(invisible(res))
   }
@@ -151,7 +154,7 @@ resmush_file_single <- function(
     return(NULL)
   }
 
-  # Internal option, for checking purposes only.
+  # Allow checks to simulate an invalid download response.
   test_corner <- getOption("resmush_test_corner", FALSE)
   if (any(httr2::resp_status(dwn_opt) != 200, test_corner)) {
     res$notes <- "API not responding, check https://resmush.it/status"
@@ -169,7 +172,7 @@ resmush_file_single <- function(
   invisible(res)
 }
 
-# Helper function for the local API call.
+# Send a local image file to the API.
 smush_from_local <- function(path, qlty, exif_preserve = TRUE) {
   # Normalize `exif_preserve` to a scalar logical.
   exif_preserve <- isTRUE(exif_preserve)

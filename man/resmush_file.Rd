@@ -19,11 +19,12 @@ resmush_file(
 \item{file}{A character vector of paths to local image files. The API can
 optimize PNG, JPEG, GIF, BMP and TIFF files.}
 
-\item{suffix}{A character string appended to output file names. The default
-is \code{"_resmush"}, so \code{example.png} becomes \code{example_resmush.png}. Values
-\code{""}, \code{NA} and \code{NULL} are equivalent to \code{overwrite = TRUE}.}
+\item{suffix}{A character string inserted before each output file extension.
+The default is \code{"_resmush"}, so \code{example.png} becomes
+\code{example_resmush.png}. Values \code{""}, \code{NA} and \code{NULL} are equivalent to
+\code{overwrite = TRUE}.}
 
-\item{overwrite}{Logical. Should the file in \code{file} be overwritten? If \code{TRUE}
+\item{overwrite}{Logical. Should the input files be overwritten? If \code{TRUE},
 \code{suffix} is ignored.}
 
 \item{progress}{Logical. Should a progress bar be displayed?}
@@ -35,20 +36,22 @@ level. This only affects JPEG files. For optimal results, use values above
 \code{90}.}
 
 \item{exif_preserve}{Logical. Should
-\href{https://en.wikipedia.org/wiki/Exif}{Exif} metadata be preserved? The
+\href{https://en.wikipedia.org/wiki/Exif}{EXIF} metadata be preserved? The
 default is \code{FALSE}, which removes it.}
 }
 \value{
-A data frame summarizing the optimization, returned invisibly. Successful
-API calls also write the optimized files to disk. If \code{report = TRUE}, a
-summary is displayed in the console.
+A data frame with source and destination paths, file sizes, compression
+ratios and status notes, returned invisibly. Successful API calls also write
+the optimized files to disk. If \code{report = TRUE}, a summary is displayed in
+the console.
 }
 \description{
 Optimize one or more local image files with the
-\href{https://resmush.it/}{reSmush.it API}.
+\href{https://resmush.it/api/}{reSmush.it API}. The API is free for personal use
+and accepts files smaller than 5 MB.
 }
 \examples{
-\dontshow{if (curl::has_internet()) withAutoprint(\{ # examplesIf}
+\dontshow{if (httr2::is_online()) withAutoprint(\{ # examplesIf}
 
 \donttest{
 png_file <- system.file("extimg/example.png", package = "resmush")
@@ -60,7 +63,7 @@ file.copy(png_file, tmp_png, overwrite = TRUE)
 
 resmush_file(tmp_png)
 
-# Several paths.
+# Optimize multiple files.
 jpg_file <- system.file("extimg/example.jpg", package = "resmush")
 tmp_jpg <- tempfile(fileext = ".jpg")
 
@@ -69,7 +72,7 @@ file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 # Display a summary in the console.
 summary <- resmush_file(c(tmp_png, tmp_jpg))
 
-# The invisible data frame contains the same information.
+# Inspect the returned optimization summary.
 summary
 
 # Display the PNG output.
@@ -78,7 +81,7 @@ if (require("png", quietly = TRUE)) {
   grid::grid.raster(my_png)
 }
 
-# Use with JPEG files and parameters.
+# Adjust the optimization level for a JPEG file.
 resmush_file(tmp_jpg)
 resmush_file(tmp_jpg, qlty = 10)
 }

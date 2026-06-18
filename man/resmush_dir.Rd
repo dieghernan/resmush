@@ -20,13 +20,15 @@ resmush_dir(
 \item{dir}{A character vector of paths to local directories.}
 
 \item{ext}{A \code{\link[base:regex]{regex}} matching file extensions to optimize. The
-default matches PNG, JPEG, BMP, GIF and TIF files.}
+default matches lowercase \code{.png}, \code{.jpg}, \code{.jpeg}, \code{.gif}, \code{.bmp} and
+\code{.tif} extensions.}
 
-\item{suffix}{A character string appended to output file names. The default
-is \code{"_resmush"}, so \code{example.png} becomes \code{example_resmush.png}. Values
-\code{""}, \code{NA} and \code{NULL} are equivalent to \code{overwrite = TRUE}.}
+\item{suffix}{A character string inserted before each output file extension.
+The default is \code{"_resmush"}, so \code{example.png} becomes
+\code{example_resmush.png}. Values \code{""}, \code{NA} and \code{NULL} are equivalent to
+\code{overwrite = TRUE}.}
 
-\item{overwrite}{Logical. Should the files in \code{dir} be overwritten? If \code{TRUE}
+\item{overwrite}{Logical. Should the input files be overwritten? If \code{TRUE},
 \code{suffix} is ignored.}
 
 \item{progress}{Logical. Should a progress bar be displayed?}
@@ -43,20 +45,22 @@ See \code{\link[=list.files]{list.files()}}.}
 level. This only affects JPEG files. For optimal results, use values above
 \code{90}.}
     \item{\code{exif_preserve}}{Logical. Should
-\href{https://en.wikipedia.org/wiki/Exif}{Exif} metadata be preserved? The
+\href{https://en.wikipedia.org/wiki/Exif}{EXIF} metadata be preserved? The
 default is \code{FALSE}, which removes it.}
   }}
 }
 \value{
-A data frame summarizing the optimization, returned invisibly. Successful
-API calls also write the optimized files to disk.
+A data frame with source and destination paths, file sizes, compression
+ratios and status notes, returned invisibly. Successful API calls also write
+the optimized files to disk.
 }
 \description{
 Optimize supported image files in one or more directories with the
-\href{https://resmush.it/}{reSmush.it API}.
+\href{https://resmush.it/api/}{reSmush.it API}. The API is free for personal use
+and accepts files smaller than 5 MB.
 }
 \examples{
-\dontshow{if (curl::has_internet()) withAutoprint(\{ # examplesIf}
+\dontshow{if (httr2::is_online()) withAutoprint(\{ # examplesIf}
 \donttest{
 # Copy the example directory.
 example_dir <- system.file("extimg", package = "resmush")
@@ -73,7 +77,7 @@ resmush_clean_dir(dest_folder)
 # Recursive.
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 
-# Return the same information in the invisible data frame.
+# Inspect the returned optimization summary.
 summary[, -c(1, 2)]
 
 # Display the PNG output.

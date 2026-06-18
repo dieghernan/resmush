@@ -2,7 +2,8 @@
 #'
 #' @description
 #' Optimize and download one or more online image files with the
-#' [reSmush.it API](https://resmush.it/).
+#' [reSmush.it API](https://resmush.it/api/). The API is free for personal use
+#' and accepts files smaller than 5 MB.
 #'
 #' @param url A character vector of URLs pointing to hosted image files. The API
 #'   can optimize PNG, JPEG, GIF, BMP and TIFF files.
@@ -11,17 +12,17 @@
 #'   By default, files are created in [tempdir()] with the same [basename()] as
 #'   each file in `url`. `outfile` must have the same length as `url`.
 #'
-#' @param overwrite Logical. Should `outfile` be overwritten if it already
-#'   exists? If `FALSE` and `outfile` exists, a copy is created with a
-#'   numeric suffix, such as `<outfile>_01.png`.
+#' @param overwrite Logical. Should existing files in `outfile` be overwritten?
+#'   If `FALSE`, existing paths are made unique with a numeric suffix, such as
+#'   `example_01.png`.
 #'
 #' @inheritParams resmush_file
 #'
 #' @returns
-#' A data frame summarizing the optimization, returned invisibly. Successful
-#' API calls also write the optimized files to disk. If `outfile` contains
-#' duplicate paths, `resmush_url()` makes them unique with suffixes such as
-#' `_01` and `_02`.
+#' A data frame with source and destination paths, file sizes, compression
+#' ratios and status notes, returned invisibly. Successful API calls also write
+#' the optimized files to disk. If `outfile` contains duplicate paths,
+#' `resmush_url()` makes them unique with suffixes such as `_01` and `_02`.
 #'
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api/) documentation.
@@ -29,7 +30,7 @@
 #' @family optimize
 #' @export
 #' @encoding UTF-8
-#' @examplesIf curl::has_internet()
+#' @examplesIf httr2::is_online()
 #'
 #' \donttest{
 #' # Base URL.
@@ -38,12 +39,12 @@
 #' png_url <- paste0(base_url, "/extimg/example.png")
 #' resmush_url(png_url)
 #'
-#' # Several URLs.
+#' # Optimize multiple URLs.
 #' jpg_url <- paste0(base_url, "/extimg/example.jpg")
 #'
 #' summary <- resmush_url(c(png_url, jpg_url))
 #'
-#' # The invisible data frame contains a summary of the process.
+#' # Inspect the returned optimization summary.
 #' summary
 #'
 #' # Display the PNG output.
@@ -52,7 +53,7 @@
 #'   grid::grid.raster(my_png)
 #' }
 #'
-#' # Use with JPEG files and parameters.
+#' # Adjust the optimization level for a JPEG file.
 #' resmush_url(jpg_url)
 #' resmush_url(jpg_url, qlty = 10)
 #' }
@@ -71,7 +72,7 @@ resmush_url <- function(
 
   if (l1 != l2) {
     cli::cli_abort(paste0(
-      "Lengths of {.arg url} and {.arg outfile} must match ",
+      "{.arg url} and {.arg outfile} must have the same length ",
       "({.val {l1}} vs. {.val {l2}})."
     ))
   }
@@ -99,6 +100,7 @@ resmush_url <- function(
   invisible(res_df)
 }
 
+# Handle one online image file at a time.
 resmush_url_single <- function(
   url,
   outfile = file.path(tempdir(), basename(url)),
@@ -117,9 +119,9 @@ resmush_url_single <- function(
 
   res <- new_resmush_result(url)
 
-  # Internal option, for checking purposes only.
+  # Allow checks to simulate offline mode.
   test <- getOption("resmush_test_offline", FALSE)
-  if (any(isFALSE(curl::has_internet()), test)) {
+  if (any(isFALSE(httr2::is_online()), test)) {
     res$notes <- "Offline"
     return(invisible(res))
   }
@@ -148,7 +150,7 @@ resmush_url_single <- function(
     return(NULL)
   }
 
-  # Internal option, for checking purposes only.
+  # Allow checks to simulate an invalid download response.
   test_corner <- getOption("resmush_test_corner", FALSE)
   if (any(httr2::resp_status(dwn_opt) != 200, test_corner)) {
     res$notes <- "API not responding, check https://resmush.it/status"

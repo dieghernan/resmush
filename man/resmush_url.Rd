@@ -23,9 +23,9 @@ can optimize PNG, JPEG, GIF, BMP and TIFF files.}
 By default, files are created in \code{\link[=tempdir]{tempdir()}} with the same \code{\link[=basename]{basename()}} as
 each file in \code{url}. \code{outfile} must have the same length as \code{url}.}
 
-\item{overwrite}{Logical. Should \code{outfile} be overwritten if it already
-exists? If \code{FALSE} and \code{outfile} exists, a copy is created with a
-numeric suffix, such as \verb{<outfile>_01.png}.}
+\item{overwrite}{Logical. Should existing files in \code{outfile} be overwritten?
+If \code{FALSE}, existing paths are made unique with a numeric suffix, such as
+\code{example_01.png}.}
 
 \item{progress}{Logical. Should a progress bar be displayed?}
 
@@ -36,21 +36,22 @@ level. This only affects JPEG files. For optimal results, use values above
 \code{90}.}
 
 \item{exif_preserve}{Logical. Should
-\href{https://en.wikipedia.org/wiki/Exif}{Exif} metadata be preserved? The
+\href{https://en.wikipedia.org/wiki/Exif}{EXIF} metadata be preserved? The
 default is \code{FALSE}, which removes it.}
 }
 \value{
-A data frame summarizing the optimization, returned invisibly. Successful
-API calls also write the optimized files to disk. If \code{outfile} contains
-duplicate paths, \code{resmush_url()} makes them unique with suffixes such as
-\verb{_01} and \verb{_02}.
+A data frame with source and destination paths, file sizes, compression
+ratios and status notes, returned invisibly. Successful API calls also write
+the optimized files to disk. If \code{outfile} contains duplicate paths,
+\code{resmush_url()} makes them unique with suffixes such as \verb{_01} and \verb{_02}.
 }
 \description{
 Optimize and download one or more online image files with the
-\href{https://resmush.it/}{reSmush.it API}.
+\href{https://resmush.it/api/}{reSmush.it API}. The API is free for personal use
+and accepts files smaller than 5 MB.
 }
 \examples{
-\dontshow{if (curl::has_internet()) withAutoprint(\{ # examplesIf}
+\dontshow{if (httr2::is_online()) withAutoprint(\{ # examplesIf}
 
 \donttest{
 # Base URL.
@@ -59,12 +60,12 @@ base_url <- "https://raw.githubusercontent.com/dieghernan/resmush/main/inst/"
 png_url <- paste0(base_url, "/extimg/example.png")
 resmush_url(png_url)
 
-# Several URLs.
+# Optimize multiple URLs.
 jpg_url <- paste0(base_url, "/extimg/example.jpg")
 
 summary <- resmush_url(c(png_url, jpg_url))
 
-# The invisible data frame contains a summary of the process.
+# Inspect the returned optimization summary.
 summary
 
 # Display the PNG output.
@@ -73,7 +74,7 @@ if (require("png", quietly = TRUE)) {
   grid::grid.raster(my_png)
 }
 
-# Use with JPEG files and parameters.
+# Adjust the optimization level for a JPEG file.
 resmush_url(jpg_url)
 resmush_url(jpg_url, qlty = 10)
 }

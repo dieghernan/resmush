@@ -7,6 +7,6 @@ extra.suggests: [quarto, png, grid]
 pkg_ignore: ~
 document: yes
 normalize: yes
-inside_rmd: no
+inside_rmd: yes
 must.exist: yes
 check_if_suggests_is_installed: yes

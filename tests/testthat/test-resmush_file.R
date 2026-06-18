@@ -220,7 +220,7 @@ test_that("Test full vectors", {
 
   expect_true(optinit2$cli.progress_bar_style == "aaa")
 
-  expect_message(dm <- resmush_file(all_in), "Go!")
+  expect_message(dm <- resmush_file(all_in), "reSmushing")
 
   # Restored options
   expect_identical(options(), optinit2)
@@ -299,7 +299,7 @@ test_that("Test full vectors silent", {
   unlink(all_in, force = TRUE, recursive = TRUE)
 })
 
-test_that("Test exif", {
+test_that("Test EXIF", {
   skip_on_cran()
   skip_if_offline()
   exif <- tempfile("exif", fileext = ".jpg")
@@ -315,7 +315,7 @@ test_that("Test exif", {
   resmush_clean_dir(tempdir(), "_without_exif")
   resmush_clean_dir(tempdir(), "_with_exif")
 
-  # With exif
+  # With EXIF
   dm <- resmush_file(exif, "_without_exif", exif_preserve = FALSE)
   dm2 <- resmush_file(exif, "_with_exif", exif_preserve = TRUE)
 

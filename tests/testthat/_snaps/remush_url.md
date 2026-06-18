@@ -94,13 +94,13 @@
       dm <- resmush_url(two_input, several_outputs)
     Condition
       Error in `resmush_url()`:
-      ! Lengths of `url` and `outfile` must match (2 vs. 3).
+      ! `url` and `outfile` must have the same length (2 vs. 3).
 
 # Test no file
 
     Code
       dm <- resmush_url(png_url)
     Message
-      x Cannot download optimized URL: HTTP 200 OK.
+      x Cannot download optimized image from URL: HTTP 200 OK.
       <https://raw.githubusercontent.com/dieghernan/resmush/main/inst/extimg/example.png>
 

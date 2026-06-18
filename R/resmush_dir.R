@@ -2,15 +2,18 @@
 #'
 #' @description
 #' Optimize supported image files in one or more directories with the
-#' [reSmush.it API](https://resmush.it/).
+#' [reSmush.it API](https://resmush.it/api/). The API is free for personal use
+#' and accepts files smaller than 5 MB.
 #'
 #' @param dir A character vector of paths to local directories.
 #' @param ext A [`regex`][base::regex] matching file extensions to optimize. The
-#'   default matches PNG, JPEG, BMP, GIF and TIF files.
-#' @param suffix A character string appended to output file names. The default
-#'   is `"_resmush"`, so `example.png` becomes `example_resmush.png`. Values
-#'   `""`, `NA` and `NULL` are equivalent to `overwrite = TRUE`.
-#' @param overwrite Logical. Should the files in `dir` be overwritten? If `TRUE`
+#'   default matches lowercase `.png`, `.jpg`, `.jpeg`, `.gif`, `.bmp` and
+#'   `.tif` extensions.
+#' @param suffix A character string inserted before each output file extension.
+#'   The default is `"_resmush"`, so `example.png` becomes
+#'   `example_resmush.png`. Values `""`, `NA` and `NULL` are equivalent to
+#'   `overwrite = TRUE`.
+#' @param overwrite Logical. Should the input files be overwritten? If `TRUE`,
 #'   `suffix` is ignored.
 #' @param recursive Logical. Should the file search within `dir` be recursive?
 #'   See [list.files()].
@@ -18,8 +21,9 @@
 #' @inheritDotParams resmush_file qlty exif_preserve
 #'
 #' @returns
-#' A data frame summarizing the optimization, returned invisibly. Successful
-#' API calls also write the optimized files to disk.
+#' A data frame with source and destination paths, file sizes, compression
+#' ratios and status notes, returned invisibly. Successful API calls also write
+#' the optimized files to disk.
 #'
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api/) documentation.
@@ -29,7 +33,7 @@
 #' @family optimize
 #' @export
 #' @encoding UTF-8
-#' @examplesIf curl::has_internet()
+#' @examplesIf httr2::is_online()
 #' \donttest{
 #' # Copy the example directory.
 #' example_dir <- system.file("extimg", package = "resmush")
@@ -46,7 +50,7 @@
 #' # Recursive.
 #' summary <- resmush_dir(dest_folder, recursive = TRUE)
 #'
-#' # Return the same information in the invisible data frame.
+#' # Inspect the returned optimization summary.
 #' summary[, -c(1, 2)]
 #'
 #' # Display the PNG output.

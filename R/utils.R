@@ -49,8 +49,8 @@ add_size_summary <- function(res, src_size, dest_size) {
 
 #' Process inputs with optional progress reporting
 #'
-#' @param inputs Input vector.
-#' @param worker Function called once per input position.
+#' @param inputs A character vector of image paths or URLs.
+#' @param worker A function called once per input position.
 #' @param progress Logical. Should a progress bar be displayed?
 #' @param progress_label A label displayed after the progress counter.
 #'
@@ -67,12 +67,12 @@ resmush_map <- function(inputs, worker, progress, progress_label) {
     options(
       cli.progress_bar_style = "fillsquares",
       cli.progress_show_after = 0,
-      cli.spinner = "point"
+      cli.spinner = "clock"
     )
 
     cli::cli_progress_bar(
       format = paste0(
-        "{cli::pb_spin} Go! | {cli::pb_bar} ",
+        "{cli::pb_spin} reSmushing | {cli::pb_bar} ",
         "{cli::pb_percent} [{cli::pb_elapsed}] | ETA: {cli::pb_eta} ",
         "({cli::pb_current}/{cli::pb_total} ",
         progress_label,
@@ -108,7 +108,7 @@ resmush_map <- function(inputs, worker, progress, progress_label) {
 
 #' Download an optimized file returned by the API
 #'
-#' @param url Optimized image URL returned by the API.
+#' @param url An optimized image URL returned by the API.
 #' @param outfile A destination path.
 #' @param src The original source used in error messages.
 #' @param source_type Either `"file"` or `"url"`.
@@ -139,7 +139,7 @@ download_optimized_file <- function(url, outfile, src, source_type) {
       ))
     } else {
       cli::cli_alert_danger(paste0(
-        "Cannot download optimized URL: HTTP ",
+        "Cannot download optimized image from URL: HTTP ",
         "{.val {err_code}} {.emph {err}}.\n{.url {src}}"
       ))
     }
@@ -150,10 +150,11 @@ download_optimized_file <- function(url, outfile, src, source_type) {
   httr2::req_perform(dwn_opt, path = outfile)
 }
 
-#' Add a suffix to a base name
+#' Add a suffix before a file extension
 #'
 #' @param x A character vector.
 #' @param suffix A suffix to add.
+#' @param overwrite Logical. Should the input paths be returned unchanged?
 #'
 #' @noRd
 add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {

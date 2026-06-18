@@ -5,8 +5,10 @@ Authors@R:
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
 Description: Optimize and compress local image files, directories and
-    online image files with the 'reSmush.it' API <https://resmush.it/>.
-    Supports 'PNG', 'JPEG', 'GIF', 'BMP' and 'TIFF' files.
+    online image files with the 'reSmush.it' API
+    <https://resmush.it/api/>. The API is free for personal use, accepts
+    files smaller than 5 MB and supports 'PNG', 'JPEG', 'GIF', 'BMP' and
+    'TIFF' files.
 License: MIT + file LICENSE
 URL: https://dieghernan.github.io/resmush/,
     https://github.com/dieghernan/resmush
@@ -24,7 +26,6 @@ Suggests:
     knitr,
     png,
     quarto,
-    rmarkdown,
     testthat (>= 3.0.0)
 VignetteBuilder: 
     quarto

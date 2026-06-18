@@ -1,8 +1,9 @@
-#' Clean files created by \CRANpkg{resmush}
+#' Remove output files from directories
 #'
 #' @description
-#' **Use with caution.** Remove files created by [resmush_file()] from one or
-#' more directories.
+#' **Use with caution.** Remove files that match `suffix` from one or more
+#' directories. This is intended to clean output files created by
+#' [resmush_file()] or [resmush_dir()].
 #'
 #' @param dir A character vector of directory paths. See the `path` argument of
 #'   [list.files()].
@@ -11,7 +12,7 @@
 #' @param recursive Logical. Should the file search recurse into directories?
 #'
 #' @returns
-#' An [invisible()] `NULL`. Messages summarize the files found and removed.
+#' An [invisible()] `NULL`. Messages list the files selected for removal.
 #'
 #' @seealso
 #' [resmush_file()], [resmush_dir()], [list.files()], [unlink()].
@@ -19,13 +20,10 @@
 #' @family helpers
 #' @export
 #' @encoding UTF-8
-#' @examplesIf curl::has_internet()
+#' @examples
 #' \donttest{
-#' # Simple example.
-#'
+#' # Create a temporary file with a suffix to remove.
 #' png_file <- system.file("extimg/example.png", package = "resmush")
-#'
-#' # Copy to a temporary file with a given suffix.
 #' suffix <- "_would_be_removed"
 #' tmp_png <- file.path(
 #'   tempdir(),

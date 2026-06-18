@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{resmush_clean_dir}
 \alias{resmush_clean_dir}
-\title{Clean files created by \CRANpkg{resmush}}
+\title{Remove output files from directories}
 \usage{
 resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 }
@@ -17,20 +17,17 @@ resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 \item{recursive}{Logical. Should the file search recurse into directories?}
 }
 \value{
-An \code{\link[=invisible]{invisible()}} \code{NULL}. Messages summarize the files found and removed.
+An \code{\link[=invisible]{invisible()}} \code{NULL}. Messages list the files selected for removal.
 }
 \description{
-\strong{Use with caution.} Remove files created by \code{\link[=resmush_file]{resmush_file()}} from one or
-more directories.
+\strong{Use with caution.} Remove files that match \code{suffix} from one or more
+directories. This is intended to clean output files created by
+\code{\link[=resmush_file]{resmush_file()}} or \code{\link[=resmush_dir]{resmush_dir()}}.
 }
 \examples{
-\dontshow{if (curl::has_internet()) withAutoprint(\{ # examplesIf}
 \donttest{
-# Simple example.
-
+# Create a temporary file with a suffix to remove.
 png_file <- system.file("extimg/example.png", package = "resmush")
-
-# Copy to a temporary file with a given suffix.
 suffix <- "_would_be_removed"
 tmp_png <- file.path(
   tempdir(),
@@ -52,7 +49,6 @@ resmush_clean_dir(tempdir(), suffix = suffix)
 
 file.exists(tmp_png)
 }
-\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=resmush_file]{resmush_file()}}, \code{\link[=resmush_dir]{resmush_dir()}}, \code{\link[=list.files]{list.files()}}, \code{\link[=unlink]{unlink()}}.

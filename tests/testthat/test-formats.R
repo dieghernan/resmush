@@ -25,7 +25,7 @@ test_that("jpg", {
 
   unlink(dm$dest_img, force = TRUE)
 
-  # Check exif online
+  # Check EXIF online
   url <- paste0(
     "https://dieghernan.github.io/resmush/",
     "img/sample-jpg-exif-876kb.jpg"

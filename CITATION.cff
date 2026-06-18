@@ -14,8 +14,9 @@ identifiers:
 - type: doi
   value: 10.32614/CRAN.package.resmush
 abstract: Optimize and compress local image files, directories and online image files
-  with the 'reSmush.it' API <https://resmush.it/>. Supports 'PNG', 'JPEG', 'GIF',
-  'BMP' and 'TIFF' files.
+  with the 'reSmush.it' API <https://resmush.it/api/>. The API is free for personal
+  use, accepts files smaller than 5 MB and supports 'PNG', 'JPEG', 'GIF', 'BMP' and
+  'TIFF' files.
 authors:
 - family-names: Hernangómez
   given-names: Diego
@@ -34,8 +35,9 @@ preferred-citation:
   version: 1.0.1
   url: https://dieghernan.github.io/resmush/
   abstract: Optimize and compress local image files, directories and online image
-    files with the reSmush.it API <https://resmush.it/>. Supports PNG, JPEG, GIF,
-    BMP and TIFF files.
+    files with the reSmush.it API <https://resmush.it/api/>. The API is free for personal
+    use, accepts files smaller than 5 MB and supports PNG, JPEG, GIF, BMP and TIFF
+    files.
 repository: https://CRAN.R-project.org/package=resmush
 repository-code: https://github.com/dieghernan/resmush
 url: https://dieghernan.github.io/resmush/
@@ -188,50 +190,6 @@ references:
     orcid: https://orcid.org/0000-0003-4474-2498
   year: '2026'
   doi: 10.32614/CRAN.package.quarto
-- type: software
-  title: rmarkdown
-  abstract: 'rmarkdown: Dynamic Documents for R'
-  notes: Suggests
-  url: https://pkgs.rstudio.com/rmarkdown/
-  repository: https://CRAN.R-project.org/package=rmarkdown
-  authors:
-  - family-names: Allaire
-    given-names: JJ
-    email: jj@posit.co
-  - family-names: Xie
-    given-names: Yihui
-    email: xie@yihui.name
-    orcid: https://orcid.org/0000-0003-0645-5666
-  - family-names: Dervieux
-    given-names: Christophe
-    email: cderv@posit.co
-    orcid: https://orcid.org/0000-0003-4474-2498
-  - family-names: McPherson
-    given-names: Jonathan
-    email: jonathan@posit.co
-  - family-names: Luraschi
-    given-names: Javier
-  - family-names: Ushey
-    given-names: Kevin
-    email: kevin@posit.co
-  - family-names: Atkins
-    given-names: Aron
-    email: aron@posit.co
-  - family-names: Wickham
-    given-names: Hadley
-    email: hadley@posit.co
-  - family-names: Cheng
-    given-names: Joe
-    email: joe@posit.co
-  - family-names: Chang
-    given-names: Winston
-    email: winston@posit.co
-  - family-names: Iannone
-    given-names: Richard
-    email: rich@posit.co
-    orcid: https://orcid.org/0000-0003-3925-190X
-  year: '2026'
-  doi: 10.32614/CRAN.package.rmarkdown
 - type: software
   title: testthat
   abstract: 'testthat: Unit Testing for R'
