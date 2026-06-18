@@ -16,13 +16,12 @@ resmush_file(
 )
 }
 \arguments{
-\item{file}{Path or paths to local image files. The API can optimize
-\code{png}, \code{jpg/jpeg}, \code{gif}, \code{bmp} and \code{tiff} files.}
+\item{file}{A character vector of paths to local image files. The API can
+optimize PNG, JPEG, GIF, BMP and TIFF files.}
 
-\item{suffix}{Character. Defaults to \code{"_resmush"}. By default, the optimized
-file is saved in the same directory as \code{file} with this suffix. For
-example, \code{example.png} becomes \code{example_resmush.png}. Values \code{""}, \code{NA} and
-\code{NULL} are equivalent to \code{overwrite = TRUE}.}
+\item{suffix}{A character string appended to output file names. The default
+is \code{"_resmush"}, so \code{example.png} becomes \code{example_resmush.png}. Values
+\code{""}, \code{NA} and \code{NULL} are equivalent to \code{overwrite = TRUE}.}
 
 \item{overwrite}{Logical. Should the file in \code{file} be overwritten? If \code{TRUE}
 \code{suffix} is ignored.}
@@ -31,17 +30,18 @@ example, \code{example.png} becomes \code{example_resmush.png}. Values \code{""}
 
 \item{report}{Logical. Should a summary report be displayed in the console?}
 
-\item{qlty}{Integer between \code{0} and \code{100} indicating the optimization level.
-This only affects \code{jpg} files. For optimal results, use values above \code{90}.}
+\item{qlty}{An integer between \code{0} and \code{100} indicating the optimization
+level. This only affects JPEG files. For optimal results, use values above
+\code{90}.}
 
 \item{exif_preserve}{Logical. Should
 \href{https://en.wikipedia.org/wiki/Exif}{Exif} metadata be preserved? The
 default is \code{FALSE}, which removes it.}
 }
 \value{
-Writes optimized files to disk when the API call is successful. Invisibly
-returns a data frame summarizing the process. With \code{report = TRUE}, a summary
-report is also displayed in the console.
+A data frame summarizing the optimization, returned invisibly. Successful
+API calls also write the optimized files to disk. If \code{report = TRUE}, a
+summary is displayed in the console.
 }
 \description{
 Optimize one or more local image files with the
@@ -72,13 +72,13 @@ summary <- resmush_file(c(tmp_png, tmp_jpg))
 # The invisible data frame contains the same information.
 summary
 
-# Display the `png` output.
+# Display the PNG output.
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])
   grid::grid.raster(my_png)
 }
 
-# Use with `jpg` files and parameters.
+# Use with JPEG files and parameters.
 resmush_file(tmp_jpg)
 resmush_file(tmp_jpg, qlty = 10)
 }
@@ -89,7 +89,7 @@ resmush_file(tmp_jpg, qlty = 10)
 
 See \code{\link[=resmush_clean_dir]{resmush_clean_dir()}} to clean a directory of previous runs.
 
-Other functions for optimizing:
+Other image optimization functions:
 \code{\link[=resmush_dir]{resmush_dir()}},
 \code{\link[=resmush_url]{resmush_url()}}
 }

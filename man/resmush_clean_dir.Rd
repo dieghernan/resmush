@@ -8,20 +8,20 @@
 resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 }
 \arguments{
-\item{dir}{A character vector of full path names. See the \code{path} argument in
+\item{dir}{A character vector of directory paths. See the \code{path} argument of
 \code{\link[=list.files]{list.files()}}.}
 
-\item{suffix}{Character. Defaults to \code{"_resmush"}. See \code{\link[=resmush_file]{resmush_file()}}.}
+\item{suffix}{A character string identifying files to remove. The default is
+\code{"_resmush"}, the default suffix used by \code{\link[=resmush_file]{resmush_file()}}.}
 
 \item{recursive}{Logical. Should the file search recurse into directories?}
 }
 \value{
-Returns an \code{\link[=invisible]{invisible()}} \code{NULL} value and produces messages summarizing the
-process.
+An \code{\link[=invisible]{invisible()}} \code{NULL}. Messages summarize the files found and removed.
 }
 \description{
-\strong{Use with caution.} This removes files from your computer. Clean one or
-more directories of files created by \code{\link[=resmush_file]{resmush_file()}}.
+\strong{Use with caution.} Remove files created by \code{\link[=resmush_file]{resmush_file()}} from one or
+more directories.
 }
 \examples{
 \dontshow{if (curl::has_internet()) withAutoprint(\{ # examplesIf}
@@ -58,4 +58,3 @@ file.exists(tmp_png)
 \code{\link[=resmush_file]{resmush_file()}}, \code{\link[=resmush_dir]{resmush_dir()}}, \code{\link[=list.files]{list.files()}}, \code{\link[=unlink]{unlink()}}.
 }
 \concept{helpers}
-\keyword{internal}

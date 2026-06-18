@@ -16,34 +16,34 @@ resmush_url(
 )
 }
 \arguments{
-\item{url}{URL or vector of URLs pointing to hosted image files. The API can
-optimize \code{png}, \code{jpg/jpeg}, \code{gif}, \code{bmp} and \code{tiff} files.}
+\item{url}{A character vector of URLs pointing to hosted image files. The API
+can optimize PNG, JPEG, GIF, BMP and TIFF files.}
 
-\item{outfile}{Path or paths where optimized files are stored on disk. By
-default, temporary files are created with \code{\link[=tempfile]{tempfile()}} and the same
-\code{\link[=basename]{basename()}} as the file provided in \code{url}. \code{outfile} must have the same
-length as \code{url}.}
+\item{outfile}{A character vector of paths where optimized files are stored.
+By default, files are created in \code{\link[=tempdir]{tempdir()}} with the same \code{\link[=basename]{basename()}} as
+each file in \code{url}. \code{outfile} must have the same length as \code{url}.}
 
 \item{overwrite}{Logical. Should \code{outfile} be overwritten if it already
 exists? If \code{FALSE} and \code{outfile} exists, a copy is created with a
-numerical suffix, such as \verb{<outfile>_01.png}.}
+numeric suffix, such as \verb{<outfile>_01.png}.}
 
 \item{progress}{Logical. Should a progress bar be displayed?}
 
 \item{report}{Logical. Should a summary report be displayed in the console?}
 
-\item{qlty}{Integer between \code{0} and \code{100} indicating the optimization level.
-This only affects \code{jpg} files. For optimal results, use values above \code{90}.}
+\item{qlty}{An integer between \code{0} and \code{100} indicating the optimization
+level. This only affects JPEG files. For optimal results, use values above
+\code{90}.}
 
 \item{exif_preserve}{Logical. Should
 \href{https://en.wikipedia.org/wiki/Exif}{Exif} metadata be preserved? The
 default is \code{FALSE}, which removes it.}
 }
 \value{
-Writes optimized files to disk when the API call is successful. Invisibly
-returns a data frame summarizing the process. If any value in \code{outfile} is
-duplicated, \code{resmush_url()} renames the outputs with suffixes such as \verb{_01}
-and \verb{_02}.
+A data frame summarizing the optimization, returned invisibly. Successful
+API calls also write the optimized files to disk. If \code{outfile} contains
+duplicate paths, \code{resmush_url()} makes them unique with suffixes such as
+\verb{_01} and \verb{_02}.
 }
 \description{
 Optimize and download one or more online image files with the
@@ -67,13 +67,13 @@ summary <- resmush_url(c(png_url, jpg_url))
 # The invisible data frame contains a summary of the process.
 summary
 
-# Display the `png` output.
+# Display the PNG output.
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])
   grid::grid.raster(my_png)
 }
 
-# Use with `jpg` files and parameters.
+# Use with JPEG files and parameters.
 resmush_url(jpg_url)
 resmush_url(jpg_url, qlty = 10)
 }
@@ -82,7 +82,7 @@ resmush_url(jpg_url, qlty = 10)
 \seealso{
 \href{https://resmush.it/api/}{reSmush.it API} documentation.
 
-Other functions for optimizing:
+Other image optimization functions:
 \code{\link[=resmush_dir]{resmush_dir()}},
 \code{\link[=resmush_file]{resmush_file()}}
 }

@@ -19,9 +19,9 @@ show_report <- function(res_df, summary_type = "file") {
   cli::cli_rule(left = "{.pkg resmush} summary")
   cli::cli_end(heading)
   cli::cli_alert_info(paste0(
-    "Input: {nrow(res_df)} ",
+    "Input: {.val {nrow(res_df)}} ",
     name_cli,
-    ", total size {totinit_pretty}."
+    ", {totinit_pretty} total."
   ))
 
   nok <- res_df[res_df$notes != "OK", ]
@@ -41,10 +41,10 @@ show_report <- function(res_df, summary_type = "file") {
     # nolint end
 
     cli::cli_alert_success(paste0(
-      "Optimized {nrow(ok)} ",
+      "Optimized {.val {nrow(ok)}} ",
       name_cli,
-      ": Size is now {okend_pretty} ",
-      "(was {okinit_pretty}). Saved {okdif} ({okperc_pretty})."
+      ": size is now {okend_pretty} (was {okinit_pretty}). ",
+      "Saved {okdif} ({okperc_pretty})."
     ))
     cli::cli_bullets(paste0(
       "Saved {cli::qty(nrow(ok))} result{?s} in ",
@@ -65,7 +65,7 @@ show_report <- function(res_df, summary_type = "file") {
       makebull <- sprintf(
         paste0(
           "{.path {nok$src_img[%s]}} ",
-          "({nok$src_size[%s]}): {nok$notes[%s]}."
+          "({.val {nok$src_size[%s]}}): {.emph {nok$notes[%s]}}."
         ),
         noks,
         noks,
@@ -79,19 +79,21 @@ show_report <- function(res_df, summary_type = "file") {
       )
 
       cli::cli_alert_danger(paste0(
-        "Failed to optimize {nrow(nok)} file{?s} in ",
+        "Failed to optimize {.val {nrow(nok)}} file{?s} in ",
         "{cli::qty(nokdirs)}director{?y/ies} {.path {nokdirs}}."
       ))
     } else {
       # Prepare failed-URL bullets.
       makebull <- sprintf(
-        "{.url {nok$src_img[%s]}}: {nok$notes[%s]}.",
+        "{.url {nok$src_img[%s]}}: {.emph {nok$notes[%s]}}.",
         noks,
         noks
       )
 
       names(makebull) <- rep("!", nrow(nok))
-      cli::cli_alert_danger("Failed to optimize {nrow(nok)} URL{?s}:")
+      cli::cli_alert_danger(
+        "Failed to optimize {.val {nrow(nok)}} URL{?s}:"
+      )
     }
 
     cli::cli_bullets(makebull)

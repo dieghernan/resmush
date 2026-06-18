@@ -4,7 +4,7 @@
       dm <- resmush_url(png_url)
     Message
       == resmush summary =============================================================
-      i Input: 1 URL, total size 0 bytes.
+      i Input: 1 URL, 0 bytes total.
       x Failed to optimize 1 URL:
       ! <https://raw.githubusercontent.com/dieghernan/resmush/main/inst/extimg/example.png>:
         Offline.
@@ -25,7 +25,7 @@
       dm <- resmush_url(png_url)
     Message
       == resmush summary =============================================================
-      i Input: 1 URL, total size 0 bytes.
+      i Input: 1 URL, 0 bytes total.
       x Failed to optimize 1 URL:
       ! <https://raw.githubusercontent.com/dieghernan/resmush/main/inst/extimg/example.png>:
         API not responding, check https://resmush.it/status.
@@ -48,7 +48,7 @@
       dm <- resmush_url(turl)
     Message
       == resmush summary =============================================================
-      i Input: 1 URL, total size 0 bytes.
+      i Input: 1 URL, 0 bytes total.
       x Failed to optimize 1 URL:
       ! <https://dieghernan.github.io/aaabbbccc.png>: 401: Cannot copy from remote
         url.
@@ -69,7 +69,7 @@
       dm <- resmush_url(turl)
     Message
       == resmush summary =============================================================
-      i Input: 1 URL, total size 0 bytes.
+      i Input: 1 URL, 0 bytes total.
       x Failed to optimize 1 URL:
       ! <https://raw.githubusercontent.com/dieghernan/resmush/main/README.md>: 403:
         Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.

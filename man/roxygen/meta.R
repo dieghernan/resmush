@@ -1,6 +1,6 @@
 list(
   rd_family_title = list(
-    optimize = "Other functions for optimizing:",
-    helpers = "Other helpers:"
+    optimize = "Other image optimization functions:",
+    helpers = "Other file management helpers:"
   )
 )

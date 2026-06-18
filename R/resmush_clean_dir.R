@@ -1,23 +1,22 @@
 #' Clean files created by \CRANpkg{resmush}
 #'
 #' @description
-#' **Use with caution.** This removes files from your computer. Clean one or
-#' more directories of files created by [resmush_file()].
+#' **Use with caution.** Remove files created by [resmush_file()] from one or
+#' more directories.
 #'
-#' @param dir A character vector of full path names. See the `path` argument in
+#' @param dir A character vector of directory paths. See the `path` argument of
 #'   [list.files()].
-#' @param suffix Character. Defaults to `"_resmush"`. See [resmush_file()].
+#' @param suffix A character string identifying files to remove. The default is
+#'   `"_resmush"`, the default suffix used by [resmush_file()].
 #' @param recursive Logical. Should the file search recurse into directories?
 #'
 #' @returns
-#' Returns an [invisible()] `NULL` value and produces messages summarizing the
-#' process.
+#' An [invisible()] `NULL`. Messages summarize the files found and removed.
 #'
 #' @seealso
 #' [resmush_file()], [resmush_dir()], [list.files()], [unlink()].
 #'
 #' @family helpers
-#' @keywords internal
 #' @export
 #' @encoding UTF-8
 #' @examplesIf curl::has_internet()
@@ -63,7 +62,7 @@ resmush_clean_dir <- function(dir, suffix = "_resmush", recursive = FALSE) {
     return(invisible(NULL))
   }
 
-  cli::cli_alert_info("Removing {length(allfiles)} file{?s}:")
+  cli::cli_alert_info("Removing {.val {length(allfiles)}} file{?s}:")
 
   make_bull <- allfiles
   names(make_bull) <- rep(">", length(make_bull))

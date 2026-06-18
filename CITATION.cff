@@ -1,7 +1,7 @@
-# --------------------------------------------
-# CITATION file created with {cffr} R package
+# ------------------------------------------------
+# CITATION.cff file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
-# --------------------------------------------
+# ------------------------------------------------
  
 cff-version: 1.2.0
 message: 'To cite package "resmush" in publications use:'
@@ -13,9 +13,9 @@ doi: 10.32614/CRAN.package.resmush
 identifiers:
 - type: doi
   value: 10.32614/CRAN.package.resmush
-abstract: Optimize and compress local image files, directories and online images with
-  the 'reSmush.it' API <https://resmush.it/>. Supports 'png', 'jpg/jpeg', 'gif', 'bmp'
-  and 'tiff' files.
+abstract: Optimize and compress local image files, directories and online image files
+  with the 'reSmush.it' API <https://resmush.it/>. Supports 'PNG', 'JPEG', 'GIF',
+  'BMP' and 'TIFF' files.
 authors:
 - family-names: Hernangómez
   given-names: Diego
@@ -33,9 +33,9 @@ preferred-citation:
   year: '2026'
   version: 1.0.1
   url: https://dieghernan.github.io/resmush/
-  abstract: Optimize and compress local image files, directories and online images
-    with the reSmush.it API <https://resmush.it/>. Supports png, jpg/jpeg, gif, bmp
-    and tiff files.
+  abstract: Optimize and compress local image files, directories and online image
+    files with the reSmush.it API <https://resmush.it/>. Supports PNG, JPEG, GIF,
+    BMP and TIFF files.
 repository: https://CRAN.R-project.org/package=resmush
 repository-code: https://github.com/dieghernan/resmush
 url: https://dieghernan.github.io/resmush/

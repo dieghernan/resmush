@@ -4,25 +4,24 @@
 #' Optimize and download one or more online image files with the
 #' [reSmush.it API](https://resmush.it/).
 #'
-#' @param url URL or vector of URLs pointing to hosted image files. The API can
-#'   optimize `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
+#' @param url A character vector of URLs pointing to hosted image files. The API
+#'   can optimize PNG, JPEG, GIF, BMP and TIFF files.
 #'
-#' @param outfile Path or paths where optimized files are stored on disk. By
-#'   default, temporary files are created with [tempfile()] and the same
-#'   [basename()] as the file provided in `url`. `outfile` must have the same
-#'   length as `url`.
+#' @param outfile A character vector of paths where optimized files are stored.
+#'   By default, files are created in [tempdir()] with the same [basename()] as
+#'   each file in `url`. `outfile` must have the same length as `url`.
 #'
 #' @param overwrite Logical. Should `outfile` be overwritten if it already
 #'   exists? If `FALSE` and `outfile` exists, a copy is created with a
-#'   numerical suffix, such as `<outfile>_01.png`.
+#'   numeric suffix, such as `<outfile>_01.png`.
 #'
 #' @inheritParams resmush_file
 #'
 #' @returns
-#' Writes optimized files to disk when the API call is successful. Invisibly
-#' returns a data frame summarizing the process. If any value in `outfile` is
-#' duplicated, `resmush_url()` renames the outputs with suffixes such as `_01`
-#' and `_02`.
+#' A data frame summarizing the optimization, returned invisibly. Successful
+#' API calls also write the optimized files to disk. If `outfile` contains
+#' duplicate paths, `resmush_url()` makes them unique with suffixes such as
+#' `_01` and `_02`.
 #'
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api/) documentation.
@@ -47,13 +46,13 @@
 #' # The invisible data frame contains a summary of the process.
 #' summary
 #'
-#' # Display the `png` output.
+#' # Display the PNG output.
 #' if (require("png", quietly = TRUE)) {
 #'   my_png <- png::readPNG(summary$dest_img[1])
 #'   grid::grid.raster(my_png)
 #' }
 #'
-#' # Use with `jpg` files and parameters.
+#' # Use with JPEG files and parameters.
 #' resmush_url(jpg_url)
 #' resmush_url(jpg_url, qlty = 10)
 #' }
@@ -73,7 +72,7 @@ resmush_url <- function(
   if (l1 != l2) {
     cli::cli_abort(paste0(
       "Lengths of {.arg url} and {.arg outfile} must match ",
-      "({l1} vs. {l2})."
+      "({.val {l1}} vs. {.val {l2}})."
     ))
   }
 

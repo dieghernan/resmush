@@ -4,7 +4,7 @@
       dm <- resmush_url(url)
     Message
       == resmush summary =============================================================
-      i Input: 1 URL, total size 0 bytes.
+      i Input: 1 URL, 0 bytes total.
       x Failed to optimize 1 URL:
       ! <https://dieghernan.github.io/resmush/img/sample-png-10mb.png>: 502: Uploaded
         file must be below 5MB.
@@ -25,7 +25,7 @@
       dm <- resmush_url(url)
     Message
       == resmush summary =============================================================
-      i Input: 1 URL, total size 0 bytes.
+      i Input: 1 URL, 0 bytes total.
       x Failed to optimize 1 URL:
       ! <https://dieghernan.github.io/resmush/img/sample-tif-1mb.tif>: 403:
         Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.

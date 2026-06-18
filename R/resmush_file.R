@@ -4,27 +4,27 @@
 #' Optimize one or more local image files with the
 #' [reSmush.it API](https://resmush.it/).
 #'
-#' @param file Path or paths to local image files. The API can optimize
-#'   `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
+#' @param file A character vector of paths to local image files. The API can
+#'   optimize PNG, JPEG, GIF, BMP and TIFF files.
 #'
-#' @param suffix Character. Defaults to `"_resmush"`. By default, the optimized
-#'   file is saved in the same directory as `file` with this suffix. For
-#'   example, `example.png` becomes `example_resmush.png`. Values `""`, `NA` and
-#'   `NULL` are equivalent to `overwrite = TRUE`.
+#' @param suffix A character string appended to output file names. The default
+#'   is `"_resmush"`, so `example.png` becomes `example_resmush.png`. Values
+#'   `""`, `NA` and `NULL` are equivalent to `overwrite = TRUE`.
 #' @param overwrite Logical. Should the file in `file` be overwritten? If `TRUE`
 #'   `suffix` is ignored.
 #' @param progress Logical. Should a progress bar be displayed?
 #' @param report Logical. Should a summary report be displayed in the console?
-#' @param qlty Integer between `0` and `100` indicating the optimization level.
-#'   This only affects `jpg` files. For optimal results, use values above `90`.
+#' @param qlty An integer between `0` and `100` indicating the optimization
+#'   level. This only affects JPEG files. For optimal results, use values above
+#'   `90`.
 #' @param exif_preserve Logical. Should
 #'   [Exif](https://en.wikipedia.org/wiki/Exif) metadata be preserved? The
 #'   default is `FALSE`, which removes it.
 #'
 #' @returns
-#' Writes optimized files to disk when the API call is successful. Invisibly
-#' returns a data frame summarizing the process. With `report = TRUE`, a summary
-#' report is also displayed in the console.
+#' A data frame summarizing the optimization, returned invisibly. Successful
+#' API calls also write the optimized files to disk. If `report = TRUE`, a
+#' summary is displayed in the console.
 #'
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api/) documentation.
@@ -58,13 +58,13 @@
 #' # The invisible data frame contains the same information.
 #' summary
 #'
-#' # Display the `png` output.
+#' # Display the PNG output.
 #' if (require("png", quietly = TRUE)) {
 #'   my_png <- png::readPNG(summary$dest_img[1])
 #'   grid::grid.raster(my_png)
 #' }
 #'
-#' # Use with `jpg` files and parameters.
+#' # Use with JPEG files and parameters.
 #' resmush_file(tmp_jpg)
 #' resmush_file(tmp_jpg, qlty = 10)
 #' }

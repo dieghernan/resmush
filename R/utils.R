@@ -1,4 +1,4 @@
-#' Create a formatted `object_size` object from an integer
+#' Format an integer as an `object_size` object
 #'
 #' @param x An integer.
 #' @noRd
@@ -51,8 +51,8 @@ add_size_summary <- function(res, src_size, dest_size) {
 #'
 #' @param inputs Input vector.
 #' @param worker Function called once per input position.
-#' @param progress Logical. Display progress bar?
-#' @param progress_label Label displayed after the progress counter.
+#' @param progress Logical. Should a progress bar be displayed?
+#' @param progress_label A label displayed after the progress counter.
 #'
 #' @noRd
 resmush_map <- function(inputs, worker, progress, progress_label) {
@@ -109,8 +109,8 @@ resmush_map <- function(inputs, worker, progress, progress_label) {
 #' Download an optimized file returned by the API
 #'
 #' @param url Optimized image URL returned by the API.
-#' @param outfile Destination path.
-#' @param src Original source used in error messages.
+#' @param outfile A destination path.
+#' @param src The original source used in error messages.
 #' @param source_type Either `"file"` or `"url"`.
 #'
 #' @noRd
@@ -133,13 +133,15 @@ download_optimized_file <- function(url, outfile, src, source_type) {
     err <- httr2::resp_status_desc(resp_head) # nolint
 
     if (source_type == "file") {
-      cli::cli_alert_danger(
-        "Cannot download optimized file: HTTP {err_code} {err}.\n{.path {src}}"
-      )
+      cli::cli_alert_danger(paste0(
+        "Cannot download optimized file: HTTP ",
+        "{.val {err_code}} {.emph {err}}.\n{.path {src}}"
+      ))
     } else {
-      cli::cli_alert_danger(
-        "Cannot download optimized URL: HTTP {err_code} {err}.\n{.url {src}}"
-      )
+      cli::cli_alert_danger(paste0(
+        "Cannot download optimized URL: HTTP ",
+        "{.val {err_code}} {.emph {err}}.\n{.url {src}}"
+      ))
     }
 
     return(NULL)
@@ -168,9 +170,10 @@ add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
   newname
 }
 
-#' Create unique file paths to avoid overwriting
+#' Create a unique file path to avoid overwriting
 #'
-#' @param x A path.
+#' @param x A file path.
+#' @param overwrite Logical. Should an existing file be overwritten?
 #'
 #' @noRd
 make_unique_paths <- function(x, overwrite) {

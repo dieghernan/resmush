@@ -23,24 +23,24 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 <!-- badges: end -->
 
-**resmush** is an **R** package for optimizing and compressing images
-with [**reSmush.it**](https://resmush.it/). **reSmush.it** is a <u>free
-API</u> for image optimization and is available through
+**resmush** is an **R** package for optimizing local image files,
+directories and online image files with the [**reSmush.it**
+API](https://resmush.it/api/). The API is free for personal use and does
+not require an API key. **reSmush.it** is also available through
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/)
-and [many other tools](https://resmush.it/tools/).
+and [other tools](https://resmush.it/tools/).
 
-**reSmush.it** includes:
+The **reSmush.it** API provides:
 
-- Free image optimization with <u>no API key required</u>.
-- Support for local and online images.
-- Support for `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
-- Maximum image size: 5 MB.
+- Optimization without an API key.
+- Support for PNG, JPEG, GIF, BMP and TIFF files.
+- A file size limit of less than 5 MB.
 - Compression powered by several algorithms:
-  - [**PNGQuant**](https://pngquant.org/): Removes unnecessary chunks
-    from `png` files while preserving full alpha transparency.
+  - [**pngquant**](https://pngquant.org/): Removes unnecessary data from
+    PNG files while preserving full alpha transparency.
   - [**JPEGOptim**](https://github.com/tjko/jpegoptim): Lossless
     optimization based on Huffman table optimization.
-  - [**OptiPNG**](https://optipng.sourceforge.net/): A `png` optimizer
+  - [**OptiPNG**](https://optipng.sourceforge.net/): A PNG optimizer
     used by several online compression tools.
 
 ## Installation
@@ -85,9 +85,9 @@ install.packages(
 
 </div>
 
-## Example
+## Examples
 
-Compress an online `jpg` image with `resmush_url()`:
+Optimize and download an online JPEG image with `resmush_url()`:
 
 ``` r
 library(resmush)
@@ -100,8 +100,8 @@ resmush_url(
   overwrite = TRUE
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 URL, total size 178.7 Kb.
-#> ✔ Optimized 1 URL: Size is now 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
+#> ℹ Input: 1 URL, 178.7 Kb total.
+#> ✔ Optimized 1 URL: size is now 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
 #> Saved result in directory 'man/figures'.
 ```
 
@@ -124,11 +124,11 @@ Figure 1: Original image <em>(a)</em>: 178.7 KB, optimized image
 
 </div>
 
-Use the `qlty` argument to adjust compression quality for `jpg` files.
-Keep this value above 90 to maintain good image quality.
+Use the `qlty` argument to adjust the optimization level for JPEG files.
+For optimal results, use values above `90`.
 
 ``` r
-# Use an extreme compression setting.
+# Use a low optimization level.
 resmush_url(
   url,
   outfile = "man/figures/jpg_example_compress_low.jpg",
@@ -136,8 +136,8 @@ resmush_url(
   qlty = 3
 )
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 URL, total size 178.7 Kb.
-#> ✔ Optimized 1 URL: Size is now 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
+#> ℹ Input: 1 URL, 178.7 Kb total.
+#> ✔ Optimized 1 URL: size is now 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
 #> Saved result in directory 'man/figures'.
 ```
 
@@ -154,9 +154,10 @@ compression (`qlty = 3`).
 
 </div>
 
-All optimization functions invisibly return a data frame that summarizes
-the process. The following example shows this output when compressing a
-local file:
+All optimization functions return a data frame summarizing the
+optimization, invisibly. Successful API calls also write the optimized
+files to disk. The following example shows the returned data frame for a
+local image file:
 
 ``` r
 png_file <- system.file("extimg/example.png", package = "resmush")
@@ -177,7 +178,7 @@ tibble::as_tibble(summary[, -c(1, 2)])
 
 ## Alternatives
 
-Several other **R** packages also provide image optimization tools:
+Several other **R** packages provide image optimization tools:
 
 - The **xfun** package ([Xie 2024](#ref-xfun)), which includes:
   - `xfun::tinify()`: Similar to `resmush_file()` but uses
@@ -187,7 +188,7 @@ Several other **R** packages also provide image optimization tools:
 - The [**tinieR**](https://jmablog.github.io/tinieR/) package by
   jmablog: An **R** interface to [**TinyPNG**](https://tinypng.com/).
 - The **tinyimg** package ([Xie 2026](#ref-tinyimg)): Optimizes local
-  `png` and `jpg/jpeg` files using Rust libraries.
+  PNG and JPEG files using Rust libraries.
 - The [**optout**](https://github.com/coolbutuseless/optout) package by
   [@coolbutuseless](https://coolbutuseless.github.io/): Similar to
   `xfun::optipng()` but with more options. Requires additional local
@@ -195,26 +196,26 @@ Several other **R** packages also provide image optimization tools:
 
 | Tool | CRAN | Additional software | Online images | API key required | Limits |
 |----|----|----|----|----|----|
-| `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (free tier) |
+| `xfun::tinify()` | Yes | No | Yes | Yes | 500 compressions/month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | No |
-| **tinieR** | No | No | Yes | Yes | 500 files/month (free tier) |
+| **tinieR** | No | No | Yes | Yes | 500 compressions/month (free tier) |
 | **tinyimg** | Yes | Yes | No | No | No |
 | **optout** | No | Yes | No | No | No |
-| **resmush** | Yes | No | Yes | No | Maximum size: 5 MB |
+| **resmush** | Yes | No | Yes | No | Personal use, files under 5 MB |
 
 <p class="caption">
 
 Table 1: **R** packages: comparison of image optimization alternatives.
 </p>
 
-| Tool              | png | jpg | gif | bmp | tiff | webp | pdf |
-|-------------------|-----|-----|-----|-----|------|------|-----|
-| `xfun::tinify()`  | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
-| `xfun::optipng()` | ✅  | ❌  | ❌  | ❌  | ❌   | ❌   | ❌  |
-| **tinieR**        | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
-| **tinyimg**       | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ❌  |
-| **optout**        | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
-| **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ❌   | ❌  |
+| Tool              | PNG | JPEG | GIF | BMP | TIFF | WebP | PDF |
+|-------------------|-----|------|-----|-----|------|------|-----|
+| `xfun::tinify()`  | ✅  | ✅   | ❌  | ❌  | ❌   | ✅   | ❌  |
+| `xfun::optipng()` | ✅  | ❌   | ❌  | ❌  | ❌   | ❌   | ❌  |
+| **tinieR**        | ✅  | ✅   | ❌  | ❌  | ❌   | ✅   | ❌  |
+| **tinyimg**       | ✅  | ✅   | ❌  | ❌  | ❌   | ❌   | ❌  |
+| **optout**        | ✅  | ✅   | ❌  | ❌  | ❌   | ❌   | ✅  |
+| **resmush**       | ✅  | ✅   | ✅  | ✅  | ✅   | ❌   | ❌  |
 
 <p class="caption">
 
@@ -240,7 +241,7 @@ A BibTeX entry for LaTeX users:
       year = {2026},
       version = {1.0.1},
       url = {https://dieghernan.github.io/resmush/},
-      abstract = {Optimize and compress local image files, directories and online images with the reSmush.it API <https://resmush.it/>. Supports png, jpg/jpeg, gif, bmp and tiff files.},
+      abstract = {Optimize and compress local image files, directories and online image files with the reSmush.it API <https://resmush.it/>. Supports PNG, JPEG, GIF, BMP and TIFF files.},
     }
 
 ## References

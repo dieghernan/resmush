@@ -19,13 +19,12 @@ resmush_dir(
 \arguments{
 \item{dir}{A character vector of paths to local directories.}
 
-\item{ext}{A \code{\link[base:regex]{regex}} indicating the extensions of the files
-to optimize. The default captures all extensions supported by the API.}
+\item{ext}{A \code{\link[base:regex]{regex}} matching file extensions to optimize. The
+default matches PNG, JPEG, BMP, GIF and TIF files.}
 
-\item{suffix}{Character. Defaults to \code{"_resmush"}. By default, optimized
-files are saved in the same directory with this suffix. For example,
-\code{example.png} becomes \code{example_resmush.png}. Values \code{""}, \code{NA} and \code{NULL}
-are equivalent to \code{overwrite = TRUE}.}
+\item{suffix}{A character string appended to output file names. The default
+is \code{"_resmush"}, so \code{example.png} becomes \code{example_resmush.png}. Values
+\code{""}, \code{NA} and \code{NULL} are equivalent to \code{overwrite = TRUE}.}
 
 \item{overwrite}{Logical. Should the files in \code{dir} be overwritten? If \code{TRUE}
 \code{suffix} is ignored.}
@@ -34,22 +33,23 @@ are equivalent to \code{overwrite = TRUE}.}
 
 \item{report}{Logical. Should a summary report be displayed in the console?}
 
-\item{recursive}{Logical. Should file search within \code{dir} be recursive? See
-also \code{\link[=list.files]{list.files()}}.}
+\item{recursive}{Logical. Should the file search within \code{dir} be recursive?
+See \code{\link[=list.files]{list.files()}}.}
 
 \item{...}{
   Arguments passed on to \code{\link{resmush_file}}
   \describe{
-    \item{\code{qlty}}{Integer between \code{0} and \code{100} indicating the optimization level.
-This only affects \code{jpg} files. For optimal results, use values above \code{90}.}
+    \item{\code{qlty}}{An integer between \code{0} and \code{100} indicating the optimization
+level. This only affects JPEG files. For optimal results, use values above
+\code{90}.}
     \item{\code{exif_preserve}}{Logical. Should
 \href{https://en.wikipedia.org/wiki/Exif}{Exif} metadata be preserved? The
 default is \code{FALSE}, which removes it.}
   }}
 }
 \value{
-Writes optimized files to disk when the API call is successful. Invisibly
-returns a data frame summarizing the process.
+A data frame summarizing the optimization, returned invisibly. Successful
+API calls also write the optimized files to disk.
 }
 \description{
 Optimize supported image files in one or more directories with the
@@ -76,7 +76,7 @@ summary <- resmush_dir(dest_folder, recursive = TRUE)
 # Return the same information in the invisible data frame.
 summary[, -c(1, 2)]
 
-# Display the `png` output.
+# Display the PNG output.
 if (require("png", quietly = TRUE)) {
   a_png <- grepl("png$", summary$dest_img)
   my_png <- png::readPNG(summary[a_png, ]$dest_img[2])
@@ -93,7 +93,7 @@ unlink(dest_folder, force = TRUE, recursive = TRUE)
 
 See \code{\link[=resmush_clean_dir]{resmush_clean_dir()}} to clean a directory of previous runs.
 
-Other functions for optimizing:
+Other image optimization functions:
 \code{\link[=resmush_file]{resmush_file()}},
 \code{\link[=resmush_url]{resmush_url()}}
 }

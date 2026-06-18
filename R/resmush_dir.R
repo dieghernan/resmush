@@ -5,22 +5,21 @@
 #' [reSmush.it API](https://resmush.it/).
 #'
 #' @param dir A character vector of paths to local directories.
-#' @param ext A [`regex`][base::regex] indicating the extensions of the files
-#'   to optimize. The default captures all extensions supported by the API.
-#' @param suffix Character. Defaults to `"_resmush"`. By default, optimized
-#'   files are saved in the same directory with this suffix. For example,
-#'   `example.png` becomes `example_resmush.png`. Values `""`, `NA` and `NULL`
-#'   are equivalent to `overwrite = TRUE`.
+#' @param ext A [`regex`][base::regex] matching file extensions to optimize. The
+#'   default matches PNG, JPEG, BMP, GIF and TIF files.
+#' @param suffix A character string appended to output file names. The default
+#'   is `"_resmush"`, so `example.png` becomes `example_resmush.png`. Values
+#'   `""`, `NA` and `NULL` are equivalent to `overwrite = TRUE`.
 #' @param overwrite Logical. Should the files in `dir` be overwritten? If `TRUE`
 #'   `suffix` is ignored.
-#' @param recursive Logical. Should file search within `dir` be recursive? See
-#'   also [list.files()].
+#' @param recursive Logical. Should the file search within `dir` be recursive?
+#'   See [list.files()].
 #' @inheritParams resmush_file
 #' @inheritDotParams resmush_file qlty exif_preserve
 #'
 #' @returns
-#' Writes optimized files to disk when the API call is successful. Invisibly
-#' returns a data frame summarizing the process.
+#' A data frame summarizing the optimization, returned invisibly. Successful
+#' API calls also write the optimized files to disk.
 #'
 #' @seealso
 #' [reSmush.it API](https://resmush.it/api/) documentation.
@@ -50,7 +49,7 @@
 #' # Return the same information in the invisible data frame.
 #' summary[, -c(1, 2)]
 #'
-#' # Display the `png` output.
+#' # Display the PNG output.
 #' if (require("png", quietly = TRUE)) {
 #'   a_png <- grepl("png$", summary$dest_img)
 #'   my_png <- png::readPNG(summary[a_png, ]$dest_img[2])
@@ -87,7 +86,7 @@ resmush_dir <- function(
     # nolint start
     nf <- length(allfiles)
     # nolint end
-    cli::cli_alert_info("Optimizing {nf} file{?s}.")
+    cli::cli_alert_info("Optimizing {.val {nf}} file{?s}.")
   }
 
   resmush_file(
