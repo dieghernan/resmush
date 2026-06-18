@@ -26,16 +26,15 @@ resmush_dir(
 
 - ext:
 
-  A [`regex`](https://rdrr.io/r/base/regex.html) indicating the
-  extensions of the files to optimize. The default captures all
-  extensions supported by the API.
+  A [`regex`](https://rdrr.io/r/base/regex.html) matching file
+  extensions to optimize. The default matches PNG, JPEG, BMP, GIF and
+  TIF files.
 
 - suffix:
 
-  Character. Defaults to `"_resmush"`. By default, optimized files are
-  saved in the same directory with this suffix. For example,
-  `example.png` becomes `example_resmush.png`. Values `""`, `NA` and
-  `NULL` are equivalent to `overwrite = TRUE`.
+  A character string appended to output file names. The default is
+  `"_resmush"`, so `example.png` becomes `example_resmush.png`. Values
+  `""`, `NA` and `NULL` are equivalent to `overwrite = TRUE`.
 
 - overwrite:
 
@@ -52,7 +51,7 @@ resmush_dir(
 
 - recursive:
 
-  Logical. Should file search within `dir` be recursive? See also
+  Logical. Should the file search within `dir` be recursive? See
   [`list.files()`](https://rdrr.io/r/base/list.files.html).
 
 - ...:
@@ -62,9 +61,9 @@ resmush_dir(
 
   `qlty`
 
-  :   Integer between `0` and `100` indicating the optimization level.
-      This only affects `jpg` files. For optimal results, use values
-      above `90`.
+  :   An integer between `0` and `100` indicating the optimization
+      level. This only affects JPEG files. For optimal results, use
+      values above `90`.
 
   `exif_preserve`
 
@@ -73,8 +72,8 @@ resmush_dir(
 
 ## Value
 
-Writes optimized files to disk when the API call is successful.
-Invisibly returns a data frame summarizing the process.
+A data frame summarizing the optimization, returned invisibly.
+Successful API calls also write the optimized files to disk.
 
 ## See also
 
@@ -84,7 +83,7 @@ See
 [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/reference/resmush_clean_dir.md)
 to clean a directory of previous runs.
 
-Other functions for optimizing:
+Other image optimization functions:
 [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md),
 [`resmush_url()`](https://dieghernan.github.io/resmush/reference/resmush_url.md)
 
@@ -104,30 +103,30 @@ dest_folder <- file.path(tempdir(), "extimg")
 # Non-recursive.
 resmush_dir(dest_folder)
 #> ℹ Optimizing 2 files.
-#> ●∙∙ Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [3ms] | ETA:  0s (1/2 files)
-#> ●∙∙ Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.4s] | ETA:  0s (2/2 files)
+#> ●∙∙ Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 files)
+#> ●∙∙ Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.7s] | ETA:  0s (2/2 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 2 files, total size 340.2 Kb.
-#> ✔ Optimized 2 files: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> Saved results in directory /tmp/Rtmp6N5z2E/extimg.
+#> ℹ Input: 2 files, 340.2 Kb total.
+#> ✔ Optimized 2 files: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
+#> Saved results in directory /tmp/RtmpHJeQ8p/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Removing 2 files:
-#> → /tmp/Rtmp6N5z2E/extimg/example_resmush.jpg
-#> → /tmp/Rtmp6N5z2E/extimg/example_resmush.png
+#> → /tmp/RtmpHJeQ8p/extimg/example_resmush.jpg
+#> → /tmp/RtmpHJeQ8p/extimg/example_resmush.png
 
 # Recursive.
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Optimizing 5 files.
-#> ●∙∙ Go! | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [1.7s] | ETA:  1s (3/5 files)
-#> ●∙∙ Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2.8s] | ETA:  0s (5/5 files)
+#> ●∙∙ Go! | ■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□   40% [912ms] | ETA:  1s (2/5 files)
+#> ●∙∙ Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.2s] | ETA:  0s (5/5 files)
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 5 files, total size 401.7 Kb.
-#> ✔ Optimized 5 files: Size is now 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> Saved results in directories /tmp/Rtmp6N5z2E/extimg,
-#> /tmp/Rtmp6N5z2E/extimg/top1/nested, /tmp/Rtmp6N5z2E/extimg/top1, and
-#> /tmp/Rtmp6N5z2E/extimg/top2.
+#> ℹ Input: 5 files, 401.7 Kb total.
+#> ✔ Optimized 5 files: size is now 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
+#> Saved results in directories /tmp/RtmpHJeQ8p/extimg,
+#> /tmp/RtmpHJeQ8p/extimg/top1/nested, /tmp/RtmpHJeQ8p/extimg/top1, and
+#> /tmp/RtmpHJeQ8p/extimg/top2.
 
 # Return the same information in the invisible data frame.
 summary[, -c(1, 2)]
@@ -138,7 +137,7 @@ summary[, -c(1, 2)]
 #> 4  25.9 Kb    7.7 Kb         70.09%    OK     26499       7926
 #> 5  17.8 Kb      6 Kb         66.48%    OK     18214       6105
 
-# Display the `png` output.
+# Display the PNG output.
 if (require("png", quietly = TRUE)) {
   a_png <- grepl("png$", summary$dest_img)
   my_png <- png::readPNG(summary[a_png, ]$dest_img[2])
