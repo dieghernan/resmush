@@ -1,6 +1,6 @@
 # Package index
 
-## Optimize images
+## Optimize image files
 
 Optimize local image files, directories and online image files with the
 reSmush.it API.
@@ -14,13 +14,10 @@ reSmush.it API.
 
 ## Manage output files
 
-Remove image files created by resmush.
+Remove output files that match a suffix from one or more directories.
 
 - [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/reference/resmush_clean_dir.md)
-  :
-
-  Clean files created by
-  [resmush](https://CRAN.R-project.org/package=resmush)
+  : Remove output files from directories
 
 ## About the package
 

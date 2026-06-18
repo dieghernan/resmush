@@ -171,7 +171,7 @@ A BibTeX entry for LaTeX users:
   year = {2026},
   version = {1.0.1},
   url = {https://dieghernan.github.io/resmush/},
-  abstract = {Optimize and compress local image files, directories and online image files with the reSmush.it API <https://resmush.it/>. Supports PNG, JPEG, GIF, BMP and TIFF files.},
+  abstract = {Optimize and compress local image files, directories and online image files with the reSmush.it API <https://resmush.it/api/>. The API is free for personal use, accepts files smaller than 5 MB and supports PNG, JPEG, GIF, BMP and TIFF files.},
 }
 ```
 
@@ -185,7 +185,7 @@ Xie, Yihui. 2026. *tinyimg: Optimize and Compress Images*.
 
 # Package index
 
-## Optimize images
+## Optimize image files
 
 Optimize local image files, directories and online image files with the
 reSmush.it API.
@@ -199,13 +199,10 @@ reSmush.it API.
 
 ## Manage output files
 
-Remove image files created by resmush.
+Remove output files that match a suffix from one or more directories.
 
 - [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/reference/resmush_clean_dir.md)
-  :
-
-  Clean files created by
-  [resmush](https://CRAN.R-project.org/package=resmush)
+  : Remove output files from directories
 
 ## About the package
 
@@ -219,7 +216,8 @@ Package overview and metadata.
 
 ### Get started
 
-Learn how to optimize local and online image files with resmush.
+Learn how to optimize local image files, directories and online image
+files with resmush.
 
 - [Using
   resmush](https://dieghernan.github.io/resmush/articles/resmush.md):

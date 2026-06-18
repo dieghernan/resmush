@@ -32,10 +32,11 @@ library(resmush)
 url <- "https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"
 
 resmush_url(url, outfile = "jpg_example_compress.jpg", overwrite = TRUE)
-#> ══ resmush summary ═════════════════════════════════════════════════════════════
+
+#> ══ resmush summary ══════════════════════════════════════════════════════════
 #> ℹ Input: 1 URL, 178.7 Kb total.
 #> ✔ Optimized 1 URL: size is now 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
-#> Saved result in directory '.'.
+#> Saved result in directory 'C:/user/john_doe/AppData/Local/Temp/'.
 ```
 
 [![Original uncompressed JPEG
@@ -64,10 +65,11 @@ resmush_url(
   overwrite = TRUE,
   qlty = 3
 )
-#> ══ resmush summary ═════════════════════════════════════════════════════════════
+
+#> ══ resmush summary ══════════════════════════════════════════════════════════
 #> ℹ Input: 1 URL, 178.7 Kb total.
 #> ✔ Optimized 1 URL: size is now 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
-#> Saved result in directory 'tempdir()'.
+#> Saved result in directory 'C:/user/john_doe/AppData/Local/Temp/'.
 ```
 
 [![JPEG image with visible compression

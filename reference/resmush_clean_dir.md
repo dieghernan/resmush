@@ -1,8 +1,10 @@
-# Clean files created by [resmush](https://CRAN.R-project.org/package=resmush)
+# Remove output files from directories
 
-**Use with caution.** Remove files created by
+**Use with caution.** Remove files that match `suffix` from one or more
+directories. This is intended to clean output files created by
 [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md)
-from one or more directories.
+or
+[`resmush_dir()`](https://dieghernan.github.io/resmush/reference/resmush_dir.md).
 
 ## Usage
 
@@ -30,7 +32,7 @@ resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 ## Value
 
 An [`invisible()`](https://rdrr.io/r/base/invisible.html) `NULL`.
-Messages summarize the files found and removed.
+Messages list the files selected for removal.
 
 ## See also
 
@@ -43,11 +45,8 @@ Messages summarize the files found and removed.
 
 ``` r
 # \donttest{
-# Simple example.
-
+# Create a temporary file with a suffix to remove.
 png_file <- system.file("extimg/example.png", package = "resmush")
-
-# Copy to a temporary file with a given suffix.
 suffix <- "_would_be_removed"
 tmp_png <- file.path(
   tempdir(),
@@ -64,7 +63,7 @@ file.exists(tmp_png)
 
 # Run with the default suffix. This should not remove the file.
 resmush_clean_dir(tempdir())
-#> ℹ No files to clean in /tmp/RtmpHJeQ8p with suffix "_resmush".
+#> ℹ No files to clean in /tmp/RtmpJxiOuR with suffix "_resmush".
 
 file.exists(tmp_png)
 #> [1] TRUE
@@ -72,7 +71,7 @@ file.exists(tmp_png)
 # Use the matching suffix to remove the file.
 resmush_clean_dir(tempdir(), suffix = suffix)
 #> ℹ Removing 1 file:
-#> → /tmp/RtmpHJeQ8p/example_would_be_removed.png
+#> → /tmp/RtmpJxiOuR/example_would_be_removed.png
 
 file.exists(tmp_png)
 #> [1] FALSE

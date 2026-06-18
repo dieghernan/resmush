@@ -2,7 +2,8 @@
 
 ### Get started
 
-Learn how to optimize local and online image files with resmush.
+Learn how to optimize local image files, directories and online image
+files with resmush.
 
 - [Using
   resmush](https://dieghernan.github.io/resmush/articles/resmush.md):
