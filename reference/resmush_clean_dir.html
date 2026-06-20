@@ -116,7 +116,7 @@ directories. This is intended to clean output files created by
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Run with the default suffix. This should not remove the file.</span></span></span>
 <span class="r-in"><span><span class="fu">resmush_clean_dir</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> No files to clean in <span style="color: #0000BB;">/tmp/Rtmp7FR69Y</span> with suffix <span style="color: #0000BB;">"_resmush"</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> No files to clean in <span style="color: #0000BB;">/tmp/RtmpxGg56E</span> with suffix <span style="color: #0000BB;">"_resmush"</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">tmp_png</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
@@ -124,7 +124,7 @@ directories. This is intended to clean output files created by
 <span class="r-in"><span><span class="co"># Use the matching suffix to remove the file.</span></span></span>
 <span class="r-in"><span><span class="fu">resmush_clean_dir</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, suffix <span class="op">=</span> <span class="va">suffix</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Removing <span style="color: #0000BB;">1</span> file:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> → /tmp/Rtmp7FR69Y/example_would_be_removed.png</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → /tmp/RtmpxGg56E/example_would_be_removed.png</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">tmp_png</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
