@@ -149,7 +149,7 @@ the console.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: <span style="color: #0000BB;">1</span> file, 239.9 Kb total.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimized <span style="color: #0000BB;">1</span> file: size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpxGg56E</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpjDImkV</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Optimize multiple files.</span></span></span>
 <span class="r-in"><span><span class="va">jpg_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extimg/example.jpg"</span>, package <span class="op">=</span> <span class="st">"resmush"</span><span class="op">)</span></span></span>
@@ -161,21 +161,21 @@ the console.</p>
 <span class="r-in"><span><span class="co"># Display a summary in the console.</span></span></span>
 <span class="r-in"><span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu">resmush_file</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">tmp_png</span>, <span class="va">tmp_jpg</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  reSmushing | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■</span><span style="color: #555555;">□□□□□□□□□□□□□□□</span><span style="color: #00BB00;"> </span>  50% [1ms] | ETA:  0s (1/2 fi…</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  reSmushing | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [809ms] | ETA:  0s (2/2 …</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  reSmushing | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [946ms] | ETA:  0s (2/2 …</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: <span style="color: #0000BB;">2</span> files, 340.2 Kb total.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimized <span style="color: #0000BB;">2</span> files: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved results in directory <span style="color: #0000BB;">/tmp/RtmpxGg56E</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved results in directory <span style="color: #0000BB;">/tmp/RtmpjDImkV</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Inspect the returned optimization summary.</span></span></span>
 <span class="r-in"><span><span class="va">summary</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                src_img</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/RtmpxGg56E/file1afe2df8ac5a.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 /tmp/RtmpxGg56E/file1afe31b5441b.jpg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/RtmpjDImkV/file1a8f2087ff4c.png</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 /tmp/RtmpjDImkV/file1a8f1e8e4a54.jpg</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                       dest_img src_size dest_size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/RtmpxGg56E/file1afe2df8ac5a_resmush.png 239.9 Kb   70.7 Kb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 /tmp/RtmpxGg56E/file1afe31b5441b_resmush.jpg 100.4 Kb   83.2 Kb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/RtmpjDImkV/file1a8f2087ff4c_resmush.png 239.9 Kb   70.7 Kb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 /tmp/RtmpjDImkV/file1a8f1e8e4a54_resmush.jpg 100.4 Kb   83.2 Kb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   compress_ratio notes src_bytes dest_bytes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1         70.54%    OK    245618      72356</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         17.15%    OK    102796      85164</span>
@@ -192,12 +192,12 @@ the console.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: <span style="color: #0000BB;">1</span> file, 100.4 Kb total.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimized <span style="color: #0000BB;">1</span> file: size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpxGg56E</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpjDImkV</span>.</span>
 <span class="r-in"><span><span class="fu">resmush_file</span><span class="op">(</span><span class="va">tmp_jpg</span>, qlty <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: <span style="color: #0000BB;">1</span> file, 100.4 Kb total.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimized <span style="color: #0000BB;">1</span> file: size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpxGg56E</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpjDImkV</span>.</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

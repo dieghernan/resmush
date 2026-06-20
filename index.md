@@ -1,5 +1,9 @@
 # resmush
 
+This package is stable and maintained on a best-effort basis. I
+currently prioritize CRAN compatibility, bug fixes and regressions over
+new features.
+
 **resmush** is an **R** package for optimizing local image files,
 directories and online image files with the [**reSmush.it**
 API](https://resmush.it/api/). The API is free for personal use and does
