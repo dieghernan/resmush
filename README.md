@@ -16,13 +16,17 @@ results](https://badges.cranchecks.info/worst/resmush.svg)](https://cran.r-proje
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/resmush/badge)](https://www.codefactor.io/repository/github/dieghernan/resmush)
 [![r-universe](https://dieghernan.r-universe.dev/badges/resmush)](https://dieghernan.r-universe.dev/resmush)
 [![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.resmush-blue)](https://doi.org/10.32614/CRAN.package.resmush)
-[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
+[![Project Status: Inactive – The project has reached a stable, usable
+state but is no longer being actively developed; support/maintenance
+will be provided as time
+allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
 [![status](https://tinyverse.netlify.app/status/resmush)](https://CRAN.R-project.org/package=resmush)
 
 <!-- badges: end -->
 
-This package is stable and maintained on a best-effort basis. I currently 
-prioritize CRAN compatibility, bug fixes and regressions over new features.
+This package is stable and maintained on a best-effort basis. I
+currently prioritize CRAN compatibility, bug fixes and regressions over
+new features.
 
 **resmush** is an **R** package for optimizing local image files,
 directories and online image files with the [**reSmush.it**
