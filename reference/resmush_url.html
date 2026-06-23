@@ -144,19 +144,19 @@ the optimized files to disk. If <code>outfile</code> contains duplicate paths,
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: <span style="color: #0000BB;">1</span> URL, 239.9 Kb total.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimized <span style="color: #0000BB;">1</span> URL: size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpxCHS2B</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpIDL1CQ</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Optimize multiple URLs.</span></span></span>
 <span class="r-in"><span><span class="va">jpg_url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">base_url</span>, <span class="st">"/extimg/example.jpg"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu">resmush_url</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">png_url</span>, <span class="va">jpg_url</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  reSmushing | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■</span><span style="color: #555555;">□□□□□□□□□□□□□□□</span><span style="color: #00BB00;"> </span>  50% [1ms] | ETA:  0s (1/2 UR…</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  reSmushing | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [906ms] | ETA:  0s (2/2 …</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  reSmushing | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■</span><span style="color: #555555;">□□□□□□□□□□□□□□□</span><span style="color: #00BB00;"> </span>  50% [2ms] | ETA:  0s (1/2 UR…</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 🕐  reSmushing | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% [895ms] | ETA:  0s (2/2 …</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: <span style="color: #0000BB;">2</span> URLs, 340.2 Kb total.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimized <span style="color: #0000BB;">2</span> URLs: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved results in directory <span style="color: #0000BB;">/tmp/RtmpxCHS2B</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved results in directory <span style="color: #0000BB;">/tmp/RtmpIDL1CQ</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Inspect the returned optimization summary.</span></span></span>
 <span class="r-in"><span><span class="va">summary</span></span></span>
@@ -164,8 +164,8 @@ the optimized files to disk. If <code>outfile</code> contains duplicate paths,
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.png</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.jpg</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         dest_img src_size dest_size compress_ratio notes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/RtmpxCHS2B/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    /tmp/RtmpxCHS2B/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/RtmpIDL1CQ/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    /tmp/RtmpIDL1CQ/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   src_bytes dest_bytes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    245618      72356</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    102796      85164</span>
@@ -182,12 +182,12 @@ the optimized files to disk. If <code>outfile</code> contains duplicate paths,
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: <span style="color: #0000BB;">1</span> URL, 100.4 Kb total.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimized <span style="color: #0000BB;">1</span> URL: size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpxCHS2B</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpIDL1CQ</span>.</span>
 <span class="r-in"><span><span class="fu">resmush_url</span><span class="op">(</span><span class="va">jpg_url</span>, qlty <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: <span style="color: #0000BB;">1</span> URL, 100.4 Kb total.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimized <span style="color: #0000BB;">1</span> URL: size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpxCHS2B</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpIDL1CQ</span>.</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

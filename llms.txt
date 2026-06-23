@@ -1,9 +1,5 @@
 # resmush
 
-This package is stable and maintained on a best-effort basis. I
-currently prioritize CRAN compatibility, bug fixes and regressions over
-new features.
-
 **resmush** is an **R** package for optimizing local image files,
 directories and online image files with the [**reSmush.it**
 API](https://resmush.it/api/). The API is free for personal use and does
@@ -23,6 +19,12 @@ The **reSmush.it** API provides:
     optimization based on Huffman table optimization.
   - [**OptiPNG**](https://optipng.sourceforge.net/): A PNG optimizer
     used by several online compression tools.
+
+Note
+
+This package is stable and maintained on a best-effort basis. I
+currently prioritize CRAN compatibility, bug fixes and regressions over
+new features.
 
 ## Installation
 
@@ -130,7 +132,9 @@ Several other **R** packages provide image optimization tools:
 - The [**tinieR**](https://jmablog.github.io/tinieR/) package by
   jmablog: An **R** interface to [**TinyPNG**](https://tinypng.com/).
 - The **tinyimg** package ([Xie 2026](#ref-tinyimg)): Optimizes local
-  PNG and JPEG files using Rust libraries.
+  PNG and JPEG files using Rust libraries. It supports lossless PNG
+  optimization via `oxipng`, optional lossy PNG palette reduction, and
+  JPEG re-encoding via `mozjpeg`.
 - The [**optout**](https://github.com/coolbutuseless/optout) package by
   [@coolbutuseless](https://coolbutuseless.github.io/): Similar to
   [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) but
@@ -141,7 +145,7 @@ Several other **R** packages provide image optimization tools:
 | [`xfun::tinify()`](https://rdrr.io/pkg/xfun/man/tinify.html) | Yes | No | Yes | Yes | 500 compressions/month (free tier) |
 | [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) | Yes | Yes | No | No | No |
 | **tinieR** | No | No | Yes | Yes | 500 compressions/month (free tier) |
-| **tinyimg** | Yes | Yes | No | No | No |
+| **tinyimg** | Yes | Yes (Rust toolchain) | No | No | No |
 | **optout** | No | Yes | No | No | No |
 | **resmush** | Yes | No | Yes | No | Personal use, files under 5 MB |
 
@@ -157,6 +161,12 @@ Table 1: **R** packages: comparison of image optimization alternatives.
 | **resmush** | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 
 Table 2: **R** packages: supported formats.
+
+In practice, **resmush** is designed for quick image optimization with
+minimal setup, including support for online images and formats such as
+GIF, BMP and TIFF. Packages such as **tinyimg** may be a better fit for
+fully local workflows focused on PNG / JPEG optimization and
+fine-grained control over compression settings.
 
 ## Citation
 

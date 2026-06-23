@@ -212,7 +212,7 @@ Figure 2: Image with visible compression artifacts caused by high compression (
 </ul>
 </li>
 <li>The <a href="https://jmablog.github.io/tinieR/" class="external-link"><strong>tinieR</strong></a> package by jmablog: An <strong>R</strong> interface to <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a>.</li>
-<li>The <strong>tinyimg</strong> package <span class="citation" data-cites="tinyimg">(<a href="#ref-tinyimg" role="doc-biblioref">Xie 2026</a>)</span>: Optimizes local PNG and JPEG files using Rust libraries.</li>
+<li>The <strong>tinyimg</strong> package <span class="citation" data-cites="tinyimg">(<a href="#ref-tinyimg" role="doc-biblioref">Xie 2026</a>)</span>: Optimizes local PNG and JPEG files using Rust libraries. It supports lossless PNG optimization via <code>oxipng</code>, optional lossy PNG palette reduction, and JPEG re-encoding via <code>mozjpeg</code>.</li>
 <li>The <a href="https://github.com/coolbutuseless/optout" class="external-link"><strong>optout</strong></a> package by <a href="https://coolbutuseless.github.io/" class="external-link">@coolbutuseless</a>: Similar to <code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> but with more options. Requires additional local software.</li>
 </ul>
 <div id="tbl-opts" class="quarto-float quarto-figure quarto-figure-center">
@@ -262,7 +262,7 @@ Figure 2: Image with visible compression artifacts caused by high compression (
 <tr class="even">
 <td><strong>tinyimg</strong></td>
 <td>Yes</td>
-<td>Yes</td>
+<td>Yes (Rust toolchain)</td>
 <td>No</td>
 <td>No</td>
 <td>No</td>
@@ -371,6 +371,7 @@ Table 1: <strong>R</strong> packages: comparison of image optimization alternat
 Table 2: <strong>R</strong> packages: supported formats.
 </figcaption></figure>
 </div>
+<p>In practice, <strong>resmush</strong> is designed for quick image optimization with minimal setup, including support for online images and formats such as GIF, BMP and TIFF. Packages such as <strong>tinyimg</strong> may be a better fit for fully local workflows focused on PNG / JPEG optimization and fine-grained control over compression settings.</p>
 </section><section class="level2 unnumbered"><h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">

@@ -101,7 +101,6 @@ files smaller than 5 MB.
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p>This package is stable and maintained on a best-effort basis. I currently prioritize CRAN compatibility, bug fixes and regressions over new features.</p>
 <p><strong>resmush</strong> is an <strong>R</strong> package for optimizing local image files, directories and online image files with the <a href="https://resmush.it/api/" class="external-link"><strong>reSmush.it</strong> API</a>. The API is free for personal use and does not require an API key. <strong>reSmush.it</strong> is also available through <a href="https://wordpress.org/plugins/resmushit-image-optimizer/" class="external-link">WordPress</a> and <a href="https://resmush.it/tools/" class="external-link">other tools</a>.</p>
 <p>The <strong>reSmush.it</strong> API provides:</p>
 <ul>
@@ -119,6 +118,19 @@ files smaller than 5 MB.
 </ul>
 </li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This package is stable and maintained on a best-effort basis. I currently prioritize CRAN compatibility, bug fixes and regressions over new features.</p>
+</div>
+</div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -204,7 +216,7 @@ Figure 2: Image with visible compression artifacts caused by high compression (<
 </ul>
 </li>
 <li>The <a href="https://jmablog.github.io/tinieR/" class="external-link"><strong>tinieR</strong></a> package by jmablog: An <strong>R</strong> interface to <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a>.</li>
-<li>The <strong>tinyimg</strong> package (<a href="#ref-tinyimg">Xie 2026</a>): Optimizes local PNG and JPEG files using Rust libraries.</li>
+<li>The <strong>tinyimg</strong> package (<a href="#ref-tinyimg">Xie 2026</a>): Optimizes local PNG and JPEG files using Rust libraries. It supports lossless PNG optimization via <code>oxipng</code>, optional lossy PNG palette reduction, and JPEG re-encoding via <code>mozjpeg</code>.</li>
 <li>The <a href="https://github.com/coolbutuseless/optout" class="external-link"><strong>optout</strong></a> package by <a href="https://coolbutuseless.github.io/" class="external-link">@coolbutuseless</a>: Similar to <code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> but with more options. Requires additional local software.</li>
 </ul>
 <table style="width:100%;" class="table">
@@ -252,7 +264,7 @@ Figure 2: Image with visible compression artifacts caused by high compression (<
 <tr>
 <td><strong>tinyimg</strong></td>
 <td>Yes</td>
-<td>Yes</td>
+<td>Yes (Rust toolchain)</td>
 <td>No</td>
 <td>No</td>
 <td>No</td>
@@ -355,6 +367,7 @@ Table 1: <strong>R</strong> packages: comparison of image optimization alternati
 <p class="caption">
 Table 2: <strong>R</strong> packages: supported formats.
 </p>
+<p>In practice, <strong>resmush</strong> is designed for quick image optimization with minimal setup, including support for online images and formats such as GIF, BMP and TIFF. Packages such as <strong>tinyimg</strong> may be a better fit for fully local workflows focused on PNG / JPEG optimization and fine-grained control over compression settings.</p>
 </div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
