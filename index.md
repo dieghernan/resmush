@@ -1,7 +1,7 @@
 # resmush
 
 **resmush** is an **R** package for optimizing local image files,
-directories and online image files with the [**reSmush.it**
+directories and online images with the [**reSmush.it**
 API](https://resmush.it/api/). The API is free for personal use and does
 not require an API key. **reSmush.it** is also available through
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/)
@@ -12,7 +12,7 @@ The **reSmush.it** API provides:
 - Optimization without an API key.
 - Support for PNG, JPEG, GIF, BMP and TIFF files.
 - A file size limit of less than 5 MB.
-- Compression powered by several algorithms:
+- Compression powered by multiple algorithms:
   - [**pngquant**](https://pngquant.org/): Removes unnecessary data from
     PNG files while preserving full alpha transparency.
   - [**JPEGOptim**](https://github.com/tjko/jpegoptim): Lossless
@@ -70,7 +70,7 @@ Figure 1: Original image *(a)*: 178.7 KB, optimized image *(b)*: 45 KB
 (compression: 74.8%). Click to enlarge.
 
 Use the `qlty` argument to adjust the optimization level for JPEG files.
-For optimal results, use values above `90`.
+For best results, use values above `90`.
 
 ``` r
 
@@ -93,10 +93,10 @@ artifacts](reference/figures/jpg_example_compress_low.jpg)](https://dieghernan.g
 Figure 2: Image with visible compression artifacts caused by high
 compression (`qlty = 3`).
 
-All optimization functions return a data frame summarizing the
-optimization, invisibly. Successful API calls also write the optimized
-files to disk. The following example shows the returned data frame for a
-local image file:
+All optimization functions return, invisibly, a data frame summarizing
+the optimization. Successful API calls also write the optimized files to
+disk. The following example shows the returned data frame for a local
+image file:
 
 ``` r
 
@@ -130,7 +130,7 @@ Several other **R** packages provide image optimization tools:
     Compresses local files using **OptiPNG**, which must be installed
     locally.
 - The [**tinieR**](https://jmablog.github.io/tinieR/) package by
-  jmablog: An **R** interface to [**TinyPNG**](https://tinypng.com/).
+  jmablog: an **R** interface to [**TinyPNG**](https://tinypng.com/).
 - The **tinyimg** package ([Xie 2026](#ref-tinyimg)): Optimizes local
   PNG and JPEG files using Rust libraries. It supports lossless PNG
   optimization via `oxipng`, optional lossy PNG palette reduction, and
@@ -185,7 +185,7 @@ A BibTeX entry for LaTeX users:
   year = {2026},
   version = {1.0.1},
   url = {https://dieghernan.github.io/resmush/},
-  abstract = {Optimize and compress local image files, directories and online image files with the reSmush.it API <https://resmush.it/api/>. The API is free for personal use, accepts files smaller than 5 MB and supports PNG, JPEG, GIF, BMP and TIFF files.},
+  abstract = {Optimize and compress local image files, directories and online images with the reSmush.it API <https://resmush.it/api/>. The API is free for personal use, accepts files smaller than 5 MB and supports PNG, JPEG, GIF, BMP and TIFF files.},
 }
 ```
 

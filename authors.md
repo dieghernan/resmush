@@ -23,5 +23,5 @@ reSmush.it*.
       year = {2026},
       version = {1.0.1},
       url = {https://dieghernan.github.io/resmush/},
-      abstract = {Optimize and compress local image files, directories and online image files with the reSmush.it API <https://resmush.it/api/>. The API is free for personal use, accepts files smaller than 5 MB and supports PNG, JPEG, GIF, BMP and TIFF files.},
+      abstract = {Optimize and compress local image files, directories and online images with the reSmush.it API <https://resmush.it/api/>. The API is free for personal use, accepts files smaller than 5 MB and supports PNG, JPEG, GIF, BMP and TIFF files.},
     }

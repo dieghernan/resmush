@@ -1,7 +1,7 @@
 # Using resmush
 
 **resmush** is an **R** package for optimizing local image files,
-directories and online image files with the [**reSmush.it**
+directories and online images with the [**reSmush.it**
 API](https://resmush.it/api/). The API is free for personal use and does
 not require an API key. **reSmush.it** is also available through
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/)
@@ -54,7 +54,7 @@ image [Figure 1 (b)](#fig-new): 45 KB (compression: 74.8%). Click to
 enlarge.
 
 Use the `qlty` argument to adjust the optimization level for JPEG files.
-For optimal results, use values above `90`.
+For best results, use values above `90`.
 
 ``` r
 
@@ -78,10 +78,10 @@ artifacts](https://dieghernan.github.io/resmush/reference/figures/jpg_example_co
 Figure 2: Image with visible compression artifacts caused by high
 compression (`qlty = 3`), compared with [Figure 1 (b)](#fig-new).
 
-All optimization functions return a data frame summarizing the
-optimization, invisibly. Successful API calls also write the optimized
-files to disk. The following example shows the returned data frame for a
-local image file:
+All optimization functions return, invisibly, a data frame summarizing
+the optimization. Successful API calls also write the optimized files to
+disk. The following example shows the returned data frame for a local
+image file:
 
 ``` r
 
@@ -115,7 +115,7 @@ Several other **R** packages provide image optimization tools:
     Compresses local files using **OptiPNG**, which must be installed
     locally.
 - The [**tinieR**](https://jmablog.github.io/tinieR/) package by
-  jmablog: An **R** interface to [**TinyPNG**](https://tinypng.com/).
+  jmablog: an **R** interface to [**TinyPNG**](https://tinypng.com/).
 - The **tinyimg** package ([Xie 2026](#ref-tinyimg)): Optimizes local
   PNG and JPEG files using Rust libraries. It supports lossless PNG
   optimization via `oxipng`, optional lossy PNG palette reduction, and
