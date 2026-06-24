@@ -41,9 +41,9 @@ allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.rep
 <!-- badges: end -->
 
 **resmush** is an **R** package for optimizing local image files, directories
-and online image files with the [**reSmush.it** API](https://resmush.it/api/).
-The API is free for personal use and does not require an API key. **reSmush.it**
-is also available through
+and online images with the [**reSmush.it** API](https://resmush.it/api/). The
+API is free for personal use and does not require an API key. **reSmush.it** is
+also available through
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/) and [other
 tools](https://resmush.it/tools/).
 
@@ -52,14 +52,14 @@ The **reSmush.it** API provides:
 - Optimization without an API key.
 - Support for PNG, JPEG, GIF, BMP and TIFF files.
 - A file size limit of less than 5 MB.
-- Compression powered by several algorithms:
+- Compression powered by multiple algorithms:
   - [**pngquant**](https://pngquant.org/): Removes unnecessary data from PNG
     files while preserving full alpha transparency.
   - [**JPEGOptim**](https://github.com/tjko/jpegoptim): Lossless optimization
     based on Huffman table optimization.
   - [**OptiPNG**](https://optipng.sourceforge.net/): A PNG optimizer used by
     several online compression tools.
-    
+
 ::: callout-note
 This package is stable and maintained on a best-effort basis. I currently
 prioritize CRAN compatibility, bug fixes and regressions over new features.
@@ -138,7 +138,7 @@ width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_exampl
 :::
 
 Use the `qlty` argument to adjust the optimization level for JPEG files. For
-optimal results, use values above `90`.
+best results, use values above `90`.
 
 ```{r}
 #| label: jpgcompresslow
@@ -160,8 +160,8 @@ width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_exampl
 compression (`qlty = 3`).</figcaption>
 :::
 
-All optimization functions return a data frame summarizing the optimization,
-invisibly. Successful API calls also write the optimized files to disk. The
+All optimization functions return, invisibly, a data frame summarizing the
+optimization. Successful API calls also write the optimized files to disk. The
 following example shows the returned data frame for a local image file:
 
 ```{r}
@@ -186,7 +186,7 @@ Several other **R** packages provide image optimization tools:
     [**TinyPNG**](https://tinypng.com/) and requires an API key.
   - `xfun::optipng()`: Compresses local files using **OptiPNG**, which must be
     installed locally.
-- The [**tinieR**](https://jmablog.github.io/tinieR/) package by jmablog: An
+- The [**tinieR**](https://jmablog.github.io/tinieR/) package by jmablog: an
   **R** interface to [**TinyPNG**](https://tinypng.com/).
 - The **tinyimg** package [@tinyimg]: Optimizes local PNG and JPEG files using
   Rust libraries. It supports lossless PNG optimization via `oxipng`, optional
@@ -235,11 +235,11 @@ cat(
 )
 ```
 
-In practice, **resmush** is designed for quick image optimization with
-minimal setup, including support for online images and formats such as GIF,
-BMP and TIFF. Packages such as **tinyimg** may be a better fit for fully
-local workflows focused on PNG / JPEG optimization and fine-grained control
-over compression settings.
+In practice, **resmush** is designed for quick image optimization with minimal
+setup, including support for online images and formats such as GIF, BMP and
+TIFF. Packages such as **tinyimg** may be a better fit for fully local workflows
+focused on PNG / JPEG optimization and fine-grained control over compression
+settings.
 
 ## Citation
 

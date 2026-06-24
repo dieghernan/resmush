@@ -14,9 +14,9 @@ tbl-cap-location: bottom
 
 
 **resmush** is an **R** package for optimizing local image files, directories
-and online image files with the [**reSmush.it** API](https://resmush.it/api/).
-The API is free for personal use and does not require an API key. **reSmush.it**
-is also available through
+and online images with the [**reSmush.it** API](https://resmush.it/api/). The
+API is free for personal use and does not require an API key. **reSmush.it** is
+also available through
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/) and [other
 tools](https://resmush.it/tools/).
 
@@ -65,7 +65,7 @@ Original image @fig-orig: 178.7 KB, optimized image @fig-new: 45 KB
 :::
 
 Use the `qlty` argument to adjust the optimization level for JPEG files. For
-optimal results, use values above `90`.
+best results, use values above `90`.
 
 
 ``` r
@@ -91,8 +91,8 @@ Image with visible compression artifacts caused by high compression
 (`qlty = 3`), compared with @fig-new.
 :::
 
-All optimization functions return a data frame summarizing the optimization,
-invisibly. Successful API calls also write the optimized files to disk. The
+All optimization functions return, invisibly, a data frame summarizing the
+optimization. Successful API calls also write the optimized files to disk. The
 following example shows the returned data frame for a local image file:
 
 
@@ -122,7 +122,7 @@ Several other **R** packages provide image optimization tools:
     [**TinyPNG**](https://tinypng.com/) and requires an API key.
   - `xfun::optipng()`: Compresses local files using **OptiPNG**, which must be
     installed locally.
-- The [**tinieR**](https://jmablog.github.io/tinieR/) package by jmablog: An
+- The [**tinieR**](https://jmablog.github.io/tinieR/) package by jmablog: an
   **R** interface to [**TinyPNG**](https://tinypng.com/).
 - The **tinyimg** package [@tinyimg]: Optimizes local PNG and JPEG files using
   Rust libraries. It supports lossless PNG optimization via `oxipng`, optional
@@ -157,10 +157,10 @@ Several other **R** packages provide image optimization tools:
 **R** packages: supported formats.
 :::
 
-In practice, **resmush** is designed for quick image optimization with
-minimal setup, including support for online images and formats such as GIF,
-BMP and TIFF. Packages such as **tinyimg** may be a better fit for fully
-local workflows focused on PNG / JPEG optimization and fine-grained control
-over compression settings.
+In practice, **resmush** is designed for quick image optimization with minimal
+setup, including support for online images and formats such as GIF, BMP and
+TIFF. Packages such as **tinyimg** may be a better fit for fully local workflows
+focused on PNG / JPEG optimization and fine-grained control over compression
+settings.
 
 ## References
