@@ -91,9 +91,7 @@ show_report <- function(res_df, summary_type = "file") {
       )
 
       names(makebull) <- rep("!", nrow(nok))
-      cli::cli_alert_danger(
-        "Failed to optimize {.val {nrow(nok)}} URL{?s}:"
-      )
+      cli::cli_alert_danger("Failed to optimize {.val {nrow(nok)}} URL{?s}:")
     }
 
     cli::cli_bullets(makebull)

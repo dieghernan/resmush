@@ -7,32 +7,32 @@
 #'
 #' @param file A character vector of paths to local image files. The API can
 #'   optimize PNG, JPEG, GIF, BMP and TIFF files.
-#'
 #' @param suffix A character string inserted before each output file extension.
-#'   The default is `"_resmush"`, so `example.png` becomes
+#'   The default is `"_resmush"`. Therefore, `example.png` becomes
 #'   `example_resmush.png`. Values `""`, `NA` and `NULL` are equivalent to
 #'   `overwrite = TRUE`.
 #' @param overwrite Logical. Should the input files be overwritten? If `TRUE`,
 #'   `suffix` is ignored.
 #' @param progress Logical. Should a progress bar be displayed?
 #' @param report Logical. Should a summary report be displayed in the console?
-#' @param qlty An integer between `0` and `100` indicating the optimization
-#'   level. This only affects JPEG files. For optimal results, use values above
-#'   `90`.
+#' @param qlty An integer between `0` and `100` indicating the JPEG quality
+#'   level. For best results, use values above `90`. This argument only
+#'   affects JPEG files.
 #' @param exif_preserve Logical. Should
 #'   [EXIF](https://en.wikipedia.org/wiki/Exif) metadata be preserved? The
-#'   default is `FALSE`, which removes it.
+#'   default is `FALSE`. This removes it.
 #'
 #' @returns
-#' A data frame with source and destination paths, file sizes, compression
-#' ratios and status notes, returned invisibly. Successful API calls also write
-#' the optimized files to disk. If `report = TRUE`, a summary is displayed in
-#' the console.
+#' An invisibly returned data frame with one row per result and columns
+#' containing source and destination paths, formatted and raw file sizes,
+#' compression ratios and status notes. Returns `NULL` if no result is
+#' available. Successful API calls also write the optimized files to disk. If
+#' `report = TRUE`, a summary is displayed in the console.
 #'
 #' @seealso
-#' [reSmush.it API](https://resmush.it/api/) documentation.
-#'
-#' See [resmush_clean_dir()] to clean a directory of previous runs.
+#' - [resmush_clean_dir()] removes output files created by previous runs.
+#' - The [reSmush.it API documentation](https://resmush.it/api/) describes the
+#'   external service.
 #'
 #' @family optimize
 #' @export
@@ -67,7 +67,7 @@
 #'   grid::grid.raster(my_png)
 #' }
 #'
-#' # Adjust the optimization level for a JPEG file.
+#' # Adjust the JPEG quality level.
 #' resmush_file(tmp_jpg)
 #' resmush_file(tmp_jpg, qlty = 10)
 #' }
@@ -115,9 +115,7 @@ resmush_file_single <- function(
   outfile <- add_suffix(file, suffix, overwrite)
   res <- new_resmush_result(file)
 
-  # Allow checks to simulate offline mode.
-  test <- getOption("resmush_test_offline", FALSE)
-  if (any(isFALSE(httr2::is_online()), test)) {
+  if (isFALSE(resmush_is_online())) {
     res$notes <- "Offline"
     return(invisible(res))
   }
@@ -137,12 +135,10 @@ resmush_file_single <- function(
     return(invisible(res))
   }
 
-  # nocov start
   if (!"dest" %in% names(res_post)) {
-    res$notes <- "API not responding, check https://resmush.it/status"
+    res$notes <- "API is not responding. Check https://resmush.it/status"
     return(invisible(res))
   }
-  # nocov end
 
   dwn_opt <- download_optimized_file(
     url = res_post$dest,
@@ -154,10 +150,8 @@ resmush_file_single <- function(
     return(NULL)
   }
 
-  # Allow checks to simulate an invalid download response.
-  test_corner <- getOption("resmush_test_corner", FALSE)
-  if (any(httr2::resp_status(dwn_opt) != 200, test_corner)) {
-    res$notes <- "API not responding, check https://resmush.it/status"
+  if (httr2::resp_status(dwn_opt) != 200) {
+    res$notes <- "API is not responding. Check https://resmush.it/status"
     return(invisible(res))
   }
 

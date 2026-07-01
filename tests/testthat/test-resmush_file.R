@@ -5,11 +5,10 @@ test_that("Test offline", {
   test_png <- file.path(test_dir, "example.png")
   expect_true(file.exists(test_png))
 
-  # Options for testing
-  ops <- options()
-  options(resmush_test_offline = TRUE)
-
-  expect_true("resmush_test_offline" %in% names(options()))
+  local_mocked_bindings(
+    resmush_is_online = function() FALSE,
+    .package = "resmush"
+  )
 
   expect_silent(dm <- resmush_file(test_png, report = FALSE))
 
@@ -18,9 +17,6 @@ test_that("Test offline", {
 
   expect_equal(dm$src_img, test_png)
 
-  # Reset ops
-  options(resmush_test_offline = NULL)
-  expect_false("resmush_test_offline" %in% names(options()))
   unlink(test_dir, recursive = TRUE, force = TRUE)
 })
 
@@ -32,11 +28,15 @@ test_that("Test corner", {
   test_png <- file.path(test_dir, "example.png")
   expect_true(file.exists(test_png))
 
-  # Options for testing
-  ops <- options()
-  options(resmush_test_corner = TRUE)
-
-  expect_true("resmush_test_corner" %in% names(options()))
+  local_mocked_bindings(
+    resmush_is_online = function() TRUE,
+    smush_from_local = function(...) list(dest = "https://example.com/image"),
+    download_optimized_file = function(...) {
+      structure(list(), class = "httr2_response")
+    },
+    .package = "resmush"
+  )
+  local_mocked_bindings(resp_status = function(resp) 503L, .package = "httr2")
 
   expect_message(dm <- resmush_file(test_png))
 
@@ -45,9 +45,25 @@ test_that("Test corner", {
 
   expect_equal(dm$src_img, test_png)
 
-  # Reset ops
-  options(resmush_test_corner = NULL)
-  expect_false("resmush_test_corner" %in% names(options()))
+  unlink(test_dir, recursive = TRUE, force = TRUE)
+})
+
+test_that("Test API response without destination", {
+  test_dir <- load_dir_to_temp()
+  test_png <- file.path(test_dir, "example.png")
+
+  local_mocked_bindings(
+    resmush_is_online = function() TRUE,
+    smush_from_local = function(...) list(unexpected = TRUE),
+    .package = "resmush"
+  )
+
+  expect_silent(dm <- resmush_file(test_png, progress = FALSE, report = FALSE))
+
+  expect_s3_class(dm, "data.frame")
+  expect_snapshot(dm$notes)
+  expect_true(is.na(dm$dest_img))
+
   unlink(test_dir, recursive = TRUE, force = TRUE)
 })
 
@@ -75,7 +91,7 @@ test_that("Not valid file", {
   skip_if_offline()
 
   # tempfile
-  fl <- tempfile(, fileext = "txt")
+  fl <- tempfile(fileext = "txt")
 
   writeLines("testing a fake file", con = fl)
   expect_true(file.exists(fl))
@@ -171,7 +187,7 @@ test_that("Test qlty par with jpg", {
   # Use qlty
   expect_message(
     resmush_clean_dir(tempdir(), "_even_lower"),
-    "No files to clean"
+    "No files with suffix"
   )
   outf2 <- add_suffix(test_jpg, "_even_lower")
   expect_false(file.exists(outf2))
@@ -194,7 +210,7 @@ test_that("Test full vectors", {
 
   # Bad extension
   # tempfile
-  bad_ext <- tempfile(, fileext = ".txt")
+  bad_ext <- tempfile(fileext = ".txt")
 
   writeLines("testing a fake file", con = bad_ext)
   jpg_file <- load_inst_to_temp("example.jpg")
@@ -251,7 +267,7 @@ test_that("Test full vectors silent", {
 
   # Bad extension
   # tempfile
-  bad_ext <- tempfile(, fileext = ".txt")
+  bad_ext <- tempfile(fileext = ".txt")
 
   writeLines("testing a fake file", con = bad_ext)
   jpg_file <- load_inst_to_temp("example.jpg")
@@ -368,17 +384,23 @@ test_that("Test no file", {
   test_png <- file.path(test_dir, "example.png")
   expect_true(file.exists(test_png))
 
-  # Options for testing
-  ops <- options()
-  options(resmush_test_no_file = TRUE)
-
-  expect_true("resmush_test_no_file" %in% names(options()))
+  local_mocked_bindings(
+    resmush_is_online = function() TRUE,
+    smush_from_local = function(...) list(dest = "https://example.com/image"),
+    .package = "resmush"
+  )
+  local_mocked_bindings(
+    req_perform = function(req, path = NULL) {
+      structure(list(), class = "httr2_response")
+    },
+    resp_is_error = function(resp) TRUE,
+    resp_status = function(resp) 404L,
+    resp_status_desc = function(resp) "Not Found",
+    .package = "httr2"
+  )
 
   expect_message(dm <- resmush_file(test_png), regexp = "optimized file")
   expect_null(dm)
 
-  # Reset ops
-  options(resmush_test_no_file = NULL)
-  expect_false("resmush_test_no_file" %in% names(options()))
   unlink(test_dir, recursive = TRUE, force = TRUE)
 })

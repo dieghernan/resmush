@@ -13,8 +13,15 @@
     Output
         dest_img dest_size compress_ratio
       1       NA        NA             NA
-                                                      notes dest_bytes
-      1 API not responding, check https://resmush.it/status         NA
+                                                         notes dest_bytes
+      1 API is not responding. Check https://resmush.it/status         NA
+
+# Test API response without destination
+
+    Code
+      dm$notes
+    Output
+      [1] "API is not responding. Check https://resmush.it/status"
 
 # Test not provided file
 

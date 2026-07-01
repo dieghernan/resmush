@@ -1,6 +1,11 @@
+# resmush (development version)
+
+- Improved testing.
+
 # resmush 1.0.1
 
-- Improved console messages for optimization reports and cleanup helpers.
+- Improved console messages for optimization reports and file management
+  helpers.
 - Refactored internal code and updated function documentation with AI
   assistance.
 
@@ -40,7 +45,7 @@
 - `resmush_dir()`, `resmush_file()` and `resmush_url()` gained the `overwrite`
   argument.
 - `resmush_dir()`, `resmush_file()` and `resmush_url()` gained the `progress`
-  and `report` arguments, which add messages and progress bars using
+  and `report` arguments. These add messages and progress bars using
   `cli::cli_progress_bar()`.
 - `resmush_dir()`, `resmush_file()` and `resmush_url()` deprecated the `verbose`
   argument.

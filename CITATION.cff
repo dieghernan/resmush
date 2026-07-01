@@ -8,15 +8,15 @@ message: 'To cite package "resmush" in publications use:'
 type: software
 license: MIT
 title: 'resmush: Optimize and Compress Image Files with ''reSmush.it'''
-version: 1.0.1
+version: 1.0.1.9000
 doi: 10.32614/CRAN.package.resmush
 identifiers:
 - type: doi
   value: 10.32614/CRAN.package.resmush
-abstract: Optimize and compress local image files, directories and online images with
-  the 'reSmush.it' API <https://resmush.it/api/>. The API is free for personal use,
-  accepts files smaller than 5 MB and supports 'PNG', 'JPEG', 'GIF', 'BMP' and 'TIFF'
-  files.
+abstract: Optimize and compress local and online image files with the 'reSmush.it'
+  'API' <https://resmush.it/api/>. Process individual files or entire directories.
+  The 'API' is free for personal use, accepts files smaller than 5 'MB' and supports
+  'PNG', 'JPEG', 'GIF', 'BMP' and 'TIFF' files.
 authors:
 - family-names: Hernangómez
   given-names: Diego
@@ -32,12 +32,12 @@ preferred-citation:
     orcid: https://orcid.org/0000-0001-8457-4658
   doi: 10.32614/CRAN.package.resmush
   year: '2026'
-  version: 1.0.1
+  version: 1.0.1.9000
   url: https://dieghernan.github.io/resmush/
-  abstract: Optimize and compress local image files, directories and online images
-    with the reSmush.it API <https://resmush.it/api/>. The API is free for personal
-    use, accepts files smaller than 5 MB and supports PNG, JPEG, GIF, BMP and TIFF
-    files.
+  abstract: Optimize and compress local and online image files with the reSmush.it
+    API <https://resmush.it/api/>. Process individual files or entire directories.
+    The API is free for personal use, accepts files smaller than 5 MB and supports
+    PNG, JPEG, GIF, BMP and TIFF files.
 repository: https://CRAN.R-project.org/package=resmush
 repository-code: https://github.com/dieghernan/resmush
 url: https://dieghernan.github.io/resmush/
@@ -202,5 +202,5 @@ references:
     email: hadley@posit.co
   year: '2026'
   doi: 10.32614/CRAN.package.testthat
-  version: '>= 3.0.0'
+  version: '>= 3.1.7'
 

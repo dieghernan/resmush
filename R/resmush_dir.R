@@ -10,7 +10,7 @@
 #'   default matches lowercase `.png`, `.jpg`, `.jpeg`, `.gif`, `.bmp` and
 #'   `.tif` extensions.
 #' @param suffix A character string inserted before each output file extension.
-#'   The default is `"_resmush"`, so `example.png` becomes
+#'   The default is `"_resmush"`. Therefore, `example.png` becomes
 #'   `example_resmush.png`. Values `""`, `NA` and `NULL` are equivalent to
 #'   `overwrite = TRUE`.
 #' @param overwrite Logical. Should the input files be overwritten? If `TRUE`,
@@ -21,14 +21,15 @@
 #' @inheritDotParams resmush_file qlty exif_preserve
 #'
 #' @returns
-#' A data frame with source and destination paths, file sizes, compression
-#' ratios and status notes, returned invisibly. Successful API calls also write
-#' the optimized files to disk.
+#' An invisibly returned data frame with one row per result and columns
+#' containing source and destination paths, formatted and raw file sizes,
+#' compression ratios and status notes. Returns `NULL` if no result is
+#' available. Successful API calls also write the optimized files to disk.
 #'
 #' @seealso
-#' [reSmush.it API](https://resmush.it/api/) documentation.
-#'
-#' See [resmush_clean_dir()] to clean a directory of previous runs.
+#' - [resmush_clean_dir()] removes output files created by previous runs.
+#' - The [reSmush.it API documentation](https://resmush.it/api/) describes the
+#'   external service.
 #'
 #' @family optimize
 #' @export
@@ -43,11 +44,11 @@
 #' # Create the destination folder path.
 #' dest_folder <- file.path(tempdir(), "extimg")
 #'
-#' # Non-recursive.
+#' # Optimize files non-recursively.
 #' resmush_dir(dest_folder)
 #' resmush_clean_dir(dest_folder)
 #'
-#' # Recursive.
+#' # Optimize files recursively.
 #' summary <- resmush_dir(dest_folder, recursive = TRUE)
 #'
 #' # Inspect the returned optimization summary.
@@ -82,7 +83,7 @@ resmush_dir <- function(
 
   if (length(allfiles) < 1) {
     cli::cli_alert_info(
-      "No files found in {.path {dir}} matching extension pattern {.val {ext}}."
+      "No files matching {.val {ext}} found in {.path {dir}}."
     )
     return(invisible(NULL))
   }
