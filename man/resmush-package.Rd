@@ -9,7 +9,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Optimize and compress local and online image files with the 'reSmush.it' API \url{https://resmush.it/api/}. Process individual files or entire directories. The API is free for personal use, accepts files smaller than 5 MB and supports PNG, JPEG, GIF, BMP and TIFF files.
+Optimize and compress local and online image files with the 'reSmush.it' 'API' \url{https://resmush.it/api/}. Process individual files or entire directories. The 'API' is free for personal use, accepts files smaller than 5 'MB' and supports 'PNG', 'JPEG', 'GIF', 'BMP' and 'TIFF' files.
 }
 \seealso{
 \itemize{

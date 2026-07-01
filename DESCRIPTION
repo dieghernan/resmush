@@ -5,9 +5,10 @@ Authors@R:
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
 Description: Optimize and compress local and online image files with the
-    'reSmush.it' API <https://resmush.it/api/>. Process individual files
-    or entire directories. The API is free for personal use, accepts files
-    smaller than 5 MB and supports PNG, JPEG, GIF, BMP and TIFF files.
+    'reSmush.it' 'API' <https://resmush.it/api/>. Process individual files
+    or entire directories. The 'API' is free for personal use, accepts
+    files smaller than 5 'MB' and supports 'PNG', 'JPEG', 'GIF', 'BMP' and
+    'TIFF' files.
 License: MIT + file LICENSE
 URL: https://dieghernan.github.io/resmush/,
     https://github.com/dieghernan/resmush

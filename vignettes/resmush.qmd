@@ -135,7 +135,7 @@ Several other **R** packages provide image optimization tools:
 
 ::: {#tbl-opts}
 | Tool | CRAN | Additional software | Online images | API key required | Limits |
-|--------------|--------------|--------------|--------------|--------------|--------------|
+|----|----|----|----|----|----|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 compressions per month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | None |
 | **tinieR** | No | No | Yes | Yes | 500 compressions per month (free tier) |
