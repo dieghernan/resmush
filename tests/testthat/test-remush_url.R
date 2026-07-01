@@ -7,19 +7,15 @@ test_that("Test offline", {
     "extimg/example.png"
   )
 
-  # Options for testing
-  options(resmush_test_offline = TRUE)
-
-  expect_true("resmush_test_offline" %in% names(options()))
+  local_mocked_bindings(
+    resmush_is_online = function() FALSE,
+    .package = "resmush"
+  )
 
   expect_snapshot(dm <- resmush_url(png_url))
 
   expect_s3_class(dm, "data.frame")
   expect_snapshot(dm)
-
-  # Reset ops
-  options(resmush_test_offline = NULL)
-  expect_false("resmush_test_offline" %in% names(options()))
 })
 
 test_that("Test corner", {
@@ -32,22 +28,58 @@ test_that("Test corner", {
     "extimg/example.png"
   )
 
-  # Options for testing
-  ops <- options()
-  options(resmush_test_corner = TRUE)
-
-  expect_true("resmush_test_corner" %in% names(options()))
+  local_mocked_bindings(
+    resmush_is_online = function() TRUE,
+    smush_from_url = function(...) {
+      list(dest = "https://example.com/image", src_size = 1000)
+    },
+    download_optimized_file = function(...) {
+      structure(
+        list(),
+        class = "httr2_response"
+      )
+    },
+    .package = "resmush"
+  )
+  local_mocked_bindings(
+    resp_status = function(resp) 503L,
+    .package = "httr2"
+  )
 
   expect_snapshot(dm <- resmush_url(png_url))
 
   expect_s3_class(dm, "data.frame")
   expect_snapshot(dm)
 
-  # Reset ops
-  options(resmush_test_corner = NULL)
-  expect_false("resmush_test_corner" %in% names(options()))
-
   unlink(file.path(tempdir(), basename(dm$src_img)))
+})
+
+test_that("Test API response without destination", {
+  png_url <- "https://example.com/example.png"
+  outfile <- tempfile(fileext = ".png")
+
+  local_mocked_bindings(
+    resmush_is_online = function() TRUE,
+    smush_from_url = function(...) list(unexpected = TRUE),
+    .package = "resmush"
+  )
+
+  expect_silent(
+    dm <- resmush_url(
+      png_url,
+      outfile = outfile,
+      progress = FALSE,
+      report = FALSE
+    )
+  )
+
+  expect_s3_class(dm, "data.frame")
+  expect_equal(
+    dm$notes,
+    "API not responding, check https://resmush.it/status"
+  )
+  expect_true(is.na(dm$dest_img))
+  expect_false(file.exists(outfile))
 })
 
 test_that("Test not url", {
@@ -309,7 +341,7 @@ test_that("Test full vectors with outfile", {
 
   expect_length(unique(all_outs), 4)
 
-  expect_message(dm <- resmush_url(all_in, all_outs), )
+  expect_message(dm <- resmush_url(all_in, all_outs))
 
   expect_equal(nrow(dm), 4)
   expect_equal(dm$src_img, all_in)
@@ -439,17 +471,27 @@ test_that("Test no file", {
     "extimg/example.png"
   )
 
-  # Options for testing
-  ops <- options()
-  options(resmush_test_no_file = TRUE)
-
-  expect_true("resmush_test_no_file" %in% names(options()))
+  local_mocked_bindings(
+    resmush_is_online = function() TRUE,
+    smush_from_url = function(...) {
+      list(dest = "https://example.com/image", src_size = 1000)
+    },
+    .package = "resmush"
+  )
+  local_mocked_bindings(
+    req_perform = function(req, path = NULL) {
+      structure(
+        list(),
+        class = "httr2_response"
+      )
+    },
+    resp_is_error = function(resp) TRUE,
+    resp_status = function(resp) 404L,
+    resp_status_desc = function(resp) "Not Found",
+    .package = "httr2"
+  )
 
   expect_snapshot(dm <- resmush_url(png_url))
 
   expect_null(dm)
-
-  # Reset ops
-  options(resmush_test_no_file = NULL)
-  expect_false("resmush_test_no_file" %in% names(options()))
 })

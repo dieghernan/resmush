@@ -51,7 +51,7 @@ Optimize one or more local image files with the
 and accepts files smaller than 5 MB.
 }
 \examples{
-\dontshow{if (httr2::is_online()) withAutoprint(\{ # examplesIf}
+\dontshow{if (resmush_is_online()) withAutoprint(\{ # examplesIf}
 
 \donttest{
 png_file <- system.file("extimg/example.png", package = "resmush")

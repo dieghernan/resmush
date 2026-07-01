@@ -1,3 +1,5 @@
+# resmush (development version)
+
 # resmush 1.0.1
 
 - Improved console messages for optimization reports and cleanup helpers.

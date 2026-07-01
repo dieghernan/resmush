@@ -33,7 +33,7 @@
 #' @family optimize
 #' @export
 #' @encoding UTF-8
-#' @examplesIf httr2::is_online()
+#' @examplesIf resmush_is_online()
 #' \donttest{
 #' # Copy the example directory.
 #' example_dir <- system.file("extimg", package = "resmush")

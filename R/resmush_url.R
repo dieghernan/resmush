@@ -30,7 +30,7 @@
 #' @family optimize
 #' @export
 #' @encoding UTF-8
-#' @examplesIf httr2::is_online()
+#' @examplesIf resmush_is_online()
 #'
 #' \donttest{
 #' # Base URL.
@@ -119,9 +119,7 @@ resmush_url_single <- function(
 
   res <- new_resmush_result(url)
 
-  # Allow checks to simulate offline mode.
-  test <- getOption("resmush_test_offline", FALSE)
-  if (any(isFALSE(httr2::is_online()), test)) {
+  if (isFALSE(resmush_is_online())) {
     res$notes <- "Offline"
     return(invisible(res))
   }
@@ -133,12 +131,10 @@ resmush_url_single <- function(
     return(invisible(res))
   }
 
-  # nocov start
   if (!"dest" %in% names(res_get)) {
     res$notes <- "API not responding, check https://resmush.it/status"
     return(invisible(res))
   }
-  # nocov end
 
   dwn_opt <- download_optimized_file(
     url = res_get$dest,
@@ -150,9 +146,7 @@ resmush_url_single <- function(
     return(NULL)
   }
 
-  # Allow checks to simulate an invalid download response.
-  test_corner <- getOption("resmush_test_corner", FALSE)
-  if (any(httr2::resp_status(dwn_opt) != 200, test_corner)) {
+  if (httr2::resp_status(dwn_opt) != 200) {
     res$notes <- "API not responding, check https://resmush.it/status"
     return(invisible(res))
   }

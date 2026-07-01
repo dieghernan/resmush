@@ -60,7 +60,7 @@ Optimize supported image files in one or more directories with the
 and accepts files smaller than 5 MB.
 }
 \examples{
-\dontshow{if (httr2::is_online()) withAutoprint(\{ # examplesIf}
+\dontshow{if (resmush_is_online()) withAutoprint(\{ # examplesIf}
 \donttest{
 # Copy the example directory.
 example_dir <- system.file("extimg", package = "resmush")

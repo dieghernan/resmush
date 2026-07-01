@@ -51,7 +51,7 @@ Optimize and download one or more online image files with the
 and accepts files smaller than 5 MB.
 }
 \examples{
-\dontshow{if (httr2::is_online()) withAutoprint(\{ # examplesIf}
+\dontshow{if (resmush_is_online()) withAutoprint(\{ # examplesIf}
 
 \donttest{
 # Base URL.

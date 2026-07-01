@@ -261,7 +261,7 @@ A BibTeX entry for LaTeX users:
       doi = {10.32614/CRAN.package.resmush},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {1.0.1},
+      version = {1.0.1.9000},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Optimize and compress local image files, directories and online images with the reSmush.it API <https://resmush.it/api/>. The API is free for personal use, accepts files smaller than 5 MB and supports PNG, JPEG, GIF, BMP and TIFF files.},
     }

@@ -1,3 +1,10 @@
+#' Check whether an internet connection is available
+#'
+#' @noRd
+resmush_is_online <- function() {
+  httr2::is_online()
+}
+
 #' Format an integer as an `object_size` object
 #'
 #' @param x An integer.
@@ -127,8 +134,7 @@ download_optimized_file <- function(url, outfile, src, source_type) {
   })
   resp_head <- httr2::req_perform(req_head)
 
-  test_no_file <- getOption("resmush_test_no_file", FALSE)
-  if (any(httr2::resp_is_error(resp_head), test_no_file)) {
+  if (httr2::resp_is_error(resp_head)) {
     err_code <- httr2::resp_status(resp_head) # nolint
     err <- httr2::resp_status_desc(resp_head) # nolint
 

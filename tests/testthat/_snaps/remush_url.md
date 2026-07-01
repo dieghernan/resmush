@@ -101,6 +101,6 @@
     Code
       dm <- resmush_url(png_url)
     Message
-      x Cannot download optimized image from URL: HTTP 200 OK.
+      x Cannot download optimized image from URL: HTTP 404 Not Found.
       <https://raw.githubusercontent.com/dieghernan/resmush/main/inst/extimg/example.png>
 
