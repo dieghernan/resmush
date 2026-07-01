@@ -20,7 +20,7 @@ resmush_file(
 optimize PNG, JPEG, GIF, BMP and TIFF files.}
 
 \item{suffix}{A character string inserted before each output file extension.
-The default is \code{"_resmush"}, so \code{example.png} becomes
+The default is \code{"_resmush"}. Therefore, \code{example.png} becomes
 \code{example_resmush.png}. Values \code{""}, \code{NA} and \code{NULL} are equivalent to
 \code{overwrite = TRUE}.}
 
@@ -31,19 +31,20 @@ The default is \code{"_resmush"}, so \code{example.png} becomes
 
 \item{report}{Logical. Should a summary report be displayed in the console?}
 
-\item{qlty}{An integer between \code{0} and \code{100} indicating the optimization
-level. This only affects JPEG files. For optimal results, use values above
-\code{90}.}
+\item{qlty}{An integer between \code{0} and \code{100} indicating the JPEG quality
+level. For best results, use values above \code{90}. This argument only
+affects JPEG files.}
 
 \item{exif_preserve}{Logical. Should
 \href{https://en.wikipedia.org/wiki/Exif}{EXIF} metadata be preserved? The
-default is \code{FALSE}, which removes it.}
+default is \code{FALSE}. This removes it.}
 }
 \value{
-A data frame with source and destination paths, file sizes, compression
-ratios and status notes, returned invisibly. Successful API calls also write
-the optimized files to disk. If \code{report = TRUE}, a summary is displayed in
-the console.
+An invisibly returned data frame with one row per result and columns
+containing source and destination paths, formatted and raw file sizes,
+compression ratios and status notes. Returns \code{NULL} if no result is
+available. Successful API calls also write the optimized files to disk. If
+\code{report = TRUE}, a summary is displayed in the console.
 }
 \description{
 Optimize one or more local image files with the
@@ -51,7 +52,7 @@ Optimize one or more local image files with the
 and accepts files smaller than 5 MB.
 }
 \examples{
-\dontshow{if (resmush_is_online()) withAutoprint(\{ # examplesIf}
+\dontshow{if (httr2::is_online()) withAutoprint(\{ # examplesIf}
 
 \donttest{
 png_file <- system.file("extimg/example.png", package = "resmush")
@@ -81,16 +82,18 @@ if (require("png", quietly = TRUE)) {
   grid::grid.raster(my_png)
 }
 
-# Adjust the optimization level for a JPEG file.
+# Adjust the JPEG quality level.
 resmush_file(tmp_jpg)
 resmush_file(tmp_jpg, qlty = 10)
 }
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\href{https://resmush.it/api/}{reSmush.it API} documentation.
-
-See \code{\link[=resmush_clean_dir]{resmush_clean_dir()}} to clean a directory of previous runs.
+\itemize{
+\item \code{\link[=resmush_clean_dir]{resmush_clean_dir()}} removes output files created by previous runs.
+\item The \href{https://resmush.it/api/}{reSmush.it API documentation} describes the
+external service.
+}
 
 Other image optimization functions:
 \code{\link[=resmush_dir]{resmush_dir()}},

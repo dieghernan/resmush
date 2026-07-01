@@ -17,15 +17,15 @@ results](https://badges.cranchecks.info/worst/resmush.svg)](https://cran.r-proje
 [![r-universe](https://dieghernan.r-universe.dev/badges/resmush)](https://dieghernan.r-universe.dev/resmush)
 [![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.resmush-blue)](https://doi.org/10.32614/CRAN.package.resmush)
 [![Project Status: Inactive – The project has reached a stable, usable
-state but is no longer being actively developed; support/maintenance
+state but is no longer being actively developed. Support/maintenance
 will be provided as time
 allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
 [![status](https://tinyverse.netlify.app/status/resmush)](https://CRAN.R-project.org/package=resmush)
 
 <!-- badges: end -->
 
-**resmush** is an **R** package for optimizing local image files,
-directories and online images with the [**reSmush.it**
+**resmush** is an **R** package for optimizing local and online image
+files, individually or in entire directories, with the [**reSmush.it**
 API](https://resmush.it/api/). The API is free for personal use and does
 not require an API key. **reSmush.it** is also available through
 [WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/)
@@ -36,10 +36,10 @@ The **reSmush.it** API provides:
 - Optimization without an API key.
 - Support for PNG, JPEG, GIF, BMP and TIFF files.
 - A file size limit of less than 5 MB.
-- Compression powered by multiple algorithms:
+- Compression powered by several algorithms:
   - [**pngquant**](https://pngquant.org/): Removes unnecessary data from
     PNG files while preserving full alpha transparency.
-  - [**JPEGOptim**](https://github.com/tjko/jpegoptim): Lossless
+  - [**jpegoptim**](https://github.com/tjko/jpegoptim): Lossless
     optimization based on Huffman table optimization.
   - [**OptiPNG**](https://optipng.sourceforge.net/): A PNG optimizer
     used by several online compression tools.
@@ -138,11 +138,11 @@ Figure 1: Original image <em>(a)</em>: 178.7 KB, optimized image
 
 </div>
 
-Use the `qlty` argument to adjust the optimization level for JPEG files.
-For best results, use values above `90`.
+Use the `qlty` argument to adjust the JPEG quality level. For best
+results, use values above `90`.
 
 ``` r
-# Use a low optimization level.
+# Use a low JPEG quality level.
 resmush_url(
   url,
   outfile = "man/figures/jpg_example_compress_low.jpg",
@@ -168,10 +168,12 @@ compression (`qlty = 3`).
 
 </div>
 
-All optimization functions return, invisibly, a data frame summarizing
-the optimization. Successful API calls also write the optimized files to
-disk. The following example shows the returned data frame for a local
-image file:
+When results are available, all optimization functions invisibly return
+a data frame with one row per result and columns containing source and
+destination paths, formatted and raw file sizes, compression ratios and
+status notes. They return `NULL` otherwise. Successful API calls also
+write the optimized files to disk. The following example shows the
+result for a local image file:
 
 ``` r
 png_file <- system.file("extimg/example.png", package = "resmush")
@@ -194,30 +196,29 @@ tibble::as_tibble(summary[, -c(1, 2)])
 
 Several other **R** packages provide image optimization tools:
 
-- The **xfun** package ([Xie 2024](#ref-xfun)), which includes:
+- The **xfun** package ([Xie 2026b](#ref-xfun)) provides:
   - `xfun::tinify()`: Similar to `resmush_file()` but uses
     [**TinyPNG**](https://tinypng.com/) and requires an API key.
-  - `xfun::optipng()`: Compresses local files using **OptiPNG**, which
-    must be installed locally.
-- The [**tinieR**](https://jmablog.github.io/tinieR/) package by
-  jmablog: an **R** interface to [**TinyPNG**](https://tinypng.com/).
-- The **tinyimg** package ([Xie 2026](#ref-tinyimg)): Optimizes local
+  - `xfun::optipng()`: Compresses local files using **OptiPNG**. The
+    program must be installed locally.
+- The [**tinieR**](https://jmablog.github.io/tinieR/) package: An **R**
+  interface to [**TinyPNG**](https://tinypng.com/).
+- The **tinyimg** package ([Xie 2026a](#ref-tinyimg)): Optimizes local
   PNG and JPEG files using Rust libraries. It supports lossless PNG
-  optimization via `oxipng`, optional lossy PNG palette reduction, and
-  JPEG re-encoding via `mozjpeg`.
-- The [**optout**](https://github.com/coolbutuseless/optout) package by
-  [@coolbutuseless](https://coolbutuseless.github.io/): Similar to
-  `xfun::optipng()` but with more options. Requires additional local
-  software.
+  optimization via **oxipng**, optional lossy PNG palette reduction and
+  JPEG re-encoding via **mozjpeg**.
+- The [**optout**](https://github.com/coolbutuseless/optout) package:
+  Similar to `xfun::optipng()` but with more options. It requires
+  additional local software.
 
 | Tool | CRAN | Additional software | Online images | API key required | Limits |
 |----|----|----|----|----|----|
-| `xfun::tinify()` | Yes | No | Yes | Yes | 500 compressions/month (free tier) |
-| `xfun::optipng()` | Yes | Yes | No | No | No |
-| **tinieR** | No | No | Yes | Yes | 500 compressions/month (free tier) |
-| **tinyimg** | Yes | Yes (Rust toolchain) | No | No | No |
-| **optout** | No | Yes | No | No | No |
-| **resmush** | Yes | No | Yes | No | Personal use, files under 5 MB |
+| `xfun::tinify()` | Yes | No | Yes | Yes | 500 compressions per month (free tier) |
+| `xfun::optipng()` | Yes | Yes | No | No | None |
+| **tinieR** | No | No | Yes | Yes | 500 compressions per month (free tier) |
+| **tinyimg** | Yes | Yes (Rust toolchain) | No | No | None |
+| **optout** | No | Yes | No | No | None |
+| **resmush** | Yes | No | Yes | No | Personal use only. Files smaller than 5 MB. |
 
 <p class="caption">
 
@@ -239,9 +240,9 @@ Table 2: **R** packages: supported formats.
 </p>
 
 In practice, **resmush** is designed for quick image optimization with
-minimal setup, including support for online images and formats such as
-GIF, BMP and TIFF. Packages such as **tinyimg** may be a better fit for
-fully local workflows focused on PNG / JPEG optimization and
+minimal setup, including support for online image files and formats such
+as GIF, BMP and TIFF. Packages such as **tinyimg** may be a better fit
+for fully local workflows focused on PNG and JPEG optimization and
 fine-grained control over compression settings.
 
 ## Citation
@@ -263,25 +264,25 @@ A BibTeX entry for LaTeX users:
       year = {2026},
       version = {1.0.1.9000},
       url = {https://dieghernan.github.io/resmush/},
-      abstract = {Optimize and compress local image files, directories and online images with the reSmush.it API <https://resmush.it/api/>. The API is free for personal use, accepts files smaller than 5 MB and supports PNG, JPEG, GIF, BMP and TIFF files.},
+      abstract = {Optimize and compress local and online image files with the reSmush.it API <https://resmush.it/api/>. Process individual files or entire directories. The API is free for personal use, accepts files smaller than 5 MB and supports PNG, JPEG, GIF, BMP and TIFF files.},
     }
 
 ## References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-xfun" class="csl-entry">
+<div id="ref-tinyimg" class="csl-entry">
 
-Xie, Yihui. 2024. *<span class="nocase">xfun</span>: Supporting
-Functions for Packages Maintained by Yihui Xie*.
-<https://github.com/yihui/xfun>.
+Xie, Yihui. 2026a. *<span class="nocase">tinyimg</span>: Optimize and
+Compress Images*. <https://doi.org/10.32614/CRAN.package.tinyimg>.
 
 </div>
 
-<div id="ref-tinyimg" class="csl-entry">
+<div id="ref-xfun" class="csl-entry">
 
-Xie, Yihui. 2026. *<span class="nocase">tinyimg</span>: Optimize and
-Compress Images*. <https://doi.org/10.32614/CRAN.package.tinyimg>.
+Xie, Yihui. 2026b. *<span class="nocase">xfun</span>: Supporting
+Functions for Packages Maintained by Yihui Xie*.
+<https://github.com/yihui/xfun>.
 
 </div>
 

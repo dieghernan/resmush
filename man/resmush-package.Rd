@@ -9,16 +9,20 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Optimize and compress local image files, directories and online images with the 'reSmush.it' API \url{https://resmush.it/api/}. The API is free for personal use, accepts files smaller than 5 MB and supports 'PNG', 'JPEG', 'GIF', 'BMP' and 'TIFF' files.
+Optimize and compress local and online image files with the 'reSmush.it' API \url{https://resmush.it/api/}. Process individual files or entire directories. The API is free for personal use, accepts files smaller than 5 MB and supports PNG, JPEG, GIF, BMP and TIFF files.
 }
 \seealso{
-Useful links:
 \itemize{
-  \item \url{https://dieghernan.github.io/resmush/}
-  \item \url{https://github.com/dieghernan/resmush}
-  \item Report bugs at \url{https://github.com/dieghernan/resmush/issues}
+\item \code{\link[=resmush_file]{resmush_file()}} optimizes local image files.
+\item \code{\link[=resmush_dir]{resmush_dir()}} optimizes image files in directories.
+\item \code{\link[=resmush_url]{resmush_url()}} optimizes online image files.
+\item The \href{https://dieghernan.github.io/resmush/}{package website} provides
+articles and reference documentation.
+\item The \href{https://github.com/dieghernan/resmush}{source code} is available on
+GitHub.
+\item \href{https://github.com/dieghernan/resmush/issues}{Report bugs} in the issue
+tracker.
 }
-
 }
 \author{
 \strong{Maintainer}: Diego Hernangómez \email{diego.hernangomezherrero@gmail.com} (\href{https://orcid.org/0000-0001-8457-4658}{ORCID}) [copyright holder]

@@ -1,5 +1,9 @@
 #' Check whether an internet connection is available
 #'
+#' Checks whether an internet connection is available.
+#'
+#' @returns A logical value.
+#'
 #' @noRd
 resmush_is_online <- function() {
   httr2::is_online()
@@ -7,7 +11,13 @@ resmush_is_online <- function() {
 
 #' Format an integer as an `object_size` object
 #'
+#' Assigns the `object_size` class to an integer and formats it using
+#' automatically selected units.
+#'
 #' @param x An integer.
+#'
+#' @returns A formatted character string.
+#'
 #' @noRd
 make_pretty_size <- function(x) {
   x <- as.integer(x)
@@ -19,7 +29,11 @@ make_pretty_size <- function(x) {
 
 #' Create an empty result table
 #'
+#' Creates a one-row result table initialized with missing values.
+#'
 #' @param src Input image path or URL.
+#'
+#' @returns A data frame with one row.
 #'
 #' @noRd
 new_resmush_result <- function(src) {
@@ -37,8 +51,12 @@ new_resmush_result <- function(src) {
 
 #' Add size and compression metadata to a result table
 #'
+#' Adds formatted and raw file sizes, the compression ratio and a success note.
+#'
 #' @param res Result table created by `new_resmush_result()`.
 #' @param src_size,dest_size Source and destination sizes in bytes.
+#'
+#' @returns The updated result data frame.
 #'
 #' @noRd
 add_size_summary <- function(res, src_size, dest_size) {
@@ -56,10 +74,14 @@ add_size_summary <- function(res, src_size, dest_size) {
 
 #' Process inputs with optional progress reporting
 #'
+#' Applies a worker function to each input and combines non-`NULL` results.
+#'
 #' @param inputs A character vector of image paths or URLs.
 #' @param worker A function called once per input position.
 #' @param progress Logical. Should a progress bar be displayed?
 #' @param progress_label A label displayed after the progress counter.
+#'
+#' @returns A data frame or `NULL` if every worker result is `NULL`.
 #'
 #' @noRd
 resmush_map <- function(inputs, worker, progress, progress_label) {
@@ -115,10 +137,15 @@ resmush_map <- function(inputs, worker, progress, progress_label) {
 
 #' Download an optimized file returned by the API
 #'
+#' Checks the remote file with a `HEAD` request before downloading it.
+#'
 #' @param url An optimized image URL returned by the API.
 #' @param outfile A destination path.
 #' @param src The original source used in error messages.
 #' @param source_type Either `"file"` or `"url"`.
+#'
+#' @returns An HTTP response object or `NULL` if the remote file is
+#'   unavailable.
 #'
 #' @noRd
 download_optimized_file <- function(url, outfile, src, source_type) {
@@ -140,13 +167,13 @@ download_optimized_file <- function(url, outfile, src, source_type) {
 
     if (source_type == "file") {
       cli::cli_alert_danger(paste0(
-        "Cannot download optimized file: HTTP ",
-        "{.val {err_code}} {.emph {err}}.\n{.path {src}}"
+        "Cannot download optimized file {.path {src}}. HTTP status: ",
+        "{.val {err_code}} ({.emph {err}})."
       ))
     } else {
       cli::cli_alert_danger(paste0(
-        "Cannot download optimized image from URL: HTTP ",
-        "{.val {err_code}} {.emph {err}}.\n{.url {src}}"
+        "Cannot download optimized image {.url {src}}. HTTP status: ",
+        "{.val {err_code}} ({.emph {err}})."
       ))
     }
 
@@ -158,9 +185,13 @@ download_optimized_file <- function(url, outfile, src, source_type) {
 
 #' Add a suffix before a file extension
 #'
+#' Inserts a suffix between the file stem and extension.
+#'
 #' @param x A character vector.
 #' @param suffix A suffix to add.
 #' @param overwrite Logical. Should the input paths be returned unchanged?
+#'
+#' @returns A character vector of file paths.
 #'
 #' @noRd
 add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
@@ -179,8 +210,12 @@ add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
 
 #' Create a unique file path to avoid overwriting
 #'
+#' Adds an incrementing numeric suffix when a path already exists.
+#'
 #' @param x A file path.
 #' @param overwrite Logical. Should an existing file be overwritten?
+#'
+#' @returns A file path.
 #'
 #' @noRd
 make_unique_paths <- function(x, overwrite) {

@@ -32,17 +32,11 @@ test_that("Test corner", {
     resmush_is_online = function() TRUE,
     smush_from_local = function(...) list(dest = "https://example.com/image"),
     download_optimized_file = function(...) {
-      structure(
-        list(),
-        class = "httr2_response"
-      )
+      structure(list(), class = "httr2_response")
     },
     .package = "resmush"
   )
-  local_mocked_bindings(
-    resp_status = function(resp) 503L,
-    .package = "httr2"
-  )
+  local_mocked_bindings(resp_status = function(resp) 503L, .package = "httr2")
 
   expect_message(dm <- resmush_file(test_png))
 
@@ -64,15 +58,10 @@ test_that("Test API response without destination", {
     .package = "resmush"
   )
 
-  expect_silent(
-    dm <- resmush_file(test_png, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_file(test_png, progress = FALSE, report = FALSE))
 
   expect_s3_class(dm, "data.frame")
-  expect_equal(
-    dm$notes,
-    "API not responding, check https://resmush.it/status"
-  )
+  expect_snapshot(dm$notes)
   expect_true(is.na(dm$dest_img))
 
   unlink(test_dir, recursive = TRUE, force = TRUE)
@@ -198,7 +187,7 @@ test_that("Test qlty par with jpg", {
   # Use qlty
   expect_message(
     resmush_clean_dir(tempdir(), "_even_lower"),
-    "No files to clean"
+    "No files with suffix"
   )
   outf2 <- add_suffix(test_jpg, "_even_lower")
   expect_false(file.exists(outf2))
@@ -402,10 +391,7 @@ test_that("Test no file", {
   )
   local_mocked_bindings(
     req_perform = function(req, path = NULL) {
-      structure(
-        list(),
-        class = "httr2_response"
-      )
+      structure(list(), class = "httr2_response")
     },
     resp_is_error = function(resp) TRUE,
     resp_status = function(resp) 404L,

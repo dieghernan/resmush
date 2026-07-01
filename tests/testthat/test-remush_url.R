@@ -34,17 +34,11 @@ test_that("Test corner", {
       list(dest = "https://example.com/image", src_size = 1000)
     },
     download_optimized_file = function(...) {
-      structure(
-        list(),
-        class = "httr2_response"
-      )
+      structure(list(), class = "httr2_response")
     },
     .package = "resmush"
   )
-  local_mocked_bindings(
-    resp_status = function(resp) 503L,
-    .package = "httr2"
-  )
+  local_mocked_bindings(resp_status = function(resp) 503L, .package = "httr2")
 
   expect_snapshot(dm <- resmush_url(png_url))
 
@@ -74,10 +68,7 @@ test_that("Test API response without destination", {
   )
 
   expect_s3_class(dm, "data.frame")
-  expect_equal(
-    dm$notes,
-    "API not responding, check https://resmush.it/status"
-  )
+  expect_snapshot(dm$notes)
   expect_true(is.na(dm$dest_img))
   expect_false(file.exists(outfile))
 })
@@ -480,10 +471,7 @@ test_that("Test no file", {
   )
   local_mocked_bindings(
     req_perform = function(req, path = NULL) {
-      structure(
-        list(),
-        class = "httr2_response"
-      )
+      structure(list(), class = "httr2_response")
     },
     resp_is_error = function(resp) TRUE,
     resp_status = function(resp) 404L,

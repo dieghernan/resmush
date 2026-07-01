@@ -7,15 +7,16 @@
 #'
 #' @param dir A character vector of directory paths. See the `path` argument of
 #'   [list.files()].
-#' @param suffix A character string identifying files to remove. The default is
-#'   `"_resmush"`, the default suffix used by [resmush_file()].
+#' @param suffix A character string containing the suffix pattern used to
+#'   identify files. The value is interpreted as a regular expression. The
+#'   default is `"_resmush"`, the default suffix used by [resmush_file()].
 #' @param recursive Logical. Should the file search recurse into directories?
 #'
 #' @returns
 #' An [invisible()] `NULL`. Messages list the files selected for removal.
 #'
-#' @seealso
-#' [resmush_file()], [resmush_dir()], [list.files()], [unlink()].
+#' @seealso [resmush_file()] and [resmush_dir()] create the suffixed output
+#'   files that this function removes.
 #'
 #' @family helpers
 #' @export
@@ -55,14 +56,18 @@ resmush_clean_dir <- function(dir, suffix = "_resmush", recursive = FALSE) {
 
   if (length(allfiles) < 1) {
     cli::cli_alert_info(
-      "No files to clean in {.path {dir}} with suffix {.val {suffix}}."
+      "No files with suffix {.val {suffix}} found in {.path {dir}}."
     )
     return(invisible(NULL))
   }
 
   cli::cli_alert_info("Removing {.val {length(allfiles)}} file{?s}:")
 
-  make_bull <- allfiles
+  make_bull <- vapply(
+    allfiles,
+    function(path) cli::format_inline("{.path {path}}"),
+    character(1)
+  )
   names(make_bull) <- rep(">", length(make_bull))
   cli::cli_bullets(make_bull)
 

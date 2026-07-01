@@ -13,7 +13,7 @@ test_that("Message when no files", {
   expect_true(file.copy(png_file, tmp_png, overwrite = TRUE))
 
   # Message
-  expect_message(resmush_clean_dir(dir_temp), "No files to clean in")
+  expect_message(resmush_clean_dir(dir_temp), "No files with suffix")
 
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })

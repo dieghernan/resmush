@@ -28,7 +28,7 @@
       i Input: 1 URL, 0 bytes total.
       x Failed to optimize 1 URL:
       ! <https://raw.githubusercontent.com/dieghernan/resmush/main/inst/extimg/example.png>:
-        API not responding, check https://resmush.it/status.
+        API is not responding. Check https://resmush.it/status.
 
 ---
 
@@ -39,8 +39,15 @@
       1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst/extimg/example.png
         dest_img src_size dest_size compress_ratio
       1       NA       NA        NA             NA
-                                                      notes src_bytes dest_bytes
-      1 API not responding, check https://resmush.it/status        NA         NA
+                                                         notes src_bytes dest_bytes
+      1 API is not responding. Check https://resmush.it/status        NA         NA
+
+# Test API response without destination
+
+    Code
+      dm$notes
+    Output
+      [1] "API is not responding. Check https://resmush.it/status"
 
 # Test not url
 
@@ -94,13 +101,12 @@
       dm <- resmush_url(two_input, several_outputs)
     Condition
       Error in `resmush_url()`:
-      ! `url` and `outfile` must have the same length (2 vs. 3).
+      ! `url` and `outfile` must have the same length. They have lengths 2 and 3, respectively.
 
 # Test no file
 
     Code
       dm <- resmush_url(png_url)
     Message
-      x Cannot download optimized image from URL: HTTP 404 Not Found.
-      <https://raw.githubusercontent.com/dieghernan/resmush/main/inst/extimg/example.png>
+      x Cannot download optimized image <https://raw.githubusercontent.com/dieghernan/resmush/main/inst/extimg/example.png>. HTTP status: 404 (Not Found).
 

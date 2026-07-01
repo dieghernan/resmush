@@ -24,7 +24,7 @@ default matches lowercase \code{.png}, \code{.jpg}, \code{.jpeg}, \code{.gif}, \
 \code{.tif} extensions.}
 
 \item{suffix}{A character string inserted before each output file extension.
-The default is \code{"_resmush"}, so \code{example.png} becomes
+The default is \code{"_resmush"}. Therefore, \code{example.png} becomes
 \code{example_resmush.png}. Values \code{""}, \code{NA} and \code{NULL} are equivalent to
 \code{overwrite = TRUE}.}
 
@@ -41,18 +41,19 @@ See \code{\link[=list.files]{list.files()}}.}
 \item{...}{
   Arguments passed on to \code{\link{resmush_file}}
   \describe{
-    \item{\code{qlty}}{An integer between \code{0} and \code{100} indicating the optimization
-level. This only affects JPEG files. For optimal results, use values above
-\code{90}.}
+    \item{\code{qlty}}{An integer between \code{0} and \code{100} indicating the JPEG quality
+level. For best results, use values above \code{90}. This argument only
+affects JPEG files.}
     \item{\code{exif_preserve}}{Logical. Should
 \href{https://en.wikipedia.org/wiki/Exif}{EXIF} metadata be preserved? The
-default is \code{FALSE}, which removes it.}
+default is \code{FALSE}. This removes it.}
   }}
 }
 \value{
-A data frame with source and destination paths, file sizes, compression
-ratios and status notes, returned invisibly. Successful API calls also write
-the optimized files to disk.
+An invisibly returned data frame with one row per result and columns
+containing source and destination paths, formatted and raw file sizes,
+compression ratios and status notes. Returns \code{NULL} if no result is
+available. Successful API calls also write the optimized files to disk.
 }
 \description{
 Optimize supported image files in one or more directories with the
@@ -60,7 +61,7 @@ Optimize supported image files in one or more directories with the
 and accepts files smaller than 5 MB.
 }
 \examples{
-\dontshow{if (resmush_is_online()) withAutoprint(\{ # examplesIf}
+\dontshow{if (httr2::is_online()) withAutoprint(\{ # examplesIf}
 \donttest{
 # Copy the example directory.
 example_dir <- system.file("extimg", package = "resmush")
@@ -70,11 +71,11 @@ file.copy(example_dir, temp_dir, recursive = TRUE)
 # Create the destination folder path.
 dest_folder <- file.path(tempdir(), "extimg")
 
-# Non-recursive.
+# Optimize files non-recursively.
 resmush_dir(dest_folder)
 resmush_clean_dir(dest_folder)
 
-# Recursive.
+# Optimize files recursively.
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 
 # Inspect the returned optimization summary.
@@ -93,9 +94,11 @@ unlink(dest_folder, force = TRUE, recursive = TRUE)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\href{https://resmush.it/api/}{reSmush.it API} documentation.
-
-See \code{\link[=resmush_clean_dir]{resmush_clean_dir()}} to clean a directory of previous runs.
+\itemize{
+\item \code{\link[=resmush_clean_dir]{resmush_clean_dir()}} removes output files created by previous runs.
+\item The \href{https://resmush.it/api/}{reSmush.it API documentation} describes the
+external service.
+}
 
 Other image optimization functions:
 \code{\link[=resmush_file]{resmush_file()}},

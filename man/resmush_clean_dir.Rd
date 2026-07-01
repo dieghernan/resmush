@@ -11,8 +11,9 @@ resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 \item{dir}{A character vector of directory paths. See the \code{path} argument of
 \code{\link[=list.files]{list.files()}}.}
 
-\item{suffix}{A character string identifying files to remove. The default is
-\code{"_resmush"}, the default suffix used by \code{\link[=resmush_file]{resmush_file()}}.}
+\item{suffix}{A character string containing the suffix pattern used to
+identify files. The value is interpreted as a regular expression. The
+default is \code{"_resmush"}, the default suffix used by \code{\link[=resmush_file]{resmush_file()}}.}
 
 \item{recursive}{Logical. Should the file search recurse into directories?}
 }
@@ -51,6 +52,7 @@ file.exists(tmp_png)
 }
 }
 \seealso{
-\code{\link[=resmush_file]{resmush_file()}}, \code{\link[=resmush_dir]{resmush_dir()}}, \code{\link[=list.files]{list.files()}}, \code{\link[=unlink]{unlink()}}.
+\code{\link[=resmush_file]{resmush_file()}} and \code{\link[=resmush_dir]{resmush_dir()}} create the suffixed output
+files that this function removes.
 }
 \concept{helpers}
