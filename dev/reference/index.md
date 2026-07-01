@@ -1,28 +1,27 @@
 # Package index
 
-## Optimization functions
+## Optimize image files
 
-Optimize local image files, directories and URLs with the reSmush.it
-API.
+Optimize local and online image files, individually or in entire
+directories, with the reSmush.it API.
 
-- [`resmush_file()`](https://dieghernan.github.io/resmush/dev/reference/resmush_file.md)
-  : Optimize local image files
 - [`resmush_dir()`](https://dieghernan.github.io/resmush/dev/reference/resmush_dir.md)
   : Optimize image files in directories
+- [`resmush_file()`](https://dieghernan.github.io/resmush/dev/reference/resmush_file.md)
+  : Optimize local image files
 - [`resmush_url()`](https://dieghernan.github.io/resmush/dev/reference/resmush_url.md)
   : Optimize online image files
 
-## Helper functions
+## Manage output files
 
-Clean files created by previous optimization runs.
+Remove suffixed output files from one or more directories.
 
 - [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/dev/reference/resmush_clean_dir.md)
-  :
-
-  Clean files created by
-  [resmush](https://CRAN.R-project.org/package=resmush)
+  : Remove output files from directories
 
 ## About the package
+
+Package overview and metadata.
 
 - [`resmush`](https://dieghernan.github.io/resmush/dev/reference/resmush-package.md)
   [`resmush-package`](https://dieghernan.github.io/resmush/dev/reference/resmush-package.md)

@@ -1,7 +1,8 @@
 # Optimize online image files
 
 Optimize and download one or more online image files with the
-[reSmush.it API](https://resmush.it/).
+[reSmush.it API](https://resmush.it/api/). The API is free for personal
+use and accepts files smaller than 5 MB.
 
 ## Usage
 
@@ -21,22 +22,22 @@ resmush_url(
 
 - url:
 
-  URL or vector of URLs pointing to hosted image files. The API can
-  optimize `png`, `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
+  A character vector of URLs pointing to hosted image files. The API can
+  optimize PNG, JPEG, GIF, BMP and TIFF files.
 
 - outfile:
 
-  Path or paths where optimized files are stored on disk. By default,
-  temporary files are created with
-  [`tempfile()`](https://rdrr.io/r/base/tempfile.html) and the same
-  [`basename()`](https://rdrr.io/r/base/basename.html) as the file
-  provided in `url`. `outfile` must have the same length as `url`.
+  A character vector of paths where optimized files are stored. By
+  default, files are created in
+  [`tempdir()`](https://rdrr.io/r/base/tempfile.html) with the same
+  [`basename()`](https://rdrr.io/r/base/basename.html) as each file in
+  `url`. `outfile` must have the same length as `url`.
 
 - overwrite:
 
-  Logical. Should `outfile` be overwritten if it already exists? If
-  `FALSE` and `outfile` exists, a copy is created with a numerical
-  suffix, such as `<outfile>_01.png`.
+  Logical. Should existing files in `outfile` be overwritten? If
+  `FALSE`, existing paths are made unique with a numeric suffix, such as
+  `example_01.png`.
 
 - progress:
 
@@ -48,26 +49,33 @@ resmush_url(
 
 - qlty:
 
-  Integer between `0` and `100` indicating the optimization level. This
-  only affects `jpg` files. For optimal results, use values above `90`.
+  An integer between `0` and `100` indicating the JPEG quality level.
+  For best results, use values above `90`. This argument only affects
+  JPEG files.
 
 - exif_preserve:
 
-  Logical. Should [Exif](https://en.wikipedia.org/wiki/Exif) metadata be
-  preserved? The default is `FALSE`, which removes it.
+  Logical. Should [EXIF](https://en.wikipedia.org/wiki/Exif) metadata be
+  preserved? The default is `FALSE`. This removes it.
 
 ## Value
 
-Writes optimized files to disk when the API call is successful.
-Invisibly returns a data frame summarizing the process. If any value in
-`outfile` is duplicated, `resmush_url()` renames the outputs with
-suffixes such as `_01` and `_02`.
+An invisibly returned data frame with one row per result and columns
+containing source and destination paths, formatted and raw file sizes,
+compression ratios and status notes. Returns `NULL` if no result is
+available. Successful API calls also write the optimized files to disk.
+If `outfile` contains duplicate paths, `resmush_url()` makes them unique
+with suffixes such as `_01` and `_02`.
 
 ## See also
 
-[reSmush.it API](https://resmush.it/api/) documentation.
+- [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/dev/reference/resmush_clean_dir.md)
+  removes output files created by previous runs.
 
-Other functions for optimizing:
+- The [reSmush.it API documentation](https://resmush.it/api/) describes
+  the external service.
+
+Other image optimization functions:
 [`resmush_dir()`](https://dieghernan.github.io/resmush/dev/reference/resmush_dir.md),
 [`resmush_file()`](https://dieghernan.github.io/resmush/dev/reference/resmush_file.md)
 
@@ -76,57 +84,57 @@ Other functions for optimizing:
 ``` r
 
 # \donttest{
-# Base URL.
+# Define the base URL.
 base_url <- "https://raw.githubusercontent.com/dieghernan/resmush/main/inst/"
 
 png_url <- paste0(base_url, "/extimg/example.png")
 resmush_url(png_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 URL, total size 239.9 Kb.
-#> ✔ Optimized 1 URL: Size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-#> Saved result in directory /tmp/Rtmpae8Dwc.
+#> ℹ Input: 1 URL, 239.9 Kb total.
+#> ✔ Optimized 1 URL: size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
+#> Saved result in directory /tmp/Rtmp8qRcZC.
 
-# Several URLs.
+# Optimize multiple URLs.
 jpg_url <- paste0(base_url, "/extimg/example.jpg")
 
 summary <- resmush_url(c(png_url, jpg_url))
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 URLs)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.1s] | ETA:  0s (2/2 URLs)
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 UR…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [813ms] | ETA:  0s (2/2 …
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 2 URLs, total size 340.2 Kb.
-#> ✔ Optimized 2 URLs: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> Saved results in directory /tmp/Rtmpae8Dwc.
+#> ℹ Input: 2 URLs, 340.2 Kb total.
+#> ✔ Optimized 2 URLs: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
+#> Saved results in directory /tmp/Rtmp8qRcZC.
 
-# The invisible data frame contains a summary of the process.
+# Inspect the returned optimization summary.
 summary
 #>                                                                              src_img
 #> 1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.png
 #> 2 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.jpg
 #>                         dest_img src_size dest_size compress_ratio notes
-#> 1 /tmp/Rtmpae8Dwc/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK
-#> 2    /tmp/Rtmpae8Dwc/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK
+#> 1 /tmp/Rtmp8qRcZC/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK
+#> 2    /tmp/Rtmp8qRcZC/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK
 #>   src_bytes dest_bytes
 #> 1    245618      72356
 #> 2    102796      85164
 
-# Display the `png` output.
+# Display the PNG output.
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])
   grid::grid.raster(my_png)
 }
 
 
-# Use with `jpg` files and parameters.
+# Adjust the JPEG quality level.
 resmush_url(jpg_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 URL, total size 100.4 Kb.
-#> ✔ Optimized 1 URL: Size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> Saved result in directory /tmp/Rtmpae8Dwc.
+#> ℹ Input: 1 URL, 100.4 Kb total.
+#> ✔ Optimized 1 URL: size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
+#> Saved result in directory /tmp/Rtmp8qRcZC.
 resmush_url(jpg_url, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 URL, total size 100.4 Kb.
-#> ✔ Optimized 1 URL: Size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> Saved result in directory /tmp/Rtmpae8Dwc.
+#> ℹ Input: 1 URL, 100.4 Kb total.
+#> ✔ Optimized 1 URL: size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
+#> Saved result in directory /tmp/Rtmp8qRcZC.
 # }
 ```

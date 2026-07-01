@@ -1,7 +1,8 @@
 # Optimize local image files
 
 Optimize one or more local image files with the [reSmush.it
-API](https://resmush.it/).
+API](https://resmush.it/api/). The API is free for personal use and
+accepts files smaller than 5 MB.
 
 ## Usage
 
@@ -21,20 +22,20 @@ resmush_file(
 
 - file:
 
-  Path or paths to local image files. The API can optimize `png`,
-  `jpg/jpeg`, `gif`, `bmp` and `tiff` files.
+  A character vector of paths to local image files. The API can optimize
+  PNG, JPEG, GIF, BMP and TIFF files.
 
 - suffix:
 
-  Character. Defaults to `"_resmush"`. By default, the optimized file is
-  saved in the same directory as `file` with this suffix. For example,
-  `example.png` becomes `example_resmush.png`. Values `""`, `NA` and
-  `NULL` are equivalent to `overwrite = TRUE`.
+  A character string inserted before each output file extension. The
+  default is `"_resmush"`. Therefore, `example.png` becomes
+  `example_resmush.png`. Values `""`, `NA` and `NULL` are equivalent to
+  `overwrite = TRUE`.
 
 - overwrite:
 
-  Logical. Should the file in `file` be overwritten? If `TRUE` `suffix`
-  is ignored.
+  Logical. Should the input files be overwritten? If `TRUE`, `suffix` is
+  ignored.
 
 - progress:
 
@@ -46,29 +47,32 @@ resmush_file(
 
 - qlty:
 
-  Integer between `0` and `100` indicating the optimization level. This
-  only affects `jpg` files. For optimal results, use values above `90`.
+  An integer between `0` and `100` indicating the JPEG quality level.
+  For best results, use values above `90`. This argument only affects
+  JPEG files.
 
 - exif_preserve:
 
-  Logical. Should [Exif](https://en.wikipedia.org/wiki/Exif) metadata be
-  preserved? The default is `FALSE`, which removes it.
+  Logical. Should [EXIF](https://en.wikipedia.org/wiki/Exif) metadata be
+  preserved? The default is `FALSE`. This removes it.
 
 ## Value
 
-Writes optimized files to disk when the API call is successful.
-Invisibly returns a data frame summarizing the process. With
-`report = TRUE`, a summary report is also displayed in the console.
+An invisibly returned data frame with one row per result and columns
+containing source and destination paths, formatted and raw file sizes,
+compression ratios and status notes. Returns `NULL` if no result is
+available. Successful API calls also write the optimized files to disk.
+If `report = TRUE`, a summary is displayed in the console.
 
 ## See also
 
-[reSmush.it API](https://resmush.it/api/) documentation.
+- [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/dev/reference/resmush_clean_dir.md)
+  removes output files created by previous runs.
 
-See
-[`resmush_clean_dir()`](https://dieghernan.github.io/resmush/dev/reference/resmush_clean_dir.md)
-to clean a directory of previous runs.
+- The [reSmush.it API documentation](https://resmush.it/api/) describes
+  the external service.
 
-Other functions for optimizing:
+Other image optimization functions:
 [`resmush_dir()`](https://dieghernan.github.io/resmush/dev/reference/resmush_dir.md),
 [`resmush_url()`](https://dieghernan.github.io/resmush/dev/reference/resmush_url.md)
 
@@ -87,11 +91,11 @@ file.copy(png_file, tmp_png, overwrite = TRUE)
 
 resmush_file(tmp_png)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 file, total size 239.9 Kb.
-#> ✔ Optimized 1 file: Size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-#> Saved result in directory /tmp/Rtmpae8Dwc.
+#> ℹ Input: 1 file, 239.9 Kb total.
+#> ✔ Optimized 1 file: size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
+#> Saved result in directory /tmp/Rtmp8qRcZC.
 
-# Several paths.
+# Optimize multiple files.
 jpg_file <- system.file("extimg/example.jpg", package = "resmush")
 tmp_jpg <- tempfile(fileext = ".jpg")
 
@@ -100,43 +104,43 @@ file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 
 # Display a summary in the console.
 summary <- resmush_file(c(tmp_png, tmp_jpg))
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.5s] | ETA:  0s (2/2 files)
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 fi…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [814ms] | ETA:  0s (2/2 …
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 2 files, total size 340.2 Kb.
-#> ✔ Optimized 2 files: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> Saved results in directory /tmp/Rtmpae8Dwc.
+#> ℹ Input: 2 files, 340.2 Kb total.
+#> ✔ Optimized 2 files: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
+#> Saved results in directory /tmp/Rtmp8qRcZC.
 
-# The invisible data frame contains the same information.
+# Inspect the returned optimization summary.
 summary
 #>                                src_img
-#> 1  /tmp/Rtmpae8Dwc/file1ae3e4b53dd.png
-#> 2 /tmp/Rtmpae8Dwc/file1ae31818e30a.jpg
+#> 1 /tmp/Rtmp8qRcZC/file1b857b87d167.png
+#> 2 /tmp/Rtmp8qRcZC/file1b852e6a5a1c.jpg
 #>                                       dest_img src_size dest_size
-#> 1  /tmp/Rtmpae8Dwc/file1ae3e4b53dd_resmush.png 239.9 Kb   70.7 Kb
-#> 2 /tmp/Rtmpae8Dwc/file1ae31818e30a_resmush.jpg 100.4 Kb   83.2 Kb
+#> 1 /tmp/Rtmp8qRcZC/file1b857b87d167_resmush.png 239.9 Kb   70.7 Kb
+#> 2 /tmp/Rtmp8qRcZC/file1b852e6a5a1c_resmush.jpg 100.4 Kb   83.2 Kb
 #>   compress_ratio notes src_bytes dest_bytes
 #> 1         70.54%    OK    245618      72356
 #> 2         17.15%    OK    102796      85164
 
-# Display the `png` output.
+# Display the PNG output.
 if (require("png", quietly = TRUE)) {
   my_png <- png::readPNG(summary$dest_img[1])
   grid::grid.raster(my_png)
 }
 
 
-# Use with `jpg` files and parameters.
+# Adjust the JPEG quality level.
 resmush_file(tmp_jpg)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 file, total size 100.4 Kb.
-#> ✔ Optimized 1 file: Size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> Saved result in directory /tmp/Rtmpae8Dwc.
+#> ℹ Input: 1 file, 100.4 Kb total.
+#> ✔ Optimized 1 file: size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
+#> Saved result in directory /tmp/Rtmp8qRcZC.
 resmush_file(tmp_jpg, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 1 file, total size 100.4 Kb.
-#> ✔ Optimized 1 file: Size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> Saved result in directory /tmp/Rtmpae8Dwc.
+#> ℹ Input: 1 file, 100.4 Kb total.
+#> ✔ Optimized 1 file: size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
+#> Saved result in directory /tmp/Rtmp8qRcZC.
 # }
 ```

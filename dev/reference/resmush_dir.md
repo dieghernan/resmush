@@ -1,7 +1,8 @@
 # Optimize image files in directories
 
 Optimize supported image files in one or more directories with the
-[reSmush.it API](https://resmush.it/).
+[reSmush.it API](https://resmush.it/api/). The API is free for personal
+use and accepts files smaller than 5 MB.
 
 ## Usage
 
@@ -26,21 +27,21 @@ resmush_dir(
 
 - ext:
 
-  A [`regex`](https://rdrr.io/r/base/regex.html) indicating the
-  extensions of the files to optimize. The default captures all
-  extensions supported by the API.
+  A [`regex`](https://rdrr.io/r/base/regex.html) matching file
+  extensions to optimize. The default matches lowercase `.png`, `.jpg`,
+  `.jpeg`, `.gif`, `.bmp` and `.tif` extensions.
 
 - suffix:
 
-  Character. Defaults to `"_resmush"`. By default, optimized files are
-  saved in the same directory with this suffix. For example,
-  `example.png` becomes `example_resmush.png`. Values `""`, `NA` and
-  `NULL` are equivalent to `overwrite = TRUE`.
+  A character string inserted before each output file extension. The
+  default is `"_resmush"`. Therefore, `example.png` becomes
+  `example_resmush.png`. Values `""`, `NA` and `NULL` are equivalent to
+  `overwrite = TRUE`.
 
 - overwrite:
 
-  Logical. Should the files in `dir` be overwritten? If `TRUE` `suffix`
-  is ignored.
+  Logical. Should the input files be overwritten? If `TRUE`, `suffix` is
+  ignored.
 
 - progress:
 
@@ -52,7 +53,7 @@ resmush_dir(
 
 - recursive:
 
-  Logical. Should file search within `dir` be recursive? See also
+  Logical. Should the file search within `dir` be recursive? See
   [`list.files()`](https://rdrr.io/r/base/list.files.html).
 
 - ...:
@@ -62,29 +63,31 @@ resmush_dir(
 
   `qlty`
 
-  :   Integer between `0` and `100` indicating the optimization level.
-      This only affects `jpg` files. For optimal results, use values
-      above `90`.
+  :   An integer between `0` and `100` indicating the JPEG quality
+      level. For best results, use values above `90`. This argument only
+      affects JPEG files.
 
   `exif_preserve`
 
-  :   Logical. Should [Exif](https://en.wikipedia.org/wiki/Exif)
-      metadata be preserved? The default is `FALSE`, which removes it.
+  :   Logical. Should [EXIF](https://en.wikipedia.org/wiki/Exif)
+      metadata be preserved? The default is `FALSE`. This removes it.
 
 ## Value
 
-Writes optimized files to disk when the API call is successful.
-Invisibly returns a data frame summarizing the process.
+An invisibly returned data frame with one row per result and columns
+containing source and destination paths, formatted and raw file sizes,
+compression ratios and status notes. Returns `NULL` if no result is
+available. Successful API calls also write the optimized files to disk.
 
 ## See also
 
-[reSmush.it API](https://resmush.it/api/) documentation.
+- [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/dev/reference/resmush_clean_dir.md)
+  removes output files created by previous runs.
 
-See
-[`resmush_clean_dir()`](https://dieghernan.github.io/resmush/dev/reference/resmush_clean_dir.md)
-to clean a directory of previous runs.
+- The [reSmush.it API documentation](https://resmush.it/api/) describes
+  the external service.
 
-Other functions for optimizing:
+Other image optimization functions:
 [`resmush_file()`](https://dieghernan.github.io/resmush/dev/reference/resmush_file.md),
 [`resmush_url()`](https://dieghernan.github.io/resmush/dev/reference/resmush_url.md)
 
@@ -101,36 +104,35 @@ file.copy(example_dir, temp_dir, recursive = TRUE)
 # Create the destination folder path.
 dest_folder <- file.path(tempdir(), "extimg")
 
-# Non-recursive.
+# Optimize files non-recursively.
 resmush_dir(dest_folder)
 #> ℹ Optimizing 2 files.
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [3ms] | ETA:  0s (1/2 files)
-#> 🕐  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.9s] | ETA:  0s (2/2 files)
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 fi…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.3s] | ETA:  0s (2/2 f…
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 2 files, total size 340.2 Kb.
-#> ✔ Optimized 2 files: Size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> Saved results in directory /tmp/Rtmpae8Dwc/extimg.
+#> ℹ Input: 2 files, 340.2 Kb total.
+#> ✔ Optimized 2 files: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
+#> Saved results in directory /tmp/Rtmp8qRcZC/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Removing 2 files:
-#> → /tmp/Rtmpae8Dwc/extimg/example_resmush.jpg
-#> → /tmp/Rtmpae8Dwc/extimg/example_resmush.png
+#> → /tmp/Rtmp8qRcZC/extimg/example_resmush.jpg
+#> → /tmp/Rtmp8qRcZC/extimg/example_resmush.png
 
-# Recursive.
+# Optimize files recursively.
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Optimizing 5 files.
-#> 🕐  Go! | ■■■■■■■□□□□□□□□□□□□□□□□□□□□□□□□   20% [1ms] | ETA:  0s (1/5 files)
-#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [2.6s] | ETA:  2s (3/5 files)
-#> 🕑  Go! | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.9s] | ETA:  0s (5/5 files)
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [1.6s] | ETA:  1s (3/5 f…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2.7s] | ETA:  0s (5/5 f…
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
-#> ℹ Input: 5 files, total size 401.7 Kb.
-#> ✔ Optimized 5 files: Size is now 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> Saved results in directories /tmp/Rtmpae8Dwc/extimg,
-#> /tmp/Rtmpae8Dwc/extimg/top1/nested, /tmp/Rtmpae8Dwc/extimg/top1, and
-#> /tmp/Rtmpae8Dwc/extimg/top2.
+#> ℹ Input: 5 files, 401.7 Kb total.
+#> ✔ Optimized 5 files: size is now 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
+#> Saved results in directories /tmp/Rtmp8qRcZC/extimg,
+#> /tmp/Rtmp8qRcZC/extimg/top1/nested, /tmp/Rtmp8qRcZC/extimg/top1, and
+#> /tmp/Rtmp8qRcZC/extimg/top2.
 
-# Return the same information in the invisible data frame.
+# Inspect the returned optimization summary.
 summary[, -c(1, 2)]
 #>   src_size dest_size compress_ratio notes src_bytes dest_bytes
 #> 1 100.4 Kb   83.2 Kb         17.15%    OK    102796      85164
@@ -139,7 +141,7 @@ summary[, -c(1, 2)]
 #> 4  25.9 Kb    7.7 Kb         70.09%    OK     26499       7926
 #> 5  17.8 Kb      6 Kb         66.48%    OK     18214       6105
 
-# Display the `png` output.
+# Display the PNG output.
 if (require("png", quietly = TRUE)) {
   a_png <- grepl("png$", summary$dest_img)
   my_png <- png::readPNG(summary[a_png, ]$dest_img[2])

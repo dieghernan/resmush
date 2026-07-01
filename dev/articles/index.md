@@ -1,6 +1,10 @@
 # Articles
 
-### Get started
+### From the blog
 
-- [Using
-  resmush](https://dieghernan.github.io/resmush/dev/articles/resmush.md):
+Read external blog posts about **resmush**.
+
+- [Optimize your images with R and
+  reSmush.it](https://dieghernan.github.io/202402_optimize-images-r/):
+
+  An introduction to the resmush package.

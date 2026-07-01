@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html"><img src="../apple-touch-icon.png" alt="resmush logo" height="34" width="34" class="d-inline-block me-1">resmush</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.0.0.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.0.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,6 +23,12 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/resmush.html">Get started</a></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Blog posts</h6></li>
+    <li><a class="external-link dropdown-item" href="https://dieghernan.github.io/202402_optimize-images-r/">Optimize your images with R and reSmush.it</a></li>
+  </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -44,9 +50,9 @@
     </div>
 
     <div class="section level2">
-      <h2 id="optimization-functions">Optimization functions<a class="anchor" aria-label="anchor" href="#optimization-functions"></a></h2>
+      <h2 id="optimize-image-files">Optimize image files<a class="anchor" aria-label="anchor" href="#optimize-image-files"></a></h2>
 
-      <div class="section-desc"><p>Optimize local image files, directories and URLs with the reSmush.it API.</p></div>
+      <div class="section-desc"><p>Optimize local and online image files, individually or in entire directories, with the reSmush.it API.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -55,17 +61,17 @@
 
       <dl><dt>
 
-          <code><a href="resmush_file.html">resmush_file()</a></code>
-
-        </dt>
-        <dd>Optimize local image files</dd>
-
-        <dt>
-
           <code><a href="resmush_dir.html">resmush_dir()</a></code>
 
         </dt>
         <dd>Optimize image files in directories</dd>
+
+        <dt>
+
+          <code><a href="resmush_file.html">resmush_file()</a></code>
+
+        </dt>
+        <dd>Optimize local image files</dd>
 
         <dt>
 
@@ -74,9 +80,9 @@
         </dt>
         <dd>Optimize online image files</dd>
       </dl></div><div class="section level2">
-      <h2 id="helper-functions">Helper functions<a class="anchor" aria-label="anchor" href="#helper-functions"></a></h2>
+      <h2 id="manage-output-files">Manage output files<a class="anchor" aria-label="anchor" href="#manage-output-files"></a></h2>
 
-      <div class="section-desc"><p>Clean files created by previous optimization runs.</p></div>
+      <div class="section-desc"><p>Remove suffixed output files from one or more directories.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -88,11 +94,11 @@
           <code><a href="resmush_clean_dir.html">resmush_clean_dir()</a></code>
 
         </dt>
-        <dd>Clean files created by <a href="https://CRAN.R-project.org/package=resmush" class="external-link"><span class="pkg">resmush</span></a></dd>
+        <dd>Remove output files from directories</dd>
       </dl></div><div class="section level2">
       <h2 id="about-the-package">About the package<a class="anchor" aria-label="anchor" href="#about-the-package"></a></h2>
 
-
+      <div class="section-desc"><p>Package overview and metadata.</p></div>
 
       <dl></dl></div><div class="section level2">
 
