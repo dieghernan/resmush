@@ -1,4 +1,4 @@
-# resmush (development version)
+# resmush 1.0.2
 
 - Improved testing.
 
