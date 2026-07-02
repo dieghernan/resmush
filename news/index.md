@@ -2,6 +2,8 @@
 
 ## resmush 1.0.2
 
+CRAN release: 2026-07-02
+
 - Improved testing.
 
 ## resmush 1.0.1
