@@ -1,10 +1,14 @@
 # Changelog
 
+## resmush 1.0.2
+
+- Improved testing.
+
 ## resmush 1.0.1
 
 CRAN release: 2026-05-29
 
-- Improved console messages for optimization reports and cleanup
+- Improved console messages for optimization reports and file management
   helpers.
 - Refactored internal code and updated function documentation with AI
   assistance.
@@ -64,7 +68,7 @@ CRAN release: 2024-02-02
   [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md)
   and
   [`resmush_url()`](https://dieghernan.github.io/resmush/reference/resmush_url.md)
-  gained the `progress` and `report` arguments, which add messages and
+  gained the `progress` and `report` arguments. These add messages and
   progress bars using
   [`cli::cli_progress_bar()`](https://cli.r-lib.org/reference/cli_progress_bar.html).
 - [`resmush_dir()`](https://dieghernan.github.io/resmush/reference/resmush_dir.md),

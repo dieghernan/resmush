@@ -1,19 +1,29 @@
 # resmush: Optimize and Compress Image Files with 'reSmush.it'
 
-Optimize and compress local image files, directories and online images
-with the 'reSmush.it' API <https://resmush.it/api/>. The API is free for
-personal use, accepts files smaller than 5 MB and supports 'PNG',
-'JPEG', 'GIF', 'BMP' and 'TIFF' files.
+Optimize and compress local and online image files with the 'reSmush.it'
+'API' <https://resmush.it/api/>. Process individual files or entire
+directories. The 'API' is free for personal use, accepts files smaller
+than 5 'MB' and supports 'PNG', 'JPEG', 'GIF', 'BMP' and 'TIFF' files.
 
 ## See also
 
-Useful links:
+- [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md)
+  optimizes local image files.
 
-- <https://dieghernan.github.io/resmush/>
+- [`resmush_dir()`](https://dieghernan.github.io/resmush/reference/resmush_dir.md)
+  optimizes image files in directories.
 
-- <https://github.com/dieghernan/resmush>
+- [`resmush_url()`](https://dieghernan.github.io/resmush/reference/resmush_url.md)
+  optimizes online image files.
 
-- Report bugs at <https://github.com/dieghernan/resmush/issues>
+- The [package website](https://dieghernan.github.io/resmush/) provides
+  articles and reference documentation.
+
+- The [source code](https://github.com/dieghernan/resmush) is available
+  on GitHub.
+
+- [Report bugs](https://github.com/dieghernan/resmush/issues) in the
+  issue tracker.
 
 ## Author
 

@@ -21,8 +21,9 @@ resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 
 - suffix:
 
-  A character string identifying files to remove. The default is
-  `"_resmush"`, the default suffix used by
+  A character string containing the suffix pattern used to identify
+  files. The value is interpreted as a regular expression. The default
+  is `"_resmush"`, the default suffix used by
   [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md).
 
 - recursive:
@@ -36,10 +37,10 @@ Messages list the files selected for removal.
 
 ## See also
 
-[`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md),
-[`resmush_dir()`](https://dieghernan.github.io/resmush/reference/resmush_dir.md),
-[`list.files()`](https://rdrr.io/r/base/list.files.html),
-[`unlink()`](https://rdrr.io/r/base/unlink.html).
+[`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md)
+and
+[`resmush_dir()`](https://dieghernan.github.io/resmush/reference/resmush_dir.md)
+create the suffixed output files that this function removes.
 
 ## Examples
 
@@ -63,7 +64,7 @@ file.exists(tmp_png)
 
 # Run with the default suffix. This should not remove the file.
 resmush_clean_dir(tempdir())
-#> ℹ No files to clean in /tmp/RtmpgyF4Or with suffix "_resmush".
+#> ℹ No files with suffix "_resmush" found in /tmp/RtmpT8yuRs.
 
 file.exists(tmp_png)
 #> [1] TRUE
@@ -71,7 +72,7 @@ file.exists(tmp_png)
 # Use the matching suffix to remove the file.
 resmush_clean_dir(tempdir(), suffix = suffix)
 #> ℹ Removing 1 file:
-#> → /tmp/RtmpgyF4Or/example_would_be_removed.png
+#> → /tmp/RtmpT8yuRs/example_would_be_removed.png
 
 file.exists(tmp_png)
 #> [1] FALSE

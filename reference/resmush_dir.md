@@ -34,7 +34,7 @@ resmush_dir(
 - suffix:
 
   A character string inserted before each output file extension. The
-  default is `"_resmush"`, so `example.png` becomes
+  default is `"_resmush"`. Therefore, `example.png` becomes
   `example_resmush.png`. Values `""`, `NA` and `NULL` are equivalent to
   `overwrite = TRUE`.
 
@@ -63,28 +63,29 @@ resmush_dir(
 
   `qlty`
 
-  :   An integer between `0` and `100` indicating the optimization
-      level. This only affects JPEG files. For optimal results, use
-      values above `90`.
+  :   An integer between `0` and `100` indicating the JPEG quality
+      level. For best results, use values above `90`. This argument only
+      affects JPEG files.
 
   `exif_preserve`
 
   :   Logical. Should [EXIF](https://en.wikipedia.org/wiki/Exif)
-      metadata be preserved? The default is `FALSE`, which removes it.
+      metadata be preserved? The default is `FALSE`. This removes it.
 
 ## Value
 
-A data frame with source and destination paths, file sizes, compression
-ratios and status notes, returned invisibly. Successful API calls also
-write the optimized files to disk.
+An invisibly returned data frame with one row per result and columns
+containing source and destination paths, formatted and raw file sizes,
+compression ratios and status notes. Returns `NULL` if no result is
+available. Successful API calls also write the optimized files to disk.
 
 ## See also
 
-[reSmush.it API](https://resmush.it/api/) documentation.
+- [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/reference/resmush_clean_dir.md)
+  removes output files created by previous runs.
 
-See
-[`resmush_clean_dir()`](https://dieghernan.github.io/resmush/reference/resmush_clean_dir.md)
-to clean a directory of previous runs.
+- The [reSmush.it API documentation](https://resmush.it/api/) describes
+  the external service.
 
 Other image optimization functions:
 [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md),
@@ -103,33 +104,34 @@ file.copy(example_dir, temp_dir, recursive = TRUE)
 # Create the destination folder path.
 dest_folder <- file.path(tempdir(), "extimg")
 
-# Non-recursive.
+# Optimize files non-recursively.
 resmush_dir(dest_folder)
 #> ℹ Optimizing 2 files.
-#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [3ms] | ETA:  0s (1/2 fi…
-#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.2s] | ETA:  0s (2/2 f…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 fi…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2.1s] | ETA:  0s (2/2 f…
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files, 340.2 Kb total.
 #> ✔ Optimized 2 files: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> Saved results in directory /tmp/RtmpgyF4Or/extimg.
+#> Saved results in directory /tmp/RtmpT8yuRs/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Removing 2 files:
-#> → /tmp/RtmpgyF4Or/extimg/example_resmush.jpg
-#> → /tmp/RtmpgyF4Or/extimg/example_resmush.png
+#> → /tmp/RtmpT8yuRs/extimg/example_resmush.jpg
+#> → /tmp/RtmpT8yuRs/extimg/example_resmush.png
 
-# Recursive.
+# Optimize files recursively.
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Optimizing 5 files.
 #> 🕐  reSmushing | ■■■■■■■□□□□□□□□□□□□□□□□□□□□□□□□   20% [1ms] | ETA:  0s (1/5 fi…
-#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3s] | ETA:  0s (5/5 fil…
+#> 🕑  reSmushing | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [2.3s] | ETA:  2s (3/5 f…
+#> 🕑  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3.6s] | ETA:  0s (5/5 f…
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files, 401.7 Kb total.
 #> ✔ Optimized 5 files: size is now 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> Saved results in directories /tmp/RtmpgyF4Or/extimg,
-#> /tmp/RtmpgyF4Or/extimg/top1/nested, /tmp/RtmpgyF4Or/extimg/top1, and
-#> /tmp/RtmpgyF4Or/extimg/top2.
+#> Saved results in directories /tmp/RtmpT8yuRs/extimg,
+#> /tmp/RtmpT8yuRs/extimg/top1/nested, /tmp/RtmpT8yuRs/extimg/top1, and
+#> /tmp/RtmpT8yuRs/extimg/top2.
 
 # Inspect the returned optimization summary.
 summary[, -c(1, 2)]
