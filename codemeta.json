@@ -4,7 +4,7 @@
   "identifier": "resmush",
   "description": "Optimize and compress local and online image files with the 'reSmush.it' 'API' <https://resmush.it/api/>. Process individual files or entire directories. The 'API' is free for personal use, accepts files smaller than 5 'MB' and supports 'PNG', 'JPEG', 'GIF', 'BMP' and 'TIFF' files.",
   "name": "resmush: Optimize and Compress Image Files with 'reSmush.it'",
-  "relatedLink": ["https://dieghernan.github.io/resmush/", "https://CRAN.R-project.org/package=resmush"],
+  "relatedLink": "https://dieghernan.github.io/resmush/",
   "codeRepository": "https://github.com/dieghernan/resmush",
   "issueTracker": "https://github.com/dieghernan/resmush/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -15,12 +15,6 @@
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.6.1 (2026-06-24 ucrt)",
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Comprehensive R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
   "author": [
     {
       "@type": "Person",
@@ -57,51 +51,28 @@
     {
       "@type": "SoftwareApplication",
       "identifier": "knitr",
-      "name": "knitr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=knitr"
+      "name": "knitr"
     },
     {
       "@type": "SoftwareApplication",
       "identifier": "png",
-      "name": "png",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=png"
+      "name": "png"
     },
     {
       "@type": "SoftwareApplication",
       "identifier": "quarto",
-      "name": "quarto",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=quarto"
+      "name": "quarto"
     },
     {
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 3.1.7",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=testthat"
+      "version": ">= 3.1.7"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "withr",
+      "name": "withr"
     }
   ],
   "softwareRequirements": {
@@ -114,39 +85,18 @@
     "2": {
       "@type": "SoftwareApplication",
       "identifier": "cli",
-      "name": "cli",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=cli"
+      "name": "cli"
     },
     "3": {
       "@type": "SoftwareApplication",
       "identifier": "curl",
-      "name": "curl",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=curl"
+      "name": "curl"
     },
     "4": {
       "@type": "SoftwareApplication",
       "identifier": "httr2",
       "name": "httr2",
-      "version": ">= 1.0.0",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=httr2"
+      "version": ">= 1.0.0"
     },
     "5": {
       "@type": "SoftwareApplication",
@@ -161,7 +111,7 @@
     "SystemRequirements": null
   },
   "keywords": ["r", "compress-images", "optimize-images", "resmushit", "api", "r-package", "cran", "cran-r"],
-  "fileSize": "683.573KB",
+  "fileSize": "696.367KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

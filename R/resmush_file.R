@@ -150,7 +150,7 @@ resmush_file_single <- function(
     return(NULL)
   }
 
-  if (httr2::resp_status(dwn_opt) != 200) {
+  if (resmush_resp_status(dwn_opt) != 200) {
     res$notes <- "API is not responding. Check https://resmush.it/status"
     return(invisible(res))
   }
@@ -184,8 +184,8 @@ smush_from_local <- function(path, qlty, exif_preserve = TRUE) {
     files = curl::form_file(path)
   )
 
-  api_get <- httr2::req_perform(the_req_file)
-  res_get <- httr2::resp_body_json(api_get)
+  api_get <- resmush_req_perform(the_req_file)
+  res_get <- resmush_resp_body_json(api_get)
 
   res_get
 }

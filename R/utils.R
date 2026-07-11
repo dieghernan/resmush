@@ -9,6 +9,26 @@ resmush_is_online <- function() {
   httr2::is_online()
 }
 
+resmush_req_perform <- function(req, path = NULL) {
+  httr2::req_perform(req, path = path)
+}
+
+resmush_resp_body_json <- function(resp) {
+  httr2::resp_body_json(resp)
+}
+
+resmush_resp_is_error <- function(resp) {
+  httr2::resp_is_error(resp)
+}
+
+resmush_resp_status <- function(resp) {
+  httr2::resp_status(resp)
+}
+
+resmush_resp_status_desc <- function(resp) {
+  httr2::resp_status_desc(resp)
+}
+
 #' Format an integer as an `object_size` object
 #'
 #' Assigns the `object_size` class to an integer and formats it using
@@ -159,11 +179,11 @@ download_optimized_file <- function(url, outfile, src, source_type) {
   req_head <- httr2::req_error(req_head, is_error = function(x) {
     FALSE
   })
-  resp_head <- httr2::req_perform(req_head)
+  resp_head <- resmush_req_perform(req_head)
 
-  if (httr2::resp_is_error(resp_head)) {
-    err_code <- httr2::resp_status(resp_head) # nolint
-    err <- httr2::resp_status_desc(resp_head) # nolint
+  if (resmush_resp_is_error(resp_head)) {
+    err_code <- resmush_resp_status(resp_head) # nolint
+    err <- resmush_resp_status_desc(resp_head) # nolint
 
     if (source_type == "file") {
       cli::cli_alert_danger(paste0(
@@ -180,7 +200,7 @@ download_optimized_file <- function(url, outfile, src, source_type) {
     return(NULL)
   }
 
-  httr2::req_perform(dwn_opt, path = outfile)
+  resmush_req_perform(dwn_opt, path = outfile)
 }
 
 #' Add a suffix before a file extension
@@ -236,56 +256,4 @@ make_unique_paths <- function(x, overwrite) {
   }
 
   new_name
-}
-
-# Utilities for testing.
-load_inst_to_temp <- function(file, subdir = NULL) {
-  f <- system.file(paste0("extimg/", file), package = "resmush")
-  if (!is.null(subdir)) {
-    dest_dir <- file.path(tempdir(), subdir)
-  } else {
-    dest_dir <- tempdir()
-  }
-
-  if (!dir.exists(dest_dir)) {
-    dir.create(dest_dir, recursive = TRUE)
-  }
-
-  tmp <- file.path(dest_dir, basename(f))
-
-  file.copy(f, dest_dir, overwrite = TRUE)
-  tmp
-}
-
-load_dir_to_temp <- function(n = 4) {
-  inst_dir <- system.file("extimg", package = "resmush")
-
-  # Create a random temporary directory name.
-  temp_name <- paste0(sample(LETTERS, n, replace = TRUE), collapse = "")
-
-  dest_dir <- file.path(tempdir(), temp_name)
-
-  if (!dir.exists(dest_dir)) {
-    dir.create(dest_dir, recursive = TRUE)
-  }
-
-  # Copy installed example files.
-  lf <- list.files(inst_dir, full.names = TRUE)
-  file.copy(lf, dest_dir, recursive = TRUE)
-
-  dest_dir
-}
-
-download_to_temp <- function(url) {
-  url <- URLencode(url)
-  extt <- tools::file_ext(url)
-  tmpfi <- tempfile(fileext = paste0(".", extt))
-  rq <- httr2::request(url)
-  rq <- httr2::req_headers(
-    rq,
-    referer = "https://dieghernan.github.io/resmush/"
-  )
-
-  dwn <- httr2::req_perform(rq, path = tmpfi) # nolint
-  tmpfi
 }

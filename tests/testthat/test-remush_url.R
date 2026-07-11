@@ -8,8 +8,7 @@ test_that("Test offline", {
   )
 
   local_mocked_bindings(
-    resmush_is_online = function() FALSE,
-    .package = "resmush"
+    resmush_is_online = function() FALSE
   )
 
   expect_snapshot(dm <- resmush_url(png_url))
@@ -35,10 +34,9 @@ test_that("Test corner", {
     },
     download_optimized_file = function(...) {
       structure(list(), class = "httr2_response")
-    },
-    .package = "resmush"
+    }
   )
-  local_mocked_bindings(resp_status = function(resp) 503L, .package = "httr2")
+  local_mocked_bindings(resmush_resp_status = function(resp) 503L)
 
   expect_snapshot(dm <- resmush_url(png_url))
 
@@ -50,12 +48,11 @@ test_that("Test corner", {
 
 test_that("Test API response without destination", {
   png_url <- "https://example.com/example.png"
-  outfile <- tempfile(fileext = ".png")
+  outfile <- withr::local_tempfile(fileext = ".png")
 
   local_mocked_bindings(
     resmush_is_online = function() TRUE,
-    smush_from_url = function(...) list(unexpected = TRUE),
-    .package = "resmush"
+    smush_from_url = function(...) list(unexpected = TRUE)
   )
 
   expect_silent(
@@ -131,7 +128,10 @@ test_that("Test default opts with png", {
 
   expect_true(optinit2$cli.progress_bar_style == "aaa")
 
-  expect_message(dm <- resmush_url(png_url))
+  expect_snapshot(
+    dm <- resmush_url(png_url),
+    transform = scrub_snapshot_paths
+  )
 
   # Restored options
   expect_identical(options(), optinit2)
@@ -165,9 +165,12 @@ test_that("Test opts with png", {
     "extimg/example.png"
   )
 
-  outf <- tempfile(fileext = ".png")
+  outf <- withr::local_tempfile(fileext = ".png")
   expect_false(file.exists(outf))
-  expect_message(dm <- resmush_url(png_url, outf))
+  expect_snapshot(
+    dm <- resmush_url(png_url, outf),
+    transform = scrub_snapshot_paths
+  )
 
   expect_true(file.exists(outf))
   expect_s3_class(dm, "data.frame")
@@ -192,9 +195,12 @@ test_that("Test qlty par with jpg", {
     "extimg/example.jpg"
   )
 
-  outf <- tempfile(fileext = ".jpg")
+  outf <- withr::local_tempfile(fileext = ".jpg")
   expect_false(file.exists(outf))
-  expect_message(dm <- resmush_url(jpg_url, outf))
+  expect_snapshot(
+    dm <- resmush_url(jpg_url, outf),
+    transform = scrub_snapshot_paths
+  )
 
   expect_true(file.exists(outf))
   expect_s3_class(dm, "data.frame")
@@ -205,7 +211,7 @@ test_that("Test qlty par with jpg", {
   outs <- file.size(outf)
 
   # Use qlty
-  outf2 <- tempfile(fileext = ".jpg")
+  outf2 <- withr::local_tempfile(fileext = ".jpg")
   dm2 <- resmush_url(jpg_url, outf2, qlty = 30)
 
   expect_true(file.exists(outf2))
@@ -324,15 +330,18 @@ test_that("Test full vectors with outfile", {
   all_in <- c(png_url, notval, jpg_url, turl)
 
   all_outs <- c(
-    tempfile(fileext = ".png"),
-    tempfile(fileext = ".png"),
-    tempfile(fileext = ".jpg"),
-    tempfile(fileext = ".png")
+    withr::local_tempfile(fileext = ".png"),
+    withr::local_tempfile(fileext = ".png"),
+    withr::local_tempfile(fileext = ".jpg"),
+    withr::local_tempfile(fileext = ".png")
   )
 
   expect_length(unique(all_outs), 4)
 
-  expect_message(dm <- resmush_url(all_in, all_outs))
+  expect_snapshot(
+    dm <- resmush_url(all_in, all_outs),
+    transform = scrub_snapshot_paths
+  )
 
   expect_equal(nrow(dm), 4)
   expect_equal(dm$src_img, all_in)
@@ -375,7 +384,10 @@ test_that("Handle duplicate names", {
   expect_false(any(file.exists(renamed)))
 
   # Call
-  expect_message(dm <- resmush_url(png_url, outs))
+  expect_snapshot(
+    dm <- resmush_url(png_url, outs),
+    transform = scrub_snapshot_paths
+  )
 
   # Check that now exists
   expect_true(all(file.exists(renamed)))
@@ -409,7 +421,10 @@ test_that("Use overwrite", {
   expect_false(file.exists(outs[1]))
 
   # Call with override
-  expect_message(dm <- resmush_url(png_url, outs, overwrite = TRUE))
+  expect_snapshot(
+    dm <- resmush_url(png_url, outs, overwrite = TRUE),
+    transform = scrub_snapshot_paths
+  )
 
   expect_equal(nrow(dm), 3)
   expect_equal(dm$src_img, png_url)
@@ -442,7 +457,10 @@ test_that("To non-existing directories", {
   outs <- file.path(outf, basename(png_url))
 
   # Call
-  expect_message(dm <- resmush_url(png_url, outs))
+  expect_snapshot(
+    dm <- resmush_url(png_url, outs),
+    transform = scrub_snapshot_paths
+  )
 
   # Check that now exists
   expect_true(dir.exists(outf))
@@ -466,17 +484,15 @@ test_that("Test no file", {
     resmush_is_online = function() TRUE,
     smush_from_url = function(...) {
       list(dest = "https://example.com/image", src_size = 1000)
-    },
-    .package = "resmush"
+    }
   )
   local_mocked_bindings(
-    req_perform = function(req, path = NULL) {
+    resmush_req_perform = function(req, path = NULL) {
       structure(list(), class = "httr2_response")
     },
-    resp_is_error = function(resp) TRUE,
-    resp_status = function(resp) 404L,
-    resp_status_desc = function(resp) "Not Found",
-    .package = "httr2"
+    resmush_resp_is_error = function(resp) TRUE,
+    resmush_resp_status = function(resp) 404L,
+    resmush_resp_status_desc = function(resp) "Not Found"
   )
 
   expect_snapshot(dm <- resmush_url(png_url))

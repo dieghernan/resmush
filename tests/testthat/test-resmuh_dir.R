@@ -1,5 +1,5 @@
 test_that("Test no file", {
-  dir_temp <- file.path(tempdir(), "resmush_test")
+  dir_temp <- withr::local_tempdir(pattern = "resmush_test")
   a <- list.files(dir_temp, pattern = "I am a test")
 
   expect_length(a, 0)
@@ -13,13 +13,16 @@ test_that("Testing regex", {
   skip_if_offline()
 
   # Create a temp dir
-  dir_temp <- load_dir_to_temp()
+  dir_temp <- local_inst_dir()
 
   expect_length(list.files(dir_temp, pattern = "\\."), 2)
 
   resmush_clean_dir(dir_temp)
   # Only one
-  expect_message(dm <- resmush_dir(dir_temp, ext = "png$"), "Optimizing 1 file")
+  expect_snapshot(
+    dm <- resmush_dir(dir_temp, ext = "png$"),
+    transform = scrub_snapshot_paths
+  )
 
   expect_s3_class(dm, "data.frame")
   expect_equal(basename(dm$dest_img), "example_resmush.png")
@@ -34,10 +37,7 @@ test_that("Testing regex several with suffix", {
   skip_if_offline()
 
   # Create a temp dir
-  dir_temp <- file.path(tempdir(), "test2")
-  if (!dir.exists(dir_temp)) {
-    dir.create(dir_temp)
-  }
+  dir_temp <- withr::local_tempdir(pattern = "test2")
 
   # tempfile not right extension
   fl <- file.path(dir_temp, "aa.txt")
@@ -57,7 +57,10 @@ test_that("Testing regex several with suffix", {
 
   resmush_clean_dir(dir_temp, "_some_error")
   # All ext
-  expect_message(dm <- resmush_dir(dir_temp, ext = "*", suffix = "_some_error"))
+  expect_snapshot(
+    dm <- resmush_dir(dir_temp, ext = "*", suffix = "_some_error"),
+    transform = scrub_snapshot_paths
+  )
 
   expect_s3_class(dm, "data.frame")
   expect_equal(nrow(dm), 2)
@@ -72,7 +75,7 @@ test_that("Testing nested dirs", {
   skip_on_cran()
   skip_if_offline()
 
-  dir_temp <- load_dir_to_temp()
+  dir_temp <- local_inst_dir()
 
   nested <- file.path(dir_temp, "top1")
 
@@ -84,9 +87,9 @@ test_that("Testing nested dirs", {
   )
 
   # All ext recursive
-  expect_message(
+  expect_snapshot(
     dm <- resmush_dir(nested, recursive = TRUE),
-    "Optimizing 2 files"
+    transform = scrub_snapshot_paths
   )
 
   expect_s3_class(dm, "data.frame")
@@ -110,14 +113,14 @@ test_that("Testing nested dirs", {
   )
 
   # Now without recursive
-  expect_message(
+  expect_snapshot(
     resmush_clean_dir(nested, "_resmush", recursive = TRUE),
-    "Removing 2 files"
+    transform = scrub_snapshot_paths
   )
 
-  expect_message(
+  expect_snapshot(
     dm <- resmush_dir(nested, recursive = FALSE),
-    "Optimizing 1 file"
+    transform = scrub_snapshot_paths
   )
 
   expect_equal(nrow(dm), 1)
@@ -128,7 +131,7 @@ test_that("Testing separated dirs", {
   skip_on_cran()
   skip_if_offline()
 
-  dir_temp <- load_dir_to_temp()
+  dir_temp <- local_inst_dir()
 
   # Create a temp dir
   dir_temp1 <- file.path(dir_temp, "top1")
@@ -144,14 +147,14 @@ test_that("Testing separated dirs", {
   )
 
   # All ext with overwrite
-  expect_message(
+  expect_snapshot(
     dm <- resmush_dir(
       dir = c(dir_temp1, dir_temp2),
       suffix = "",
       qlty = 10,
       recursive = TRUE
     ),
-    "Optimizing 3 files"
+    transform = scrub_snapshot_paths
   )
 
   expect_s3_class(dm, "data.frame")
@@ -184,7 +187,7 @@ test_that("Overwrite ignore suffix", {
   skip_on_cran()
   skip_if_offline()
 
-  dir_temp <- load_dir_to_temp()
+  dir_temp <- local_inst_dir()
 
   dir_temp1 <- file.path(dir_temp, "top1")
   nested_dir <- file.path(dir_temp1, "nested")
@@ -193,12 +196,13 @@ test_that("Overwrite ignore suffix", {
   expect_length(l_init, 2)
 
   # All , suffix and overwrite
-  expect_message(
+  expect_snapshot(
     dm <- resmush_dir(
       dir = c(dir_temp1, nested_dir),
       suffix = "_not_exist",
       overwrite = TRUE
-    )
+    ),
+    transform = scrub_snapshot_paths
   )
 
   expect_s3_class(dm, "data.frame")

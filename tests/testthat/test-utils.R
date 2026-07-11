@@ -39,3 +39,9 @@ test_that("Add suffix", {
     same_res2
   )
 })
+
+test_that("Response status descriptions are exposed", {
+  resp <- httr2::response(status_code = 404)
+
+  expect_identical(resmush_resp_status_desc(resp), "Not Found")
+})

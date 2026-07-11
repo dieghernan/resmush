@@ -8,7 +8,7 @@ test_that("jpg", {
     "img/sample-jpg-1mb.jpg"
   )
 
-  loc_file <- download_to_temp(url)
+  loc_file <- local_download(url)
 
   expect_silent(dm <- resmush_file(loc_file, report = FALSE))
 
@@ -21,7 +21,7 @@ test_that("jpg", {
     "https://dieghernan.github.io/resmush/",
     "img/sample-jpeg-1mb .jpeg"
   )
-  loc_file <- download_to_temp(url)
+  loc_file <- local_download(url)
 
   expect_silent(dm <- resmush_file(loc_file, report = FALSE))
 
@@ -42,7 +42,7 @@ test_that("gif", {
     "img/sample-gif-350kb.gif"
   )
 
-  loc_file <- download_to_temp(url)
+  loc_file <- local_download(url)
 
   expect_silent(dm <- resmush_file(loc_file, report = FALSE))
 
@@ -62,7 +62,7 @@ test_that("bmp", {
     "img/sample-bmp-798kb.bmp"
   )
 
-  loc_file <- download_to_temp(url)
+  loc_file <- local_download(url)
 
   expect_silent(dm <- resmush_file(loc_file, report = FALSE))
 
@@ -82,7 +82,7 @@ test_that("tif", {
     "img/sample-tiff-1mb.tiff"
   )
 
-  loc_file <- download_to_temp(url)
+  loc_file <- local_download(url)
 
   expect_silent(dm <- resmush_file(loc_file, report = FALSE))
 

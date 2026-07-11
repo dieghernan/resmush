@@ -147,7 +147,7 @@ resmush_url_single <- function(
     return(NULL)
   }
 
-  if (httr2::resp_status(dwn_opt) != 200) {
+  if (resmush_resp_status(dwn_opt) != 200) {
     res$notes <- "API is not responding. Check https://resmush.it/status"
     return(invisible(res))
   }
@@ -178,8 +178,8 @@ smush_from_url <- function(url, qlty, exif_preserve = TRUE, n_rep = 3) {
   )
 
   for (i in seq(1, n_rep)) {
-    api_get <- httr2::req_perform(the_req)
-    res_get <- httr2::resp_body_json(api_get)
+    api_get <- resmush_req_perform(the_req)
+    res_get <- resmush_resp_body_json(api_get)
     if (!"error" %in% names(res_get)) {
       break
     }

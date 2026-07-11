@@ -3,7 +3,7 @@ test_that("Message when no files", {
 
   # Copy to a temporary file with a given suffix
   suffix <- "_nonstandard"
-  dir_temp <- file.path(tempdir(), "test_dir_nomess")
+  dir_temp <- withr::local_tempdir(pattern = "test_dir_nomess")
   tmp_png <- file.path(dir_temp, paste0("example", suffix, ".png"))
 
   if (!dir.exists(dir_temp)) {
@@ -13,7 +13,10 @@ test_that("Message when no files", {
   expect_true(file.copy(png_file, tmp_png, overwrite = TRUE))
 
   # Message
-  expect_message(resmush_clean_dir(dir_temp), "No files with suffix")
+  expect_snapshot(
+    resmush_clean_dir(dir_temp),
+    transform = scrub_snapshot_paths
+  )
 
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
@@ -23,7 +26,7 @@ test_that("Message with 1 file", {
 
   # Copy to a temporary file with a given suffix
   suffix <- "_resmush"
-  dir_temp <- file.path(tempdir(), "test_dir_onefile")
+  dir_temp <- withr::local_tempdir(pattern = "test_dir_onefile")
   tmp_png <- file.path(dir_temp, paste0("example", suffix, ".png"))
 
   if (!dir.exists(dir_temp)) {
@@ -33,7 +36,10 @@ test_that("Message with 1 file", {
   expect_true(file.copy(png_file, tmp_png, overwrite = TRUE))
 
   # Message
-  expect_message(resmush_clean_dir(dir_temp), "Removing 1 file")
+  expect_snapshot(
+    resmush_clean_dir(dir_temp),
+    transform = scrub_snapshot_paths
+  )
 
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
@@ -43,7 +49,7 @@ test_that("Message with 2 files", {
 
   # Copy to a temporary file with a given suffix
   suffix <- "_resmush"
-  dir_temp <- file.path(tempdir(), "test_dir_twofile")
+  dir_temp <- withr::local_tempdir(pattern = "test_dir_twofile")
   tmp_png <- file.path(dir_temp, paste0("example", suffix, ".png"))
   tmp_png2 <- file.path(dir_temp, paste0("example2", suffix, ".png"))
 
@@ -55,7 +61,10 @@ test_that("Message with 2 files", {
   expect_true(file.copy(png_file, tmp_png2, overwrite = TRUE))
 
   # Message
-  expect_message(resmush_clean_dir(dir_temp), "Removing 2 files")
+  expect_snapshot(
+    resmush_clean_dir(dir_temp),
+    transform = scrub_snapshot_paths
+  )
 
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })

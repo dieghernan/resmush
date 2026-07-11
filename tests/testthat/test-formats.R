@@ -31,11 +31,11 @@ test_that("jpg", {
     "img/sample-jpg-exif-876kb.jpg"
   )
 
-  noexif <- tempfile(fileext = "_noexif.jpg")
+  noexif <- withr::local_tempfile(fileext = "_noexif.jpg")
 
   no_exif <- resmush_url(url, noexif)
 
-  yesexif <- tempfile(fileext = "_yesexif.jpg")
+  yesexif <- withr::local_tempfile(fileext = "_yesexif.jpg")
 
   yes_exif <- resmush_url(url, yesexif, exif_preserve = TRUE)
 
