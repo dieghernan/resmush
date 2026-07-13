@@ -4,10 +4,7 @@ show_report <- function(res_df, summary_type = "file") {
   }
 
   # Print the optimization report heading.
-  name_cli <- switch(summary_type,
-    "file" = "file{?s}",
-    "url" = "URL{?s}"
-  )
+  name_cli <- switch(summary_type, "file" = "file{?s}", "url" = "URL{?s}")
 
   # nolint start
   totinit <- sum(res_df$src_bytes, na.rm = TRUE)

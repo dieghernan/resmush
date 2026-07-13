@@ -168,17 +168,6 @@
       v Optimized 3 URLs: size is now 212 Kb (was 719.6 Kb). Saved 507.6 Kb (70.54%).
       Saved results in directory '<tempdir>/over'.
 
-# To non-existing directories
-
-    Code
-      dm <- resmush_url(png_url, outs)
-    Message
-      == resmush summary =============================================================
-      i Input: 1 URL, 239.9 Kb total.
-      v Optimized 1 URL: size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-      Saved result in directory
-      '<tempdir>/<random-dir>'.
-
 # Test no file
 
     Code

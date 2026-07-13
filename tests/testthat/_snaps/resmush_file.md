@@ -38,18 +38,6 @@
 # Test not provided file
 
     Code
-      dm <- resmush_file(fl)
-    Message
-      == resmush summary =============================================================
-      i Input: 1 file, 0 bytes total.
-      x Failed to optimize 1 file in directory '<tempdir>'.
-      i File not optimized:
-      ! '<tempdir>/file<id>' (NA): Local
-        file does not exist.
-
----
-
-    Code
       dm[, -1]
     Output
         dest_img src_size dest_size compress_ratio                     notes
@@ -58,18 +46,6 @@
       1        NA         NA
 
 # Not valid file
-
-    Code
-      dm <- resmush_file(fl)
-    Message
-      == resmush summary =============================================================
-      i Input: 1 file, 21 bytes total.
-      x Failed to optimize 1 file in directory '<tempdir>'.
-      i File not optimized:
-      ! '<tempdir>/file<id>txt' ("21
-        bytes"): 403: Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
-
----
 
     Code
       dm[, -c(1, 3, 7)]

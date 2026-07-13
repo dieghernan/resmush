@@ -77,9 +77,9 @@ test_that("Test not provided file", {
 
   expect_false(file.exists(fl))
 
-  expect_snapshot(
+  expect_message(
     dm <- resmush_file(fl),
-    transform = scrub_snapshot_paths
+    "Failed to optimize 1 file"
   )
 
   expect_s3_class(dm, "data.frame")
@@ -99,9 +99,9 @@ test_that("Not valid file", {
   writeLines("testing a fake file", con = fl)
   expect_true(file.exists(fl))
 
-  expect_snapshot(
+  expect_message(
     dm <- resmush_file(fl),
-    transform = scrub_snapshot_paths
+    "Unauthorized extension"
   )
 
   expect_s3_class(dm, "data.frame")

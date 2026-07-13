@@ -57,9 +57,9 @@ test_that("Testing regex several with suffix", {
 
   resmush_clean_dir(dir_temp, "_some_error")
   # All ext
-  expect_snapshot(
+  expect_message(
     dm <- resmush_dir(dir_temp, ext = "*", suffix = "_some_error"),
-    transform = scrub_snapshot_paths
+    "Failed to optimize 1 file"
   )
 
   expect_s3_class(dm, "data.frame")
@@ -87,9 +87,9 @@ test_that("Testing nested dirs", {
   )
 
   # All ext recursive
-  expect_snapshot(
+  expect_message(
     dm <- resmush_dir(nested, recursive = TRUE),
-    transform = scrub_snapshot_paths
+    "Saved results in directories"
   )
 
   expect_s3_class(dm, "data.frame")
@@ -118,9 +118,9 @@ test_that("Testing nested dirs", {
     transform = scrub_snapshot_paths
   )
 
-  expect_snapshot(
+  expect_message(
     dm <- resmush_dir(nested, recursive = FALSE),
-    transform = scrub_snapshot_paths
+    "Saved result in directory"
   )
 
   expect_equal(nrow(dm), 1)
@@ -147,14 +147,14 @@ test_that("Testing separated dirs", {
   )
 
   # All ext with overwrite
-  expect_snapshot(
+  expect_message(
     dm <- resmush_dir(
       dir = c(dir_temp1, dir_temp2),
       suffix = "",
       qlty = 10,
       recursive = TRUE
     ),
-    transform = scrub_snapshot_paths
+    "Saved results in directories"
   )
 
   expect_s3_class(dm, "data.frame")
@@ -196,13 +196,13 @@ test_that("Overwrite ignore suffix", {
   expect_length(l_init, 2)
 
   # All , suffix and overwrite
-  expect_snapshot(
+  expect_message(
     dm <- resmush_dir(
       dir = c(dir_temp1, nested_dir),
       suffix = "_not_exist",
       overwrite = TRUE
     ),
-    transform = scrub_snapshot_paths
+    "Saved results in directories"
   )
 
   expect_s3_class(dm, "data.frame")

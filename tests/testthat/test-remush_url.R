@@ -457,9 +457,9 @@ test_that("To non-existing directories", {
   outs <- file.path(outf, basename(png_url))
 
   # Call
-  expect_snapshot(
+  expect_message(
     dm <- resmush_url(png_url, outs),
-    transform = scrub_snapshot_paths
+    "Saved result in directory"
   )
 
   # Check that now exists

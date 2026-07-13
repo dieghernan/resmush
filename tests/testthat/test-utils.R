@@ -45,3 +45,24 @@ test_that("Response status descriptions are exposed", {
 
   expect_identical(resmush_resp_status_desc(resp), "Not Found")
 })
+
+test_that("Snapshot scrubber masks temporary paths robustly", {
+  temp_path <- gsub("\\", "/", tempdir(), fixed = TRUE)
+  temp_path <- gsub("/+$", "", temp_path)
+  split_temp_path <- sub("/", "//", temp_path, fixed = TRUE)
+
+  scrubbed <- scrub_snapshot_paths(c(
+    paste0("Saved in '", split_temp_path, "/resmush-dir-abc123'."),
+    paste0("Saved in '", temp_path, "/working_dir/Rtmpabc123/ABCD/ABCD_1'."),
+    "Remote URL: https://example.com/image.png"
+  ))
+
+  expect_identical(
+    scrubbed,
+    c(
+      "Saved in '<tempdir>/resmush-dir-<id>'.",
+      "Saved in '<tempdir>/<random-dir>'.",
+      "Remote URL: https://example.com/image.png"
+    )
+  )
+})
