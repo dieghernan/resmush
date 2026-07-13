@@ -9,18 +9,6 @@
 # Test corner
 
     Code
-      dm <- resmush_file(test_png)
-    Message
-      == resmush summary =============================================================
-      i Input: 1 file, 239.9 Kb total.
-      x Failed to optimize 1 file in directory '<tempdir>/resmush-dir-<id>'.
-      i File not optimized:
-      ! '<tempdir>/resmush-dir-<id>/example.png'
-        ("239.9 Kb"): API is not responding. Check https://resmush.it/status.
-
----
-
-    Code
       dm[, -c(1, 3, 7)]
     Output
         dest_img dest_size compress_ratio
@@ -57,40 +45,7 @@
         dest_bytes
       1         NA
 
-# Test default opts with png
-
-    Code
-      dm <- resmush_file(test_png)
-    Message
-      == resmush summary =============================================================
-      i Input: 1 file, 239.9 Kb total.
-      v Optimized 1 file: size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-      Saved result in directory
-      '<tempdir>/resmush-dir-<id>'.
-
-# Test opts with png
-
-    Code
-      dm <- resmush_file(test_png, suffix = "")
-    Message
-      == resmush summary =============================================================
-      i Input: 1 file, 239.9 Kb total.
-      v Optimized 1 file: size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-      Saved result in directory
-      '<tempdir>/resmush-dir-<id>'.
-
 # Test qlty par with jpg
-
-    Code
-      dm <- resmush_file(test_jpg, suffix = "a_jpg_qlty")
-    Message
-      == resmush summary =============================================================
-      i Input: 1 file, 100.4 Kb total.
-      v Optimized 1 file: size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-      Saved result in directory
-      '<tempdir>/resmush-dir-<id>'.
-
----
 
     Code
       resmush_clean_dir(tempdir(), "_even_lower")

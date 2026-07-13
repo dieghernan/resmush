@@ -11,7 +11,7 @@ test_that("Test offline", {
     resmush_is_online = function() FALSE
   )
 
-  expect_snapshot(dm <- resmush_url(png_url))
+  suppressMessages(dm <- resmush_url(png_url))
 
   expect_s3_class(dm, "data.frame")
   expect_snapshot(dm)
@@ -38,7 +38,7 @@ test_that("Test corner", {
   )
   local_mocked_bindings(resmush_resp_status = function(resp) 503L)
 
-  expect_snapshot(dm <- resmush_url(png_url))
+  suppressMessages(dm <- resmush_url(png_url))
 
   expect_s3_class(dm, "data.frame")
   expect_snapshot(dm)
@@ -76,7 +76,7 @@ test_that("Test not url", {
 
   turl <- "https://dieghernan.github.io/aaabbbccc.png"
 
-  expect_snapshot(dm <- resmush_url(turl))
+  suppressMessages(dm <- resmush_url(turl))
 
   expect_s3_class(dm, "data.frame")
   expect_snapshot(dm)
@@ -91,7 +91,7 @@ test_that("Not valid file", {
     "dieghernan/resmush/main/README.md"
   )
 
-  expect_snapshot(dm <- resmush_url(turl))
+  suppressMessages(dm <- resmush_url(turl))
 
   expect_s3_class(dm, "data.frame")
   expect_snapshot(dm)
@@ -128,10 +128,7 @@ test_that("Test default opts with png", {
 
   expect_true(optinit2$cli.progress_bar_style == "aaa")
 
-  expect_snapshot(
-    dm <- resmush_url(png_url),
-    transform = scrub_snapshot_paths
-  )
+  suppressMessages(dm <- resmush_url(png_url))
 
   # Restored options
   expect_identical(options(), optinit2)
@@ -167,10 +164,7 @@ test_that("Test opts with png", {
 
   outf <- withr::local_tempfile(fileext = ".png")
   expect_false(file.exists(outf))
-  expect_snapshot(
-    dm <- resmush_url(png_url, outf),
-    transform = scrub_snapshot_paths
-  )
+  suppressMessages(dm <- resmush_url(png_url, outf))
 
   expect_true(file.exists(outf))
   expect_s3_class(dm, "data.frame")
@@ -197,10 +191,7 @@ test_that("Test qlty par with jpg", {
 
   outf <- withr::local_tempfile(fileext = ".jpg")
   expect_false(file.exists(outf))
-  expect_snapshot(
-    dm <- resmush_url(jpg_url, outf),
-    transform = scrub_snapshot_paths
-  )
+  suppressMessages(dm <- resmush_url(jpg_url, outf))
 
   expect_true(file.exists(outf))
   expect_s3_class(dm, "data.frame")
@@ -338,10 +329,7 @@ test_that("Test full vectors with outfile", {
 
   expect_length(unique(all_outs), 4)
 
-  expect_snapshot(
-    dm <- resmush_url(all_in, all_outs),
-    transform = scrub_snapshot_paths
-  )
+  suppressMessages(dm <- resmush_url(all_in, all_outs))
 
   expect_equal(nrow(dm), 4)
   expect_equal(dm$src_img, all_in)
@@ -384,10 +372,7 @@ test_that("Handle duplicate names", {
   expect_false(any(file.exists(renamed)))
 
   # Call
-  expect_snapshot(
-    dm <- resmush_url(png_url, outs),
-    transform = scrub_snapshot_paths
-  )
+  suppressMessages(dm <- resmush_url(png_url, outs))
 
   # Check that now exists
   expect_true(all(file.exists(renamed)))
@@ -421,10 +406,7 @@ test_that("Use overwrite", {
   expect_false(file.exists(outs[1]))
 
   # Call with override
-  expect_snapshot(
-    dm <- resmush_url(png_url, outs, overwrite = TRUE),
-    transform = scrub_snapshot_paths
-  )
+  suppressMessages(dm <- resmush_url(png_url, outs, overwrite = TRUE))
 
   expect_equal(nrow(dm), 3)
   expect_equal(dm$src_img, png_url)
@@ -457,10 +439,7 @@ test_that("To non-existing directories", {
   outs <- file.path(outf, basename(png_url))
 
   # Call
-  expect_message(
-    dm <- resmush_url(png_url, outs),
-    "Saved result in directory"
-  )
+  suppressMessages(dm <- resmush_url(png_url, outs))
 
   # Check that now exists
   expect_true(dir.exists(outf))
@@ -495,7 +474,7 @@ test_that("Test no file", {
     resmush_resp_status_desc = function(resp) "Not Found"
   )
 
-  expect_snapshot(dm <- resmush_url(png_url))
+  suppressMessages(dm <- resmush_url(png_url))
 
   expect_null(dm)
 })

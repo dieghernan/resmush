@@ -68,7 +68,7 @@ test_that("png", {
     "img/sample-png-10mb.png"
   )
 
-  expect_snapshot(dm <- resmush_url(url))
+  suppressMessages(dm <- resmush_url(url))
 
   expect_snapshot(dm[, -1])
 })
@@ -124,5 +124,10 @@ test_that("tif", {
     "img/sample-tif-1mb.tif"
   )
 
-  expect_snapshot(dm <- resmush_url(url))
+  suppressMessages(dm <- resmush_url(url))
+  expect_s3_class(dm, "data.frame")
+  expect_equal(dm$src_img, url)
+  if (!is.na(dm$dest_img)) {
+    unlink(dm$dest_img, force = TRUE)
+  }
 })

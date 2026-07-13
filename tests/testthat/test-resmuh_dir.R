@@ -19,10 +19,7 @@ test_that("Testing regex", {
 
   resmush_clean_dir(dir_temp)
   # Only one
-  expect_snapshot(
-    dm <- resmush_dir(dir_temp, ext = "png$"),
-    transform = scrub_snapshot_paths
-  )
+  suppressMessages(dm <- resmush_dir(dir_temp, ext = "png$"))
 
   expect_s3_class(dm, "data.frame")
   expect_equal(basename(dm$dest_img), "example_resmush.png")

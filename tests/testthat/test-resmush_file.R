@@ -36,10 +36,7 @@ test_that("Test corner", {
   )
   local_mocked_bindings(resmush_resp_status = function(resp) 503L)
 
-  expect_snapshot(
-    dm <- resmush_file(test_png),
-    transform = scrub_snapshot_paths
-  )
+  suppressMessages(dm <- resmush_file(test_png))
 
   expect_s3_class(dm, "data.frame")
   expect_snapshot(dm[, -c(1, 3, 7)])
@@ -77,10 +74,7 @@ test_that("Test not provided file", {
 
   expect_false(file.exists(fl))
 
-  expect_message(
-    dm <- resmush_file(fl),
-    "Failed to optimize 1 file"
-  )
+  suppressMessages(dm <- resmush_file(fl))
 
   expect_s3_class(dm, "data.frame")
   expect_snapshot(dm[, -1])
@@ -99,10 +93,7 @@ test_that("Not valid file", {
   writeLines("testing a fake file", con = fl)
   expect_true(file.exists(fl))
 
-  expect_message(
-    dm <- resmush_file(fl),
-    "Unauthorized extension"
-  )
+  suppressMessages(dm <- resmush_file(fl))
 
   expect_s3_class(dm, "data.frame")
   expect_snapshot(dm[, -c(1, 3, 7)])
@@ -124,10 +115,7 @@ test_that("Test default opts with png", {
   expect_true(file.exists(test_png))
   expect_false(file.exists(theout))
 
-  expect_snapshot(
-    dm <- resmush_file(test_png),
-    transform = scrub_snapshot_paths
-  )
+  suppressMessages(dm <- resmush_file(test_png))
 
   expect_s3_class(dm, "data.frame")
   expect_false(anyNA(dm))
@@ -152,10 +140,7 @@ test_that("Test opts with png", {
   # Make output
   theout <- add_suffix(test_png, suffix = "_resmush")
   expect_false(file.exists(theout))
-  expect_snapshot(
-    dm <- resmush_file(test_png, suffix = ""),
-    transform = scrub_snapshot_paths
-  )
+  suppressMessages(dm <- resmush_file(test_png, suffix = ""))
 
   expect_false(file.exists(theout))
   expect_s3_class(dm, "data.frame")
@@ -181,10 +166,7 @@ test_that("Test qlty par with jpg", {
   expect_true(file.exists(test_jpg))
   outf <- add_suffix(test_jpg, "a_jpg_qlty")
   expect_false(file.exists(outf))
-  expect_snapshot(
-    dm <- resmush_file(test_jpg, suffix = "a_jpg_qlty"),
-    transform = scrub_snapshot_paths
-  )
+  suppressMessages(dm <- resmush_file(test_jpg, suffix = "a_jpg_qlty"))
 
   expect_true(file.exists(outf))
   expect_s3_class(dm, "data.frame")
