@@ -10,6 +10,9 @@ license: MIT
 title: 'resmush: Optimize and Compress Image Files with ''reSmush.it'''
 version: 1.0.2
 doi: 10.32614/CRAN.package.resmush
+identifiers:
+- type: doi
+  value: 10.32614/CRAN.package.resmush
 abstract: Optimize and compress local and online image files with the 'reSmush.it'
   'API' <https://resmush.it/api/>. Process individual files or entire directories.
   The 'API' is free for personal use, accepts files smaller than 5 'MB' and supports
@@ -35,6 +38,7 @@ preferred-citation:
     API <https://resmush.it/api/>. Process individual files or entire directories.
     The API is free for personal use, accepts files smaller than 5 MB and supports
     PNG, JPEG, GIF, BMP and TIFF files.
+repository: https://CRAN.R-project.org/package=resmush
 repository-code: https://github.com/dieghernan/resmush
 url: https://dieghernan.github.io/resmush/
 contact:
@@ -174,6 +178,7 @@ references:
   abstract: 'quarto: R Interface to ''Quarto'' Markdown Publishing System'
   notes: Suggests
   url: https://quarto-dev.github.io/quarto-r/
+  repository: https://CRAN.R-project.org/package=quarto
   authors:
   - family-names: Allaire
     given-names: JJ
@@ -184,6 +189,7 @@ references:
     email: cderv@posit.co
     orcid: https://orcid.org/0000-0003-4474-2498
   year: '2026'
+  doi: 10.32614/CRAN.package.quarto
 - type: software
   title: testthat
   abstract: 'testthat: Unit Testing for R'
