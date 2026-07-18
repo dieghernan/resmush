@@ -73,3 +73,5 @@
 ^index_files/
 ^README_files/
 ^img/
+^\.codex$
+^\.codex/
