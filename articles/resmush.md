@@ -11,7 +11,7 @@ The **reSmush.it** API provides:
 
 - Optimization without an API key.
 - Support for PNG, JPEG, GIF, BMP and TIFF files.
-- A file size limit of less than 5 MB.
+- A per-file size limit: files must be smaller than 5 MB.
 - Compression powered by several algorithms:
   - [**pngquant**](https://pngquant.org/): Removes unnecessary data from
     PNG files while preserving full alpha transparency.
