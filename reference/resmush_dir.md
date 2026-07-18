@@ -107,31 +107,31 @@ dest_folder <- file.path(tempdir(), "extimg")
 # Optimize files non-recursively.
 resmush_dir(dest_folder)
 #> ℹ Optimizing 2 files.
-#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 fi…
-#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.7s] | ETA:  0s (2/2 f…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [3ms] | ETA:  0s (1/2 fi…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2s] | ETA:  0s (2/2 fil…
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files, 340.2 Kb total.
 #> ✔ Optimized 2 files: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> Saved results in directory /tmp/RtmpEJI0eM/extimg.
+#> Saved results in directory /tmp/RtmpjtESNG/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Removing 2 files:
-#> → /tmp/RtmpEJI0eM/extimg/example_resmush.jpg
-#> → /tmp/RtmpEJI0eM/extimg/example_resmush.png
+#> → /tmp/RtmpjtESNG/extimg/example_resmush.jpg
+#> → /tmp/RtmpjtESNG/extimg/example_resmush.png
 
 # Optimize files recursively.
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Optimizing 5 files.
 #> 🕐  reSmushing | ■■■■■■■□□□□□□□□□□□□□□□□□□□□□□□□   20% [1ms] | ETA:  0s (1/5 fi…
-#> 🕑  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■□□□□□□   80% [2.3s] | ETA:  1s (4/5 f…
-#> 🕑  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [3s] | ETA:  0s (5/5 fil…
+#> 🕑  reSmushing | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [2.7s] | ETA:  2s (3/5 f…
+#> 🕑  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [4s] | ETA:  0s (5/5 fil…
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files, 401.7 Kb total.
 #> ✔ Optimized 5 files: size is now 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> Saved results in directories /tmp/RtmpEJI0eM/extimg,
-#> /tmp/RtmpEJI0eM/extimg/top1/nested, /tmp/RtmpEJI0eM/extimg/top1, and
-#> /tmp/RtmpEJI0eM/extimg/top2.
+#> Saved results in directories /tmp/RtmpjtESNG/extimg,
+#> /tmp/RtmpjtESNG/extimg/top1/nested, /tmp/RtmpjtESNG/extimg/top1, and
+#> /tmp/RtmpjtESNG/extimg/top2.
 
 # Inspect the returned optimization summary.
 summary[, -c(1, 2)]
