@@ -35,7 +35,7 @@ The **reSmush.it** API provides:
 
 - Optimization without an API key.
 - Support for PNG, JPEG, GIF, BMP and TIFF files.
-- A file size limit of less than 5 MB.
+- A per-file size limit: files must be smaller than 5 MB.
 - Compression powered by several algorithms:
   - [**pngquant**](https://pngquant.org/): Removes unnecessary data from
     PNG files while preserving full alpha transparency.
@@ -50,9 +50,9 @@ The **reSmush.it** API provides:
 <div class="callout-title-container flex-fill">Note</div></div>
 <div class="callout-body-container callout-body">
 
-This package is stable and maintained on a best-effort basis. I
-currently prioritize CRAN compatibility, bug fixes and regressions over
-new features.
+This package is stable and maintained on a best-effort basis.
+Maintenance currently prioritizes CRAN compatibility, bug fixes and
+regressions over new features.
 
 </div>
 </div>
