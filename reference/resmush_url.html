@@ -112,7 +112,7 @@ affects JPEG files.</p></dd>
 <dt id="arg-exif-preserve">exif_preserve<a class="anchor" aria-label="anchor" href="#arg-exif-preserve"></a></dt>
 <dd><p>Logical. Should
 <a href="https://en.wikipedia.org/wiki/Exif" class="external-link">EXIF</a> metadata be preserved? The
-default is <code>FALSE</code>. This removes it.</p></dd>
+default is <code>FALSE</code>, which removes it.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -147,7 +147,7 @@ external service.</p></li>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: <span style="color: #0000BB;">1</span> URL, 239.9 Kb total.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimized <span style="color: #0000BB;">1</span> URL: size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/Rtmp1Uyhog</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpVgIeSW</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Optimize multiple URLs.</span></span></span>
 <span class="r-in"><span><span class="va">jpg_url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">base_url</span>, <span class="st">"/extimg/example.jpg"</span><span class="op">)</span></span></span>
@@ -159,7 +159,7 @@ external service.</p></li>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: <span style="color: #0000BB;">2</span> URLs, 340.2 Kb total.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimized <span style="color: #0000BB;">2</span> URLs: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved results in directory <span style="color: #0000BB;">/tmp/Rtmp1Uyhog</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved results in directory <span style="color: #0000BB;">/tmp/RtmpVgIeSW</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Inspect the returned optimization summary.</span></span></span>
 <span class="r-in"><span><span class="va">summary</span></span></span>
@@ -167,8 +167,8 @@ external service.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.png</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.jpg</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         dest_img src_size dest_size compress_ratio notes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/Rtmp1Uyhog/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    /tmp/Rtmp1Uyhog/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 /tmp/RtmpVgIeSW/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    /tmp/RtmpVgIeSW/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   src_bytes dest_bytes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    245618      72356</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    102796      85164</span>
@@ -185,12 +185,12 @@ external service.</p></li>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: <span style="color: #0000BB;">1</span> URL, 100.4 Kb total.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimized <span style="color: #0000BB;">1</span> URL: size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/Rtmp1Uyhog</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpVgIeSW</span>.</span>
 <span class="r-in"><span><span class="fu">resmush_url</span><span class="op">(</span><span class="va">jpg_url</span>, qlty <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ══ <span style="color: #0000BB;">resmush</span> summary ═════════════════════════════════════════════════════════════</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Input: <span style="color: #0000BB;">1</span> URL, 100.4 Kb total.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Optimized <span style="color: #0000BB;">1</span> URL: size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/Rtmp1Uyhog</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saved result in directory <span style="color: #0000BB;">/tmp/RtmpVgIeSW</span>.</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
