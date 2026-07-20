@@ -1,4 +1,4 @@
-test_that("Test offline", {
+test_that("resmush_file returns an offline result when offline", {
   skip_on_cran()
 
   test_dir <- local_inst_dir()
@@ -19,7 +19,7 @@ test_that("Test offline", {
   unlink(test_dir, recursive = TRUE, force = TRUE)
 })
 
-test_that("Test corner", {
+test_that("resmush_file reports a failed API download error", {
   skip_on_cran()
   skip_if_offline()
 
@@ -46,7 +46,7 @@ test_that("Test corner", {
   unlink(test_dir, recursive = TRUE, force = TRUE)
 })
 
-test_that("Test API response without destination", {
+test_that("resmush_file handles API response without destination", {
   test_dir <- local_inst_dir()
   test_png <- file.path(test_dir, "example.png")
 
@@ -65,7 +65,7 @@ test_that("Test API response without destination", {
 })
 
 
-test_that("Test not provided file", {
+test_that("resmush_file returns a missing-file result for nonexistent input", {
   skip_on_cran()
   skip_if_offline()
 
@@ -83,7 +83,7 @@ test_that("Test not provided file", {
   unlink(fl, force = TRUE)
 })
 
-test_that("Not valid file", {
+test_that("resmush_file returns an error row for invalid input extension", {
   skip_on_cran()
   skip_if_offline()
 
@@ -102,7 +102,7 @@ test_that("Not valid file", {
   unlink(fl, force = TRUE, recursive = TRUE)
 })
 
-test_that("Test default opts with png", {
+test_that("resmush_file creates a default suffixed output for png", {
   skip_on_cran()
   skip_if_offline()
 
@@ -128,7 +128,7 @@ test_that("Test default opts with png", {
   unlink(test_dir, recursive = TRUE, force = TRUE)
 })
 
-test_that("Test opts with png", {
+test_that("resmush_file overwrites the source file when suffix is empty", {
   skip_on_cran()
   skip_if_offline()
   test_dir <- local_inst_dir()
@@ -157,7 +157,7 @@ test_that("Test opts with png", {
   unlink(test_dir, recursive = TRUE, force = TRUE)
 })
 
-test_that("Test qlty par with jpg", {
+test_that("resmush_file reduces jpg size with specified qlty", {
   skip_on_cran()
   skip_if_offline()
   test_dir <- local_inst_dir()
@@ -198,7 +198,7 @@ test_that("Test qlty par with jpg", {
 })
 
 
-test_that("Test full vectors", {
+test_that("resmush_file processes mixed input vectors and reports progress", {
   skip_on_cran()
   skip_if_offline()
 
@@ -261,7 +261,7 @@ test_that("Test full vectors", {
   )
   unlink(all_in, force = TRUE, recursive = TRUE)
 })
-test_that("Test full vectors silent", {
+test_that("resmush_file processes mixed inputs silently on progress disabled", {
   skip_on_cran()
   skip_if_offline()
 
@@ -324,7 +324,7 @@ test_that("Test full vectors silent", {
   unlink(all_in, force = TRUE, recursive = TRUE)
 })
 
-test_that("Test EXIF", {
+test_that("resmush_file preserves EXIF when requested", {
   skip_on_cran()
   skip_if_offline()
   exif <- withr::local_tempfile(pattern = "exif", fileext = ".jpg")
@@ -356,7 +356,7 @@ test_that("Test EXIF", {
   unlink(exif, force = TRUE)
 })
 
-test_that("Test override", {
+test_that("resmush_file overwrites existing output when overwrite is TRUE", {
   skip_on_cran()
   skip_if_offline()
 
@@ -392,7 +392,7 @@ test_that("Test override", {
 
   unlink(out_dir, force = TRUE, recursive = TRUE)
 })
-test_that("Test no file", {
+test_that("resmush_file returns NULL when the API download fails", {
   skip_on_cran()
   skip_if_offline()
 

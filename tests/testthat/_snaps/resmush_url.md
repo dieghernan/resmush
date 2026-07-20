@@ -1,4 +1,4 @@
-# Test offline
+# resmush_url returns an offline result when offline
 
     Code
       dm
@@ -8,7 +8,7 @@
         dest_img src_size dest_size compress_ratio   notes src_bytes dest_bytes
       1       NA       NA        NA             NA Offline        NA         NA
 
-# Test corner
+# resmush_url reports failed download status for a bad response
 
     Code
       dm
@@ -20,14 +20,14 @@
                                                          notes src_bytes dest_bytes
       1 API is not responding. Check https://resmush.it/status        NA         NA
 
-# Test API response without destination
+# resmush_url handles API response without a destination URL
 
     Code
       dm$notes
     Output
-      [1] "API is not responding. Check https://resmush.it/status"
+      [1] "The API is not responding. Check https://resmush.it/status."
 
-# Test not url
+# resmush_url handles an invalid image URL gracefully
 
     Code
       dm
@@ -37,7 +37,7 @@
         compress_ratio                            notes src_bytes dest_bytes
       1             NA 401: Cannot copy from remote url        NA         NA
 
-# Not valid file
+# resmush_url handles a non-image URL without crashing
 
     Code
       dm
@@ -51,7 +51,7 @@
         dest_bytes
       1         NA
 
-# Test errors in lengths
+# resmush_url errors when url and outfile lengths disagree
 
     Code
       dm <- resmush_url(two_input, several_outputs)

@@ -20,7 +20,7 @@
 #'   affects JPEG files.
 #' @param exif_preserve Logical. Should
 #'   [EXIF](https://en.wikipedia.org/wiki/Exif) metadata be preserved? The
-#'   default is `FALSE`. This removes it.
+#'   default is `FALSE`, which removes it.
 #'
 #' @returns
 #' An invisibly returned data frame with one row per result and columns
@@ -136,7 +136,7 @@ resmush_file_single <- function(
   }
 
   if (!"dest" %in% names(res_post)) {
-    res$notes <- "API is not responding. Check https://resmush.it/status"
+    res$notes <- "The API is not responding. Check https://resmush.it/status."
     return(invisible(res))
   }
 
@@ -151,7 +151,7 @@ resmush_file_single <- function(
   }
 
   if (resmush_resp_status(dwn_opt) != 200) {
-    res$notes <- "API is not responding. Check https://resmush.it/status"
+    res$notes <- "The API is not responding. Check https://resmush.it/status."
     return(invisible(res))
   }
 

@@ -46,7 +46,7 @@ level. For best results, use values above \code{90}. This argument only
 affects JPEG files.}
     \item{\code{exif_preserve}}{Logical. Should
 \href{https://en.wikipedia.org/wiki/Exif}{EXIF} metadata be preserved? The
-default is \code{FALSE}. This removes it.}
+default is \code{FALSE}, which removes it.}
   }}
 }
 \value{

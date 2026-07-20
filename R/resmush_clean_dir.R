@@ -56,7 +56,7 @@ resmush_clean_dir <- function(dir, suffix = "_resmush", recursive = FALSE) {
 
   if (length(allfiles) < 1) {
     cli::cli_alert_info(
-      "No files with suffix {.val {suffix}} found in {.path {dir}}."
+      "No files with suffix {.val {suffix}} were found in {.path {dir}}."
     )
     return(invisible(NULL))
   }

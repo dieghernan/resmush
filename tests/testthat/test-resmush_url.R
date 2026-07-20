@@ -1,4 +1,4 @@
-test_that("Test offline", {
+test_that("resmush_url returns an offline result when offline", {
   skip_on_cran()
 
   png_url <- paste0(
@@ -17,7 +17,7 @@ test_that("Test offline", {
   expect_snapshot(dm)
 })
 
-test_that("Test corner", {
+test_that("resmush_url reports failed download status for a bad response", {
   skip_on_cran()
   skip_if_offline()
 
@@ -46,7 +46,7 @@ test_that("Test corner", {
   unlink(file.path(tempdir(), basename(dm$src_img)))
 })
 
-test_that("Test API response without destination", {
+test_that("resmush_url handles API response without a destination URL", {
   png_url <- "https://example.com/example.png"
   outfile <- withr::local_tempfile(fileext = ".png")
 
@@ -70,7 +70,7 @@ test_that("Test API response without destination", {
   expect_false(file.exists(outfile))
 })
 
-test_that("Test not url", {
+test_that("resmush_url handles an invalid image URL gracefully", {
   skip_on_cran()
   skip_if_offline()
 
@@ -82,7 +82,7 @@ test_that("Test not url", {
   expect_snapshot(dm)
 })
 
-test_that("Not valid file", {
+test_that("resmush_url handles a non-image URL without crashing", {
   skip_on_cran()
   skip_if_offline()
 
@@ -97,7 +97,7 @@ test_that("Not valid file", {
   expect_snapshot(dm)
 })
 
-test_that("Test default opts with png", {
+test_that("resmush_url uses default outfile location for png URLs", {
   skip_on_cran()
   skip_if_offline()
 
@@ -152,7 +152,7 @@ test_that("Test default opts with png", {
 })
 
 
-test_that("Test opts with png", {
+test_that("resmush_url writes to the provided outfile path for png URLs", {
   skip_on_cran()
   skip_if_offline()
 
@@ -179,7 +179,7 @@ test_that("Test opts with png", {
   unlink(dm$dest_img, recursive = TRUE, force = TRUE)
 })
 
-test_that("Test qlty par with jpg", {
+test_that("resmush_url respects qlty for jpg optimization", {
   skip_on_cran()
   skip_if_offline()
 
@@ -211,7 +211,7 @@ test_that("Test qlty par with jpg", {
   expect_lt(out2s, outs)
 })
 
-test_that("Test errors in lengths", {
+test_that("resmush_url errors when url and outfile lengths disagree", {
   skip_on_cran()
 
   png_url <- paste0(
@@ -232,7 +232,7 @@ test_that("Test errors in lengths", {
   expect_snapshot(dm <- resmush_url(two_input, several_outputs), error = TRUE)
 })
 
-test_that("Test full vectors without outfile", {
+test_that("resmush_url processes mixed URL vectors without explicit outfiles", {
   skip_on_cran()
   skip_if_offline()
 
@@ -293,7 +293,7 @@ test_that("Test full vectors without outfile", {
 })
 
 
-test_that("Test full vectors with outfile", {
+test_that("resmush_url processes mixed URL vectors with explicit outfiles", {
   skip_on_cran()
   skip_if_offline()
 
@@ -449,7 +449,7 @@ test_that("To non-existing directories", {
   unlink(outf, force = TRUE, recursive = TRUE)
 })
 
-test_that("Test no file", {
+test_that("resmush_url returns NULL on download response failure", {
   skip_on_cran()
   skip_if_offline()
 

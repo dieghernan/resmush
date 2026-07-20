@@ -1,4 +1,4 @@
-# Test offline
+# resmush_file returns an offline result when offline
 
     Code
       dm[, -1]
@@ -6,24 +6,24 @@
         dest_img src_size dest_size compress_ratio   notes src_bytes dest_bytes
       1       NA       NA        NA             NA Offline        NA         NA
 
-# Test corner
+# resmush_file reports a failed API download error
 
     Code
       dm[, -c(1, 3, 7)]
     Output
         dest_img dest_size compress_ratio
       1       NA        NA             NA
-                                                         notes dest_bytes
-      1 API is not responding. Check https://resmush.it/status         NA
+                                                              notes dest_bytes
+      1 The API is not responding. Check https://resmush.it/status.         NA
 
-# Test API response without destination
+# resmush_file handles API response without destination
 
     Code
       dm$notes
     Output
-      [1] "API is not responding. Check https://resmush.it/status"
+      [1] "The API is not responding. Check https://resmush.it/status."
 
-# Test not provided file
+# resmush_file returns a missing-file result for nonexistent input
 
     Code
       dm[, -1]
@@ -33,7 +33,7 @@
         src_bytes dest_bytes
       1        NA         NA
 
-# Not valid file
+# resmush_file returns an error row for invalid input extension
 
     Code
       dm[, -c(1, 3, 7)]
@@ -45,42 +45,42 @@
         dest_bytes
       1         NA
 
-# Test qlty par with jpg
+# resmush_file reduces jpg size with specified qlty
 
     Code
       resmush_clean_dir(tempdir(), "_even_lower")
     Message
-      i No files with suffix "_even_lower" found in '<tempdir>'.
+      i No files with suffix "_even_lower" were found in '<tempdir>'.
 
-# Test full vectors
+# resmush_file processes mixed input vectors and reports progress
 
     Code
       resmush_clean_dir(tempdir())
     Message
-      i No files with suffix "_resmush" found in '<tempdir>'.
+      i No files with suffix "_resmush" were found in '<tempdir>'.
 
 ---
 
     Code
       resmush_clean_dir(tempdir())
     Message
-      i No files with suffix "_resmush" found in '<tempdir>'.
+      i No files with suffix "_resmush" were found in '<tempdir>'.
 
-# Test full vectors silent
+# resmush_file processes mixed inputs silently on progress disabled
 
     Code
       resmush_clean_dir(tempdir())
     Message
-      i No files with suffix "_resmush" found in '<tempdir>'.
+      i No files with suffix "_resmush" were found in '<tempdir>'.
 
 ---
 
     Code
       resmush_clean_dir(tempdir())
     Message
-      i No files with suffix "_resmush" found in '<tempdir>'.
+      i No files with suffix "_resmush" were found in '<tempdir>'.
 
-# Test EXIF
+# resmush_file preserves EXIF when requested
 
     Code
       resmush_clean_dir(tempdir(), "_without_exif")
@@ -96,7 +96,7 @@
       i Removing 1 file:
       > '<tempdir>/exif<id>_with_exif.jpg'
 
-# Test override
+# resmush_file overwrites existing output when overwrite is TRUE
 
     Code
       dm <- resmush_file(test_png, suffix = "_resmush", overwrite = TRUE)
@@ -107,7 +107,7 @@
       Saved result in directory
       '<tempdir>/resmush-file-<id>/overr_file'.
 
-# Test no file
+# resmush_file returns NULL when the API download fails
 
     Code
       dm <- resmush_file(test_png)

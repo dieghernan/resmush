@@ -1,4 +1,4 @@
-# Report for local
+# show_report prints a local-file summary report
 
     Code
       show_report(test_f)
@@ -60,7 +60,7 @@
       v Optimized 2 files: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
       Saved results in directory 'some_folder'.
 
-# Report for url
+# show_report prints a URL summary report
 
     Code
       show_report(test_f, "url")

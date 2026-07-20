@@ -133,7 +133,7 @@ resmush_url_single <- function(
   }
 
   if (!"dest" %in% names(res_get)) {
-    res$notes <- "API is not responding. Check https://resmush.it/status"
+    res$notes <- "The API is not responding. Check https://resmush.it/status."
     return(invisible(res))
   }
 

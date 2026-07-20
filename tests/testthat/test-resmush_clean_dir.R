@@ -1,4 +1,4 @@
-test_that("Message when no files", {
+test_that("resmush_clean_dir reports no files when none match", {
   png_file <- system.file("extimg/example.png", package = "resmush")
 
   # Copy to a temporary file with a given suffix
@@ -21,7 +21,7 @@ test_that("Message when no files", {
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
-test_that("Message with 1 file", {
+test_that("resmush_clean_dir reports one file removed", {
   png_file <- system.file("extimg/example.png", package = "resmush")
 
   # Copy to a temporary file with a given suffix
@@ -44,7 +44,7 @@ test_that("Message with 1 file", {
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
-test_that("Message with 2 files", {
+test_that("resmush_clean_dir reports two files removed", {
   png_file <- system.file("extimg/example.png", package = "resmush")
 
   # Copy to a temporary file with a given suffix

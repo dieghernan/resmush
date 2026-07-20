@@ -37,7 +37,7 @@ affects JPEG files.}
 
 \item{exif_preserve}{Logical. Should
 \href{https://en.wikipedia.org/wiki/Exif}{EXIF} metadata be preserved? The
-default is \code{FALSE}. This removes it.}
+default is \code{FALSE}, which removes it.}
 }
 \value{
 An invisibly returned data frame with one row per result and columns

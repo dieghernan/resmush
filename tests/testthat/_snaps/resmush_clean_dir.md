@@ -1,11 +1,11 @@
-# Message when no files
+# resmush_clean_dir reports no files when none match
 
     Code
       resmush_clean_dir(dir_temp)
     Message
-      i No files with suffix "_resmush" found in '<tempdir>/test_dir_nomess<id>'.
+      i No files with suffix "_resmush" were found in '<tempdir>/test_dir_nomess<id>'.
 
-# Message with 1 file
+# resmush_clean_dir reports one file removed
 
     Code
       resmush_clean_dir(dir_temp)
@@ -13,7 +13,7 @@
       i Removing 1 file:
       > '<tempdir>/test_dir_onefile<id>/example_resmush.png'
 
-# Message with 2 files
+# resmush_clean_dir reports two files removed
 
     Code
       resmush_clean_dir(dir_temp)

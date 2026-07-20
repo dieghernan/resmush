@@ -1,11 +1,11 @@
-# Test no file
+# resmush_dir returns NULL when no files match the pattern
 
     Code
       dm <- resmush_dir(a)
     Message
-      i No files matching "\\.(png|jpe?g|bmp|gif|tif)$" found in .
+      i No files matching "\\.(png|jpe?g|bmp|gif|tif)$" were found in .
 
-# Testing nested dirs
+# resmush_dir recursively processes nested directories
 
     Code
       resmush_clean_dir(nested, "_resmush", recursive = TRUE)

@@ -1,4 +1,4 @@
-test_that("Report for local", {
+test_that("show_report prints a local-file summary report", {
   skip_on_cran()
 
   test_f <- res_example
@@ -21,7 +21,7 @@ test_that("Report for local", {
   expect_null(show_report(NULL))
 })
 
-test_that("Report for url", {
+test_that("show_report prints a URL summary report", {
   skip_on_cran()
 
   test_f <- res_example

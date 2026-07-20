@@ -1,4 +1,4 @@
-test_that("Test no file", {
+test_that("resmush_dir returns NULL when no files match the pattern", {
   dir_temp <- withr::local_tempdir(pattern = "resmush_test")
   a <- list.files(dir_temp, pattern = "I am a test")
 
@@ -8,7 +8,7 @@ test_that("Test no file", {
   unlink(dir_temp, recursive = FALSE, force = TRUE)
 })
 
-test_that("Testing regex", {
+test_that("resmush_dir filters files by regex extension", {
   skip_on_cran()
   skip_if_offline()
 
@@ -29,7 +29,7 @@ test_that("Testing regex", {
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
-test_that("Testing regex several with suffix", {
+test_that("resmush_dir handles mixed extensions and custom suffixes", {
   skip_on_cran()
   skip_if_offline()
 
@@ -68,7 +68,7 @@ test_that("Testing regex several with suffix", {
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
-test_that("Testing nested dirs", {
+test_that("resmush_dir recursively processes nested directories", {
   skip_on_cran()
   skip_if_offline()
 
@@ -124,7 +124,7 @@ test_that("Testing nested dirs", {
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
-test_that("Testing separated dirs", {
+test_that("resmush_dir processes files from multiple directories", {
   skip_on_cran()
   skip_if_offline()
 
@@ -180,7 +180,7 @@ test_that("Testing separated dirs", {
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
-test_that("Overwrite ignore suffix", {
+test_that("resmush_dir overwrites existing files when overwrite is TRUE", {
   skip_on_cran()
   skip_if_offline()
 
