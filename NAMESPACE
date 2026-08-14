@@ -4,5 +4,7 @@ export(resmush_clean_dir)
 export(resmush_dir)
 export(resmush_file)
 export(resmush_url)
-importFrom(utils,URLencode)
-importFrom(utils,object.size)
+importFrom(utils,
+  URLencode,
+  object.size
+)
