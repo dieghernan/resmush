@@ -93,7 +93,7 @@ resmush_file(tmp_png)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file, 239.9 Kb total.
 #> ✔ Optimized 1 file: size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-#> Saved result in directory /tmp/Rtmpmp85r2.
+#> Saved result in directory /tmp/Rtmpm7k8zN.
 
 # Optimize multiple files.
 jpg_file <- system.file("extimg/example.jpg", package = "resmush")
@@ -110,16 +110,16 @@ summary <- resmush_file(c(tmp_png, tmp_jpg))
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files, 340.2 Kb total.
 #> ✔ Optimized 2 files: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> Saved results in directory /tmp/Rtmpmp85r2.
+#> Saved results in directory /tmp/Rtmpm7k8zN.
 
 # Inspect the returned optimization summary.
 summary
 #>                                src_img
-#> 1 /tmp/Rtmpmp85r2/file1b3917d2d8e8.png
-#> 2 /tmp/Rtmpmp85r2/file1b3970ef93e1.jpg
+#> 1 /tmp/Rtmpm7k8zN/file1b601e8e786d.png
+#> 2 /tmp/Rtmpm7k8zN/file1b6040a84eda.jpg
 #>                                       dest_img src_size dest_size
-#> 1 /tmp/Rtmpmp85r2/file1b3917d2d8e8_resmush.png 239.9 Kb   70.7 Kb
-#> 2 /tmp/Rtmpmp85r2/file1b3970ef93e1_resmush.jpg 100.4 Kb   83.2 Kb
+#> 1 /tmp/Rtmpm7k8zN/file1b601e8e786d_resmush.png 239.9 Kb   70.7 Kb
+#> 2 /tmp/Rtmpm7k8zN/file1b6040a84eda_resmush.jpg 100.4 Kb   83.2 Kb
 #>   compress_ratio notes src_bytes dest_bytes
 #> 1         70.54%    OK    245618      72356
 #> 2         17.15%    OK    102796      85164
@@ -136,11 +136,11 @@ resmush_file(tmp_jpg)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file, 100.4 Kb total.
 #> ✔ Optimized 1 file: size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> Saved result in directory /tmp/Rtmpmp85r2.
+#> Saved result in directory /tmp/Rtmpm7k8zN.
 resmush_file(tmp_jpg, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file, 100.4 Kb total.
 #> ✔ Optimized 1 file: size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> Saved result in directory /tmp/Rtmpmp85r2.
+#> Saved result in directory /tmp/Rtmpm7k8zN.
 # }
 ```
