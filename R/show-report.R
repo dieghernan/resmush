@@ -4,14 +4,15 @@ show_report <- function(res_df, summary_type = "file") {
   }
 
   # Print the optimization report heading.
-  name_cli <- switch(summary_type,
-    "file" = "file{?s}",
-    "url" = "URL{?s}"
-  )
+  name_cli <- switch(summary_type, "file" = "file{?s}", "url" = "URL{?s}")
 
   # nolint start
-  totinit <- sum(res_df$src_bytes, na.rm = TRUE)
-  totinit_pretty <- make_pretty_size(totinit)
+  if (anyNA(res_df$src_bytes)) {
+    total_size <- "total size unknown"
+  } else {
+    totinit <- sum(res_df$src_bytes)
+    total_size <- paste(make_pretty_size(totinit), "total")
+  }
 
   # nolint end
 
@@ -21,11 +22,13 @@ show_report <- function(res_df, summary_type = "file") {
   cli::cli_alert_info(paste0(
     "Input: {.val {nrow(res_df)}} ",
     name_cli,
-    ", {totinit_pretty} total."
+    ", {total_size}."
   ))
 
   nok <- res_df[res_df$notes != "OK", ]
   ok <- res_df[res_df$notes == "OK", ]
+
+  nok_notes <- format_resmush_note(nok$notes) # nolint
 
   # Report successful optimizations.
   if (nrow(ok) > 0) {
@@ -62,13 +65,15 @@ show_report <- function(res_df, summary_type = "file") {
 
     if (summary_type == "file") {
       # Prepare failed-file bullets.
+      size_cli <- ifelse(
+        is.na(nok$src_size),
+        "",
+        sprintf(" ({.val {nok$src_size[%s]}})", noks)
+      )
       makebull <- sprintf(
-        paste0(
-          "{.path {nok$src_img[%s]}} ",
-          "({.val {nok$src_size[%s]}}): {.emph {nok$notes[%s]}}."
-        ),
+        "{.path {nok$src_img[%s]}}%s: {.emph {nok_notes[%s]}}",
         noks,
-        noks,
+        size_cli,
         noks
       )
 
@@ -85,7 +90,7 @@ show_report <- function(res_df, summary_type = "file") {
     } else {
       # Prepare failed-URL bullets.
       makebull <- sprintf(
-        "{.url {nok$src_img[%s]}}: {.emph {nok$notes[%s]}}.",
+        "{.url {nok$src_img[%s]}}: {.emph {nok_notes[%s]}}",
         noks,
         noks
       )

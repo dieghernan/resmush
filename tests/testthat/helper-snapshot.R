@@ -1,23 +1,34 @@
 scrub_snapshot_paths <- function(x) {
-  x <- gsub("\\", "/", x, fixed = TRUE)
-
   for (temp_path in snapshot_temp_paths()) {
     x <- gsub(path_regex(temp_path), "<tempdir>", x, perl = TRUE)
   }
 
-  x <- x[!grepl("reSmushing", x, fixed = TRUE)]
+  x <- vapply(x, normalize_masked_path, character(1), USE.NAMES = FALSE)
+
   x <- x[nzchar(x)]
   x <- gsub(
     "<tempdir>(/working_dir/Rtmp[^/]+)?/[A-Z]{4}/[A-Z]{4}_[0-9]+",
     "<tempdir>/<random-dir>",
     x
   )
-  x <- gsub("(resmush-(dir|file)-)[[:xdigit:]]+", "\\1<id>", x)
+  x <- gsub("(resmush-(dir|file|exif)-)[[:xdigit:]]+", "\\1<id>", x)
   x <- gsub("(test_dir_(nomess|onefile|twofile))[[:xdigit:]]+", "\\1<id>", x)
   x <- gsub("(test2|resmush_test)[[:xdigit:]]+", "\\1<id>", x)
   x <- gsub("(file|exif)[[:xdigit:]]+", "\\1<id>", x)
 
   x
+}
+
+normalize_masked_path <- function(x) {
+  marker <- regexpr("<tempdir>", x, fixed = TRUE)
+  if (marker == -1) {
+    return(x)
+  }
+
+  marker_end <- marker + attr(marker, "match.length") - 1
+  prefix <- substr(x, 1, marker_end)
+  suffix <- substr(x, marker_end + 1, nchar(x))
+  paste0(prefix, gsub("\\", "/", suffix, fixed = TRUE))
 }
 
 snapshot_temp_paths <- function() {
@@ -57,5 +68,5 @@ macos_private_var_variants <- function(paths) {
 path_regex <- function(path) {
   pieces <- strsplit(path, "/", fixed = TRUE)[[1]]
   pieces <- gsub("([][{}()+*^$|\\\\?.])", "\\\\\\1", pieces)
-  paste(pieces, collapse = "/+")
+  paste(pieces, collapse = "[/\\\\]+")
 }

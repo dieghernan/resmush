@@ -2,18 +2,18 @@
 #'
 #' @description
 #' **Use with caution.** Remove files that match `suffix` from one or more
-#' directories. This is intended to clean output files created by
+#' directories. This function cleans output files created by
 #' [resmush_file()] or [resmush_dir()].
 #'
 #' @param dir A character vector of directory paths. See the `path` argument of
-#'   [list.files()].
+#'   [base::list.files()].
 #' @param suffix A character string containing the suffix pattern used to
 #'   identify files. The value is interpreted as a regular expression. The
-#'   default is `"_resmush"`, the default suffix used by [resmush_file()].
+#'   default is `"_resmush"`, which is also used by [resmush_file()].
 #' @param recursive Logical. Should the file search recurse into directories?
 #'
 #' @returns
-#' An [invisible()] `NULL`. Messages list the files selected for removal.
+#' An [base::invisible()] `NULL`. Messages list the files selected for removal.
 #'
 #' @seealso [resmush_file()] and [resmush_dir()] create the suffixed output
 #'   files that this function removes.

@@ -9,26 +9,15 @@
 #' @param ext A [`regex`][base::regex] matching file extensions to optimize. The
 #'   default matches lowercase `.png`, `.jpg`, `.jpeg`, `.gif`, `.bmp` and
 #'   `.tif` extensions.
-#' @param suffix A character string inserted before each output file extension.
-#'   The default is `"_resmush"`. Therefore, `example.png` becomes
-#'   `example_resmush.png`. Values `""`, `NA` and `NULL` are equivalent to
-#'   `overwrite = TRUE`.
-#' @param overwrite Logical. Should the input files be overwritten? If `TRUE`,
-#'   `suffix` is ignored.
-#' @param recursive Logical. Should the file search within `dir` be recursive?
-#'   See [list.files()].
+#' @param recursive Logical. Should the file search within each directory in
+#'   `dir` be recursive? See [base::list.files()].
 #' @inheritParams resmush_file
 #' @inheritDotParams resmush_file qlty exif_preserve
 #'
-#' @returns
-#' An invisibly returned data frame with one row per result and columns
-#' containing source and destination paths, formatted and raw file sizes,
-#' compression ratios and status notes. Returns `NULL` if no result is
-#' available. Successful API calls also write the optimized files to disk.
+#' @inherit resmush_file return
 #'
-#' @seealso
-#' - [resmush_clean_dir()] removes output files created by previous runs.
-#' - The [reSmush.it API documentation](https://resmush.it/api/) describes the
+#' @seealso [resmush_clean_dir()] removes output files created by previous runs.
+#'   The [reSmush.it API documentation](https://resmush.it/api/) describes the
 #'   external service.
 #'
 #' @family optimize
@@ -41,7 +30,7 @@
 #' temp_dir <- tempdir()
 #' file.copy(example_dir, temp_dir, recursive = TRUE)
 #'
-#' # Create the destination folder path.
+#' # Create the destination directory path.
 #' dest_folder <- file.path(tempdir(), "extimg")
 #'
 #' # Optimize files non-recursively.

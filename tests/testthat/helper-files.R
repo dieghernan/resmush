@@ -11,7 +11,10 @@ local_inst_file <- function(file, subdir = NULL) {
     dir.create(dest_dir, recursive = TRUE)
   }
 
-  file.copy(inst_file, dest_dir, overwrite = TRUE)
+  copied <- file.copy(inst_file, dest_dir, overwrite = TRUE)
+  if (!isTRUE(copied)) {
+    stop("Could not copy the installed test file.")
+  }
   file.path(dest_dir, basename(inst_file))
 }
 
@@ -24,7 +27,10 @@ local_inst_dir <- function() {
   )
 
   files <- list.files(inst_dir, full.names = TRUE)
-  file.copy(files, dest_dir, recursive = TRUE)
+  copied <- file.copy(files, dest_dir, recursive = TRUE)
+  if (!all(copied)) {
+    stop("Could not copy the installed test directory.")
+  }
 
   dest_dir
 }

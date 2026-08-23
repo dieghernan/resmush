@@ -1,5 +1,3 @@
-
-
 <!-- README.md is generated from README.qmd. Please edit that file -->
 
 # resmush <a href="https://dieghernan.github.io/resmush/"><img src="man/figures/logo.png" alt="resmush website" align="right" height="139"/></a>
@@ -28,7 +26,7 @@ allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.rep
 files, individually or in entire directories, with the [**reSmush.it**
 API](https://resmush.it/api/). The API is free for personal use and does
 not require an API key. **reSmush.it** is also available through
-[WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/)
+[**WordPress**](https://wordpress.org/plugins/resmushit-image-optimizer/)
 and [other tools](https://resmush.it/tools/).
 
 The **reSmush.it** API provides:
@@ -47,7 +45,7 @@ The **reSmush.it** API provides:
 > [!NOTE]
 >
 > This package is stable and maintained on a best-effort basis.
-> Maintenance currently prioritizes CRAN compatibility, bug fixes and
+> Maintenance currently prioritizes **CRAN** compatibility, bug fixes and
 > regressions over new features.
 
 ## Installation
@@ -69,7 +67,7 @@ Check the documentation for the development version at
 <https://dieghernan.github.io/resmush/dev/>.
 
 You can install the development version of **resmush** from
-[GitHub](https://github.com/) with:
+[**GitHub**](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
@@ -77,7 +75,7 @@ pak::pak("dieghernan/resmush")
 ```
 
 Alternatively, install **resmush** from
-[r-universe](https://dieghernan.r-universe.dev/resmush):
+[**r-universe**](https://dieghernan.r-universe.dev/resmush):
 
 ``` r
 # Install resmush in R:
@@ -125,8 +123,8 @@ alt="Optimized JPEG image" />](https://dieghernan.github.io/resmush/reference/fi
 
 <figcaption>
 
-Figure 1: Original image <em>(a)</em>: 178.7 KB, optimized image
-<em>(b)</em>: 45 KB (compression: 74.8%). Click to enlarge.
+Figure 1: Original image <em>(a)</em>, 178.7 KB, and optimized image
+<em>(b)</em>, 45 KB (74.8% compression). Click to enlarge.
 </figcaption>
 
 </div>
@@ -194,28 +192,29 @@ Several other **R** packages provide image optimization tools:
     [**TinyPNG**](https://tinypng.com/) and requires an API key.
   - `xfun::optipng()`: Compresses local files using **OptiPNG**. The
     program must be installed locally.
-- The [**tinieR**](https://jmablog.github.io/tinieR/) package: An **R**
-  interface to [**TinyPNG**](https://tinypng.com/).
+- The [**tinieR**](https://jmablog.github.io/tinieR/) package provides
+  an **R** interface to [**TinyPNG**](https://tinypng.com/).
 - The **tinyimg** package ([Xie 2026a](#ref-tinyimg)): Optimizes local
-  PNG and JPEG files using Rust libraries. It supports lossless PNG
+  PNG and JPEG files using **Rust** libraries. It supports lossless PNG
   optimization via **oxipng**, optional lossy PNG palette reduction and
   JPEG re-encoding via **mozjpeg**.
-- The [**optout**](https://github.com/coolbutuseless/optout) package:
-  Similar to `xfun::optipng()` but with more options. It requires
+- The [**optout**](https://github.com/coolbutuseless/optout) package is
+  similar to `xfun::optipng()` but offers more options. It requires
   additional local software.
 
-| Tool | CRAN | Additional software | Online images | API key required | Limits |
+| Tool | **CRAN** | Additional software | Online images | API key required | Limits |
 |----|----|----|----|----|----|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 compressions per month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | None |
 | **tinieR** | No | No | Yes | Yes | 500 compressions per month (free tier) |
-| **tinyimg** | Yes | Yes (Rust toolchain) | No | No | None |
+| **tinyimg** | Yes | Yes (**Rust** toolchain) | No | No | None |
 | **optout** | No | Yes | No | No | None |
 | **resmush** | Yes | No | Yes | No | Personal use only. Files smaller than 5 MB. |
 
 <p class="caption">
 
-Table 1: **R** packages: comparison of image optimization alternatives.
+Table 1: Comparison of image optimization alternatives for **R**
+packages.
 </p>
 
 | Tool              | PNG | JPEG | GIF | BMP | TIFF | WebP | PDF |
@@ -229,7 +228,7 @@ Table 1: **R** packages: comparison of image optimization alternatives.
 
 <p class="caption">
 
-Table 2: **R** packages: supported formats.
+Table 2: Supported formats for **R** packages.
 </p>
 
 In practice, **resmush** is designed for quick image optimization with
@@ -242,13 +241,13 @@ fine-grained control over compression settings.
 
 <p>
 
-Hernangómez D (2026). <em>resmush: Optimize and Compress Image Files
-with reSmush.it</em>.
+Hernangómez D (2026). <em><strong>resmush</strong>: Optimize and Compress Image
+Files with <strong>reSmush.it</strong></em>.
 <a href="https://doi.org/10.32614/CRAN.package.resmush">doi:10.32614/CRAN.package.resmush</a>.
 <a href="https://dieghernan.github.io/resmush/">https://dieghernan.github.io/resmush/</a>.
 </p>
 
-A BibTeX entry for LaTeX users:
+A **BibTeX** entry for **LaTeX** users:
 
     @Manual{R-resmush,
       title = {{resmush}: Optimize and Compress Image Files with {reSmush.it}},
@@ -266,15 +265,15 @@ A BibTeX entry for LaTeX users:
 
 <div id="ref-tinyimg" class="csl-entry">
 
-Xie, Yihui. 2026a. *<span class="nocase">tinyimg</span>: Optimize and
-Compress Images*. <https://doi.org/10.32614/CRAN.package.tinyimg>.
+Xie, Yihui. 2026a. *<span class="nocase"><strong>tinyimg</strong></span>:
+Optimize and Compress Images*. <https://doi.org/10.32614/CRAN.package.tinyimg>.
 
 </div>
 
 <div id="ref-xfun" class="csl-entry">
 
-Xie, Yihui. 2026b. *<span class="nocase">xfun</span>: Supporting
-Functions for Packages Maintained by Yihui Xie*.
+Xie, Yihui. 2026b. *<span class="nocase"><strong>xfun</strong></span>:
+Supporting Functions for Packages Maintained by Yihui Xie*.
 <https://github.com/yihui/xfun>.
 
 </div>

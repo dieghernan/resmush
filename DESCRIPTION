@@ -1,6 +1,6 @@
 Package: resmush
 Title: Optimize and Compress Image Files with 'reSmush.it'
-Version: 1.0.2
+Version: 1.0.2.9000
 Authors@R: 
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
@@ -26,7 +26,7 @@ Suggests:
     knitr,
     png,
     quarto,
-    testthat (>= 3.1.7),
+    testthat (>= 3.3.0),
     withr
 VignetteBuilder: 
     quarto

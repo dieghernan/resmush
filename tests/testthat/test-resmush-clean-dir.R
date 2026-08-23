@@ -1,4 +1,4 @@
-test_that("resmush_clean_dir reports no files when none match", {
+test_that("resmush_clean_dir() leaves directories unchanged without matches", {
   png_file <- system.file("extimg/example.png", package = "resmush")
 
   # Copy to a temporary file with a given suffix
@@ -17,11 +17,10 @@ test_that("resmush_clean_dir reports no files when none match", {
     resmush_clean_dir(dir_temp),
     transform = scrub_snapshot_paths
   )
-
-  unlink(dir_temp, force = TRUE, recursive = TRUE)
+  expect_true(file.exists(tmp_png))
 })
 
-test_that("resmush_clean_dir reports one file removed", {
+test_that("resmush_clean_dir() removes one matching file", {
   png_file <- system.file("extimg/example.png", package = "resmush")
 
   # Copy to a temporary file with a given suffix
@@ -40,11 +39,10 @@ test_that("resmush_clean_dir reports one file removed", {
     resmush_clean_dir(dir_temp),
     transform = scrub_snapshot_paths
   )
-
-  unlink(dir_temp, force = TRUE, recursive = TRUE)
+  expect_false(file.exists(tmp_png))
 })
 
-test_that("resmush_clean_dir reports two files removed", {
+test_that("resmush_clean_dir() removes multiple matching files", {
   png_file <- system.file("extimg/example.png", package = "resmush")
 
   # Copy to a temporary file with a given suffix
@@ -65,6 +63,6 @@ test_that("resmush_clean_dir reports two files removed", {
     resmush_clean_dir(dir_temp),
     transform = scrub_snapshot_paths
   )
-
-  unlink(dir_temp, force = TRUE, recursive = TRUE)
+  expect_false(file.exists(tmp_png))
+  expect_false(file.exists(tmp_png2))
 })

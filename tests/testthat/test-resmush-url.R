@@ -1,6 +1,4 @@
-test_that("resmush_url returns an offline result when offline", {
-  skip_on_cran()
-
+test_that("resmush_url() reports offline status when service is unavailable", {
   png_url <- paste0(
     "https://raw.githubusercontent.com/",
     "dieghernan/resmush/main/inst/",
@@ -14,13 +12,11 @@ test_that("resmush_url returns an offline result when offline", {
   suppressMessages(dm <- resmush_url(png_url))
 
   expect_s3_class(dm, "data.frame")
-  expect_snapshot(dm)
+  expect_identical(dm$notes, "Offline.")
+  expect_all_true(is.na(dm$dest_img))
 })
 
-test_that("resmush_url reports failed download status for a bad response", {
-  skip_on_cran()
-  skip_if_offline()
-
+test_that("resmush_url() reports failed optimized-image downloads", {
   png_url <- paste0(
     "https://raw.githubusercontent.com/",
     "dieghernan/resmush/main/inst/",
@@ -41,12 +37,16 @@ test_that("resmush_url reports failed download status for a bad response", {
   suppressMessages(dm <- resmush_url(png_url))
 
   expect_s3_class(dm, "data.frame")
-  expect_snapshot(dm)
+  expect_identical(
+    dm$notes,
+    "The API is not responding. Check https://resmush.it/status."
+  )
+  expect_all_true(is.na(dm$dest_img))
 
   unlink(file.path(tempdir(), basename(dm$src_img)))
 })
 
-test_that("resmush_url handles API response without a destination URL", {
+test_that("resmush_url() reports API responses without destination URLs", {
   png_url <- "https://example.com/example.png"
   outfile <- withr::local_tempfile(fileext = ".png")
 
@@ -65,12 +65,52 @@ test_that("resmush_url handles API response without a destination URL", {
   )
 
   expect_s3_class(dm, "data.frame")
-  expect_snapshot(dm$notes)
-  expect_true(is.na(dm$dest_img))
+  expect_identical(
+    dm$notes,
+    "The API is not responding. Check https://resmush.it/status."
+  )
+  expect_all_true(is.na(dm$dest_img))
   expect_false(file.exists(outfile))
 })
 
-test_that("resmush_url handles an invalid image URL gracefully", {
+test_that("resmush_url() writes files from successful API results", {
+  source_file <- local_inst_file("example.png")
+  outfile <- withr::local_tempfile(fileext = ".png")
+  url <- "https://example.com/example.png"
+
+  local_mocked_bindings(
+    resmush_is_online = function() TRUE,
+    smush_from_url = function(...) {
+      list(
+        dest = "https://example.com/optimized.png",
+        src_size = file.size(source_file)
+      )
+    },
+    download_optimized_file = function(url, outfile, src, source_type) {
+      file.copy(source_file, outfile, overwrite = TRUE)
+      httr2::response(status_code = 200)
+    }
+  )
+
+  expect_silent(
+    dm <- resmush_url(
+      url,
+      outfile,
+      progress = FALSE,
+      report = FALSE
+    )
+  )
+
+  expect_s3_class(dm, "data.frame")
+  expect_identical(dm$src_img, url)
+  expect_identical(dm$dest_img, outfile)
+  expect_true(file.exists(outfile))
+  expect_identical(dm$src_bytes, dm$dest_bytes)
+  expect_identical(dm$compress_ratio, "0.00%")
+  expect_identical(dm$notes, "OK")
+})
+
+test_that("resmush_url() reports inaccessible image URLs", {
   skip_on_cran()
   skip_if_offline()
 
@@ -79,10 +119,14 @@ test_that("resmush_url handles an invalid image URL gracefully", {
   suppressMessages(dm <- resmush_url(turl))
 
   expect_s3_class(dm, "data.frame")
-  expect_snapshot(dm)
+  expect_identical(
+    dm$notes,
+    "401: The API could not retrieve the remote URL."
+  )
+  expect_all_true(is.na(dm$dest_img))
 })
 
-test_that("resmush_url handles a non-image URL without crashing", {
+test_that("resmush_url() reports URLs with unsupported extensions", {
   skip_on_cran()
   skip_if_offline()
 
@@ -94,65 +138,65 @@ test_that("resmush_url handles a non-image URL without crashing", {
   suppressMessages(dm <- resmush_url(turl))
 
   expect_s3_class(dm, "data.frame")
-  expect_snapshot(dm)
+  expect_identical(
+    dm$notes,
+    paste0(
+      "403: The file extension is not supported. Allowed extensions are JPG, ",
+      "PNG, GIF, BMP and TIFF."
+    )
+  )
+  expect_all_true(is.na(dm$dest_img))
 })
 
-test_that("resmush_url uses default outfile location for png URLs", {
-  skip_on_cran()
-  skip_if_offline()
+test_that("resmush_url() writes PNG outputs to the default location", {
+  source_file <- local_inst_file("example.png")
+  unique_name <- paste0(basename(withr::local_tempfile()), ".png")
+  png_url <- paste0("https://example.com/", unique_name)
+  out_f <- file.path(tempdir(), basename(png_url))
+  withr::defer(unlink(out_f, force = TRUE))
 
-  png_url <- paste0(
-    "https://raw.githubusercontent.com/",
-    "dieghernan/resmush/main/inst/",
-    "extimg/example.png"
+  local_mocked_bindings(
+    resmush_is_online = function() TRUE,
+    smush_from_url = function(...) {
+      list(
+        dest = "https://example.com/optimized.png",
+        src_size = file.size(source_file)
+      )
+    },
+    download_optimized_file = function(url, outfile, src, source_type) {
+      file.copy(source_file, outfile, overwrite = TRUE)
+      httr2::response(status_code = 200)
+    }
   )
 
-  # Mock default output
-  out_f <- file.path(tempdir(), basename(png_url))
-
-  if (file.exists(out_f)) {
-    unlink(out_f, force = TRUE)
-  }
-
-  # Recover options
-
-  optsinit <- options()
-  expect_false(isTRUE(optsinit$cli.progress_bar_style == "aaa"))
-  options(
+  cli_options <- c(
+    "cli.progress_bar_style",
+    "cli.progress_show_after",
+    "cli.spinner"
+  )
+  withr::local_options(
     cli.progress_bar_style = "aaa",
     cli.progress_show_after = 1000,
     cli.spinner = "ccc"
   )
-
-  optinit2 <- options()
-
-  expect_true(optinit2$cli.progress_bar_style == "aaa")
+  expected_options <- options(cli_options)
 
   suppressMessages(dm <- resmush_url(png_url))
 
-  # Restored options
-  expect_identical(options(), optinit2)
-
-  options(
-    cli.progress_bar_style = optsinit$cli.progress_bar_style,
-    cli.progress_show_after = optsinit$cli.progress_show_after,
-    cli.spinner = optsinit$cli.spinner
-  )
-
-  expect_identical(options(), optsinit)
+  expect_identical(options(cli_options), expected_options)
 
   expect_s3_class(dm, "data.frame")
   expect_false(anyNA(dm))
-  expect_equal(dm$src_img, png_url)
-  expect_equal(basename(dm$dest_img), basename(out_f))
+  expect_identical(dm$src_img, png_url)
+  expect_identical(dm$dest_img, out_f)
 
   ratio <- as.double(gsub("%", "", dm$compress_ratio, fixed = TRUE))
+  expect_gte(ratio, 0)
   expect_lt(ratio, 100)
-  unlink(dm$dest_img, recursive = TRUE, force = TRUE)
 })
 
 
-test_that("resmush_url writes to the provided outfile path for png URLs", {
+test_that("resmush_url() writes PNG outputs to explicit paths", {
   skip_on_cran()
   skip_if_offline()
 
@@ -179,7 +223,7 @@ test_that("resmush_url writes to the provided outfile path for png URLs", {
   unlink(dm$dest_img, recursive = TRUE, force = TRUE)
 })
 
-test_that("resmush_url respects qlty for jpg optimization", {
+test_that("resmush_url() applies JPEG quality settings", {
   skip_on_cran()
   skip_if_offline()
 
@@ -211,9 +255,7 @@ test_that("resmush_url respects qlty for jpg optimization", {
   expect_lt(out2s, outs)
 })
 
-test_that("resmush_url errors when url and outfile lengths disagree", {
-  skip_on_cran()
-
+test_that("resmush_url() rejects unequal URL and output path lengths", {
   png_url <- paste0(
     "https://raw.githubusercontent.com/",
     "dieghernan/resmush/main/inst/",
@@ -232,7 +274,7 @@ test_that("resmush_url errors when url and outfile lengths disagree", {
   expect_snapshot(dm <- resmush_url(two_input, several_outputs), error = TRUE)
 })
 
-test_that("resmush_url processes mixed URL vectors without explicit outfiles", {
+test_that("resmush_url() processes mixed URLs with default output paths", {
   skip_on_cran()
   skip_if_offline()
 
@@ -259,31 +301,21 @@ test_that("resmush_url processes mixed URL vectors without explicit outfiles", {
 
   all_in <- c(png_url, notval, jpg_url, turl)
 
-  # Recover options
-
-  optsinit <- options()
-  expect_false(isTRUE(optsinit$cli.progress_bar_style == "aaa"))
-  options(
+  cli_options <- c(
+    "cli.progress_bar_style",
+    "cli.progress_show_after",
+    "cli.spinner"
+  )
+  withr::local_options(
     cli.progress_bar_style = "aaa",
     cli.progress_show_after = 1000,
     cli.spinner = "ccc"
   )
-
-  optinit2 <- options()
-
-  expect_true(optinit2$cli.progress_bar_style == "aaa")
+  expected_options <- options(cli_options)
 
   expect_silent(dm <- resmush_url(all_in, report = FALSE, progress = FALSE))
 
-  # Restored options
-  expect_identical(options(), optinit2)
-
-  options(
-    cli.progress_bar_style = optsinit$cli.progress_bar_style,
-    cli.progress_show_after = optsinit$cli.progress_show_after,
-    cli.spinner = optsinit$cli.spinner
-  )
-  expect_identical(options(), optsinit)
+  expect_identical(options(cli_options), expected_options)
 
   expect_equal(nrow(dm), 4)
   expect_equal(dm$src_img, all_in)
@@ -293,7 +325,7 @@ test_that("resmush_url processes mixed URL vectors without explicit outfiles", {
 })
 
 
-test_that("resmush_url processes mixed URL vectors with explicit outfiles", {
+test_that("resmush_url() processes mixed URLs with explicit output paths", {
   skip_on_cran()
   skip_if_offline()
 
@@ -338,13 +370,13 @@ test_that("resmush_url processes mixed URL vectors with explicit outfiles", {
     basename(c(all_outs[1], NA, all_outs[3], NA))
   )
 
-  expect_true(all(file.exists(all_outs[c(1, 3)])))
+  expect_all_true(file.exists(all_outs[c(1, 3)]))
 
   unlink(dm$dest_img, recursive = TRUE, force = TRUE)
 })
 
 
-test_that("Handle duplicate names", {
+test_that("resmush_url() disambiguates duplicate output paths", {
   skip_on_cran()
   skip_if_offline()
 
@@ -356,7 +388,8 @@ test_that("Handle duplicate names", {
 
   png_url <- rep(png_url_single, 3)
 
-  outs <- file.path(tempdir(), basename(png_url))
+  output_dir <- withr::local_tempdir(pattern = "duplicate-outputs-")
+  outs <- file.path(output_dir, basename(png_url))
 
   if (any(file.exists(outs))) {
     unlink(outs, force = TRUE)
@@ -365,17 +398,17 @@ test_that("Handle duplicate names", {
   expect_false(file.exists(outs[1]))
 
   # But should be renamed as
-  renamed <- file.path(tempdir(), c("example_01.png", "example_02.png"))
+  renamed <- file.path(output_dir, c("example_01.png", "example_02.png"))
   if (any(file.exists(renamed))) {
     unlink(renamed, force = TRUE)
   }
-  expect_false(any(file.exists(renamed)))
+  expect_all_false(file.exists(renamed))
 
   # Call
   suppressMessages(dm <- resmush_url(png_url, outs))
 
   # Check that now exists
-  expect_true(all(file.exists(renamed)))
+  expect_all_true(file.exists(renamed))
 
   expect_equal(nrow(dm), 3)
   expect_equal(dm$src_img, png_url)
@@ -384,7 +417,7 @@ test_that("Handle duplicate names", {
 })
 
 
-test_that("Use overwrite", {
+test_that("resmush_url() reuses duplicate paths when overwrite is enabled", {
   skip_on_cran()
   skip_if_offline()
 
@@ -396,7 +429,8 @@ test_that("Use overwrite", {
 
   png_url <- rep(png_url_single, 3)
 
-  outs <- file.path(tempdir(), "over", basename(png_url))
+  output_dir <- withr::local_tempdir(pattern = "overwrite-outputs-")
+  outs <- file.path(output_dir, basename(png_url))
   the_dir <- unique(dirname(outs))
 
   if (any(file.exists(outs))) {
@@ -421,7 +455,7 @@ test_that("Use overwrite", {
 })
 
 
-test_that("To non-existing directories", {
+test_that("resmush_url() creates missing output directories", {
   skip_on_cran()
   skip_if_offline()
 
@@ -431,10 +465,8 @@ test_that("To non-existing directories", {
     "extimg/example.png"
   )
 
-  # Random folder name
-  let1 <- paste0(LETTERS[sample(seq_len(20), 4, replace = TRUE)], collapse = "")
-  let2 <- paste0(let1, "_", as.integer(runif(1) * 10))
-  outf <- file.path(tempdir(), let1, let2)
+  output_root <- withr::local_tempdir(pattern = "resmush-output-")
+  outf <- file.path(output_root, "nested")
   expect_false(dir.exists(outf))
   outs <- file.path(outf, basename(png_url))
 
@@ -449,10 +481,7 @@ test_that("To non-existing directories", {
   unlink(outf, force = TRUE, recursive = TRUE)
 })
 
-test_that("resmush_url returns NULL on download response failure", {
-  skip_on_cran()
-  skip_if_offline()
-
+test_that("resmush_url() returns NULL after HTTP download errors", {
   png_url <- paste0(
     "https://raw.githubusercontent.com/",
     "dieghernan/resmush/main/inst/",

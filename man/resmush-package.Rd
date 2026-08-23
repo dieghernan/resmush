@@ -16,6 +16,7 @@ Optimize and compress local and online image files with the 'reSmush.it' 'API' \
 \item \code{\link[=resmush_file]{resmush_file()}} optimizes local image files.
 \item \code{\link[=resmush_dir]{resmush_dir()}} optimizes image files in directories.
 \item \code{\link[=resmush_url]{resmush_url()}} optimizes online image files.
+\item \code{\link[=resmush_clean_dir]{resmush_clean_dir()}} removes suffixed output files.
 \item The \href{https://dieghernan.github.io/resmush/}{package website} provides
 articles and reference documentation.
 \item The \href{https://github.com/dieghernan/resmush}{source code} is available on

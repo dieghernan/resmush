@@ -1,4 +1,12 @@
+# resmush (development version)
+
+- `resmush_file()` and `resmush_url()` now use stable, consistently punctuated
+  API status notes and improve reports for singular inputs and unknown file
+  sizes.
+
 # resmush 1.0.2
+
+- Improved testing.
 
 # resmush 1.0.1
 

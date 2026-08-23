@@ -69,6 +69,52 @@ new_resmush_result <- function(src) {
   )
 }
 
+# Ensure that a status note is a complete sentence.
+format_resmush_note <- function(x) {
+  x <- trimws(x)
+  needs_period <- !is.na(x) & nzchar(x) & !grepl("[.!?]$", x)
+  x[needs_period] <- paste0(x[needs_period], ".")
+  x
+}
+
+# Convert API error responses to stable package-owned messages.
+format_api_note <- function(error, error_long) {
+  error_long <- trimws(error_long)
+
+  note <- if (
+    isTRUE(grepl(
+      "Unauthorized extension",
+      error_long,
+      ignore.case = TRUE
+    ))
+  ) {
+    paste0(
+      "The file extension is not supported. Allowed extensions are JPG, PNG, ",
+      "GIF, BMP and TIFF"
+    )
+  } else if (
+    isTRUE(grepl(
+      "Cannot copy from remote url",
+      error_long,
+      ignore.case = TRUE
+    ))
+  ) {
+    "The API could not retrieve the remote URL"
+  } else if (
+    isTRUE(grepl(
+      "Uploaded file must be below 5MB",
+      error_long,
+      ignore.case = TRUE
+    ))
+  ) {
+    "The uploaded file must be smaller than 5 MB"
+  } else {
+    "The API returned an error"
+  }
+
+  format_resmush_note(paste0(error, ": ", note))
+}
+
 #' Add size and compression metadata to a result table
 #'
 #' Adds formatted and raw file sizes, the compression ratio and a success note.
@@ -97,7 +143,7 @@ add_size_summary <- function(res, src_size, dest_size) {
 #' Applies a worker function to each input and combines non-`NULL` results.
 #'
 #' @param inputs A character vector of image paths or URLs.
-#' @param worker A function called once per input position.
+#' @param worker A function called once for each input.
 #' @param progress Logical. Should a progress bar be displayed?
 #' @param progress_label A label displayed after the progress counter.
 #'
@@ -187,12 +233,12 @@ download_optimized_file <- function(url, outfile, src, source_type) {
 
     if (source_type == "file") {
       cli::cli_alert_danger(paste0(
-        "Cannot download optimized file {.path {src}}. HTTP status: ",
+        "Cannot download the optimized file {.path {src}}. HTTP status: ",
         "{.val {err_code}} ({.emph {err}})."
       ))
     } else {
       cli::cli_alert_danger(paste0(
-        "Cannot download optimized image {.url {src}}. HTTP status: ",
+        "Cannot download the optimized image {.url {src}}. HTTP status: ",
         "{.val {err_code}} ({.emph {err}})."
       ))
     }

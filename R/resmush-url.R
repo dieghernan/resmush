@@ -5,28 +5,25 @@
 #' [reSmush.it API](https://resmush.it/api/). The API is free for personal use
 #' and accepts files smaller than 5 MB.
 #'
+#' @details
+#' If `outfile` contains duplicate paths, `resmush_url()` makes them unique
+#' with suffixes such as `_01` and `_02` unless `overwrite = TRUE`.
+#'
 #' @param url A character vector of URLs pointing to hosted image files. The API
 #'   can optimize PNG, JPEG, GIF, BMP and TIFF files.
 #' @param outfile A character vector of paths where optimized files are stored.
-#'   By default, files are created in [tempdir()] with the same [basename()] as
-#'   each file in `url`. `outfile` must have the same length as `url`.
+#'   By default, files are created in [base::tempdir()] with the same
+#'   [base::basename()] as each file in `url`. `outfile` must have the same
+#'   length as `url`.
 #' @param overwrite Logical. Should existing files in `outfile` be overwritten?
 #'   If `FALSE`, existing paths are made unique with a numeric suffix, such as
 #'   `example_01.png`.
 #' @inheritParams resmush_file
 #'
-#' @returns
-#' An invisibly returned data frame with one row per result and columns
-#' containing source and destination paths, formatted and raw file sizes,
-#' compression ratios and status notes. Returns `NULL` if no result is
-#' available. Successful API calls also write the optimized files to disk. If
-#' `outfile` contains duplicate paths, `resmush_url()` makes them unique with
-#' suffixes such as `_01` and `_02`.
+#' @inherit resmush_file return
 #'
-#' @seealso
-#' - [resmush_clean_dir()] removes output files created by previous runs.
-#' - The [reSmush.it API documentation](https://resmush.it/api/) describes the
-#'   external service.
+#' @seealso The [reSmush.it API documentation](https://resmush.it/api/)
+#'   describes the external service.
 #'
 #' @family optimize
 #' @export
@@ -81,7 +78,7 @@ resmush_url <- function(
   res_df <- resmush_map(
     inputs = url,
     progress = progress,
-    progress_label = "URLs",
+    progress_label = "URL{?s}",
     worker = function(i) {
       resmush_url_single(
         url = url[i],
@@ -121,19 +118,21 @@ resmush_url_single <- function(
   res <- new_resmush_result(url)
 
   if (isFALSE(resmush_is_online())) {
-    res$notes <- "Offline"
+    res$notes <- format_resmush_note("Offline")
     return(invisible(res))
   }
 
   res_get <- smush_from_url(url, qlty, exif_preserve, n_rep = 3)
 
   if ("error" %in% names(res_get)) {
-    res$notes <- paste0(res_get$error, ": ", res_get$error_long)
+    res$notes <- format_api_note(res_get$error, res_get$error_long)
     return(invisible(res))
   }
 
   if (!"dest" %in% names(res_get)) {
-    res$notes <- "The API is not responding. Check https://resmush.it/status."
+    res$notes <- format_resmush_note(
+      "The API is not responding. Check https://resmush.it/status"
+    )
     return(invisible(res))
   }
 
@@ -148,7 +147,9 @@ resmush_url_single <- function(
   }
 
   if (resmush_resp_status(dwn_opt) != 200) {
-    res$notes <- "API is not responding. Check https://resmush.it/status"
+    res$notes <- format_resmush_note(
+      "The API is not responding. Check https://resmush.it/status"
+    )
     return(invisible(res))
   }
 

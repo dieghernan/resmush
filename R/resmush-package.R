@@ -2,6 +2,7 @@
 #' - [resmush_file()] optimizes local image files.
 #' - [resmush_dir()] optimizes image files in directories.
 #' - [resmush_url()] optimizes online image files.
+#' - [resmush_clean_dir()] removes suffixed output files.
 #' - The [package website](https://dieghernan.github.io/resmush/) provides
 #'   articles and reference documentation.
 #' - The [source code](https://github.com/dieghernan/resmush) is available on

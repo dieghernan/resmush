@@ -29,9 +29,8 @@
 #' available. Successful API calls also write the optimized files to disk. If
 #' `report = TRUE`, a summary is displayed in the console.
 #'
-#' @seealso
-#' - [resmush_clean_dir()] removes output files created by previous runs.
-#' - The [reSmush.it API documentation](https://resmush.it/api/) describes the
+#' @seealso [resmush_clean_dir()] removes output files created by previous runs.
+#'   The [reSmush.it API documentation](https://resmush.it/api/) describes the
 #'   external service.
 #'
 #' @family optimize
@@ -42,7 +41,7 @@
 #' \donttest{
 #' png_file <- system.file("extimg/example.png", package = "resmush")
 #'
-#' # Copy to a temporary file for this example.
+#' # Copy the example PNG to a temporary file.
 #' tmp_png <- tempfile(fileext = ".png")
 #'
 #' file.copy(png_file, tmp_png, overwrite = TRUE)
@@ -84,7 +83,7 @@ resmush_file <- function(
   res_df <- resmush_map(
     inputs = file,
     progress = progress,
-    progress_label = "files",
+    progress_label = "file{?s}",
     worker = function(i) {
       resmush_file_single(
         file[i],
@@ -116,11 +115,11 @@ resmush_file_single <- function(
   res <- new_resmush_result(file)
 
   if (isFALSE(resmush_is_online())) {
-    res$notes <- "Offline"
+    res$notes <- format_resmush_note("Offline")
     return(invisible(res))
   }
   if (!file.exists(file)) {
-    res$notes <- "Local file does not exist"
+    res$notes <- format_resmush_note("Local file does not exist")
     return(invisible(res))
   }
 
@@ -131,12 +130,14 @@ resmush_file_single <- function(
   res_post <- smush_from_local(file, qlty, exif_preserve)
 
   if ("error" %in% names(res_post)) {
-    res$notes <- paste0(res_post$error, ": ", res_post$error_long)
+    res$notes <- format_api_note(res_post$error, res_post$error_long)
     return(invisible(res))
   }
 
   if (!"dest" %in% names(res_post)) {
-    res$notes <- "The API is not responding. Check https://resmush.it/status."
+    res$notes <- format_resmush_note(
+      "The API is not responding. Check https://resmush.it/status"
+    )
     return(invisible(res))
   }
 
@@ -151,7 +152,9 @@ resmush_file_single <- function(
   }
 
   if (resmush_resp_status(dwn_opt) != 200) {
-    res$notes <- "The API is not responding. Check https://resmush.it/status."
+    res$notes <- format_resmush_note(
+      "The API is not responding. Check https://resmush.it/status"
+    )
     return(invisible(res))
   }
 

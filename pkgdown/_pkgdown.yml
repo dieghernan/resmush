@@ -45,12 +45,12 @@ reference:
 - contents:
   - has_concept("helpers")
 
-- title: About the package
-  desc: Package overview and metadata.
-- contents:
-  - resmush-package
-
 articles:
+- title: Get started
+  desc: Learn how to optimize local and online image files with **resmush**.
+  contents:
+  - resmush
+
 - title: From the blog
   navbar: Blog posts
   desc: >

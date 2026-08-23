@@ -11,13 +11,11 @@ tbl-cap-location: bottom
 
 <!-- resmush.qmd is generated from resmush.qmd.orig. Please edit that file -->
 
-
-
 **resmush** is an **R** package for optimizing local and online image files,
 individually or in entire directories, with the [**reSmush.it**
 API](https://resmush.it/api/). The API is free for personal use and does not
 require an API key. **reSmush.it** is also available through
-[WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/) and [other
+[**WordPress**](https://wordpress.org/plugins/resmushit-image-optimizer/) and [other
 tools](https://resmush.it/tools/).
 
 The **reSmush.it** API provides:
@@ -36,7 +34,6 @@ The **reSmush.it** API provides:
 ## Examples
 
 Optimize and download an online JPEG image with `resmush_url()`:
-
 
 ``` r
 library(resmush)
@@ -60,13 +57,12 @@ width="100%"}](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg
 alt="Optimized JPEG image"
 width="100%"}](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 
-Original image @fig-orig: 178.7 KB, optimized image @fig-new: 45 KB
-(compression: 74.8%). Click to enlarge.
+Original image @fig-orig, 178.7 KB, and optimized image @fig-new, 45 KB
+(74.8% compression). Click to enlarge.
 :::
 
 Use the `qlty` argument to adjust the JPEG quality level. For best results, use
 values above `90`.
-
 
 ``` r
 # Use a low JPEG quality level.
@@ -97,7 +93,6 @@ paths, formatted and raw file sizes, compression ratios and status notes. They
 return `NULL` otherwise. Successful API calls also write the optimized files to
 disk. The following example shows the result for a local image file:
 
-
 ``` r
 png_file <- system.file("extimg/example.png", package = "resmush")
 
@@ -124,26 +119,26 @@ Several other **R** packages provide image optimization tools:
     [**TinyPNG**](https://tinypng.com/) and requires an API key.
   - `xfun::optipng()`: Compresses local files using **OptiPNG**. The program
     must be installed locally.
-- The [**tinieR**](https://jmablog.github.io/tinieR/) package: An **R**
+- The [**tinieR**](https://jmablog.github.io/tinieR/) package provides an **R**
   interface to [**TinyPNG**](https://tinypng.com/).
 - The **tinyimg** package [@tinyimg]: Optimizes local PNG and JPEG files using
-  Rust libraries. It supports lossless PNG optimization via **oxipng**, optional
-  lossy PNG palette reduction and JPEG re-encoding via **mozjpeg**.
-- The [**optout**](https://github.com/coolbutuseless/optout) package: Similar to
-  `xfun::optipng()` but with more options. It requires additional local
+  **Rust** libraries. It supports lossless PNG optimization via **oxipng**,
+  optional lossy PNG palette reduction and JPEG re-encoding via **mozjpeg**.
+- The [**optout**](https://github.com/coolbutuseless/optout) package is similar
+  to `xfun::optipng()` but offers more options. It requires additional local
   software.
 
 ::: {#tbl-opts}
-| Tool | CRAN | Additional software | Online images | API key required | Limits |
+| Tool | **CRAN** | Additional software | Online images | API key required | Limits |
 |----|----|----|----|----|----|
 | `xfun::tinify()` | Yes | No | Yes | Yes | 500 compressions per month (free tier) |
 | `xfun::optipng()` | Yes | Yes | No | No | None |
 | **tinieR** | No | No | Yes | Yes | 500 compressions per month (free tier) |
-| **tinyimg** | Yes | Yes (Rust toolchain) | No | No | None |
+| **tinyimg** | Yes | Yes (**Rust** toolchain) | No | No | None |
 | **optout** | No | Yes | No | No | None |
 | **resmush** | Yes | No | Yes | No | Personal use only. Files smaller than 5 MB. |
 
-**R** packages: comparison of image optimization alternatives.
+Comparison of image optimization alternatives for **R** packages.
 :::
 
 ::: {#tbl-comp}
@@ -156,7 +151,7 @@ Several other **R** packages provide image optimization tools:
 | **optout**        | ✅  | ✅   | ❌  | ❌  | ❌   | ❌   | ✅  |
 | **resmush**       | ✅  | ✅   | ✅  | ✅  | ✅   | ❌   | ❌  |
 
-**R** packages: supported formats.
+Supported formats for **R** packages.
 :::
 
 In practice, **resmush** is designed for quick image optimization with minimal

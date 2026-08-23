@@ -1,6 +1,4 @@
-test_that("show_report prints a local-file summary report", {
-  skip_on_cran()
-
+test_that("show_report() summarizes local-file results", {
   test_f <- res_example
   # Full
   expect_snapshot(show_report(test_f))
@@ -21,9 +19,7 @@ test_that("show_report prints a local-file summary report", {
   expect_null(show_report(NULL))
 })
 
-test_that("show_report prints a URL summary report", {
-  skip_on_cran()
-
+test_that("show_report() summarizes URL results", {
   test_f <- res_example
   # Full
   expect_snapshot(show_report(test_f, "url"))

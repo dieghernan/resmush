@@ -1,14 +1,44 @@
-test_that("resmush_dir returns NULL when no files match the pattern", {
+test_that("resmush_dir() returns NULL when no files match", {
   dir_temp <- withr::local_tempdir(pattern = "resmush_test")
-  a <- list.files(dir_temp, pattern = "I am a test")
+  expect_length(list.files(dir_temp), 0)
 
-  expect_length(a, 0)
-  expect_snapshot(dm <- resmush_dir(a))
+  expect_snapshot(
+    dm <- resmush_dir(dir_temp),
+    transform = scrub_snapshot_paths
+  )
   expect_null(dm)
-  unlink(dir_temp, recursive = FALSE, force = TRUE)
 })
 
-test_that("resmush_dir filters files by regex extension", {
+test_that("resmush_dir() processes matching files from API results", {
+  test_dir <- local_inst_dir()
+
+  local_mocked_bindings(
+    resmush_is_online = function() TRUE,
+    smush_from_local = function(...) {
+      list(dest = "https://example.com/optimized.png")
+    },
+    download_optimized_file = function(url, outfile, src, source_type) {
+      file.copy(src, outfile, overwrite = TRUE)
+      httr2::response(status_code = 200)
+    }
+  )
+
+  expect_silent(
+    dm <- resmush_dir(test_dir, progress = FALSE, report = FALSE)
+  )
+
+  expect_s3_class(dm, "data.frame")
+  expect_identical(basename(dm$src_img), c("example.jpg", "example.png"))
+  expect_identical(
+    basename(dm$dest_img),
+    c("example_resmush.jpg", "example_resmush.png")
+  )
+  expect_all_true(file.exists(dm$dest_img))
+  expect_all_equal(dm$compress_ratio, "0.00%")
+  expect_all_equal(dm$notes, "OK")
+})
+
+test_that("resmush_dir() selects files with extension regular expressions", {
   skip_on_cran()
   skip_if_offline()
 
@@ -29,7 +59,7 @@ test_that("resmush_dir filters files by regex extension", {
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
-test_that("resmush_dir handles mixed extensions and custom suffixes", {
+test_that("resmush_dir() supports mixed extensions and custom suffixes", {
   skip_on_cran()
   skip_if_offline()
 
@@ -50,7 +80,7 @@ test_that("resmush_dir handles mixed extensions and custom suffixes", {
 
   png_ok <- file.path(dir_temp, "example.png")
 
-  expect_true(all(file.exists(fl, png_ok)))
+  expect_all_true(file.exists(c(fl, png_ok)))
 
   resmush_clean_dir(dir_temp, "_some_error")
   # All ext
@@ -68,7 +98,7 @@ test_that("resmush_dir handles mixed extensions and custom suffixes", {
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
-test_that("resmush_dir recursively processes nested directories", {
+test_that("resmush_dir() processes matching files recursively", {
   skip_on_cran()
   skip_if_offline()
 
@@ -124,7 +154,7 @@ test_that("resmush_dir recursively processes nested directories", {
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
-test_that("resmush_dir processes files from multiple directories", {
+test_that("resmush_dir() combines results from multiple directories", {
   skip_on_cran()
   skip_if_offline()
 
@@ -180,7 +210,7 @@ test_that("resmush_dir processes files from multiple directories", {
   unlink(dir_temp, force = TRUE, recursive = TRUE)
 })
 
-test_that("resmush_dir overwrites existing files when overwrite is TRUE", {
+test_that("resmush_dir() replaces source files when overwrite is enabled", {
   skip_on_cran()
   skip_if_offline()
 
@@ -192,7 +222,7 @@ test_that("resmush_dir overwrites existing files when overwrite is TRUE", {
   l_init <- list.files(dir_temp1, recursive = TRUE, pattern = "\\.(png|jpg)$")
   expect_length(l_init, 2)
 
-  # All , suffix and overwrite
+  # Process all files with overwrite enabled.
   expect_message(
     dm <- resmush_dir(
       dir = c(dir_temp1, nested_dir),
@@ -208,13 +238,12 @@ test_that("resmush_dir overwrites existing files when overwrite is TRUE", {
   expect_equal(basename(dm$src_img), c("sample_nested.jpg", "sample_top1.png"))
   expect_equal(basename(dm$dest_img), c("sample_nested.jpg", "sample_top1.png"))
 
-  # total files should be 2 since be overwrite
+  # The file count is unchanged because outputs overwrite inputs.
   l_end <- list.files(dir_temp1, recursive = TRUE, pattern = "\\.(png|jpg)$")
 
   expect_length(l_end, 2)
 
-  # No new files
-
+  # No new files are created.
   expect_identical(l_init, l_end)
 
   unlink(dir_temp, force = TRUE, recursive = TRUE)

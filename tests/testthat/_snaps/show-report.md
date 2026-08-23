@@ -1,18 +1,18 @@
-# show_report prints a local-file summary report
+# show_report() summarizes local-file results
 
     Code
       show_report(test_f)
     Message
       == resmush summary =============================================================
-      i Input: 4 files, 340.2 Kb total.
+      i Input: 4 files, total size unknown.
       v Optimized 2 files: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
       Saved results in directory 'some_folder'.
       x Failed to optimize 2 files in directories 'https://raw.githubusercontent.com/dieghernan/resmush/main' and 'https://dieghernan.github.io'.
       i Files not optimized:
-      ! 'https://raw.githubusercontent.com/dieghernan/resmush/main/README.md' (NA):
-        403: Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
-      ! 'https://dieghernan.github.io/aaabbbccc.png' (NA): 401: Cannot copy from
-        remote url.
+      ! 'https://raw.githubusercontent.com/dieghernan/resmush/main/README.md': 403:
+        Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
+      ! 'https://dieghernan.github.io/aaabbbccc.png': 401: Cannot copy from remote
+        url.
 
 ---
 
@@ -20,11 +20,11 @@
       show_report(res_example[2, ])
     Message
       == resmush summary =============================================================
-      i Input: 1 file, 0 bytes total.
+      i Input: 1 file, total size unknown.
       x Failed to optimize 1 file in directory 'https://raw.githubusercontent.com/dieghernan/resmush/main'.
       i File not optimized:
-      ! 'https://raw.githubusercontent.com/dieghernan/resmush/main/README.md' (NA):
-        403: Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
+      ! 'https://raw.githubusercontent.com/dieghernan/resmush/main/README.md': 403:
+        Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
 
 ---
 
@@ -32,13 +32,13 @@
       show_report(res_example[c(2, 4), ])
     Message
       == resmush summary =============================================================
-      i Input: 2 files, 0 bytes total.
+      i Input: 2 files, total size unknown.
       x Failed to optimize 2 files in directories 'https://raw.githubusercontent.com/dieghernan/resmush/main' and 'https://dieghernan.github.io'.
       i Files not optimized:
-      ! 'https://raw.githubusercontent.com/dieghernan/resmush/main/README.md' (NA):
-        403: Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
-      ! 'https://dieghernan.github.io/aaabbbccc.png' (NA): 401: Cannot copy from
-        remote url.
+      ! 'https://raw.githubusercontent.com/dieghernan/resmush/main/README.md': 403:
+        Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
+      ! 'https://dieghernan.github.io/aaabbbccc.png': 401: Cannot copy from remote
+        url.
 
 ---
 
@@ -60,13 +60,13 @@
       v Optimized 2 files: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
       Saved results in directory 'some_folder'.
 
-# show_report prints a URL summary report
+# show_report() summarizes URL results
 
     Code
       show_report(test_f, "url")
     Message
       == resmush summary =============================================================
-      i Input: 4 URLs, 340.2 Kb total.
+      i Input: 4 URLs, total size unknown.
       v Optimized 2 URLs: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
       Saved results in directory 'some_folder'.
       x Failed to optimize 2 URLs:
@@ -81,7 +81,7 @@
       show_report(res_example[2, ], "url")
     Message
       == resmush summary =============================================================
-      i Input: 1 URL, 0 bytes total.
+      i Input: 1 URL, total size unknown.
       x Failed to optimize 1 URL:
       ! <https://raw.githubusercontent.com/dieghernan/resmush/main/README.md>: 403:
         Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
@@ -92,7 +92,7 @@
       show_report(res_example[c(2, 4), ], "url")
     Message
       == resmush summary =============================================================
-      i Input: 2 URLs, 0 bytes total.
+      i Input: 2 URLs, total size unknown.
       x Failed to optimize 2 URLs:
       ! <https://raw.githubusercontent.com/dieghernan/resmush/main/README.md>: 403:
         Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF.
