@@ -2,6 +2,16 @@
 
 ## resmush (development version)
 
+- [`resmush_file()`](https://dieghernan.github.io/resmush/dev/reference/resmush_file.md)
+  and
+  [`resmush_url()`](https://dieghernan.github.io/resmush/dev/reference/resmush_url.md)
+  now use stable, consistently punctuated API status notes and improve
+  reports for singular inputs and unknown file sizes.
+
+## resmush 1.0.2
+
+CRAN release: 2026-07-02
+
 - Improved testing.
 
 ## resmush 1.0.1
@@ -10,15 +20,11 @@ CRAN release: 2026-05-29
 
 - Improved console messages for optimization reports and file management
   helpers.
-- Refactored internal code and updated function documentation with AI
-  assistance.
 
 ## resmush 1.0.0
 
 CRAN release: 2026-03-14
 
-- Corrected typos.
-- Migrated documentation to Quarto.
 - Increased the minimum required **R** version to 4.1.0.
 - Released version 1.0.0 to indicate that the package had reached a
   mature development state.

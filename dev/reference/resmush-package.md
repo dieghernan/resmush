@@ -16,6 +16,9 @@ than 5 'MB' and supports 'PNG', 'JPEG', 'GIF', 'BMP' and 'TIFF' files.
 - [`resmush_url()`](https://dieghernan.github.io/resmush/dev/reference/resmush_url.md)
   optimizes online image files.
 
+- [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/dev/reference/resmush_clean_dir.md)
+  removes suffixed output files.
+
 - The [package website](https://dieghernan.github.io/resmush/) provides
   articles and reference documentation.
 
