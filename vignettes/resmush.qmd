@@ -11,6 +11,8 @@ tbl-cap-location: bottom
 
 <!-- resmush.qmd is generated from resmush.qmd.orig. Please edit that file -->
 
+
+
 **resmush** is an **R** package for optimizing local and online image files,
 individually or in entire directories, with the [**reSmush.it**
 API](https://resmush.it/api/). The API is free for personal use and does not
@@ -34,6 +36,7 @@ The **reSmush.it** API provides:
 ## Examples
 
 Optimize and download an online JPEG image with `resmush_url()`:
+
 
 ``` r
 library(resmush)
@@ -64,6 +67,7 @@ Original image @fig-orig, 178.7 KB, and optimized image @fig-new, 45 KB
 Use the `qlty` argument to adjust the JPEG quality level. For best results, use
 values above `90`.
 
+
 ``` r
 # Use a low JPEG quality level.
 resmush_url(
@@ -92,6 +96,7 @@ frame with one row per result and columns containing source and destination
 paths, formatted and raw file sizes, compression ratios and status notes. They
 return `NULL` otherwise. Successful API calls also write the optimized files to
 disk. The following example shows the result for a local image file:
+
 
 ``` r
 png_file <- system.file("extimg/example.png", package = "resmush")

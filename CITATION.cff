@@ -8,7 +8,7 @@ message: 'To cite package "resmush" in publications use:'
 type: software
 license: MIT
 title: 'resmush: Optimize and Compress Image Files with ''reSmush.it'''
-version: 1.0.2
+version: 1.0.2.9000
 doi: 10.32614/CRAN.package.resmush
 identifiers:
 - type: doi
@@ -32,7 +32,7 @@ preferred-citation:
     orcid: https://orcid.org/0000-0001-8457-4658
   doi: 10.32614/CRAN.package.resmush
   year: '2026'
-  version: 1.0.2
+  version: 1.0.2.9000
   url: https://dieghernan.github.io/resmush/
   abstract: Optimize and compress local and online image files with the reSmush.it
     API <https://resmush.it/api/>. Process individual files or entire directories.
@@ -202,7 +202,7 @@ references:
     email: hadley@posit.co
   year: '2026'
   doi: 10.32614/CRAN.package.testthat
-  version: '>= 3.1.7'
+  version: '>= 3.3.0'
 - type: software
   title: withr
   abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'

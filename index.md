@@ -1,3 +1,5 @@
+
+
 <!-- index.md is generated from index.qmd. Please edit that file -->
 
 # resmush <a href="https://dieghernan.github.io/resmush/"><img src="man/figures/logo.png" alt="resmush website" align="right" height="139"/></a>
@@ -248,8 +250,8 @@ fine-grained control over compression settings.
 
 <p>
 
-Hernangómez D (2026). <em><strong>resmush</strong>: Optimize and Compress Image
-Files with <strong>reSmush.it</strong></em>.
+Hernangómez D (2026). <em>resmush: Optimize and Compress Image Files
+with reSmush.it</em>.
 <a href="https://doi.org/10.32614/CRAN.package.resmush">doi:10.32614/CRAN.package.resmush</a>.
 <a href="https://dieghernan.github.io/resmush/">https://dieghernan.github.io/resmush/</a>.
 </p>
@@ -261,7 +263,7 @@ A **BibTeX** entry for **LaTeX** users:
       doi = {10.32614/CRAN.package.resmush},
       author = {Diego Hernangómez},
       year = {2026},
-      version = {1.0.2},
+      version = {1.0.2.9000},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Optimize and compress local and online image files with the reSmush.it API <https://resmush.it/api/>. Process individual files or entire directories. The API is free for personal use, accepts files smaller than 5 MB and supports PNG, JPEG, GIF, BMP and TIFF files.},
     }
@@ -272,15 +274,15 @@ A **BibTeX** entry for **LaTeX** users:
 
 <div id="ref-tinyimg" class="csl-entry">
 
-Xie, Yihui. 2026a. *<span class="nocase"><strong>tinyimg</strong></span>:
-Optimize and Compress Images*. <https://doi.org/10.32614/CRAN.package.tinyimg>.
+Xie, Yihui. 2026a. *<span class="nocase">tinyimg</span>: Optimize and
+Compress Images*. <https://doi.org/10.32614/CRAN.package.tinyimg>.
 
 </div>
 
 <div id="ref-xfun" class="csl-entry">
 
-Xie, Yihui. 2026b. *<span class="nocase"><strong>xfun</strong></span>:
-Supporting Functions for Packages Maintained by Yihui Xie*.
+Xie, Yihui. 2026b. *<span class="nocase">xfun</span>: Supporting
+Functions for Packages Maintained by Yihui Xie*.
 <https://github.com/yihui/xfun>.
 
 </div>

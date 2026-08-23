@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/dieghernan/resmush",
   "issueTracker": "https://github.com/dieghernan/resmush/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.2",
+  "version": "1.0.2.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -94,7 +94,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 3.1.7",
+      "version": ">= 3.3.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -173,7 +173,7 @@
     "SystemRequirements": null
   },
   "keywords": ["r", "compress-images", "optimize-images", "resmushit", "api", "r-package", "cran", "cran-r"],
-  "fileSize": "689.265KB",
+  "fileSize": "695.248KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
