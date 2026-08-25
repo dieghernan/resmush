@@ -8,9 +8,7 @@ test_that("resmush_file() optimizes local JPG images", {
   )
   loc_file <- local_download(url)
 
-  expect_silent(
-    dm <- resmush_file(loc_file, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_file(loc_file, progress = FALSE, report = FALSE))
   withr::defer(unlink(dm$dest_img, force = TRUE))
 
   expect_s3_class(dm, "data.frame")
@@ -30,9 +28,7 @@ test_that("resmush_file() accepts JPEG filenames containing spaces", {
   )
   loc_file <- local_download(url)
 
-  expect_silent(
-    dm <- resmush_file(loc_file, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_file(loc_file, progress = FALSE, report = FALSE))
   withr::defer(unlink(dm$dest_img, force = TRUE))
 
   expect_s3_class(dm, "data.frame")
@@ -51,9 +47,7 @@ test_that("resmush_file() optimizes local GIF images", {
   )
   loc_file <- local_download(url)
 
-  expect_silent(
-    dm <- resmush_file(loc_file, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_file(loc_file, progress = FALSE, report = FALSE))
   withr::defer(unlink(dm$dest_img, force = TRUE))
 
   expect_s3_class(dm, "data.frame")
@@ -73,9 +67,7 @@ test_that("resmush_file() optimizes local BMP images", {
   )
   loc_file <- local_download(url)
 
-  expect_silent(
-    dm <- resmush_file(loc_file, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_file(loc_file, progress = FALSE, report = FALSE))
   withr::defer(unlink(dm$dest_img, force = TRUE))
 
   expect_s3_class(dm, "data.frame")
@@ -95,9 +87,7 @@ test_that("resmush_file() optimizes local TIFF images", {
   )
   loc_file <- local_download(url)
 
-  expect_silent(
-    dm <- resmush_file(loc_file, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_file(loc_file, progress = FALSE, report = FALSE))
   withr::defer(unlink(dm$dest_img, force = TRUE))
 
   expect_s3_class(dm, "data.frame")

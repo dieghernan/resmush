@@ -5,9 +5,7 @@ test_that("resmush_url() reports offline status when service is unavailable", {
     "extimg/example.png"
   )
 
-  local_mocked_bindings(
-    resmush_is_online = function() FALSE
-  )
+  local_mocked_bindings(resmush_is_online = function() FALSE)
 
   suppressMessages(dm <- resmush_url(png_url))
 
@@ -93,12 +91,7 @@ test_that("resmush_url() writes files from successful API results", {
   )
 
   expect_silent(
-    dm <- resmush_url(
-      url,
-      outfile,
-      progress = FALSE,
-      report = FALSE
-    )
+    dm <- resmush_url(url, outfile, progress = FALSE, report = FALSE)
   )
 
   expect_s3_class(dm, "data.frame")
@@ -119,10 +112,7 @@ test_that("resmush_url() reports inaccessible image URLs", {
   suppressMessages(dm <- resmush_url(turl))
 
   expect_s3_class(dm, "data.frame")
-  expect_identical(
-    dm$notes,
-    "401: The API could not retrieve the remote URL."
-  )
+  expect_identical(dm$notes, "401: The API could not retrieve the remote URL.")
   expect_all_true(is.na(dm$dest_img))
 })
 

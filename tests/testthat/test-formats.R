@@ -7,9 +7,7 @@ test_that("resmush_url() optimizes remote JPG images", {
     "img/sample-jpg-1mb.jpg"
   )
 
-  expect_silent(
-    dm <- resmush_url(url, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_url(url, progress = FALSE, report = FALSE))
   withr::defer(unlink(dm$dest_img, force = TRUE))
 
   expect_s3_class(dm, "data.frame")
@@ -27,9 +25,7 @@ test_that("resmush_url() preserves JPEG basenames containing spaces", {
     "img/sample-jpeg-1mb .jpeg"
   )
 
-  expect_silent(
-    dm <- resmush_url(url, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_url(url, progress = FALSE, report = FALSE))
   withr::defer(unlink(dm$dest_img, force = TRUE))
 
   expect_s3_class(dm, "data.frame")
@@ -50,12 +46,7 @@ test_that("resmush_url() preserves EXIF metadata when requested", {
   yesexif <- withr::local_tempfile(fileext = "_yesexif.jpg")
 
   expect_silent(
-    no_exif <- resmush_url(
-      url,
-      noexif,
-      progress = FALSE,
-      report = FALSE
-    )
+    no_exif <- resmush_url(url, noexif, progress = FALSE, report = FALSE)
   )
   expect_silent(
     yes_exif <- resmush_url(
@@ -81,9 +72,7 @@ test_that("resmush_url() optimizes remote PNG images", {
     "img/sample-png-3mb.png"
   )
 
-  expect_silent(
-    dm <- resmush_url(url, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_url(url, progress = FALSE, report = FALSE))
   withr::defer(unlink(dm$dest_img, force = TRUE))
 
   expect_s3_class(dm, "data.frame")
@@ -101,9 +90,7 @@ test_that("resmush_url() reports size-limit errors for oversized PNG images", {
     "img/sample-png-10mb.png"
   )
 
-  expect_silent(
-    dm <- resmush_url(url, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_url(url, progress = FALSE, report = FALSE))
 
   expect_s3_class(dm, "data.frame")
   expect_identical(
@@ -122,9 +109,7 @@ test_that("resmush_url() optimizes remote GIF images", {
     "img/sample-gif-350kb.gif"
   )
 
-  expect_silent(
-    dm <- resmush_url(url, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_url(url, progress = FALSE, report = FALSE))
   withr::defer(unlink(dm$dest_img, force = TRUE))
 
   expect_s3_class(dm, "data.frame")
@@ -142,9 +127,7 @@ test_that("resmush_url() optimizes remote BMP images", {
     "img/sample-bmp-798kb.bmp"
   )
 
-  expect_silent(
-    dm <- resmush_url(url, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_url(url, progress = FALSE, report = FALSE))
   withr::defer(unlink(dm$dest_img, force = TRUE))
 
   expect_s3_class(dm, "data.frame")
@@ -162,9 +145,7 @@ test_that("resmush_url() optimizes remote TIFF images", {
     "img/sample-tiff-1mb.tiff"
   )
 
-  expect_silent(
-    dm <- resmush_url(url, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_url(url, progress = FALSE, report = FALSE))
   withr::defer(unlink(dm$dest_img, force = TRUE))
 
   expect_s3_class(dm, "data.frame")
@@ -182,9 +163,7 @@ test_that("resmush_url() returns structured results for remote TIF images", {
     "img/sample-tif-1mb.tif"
   )
 
-  expect_silent(
-    dm <- resmush_url(url, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_url(url, progress = FALSE, report = FALSE))
   destinations <- dm$dest_img[!is.na(dm$dest_img)]
   withr::defer(unlink(destinations, force = TRUE))
 

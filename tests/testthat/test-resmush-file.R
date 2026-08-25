@@ -3,9 +3,7 @@ test_that("resmush_file() reports offline status when service is unavailable", {
   test_png <- file.path(test_dir, "example.png")
   expect_true(file.exists(test_png))
 
-  local_mocked_bindings(
-    resmush_is_online = function() FALSE
-  )
+  local_mocked_bindings(resmush_is_online = function() FALSE)
 
   expect_silent(dm <- resmush_file(test_png, report = FALSE))
 
@@ -80,9 +78,7 @@ test_that("resmush_file() writes files from successful API results", {
     }
   )
 
-  expect_silent(
-    dm <- resmush_file(test_png, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_file(test_png, progress = FALSE, report = FALSE))
 
   expect_s3_class(dm, "data.frame")
   expect_identical(dm$src_img, test_png)
@@ -99,9 +95,7 @@ test_that("resmush_file() reports nonexistent local files", {
 
   expect_false(file.exists(fl))
 
-  local_mocked_bindings(
-    resmush_is_online = function() TRUE
-  )
+  local_mocked_bindings(resmush_is_online = function() TRUE)
 
   suppressMessages(dm <- resmush_file(fl))
 

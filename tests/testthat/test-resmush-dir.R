@@ -2,10 +2,7 @@ test_that("resmush_dir() returns NULL when no files match", {
   dir_temp <- withr::local_tempdir(pattern = "resmush_test")
   expect_length(list.files(dir_temp), 0)
 
-  expect_snapshot(
-    dm <- resmush_dir(dir_temp),
-    transform = scrub_snapshot_paths
-  )
+  expect_snapshot(dm <- resmush_dir(dir_temp), transform = scrub_snapshot_paths)
   expect_null(dm)
 })
 
@@ -23,9 +20,7 @@ test_that("resmush_dir() processes matching files from API results", {
     }
   )
 
-  expect_silent(
-    dm <- resmush_dir(test_dir, progress = FALSE, report = FALSE)
-  )
+  expect_silent(dm <- resmush_dir(test_dir, progress = FALSE, report = FALSE))
 
   expect_s3_class(dm, "data.frame")
   expect_identical(basename(dm$src_img), c("example.jpg", "example.png"))

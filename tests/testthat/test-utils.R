@@ -71,10 +71,7 @@ test_that("format_api_note() returns complete sentences", {
 
 test_that("format_api_note() normalizes API error messages", {
   expect_identical(
-    format_api_note(
-      403,
-      "Unauthorized extension. Allowed are : JPG, PNG"
-    ),
+    format_api_note(403, "Unauthorized extension. Allowed are : JPG, PNG"),
     paste0(
       "403: The file extension is not supported. Allowed extensions are JPG, ",
       "PNG, GIF, BMP and TIFF."
@@ -120,22 +117,18 @@ test_that("make_unique_paths() avoids existing paths unless overwriting", {
 })
 
 test_that("resmush_map() returns NULL when all workers return NULL", {
-  expect_null(
-    resmush_map(
-      character(),
-      worker = \(i) NULL,
-      progress = FALSE,
-      progress_label = "file{?s}"
-    )
-  )
-  expect_null(
-    resmush_map(
-      c("a", "b"),
-      worker = \(i) NULL,
-      progress = FALSE,
-      progress_label = "file{?s}"
-    )
-  )
+  expect_null(resmush_map(
+    character(),
+    worker = \(i) NULL,
+    progress = FALSE,
+    progress_label = "file{?s}"
+  ))
+  expect_null(resmush_map(
+    c("a", "b"),
+    worker = \(i) NULL,
+    progress = FALSE,
+    progress_label = "file{?s}"
+  ))
 })
 
 test_that("resmush_map() restores CLI options after worker errors", {

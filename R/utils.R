@@ -82,22 +82,14 @@ format_api_note <- function(error, error_long) {
   error_long <- trimws(error_long)
 
   note <- if (
-    isTRUE(grepl(
-      "Unauthorized extension",
-      error_long,
-      ignore.case = TRUE
-    ))
+    isTRUE(grepl("Unauthorized extension", error_long, ignore.case = TRUE))
   ) {
     paste0(
       "The file extension is not supported. Allowed extensions are JPG, PNG, ",
       "GIF, BMP and TIFF"
     )
   } else if (
-    isTRUE(grepl(
-      "Cannot copy from remote url",
-      error_long,
-      ignore.case = TRUE
-    ))
+    isTRUE(grepl("Cannot copy from remote url", error_long, ignore.case = TRUE))
   ) {
     "The API could not retrieve the remote URL"
   } else if (

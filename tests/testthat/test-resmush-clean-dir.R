@@ -13,10 +13,7 @@ test_that("resmush_clean_dir() leaves directories unchanged without matches", {
   expect_true(file.copy(png_file, tmp_png, overwrite = TRUE))
 
   # Message
-  expect_snapshot(
-    resmush_clean_dir(dir_temp),
-    transform = scrub_snapshot_paths
-  )
+  expect_snapshot(resmush_clean_dir(dir_temp), transform = scrub_snapshot_paths)
   expect_true(file.exists(tmp_png))
 })
 
@@ -35,10 +32,7 @@ test_that("resmush_clean_dir() removes one matching file", {
   expect_true(file.copy(png_file, tmp_png, overwrite = TRUE))
 
   # Message
-  expect_snapshot(
-    resmush_clean_dir(dir_temp),
-    transform = scrub_snapshot_paths
-  )
+  expect_snapshot(resmush_clean_dir(dir_temp), transform = scrub_snapshot_paths)
   expect_false(file.exists(tmp_png))
 })
 
@@ -59,10 +53,7 @@ test_that("resmush_clean_dir() removes multiple matching files", {
   expect_true(file.copy(png_file, tmp_png2, overwrite = TRUE))
 
   # Message
-  expect_snapshot(
-    resmush_clean_dir(dir_temp),
-    transform = scrub_snapshot_paths
-  )
+  expect_snapshot(resmush_clean_dir(dir_temp), transform = scrub_snapshot_paths)
   expect_false(file.exists(tmp_png))
   expect_false(file.exists(tmp_png2))
 })
