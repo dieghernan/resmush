@@ -29,9 +29,9 @@ resmush_url(
 
   A character vector of paths where optimized files are stored. By
   default, files are created in
-  [`tempdir()`](https://rdrr.io/r/base/tempfile.html) with the same
-  [`basename()`](https://rdrr.io/r/base/basename.html) as each file in
-  `url`. `outfile` must have the same length as `url`.
+  [`base::tempdir()`](https://rdrr.io/r/base/tempfile.html) with the
+  same [`base::basename()`](https://rdrr.io/r/base/basename.html) as
+  each file in `url`. `outfile` must have the same length as `url`.
 
 - overwrite:
 
@@ -64,16 +64,17 @@ An invisibly returned data frame with one row per result and columns
 containing source and destination paths, formatted and raw file sizes,
 compression ratios and status notes. Returns `NULL` if no result is
 available. Successful API calls also write the optimized files to disk.
+If `report = TRUE`, a summary is displayed in the console.
+
+## Details
+
 If `outfile` contains duplicate paths, `resmush_url()` makes them unique
-with suffixes such as `_01` and `_02`.
+with suffixes such as `_01` and `_02` unless `overwrite = TRUE`.
 
 ## See also
 
-- [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/reference/resmush_clean_dir.md)
-  removes output files created by previous runs.
-
-- The [reSmush.it API documentation](https://resmush.it/api/) describes
-  the external service.
+The [reSmush.it API documentation](https://resmush.it/api/) describes
+the external service.
 
 Other image optimization functions:
 [`resmush_dir()`](https://dieghernan.github.io/resmush/reference/resmush_dir.md),
@@ -92,19 +93,19 @@ resmush_url(png_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 URL, 239.9 Kb total.
 #> ✔ Optimized 1 URL: size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-#> Saved result in directory /tmp/Rtmpm7k8zN.
+#> Saved result in directory /tmp/RtmpPQQKhF.
 
 # Optimize multiple URLs.
 jpg_url <- paste0(base_url, "/extimg/example.jpg")
 
 summary <- resmush_url(c(png_url, jpg_url))
-#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 UR…
-#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [967ms] | ETA:  0s (2/2 …
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 UR…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.6s] | ETA:  0s (2/2 U…
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 URLs, 340.2 Kb total.
 #> ✔ Optimized 2 URLs: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> Saved results in directory /tmp/Rtmpm7k8zN.
+#> Saved results in directory /tmp/RtmpPQQKhF.
 
 # Inspect the returned optimization summary.
 summary
@@ -112,8 +113,8 @@ summary
 #> 1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.png
 #> 2 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.jpg
 #>                         dest_img src_size dest_size compress_ratio notes
-#> 1 /tmp/Rtmpm7k8zN/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK
-#> 2    /tmp/Rtmpm7k8zN/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK
+#> 1 /tmp/RtmpPQQKhF/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK
+#> 2    /tmp/RtmpPQQKhF/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK
 #>   src_bytes dest_bytes
 #> 1    245618      72356
 #> 2    102796      85164
@@ -130,11 +131,11 @@ resmush_url(jpg_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 URL, 100.4 Kb total.
 #> ✔ Optimized 1 URL: size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> Saved result in directory /tmp/Rtmpm7k8zN.
+#> Saved result in directory /tmp/RtmpPQQKhF.
 resmush_url(jpg_url, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 URL, 100.4 Kb total.
 #> ✔ Optimized 1 URL: size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> Saved result in directory /tmp/Rtmpm7k8zN.
+#> Saved result in directory /tmp/RtmpPQQKhF.
 # }
 ```

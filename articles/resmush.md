@@ -4,7 +4,7 @@
 files, individually or in entire directories, with the [**reSmush.it**
 API](https://resmush.it/api/). The API is free for personal use and does
 not require an API key. **reSmush.it** is also available through
-[WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/)
+[**WordPress**](https://wordpress.org/plugins/resmushit-image-optimizer/)
 and [other tools](https://resmush.it/tools/).
 
 The **reSmush.it** API provides:
@@ -49,9 +49,9 @@ image](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compre
 
 \(b\)
 
-Figure 1: Original image [Figure 1 (a)](#fig-orig): 178.7 KB, optimized
-image [Figure 1 (b)](#fig-new): 45 KB (compression: 74.8%). Click to
-enlarge.
+Figure 1: Original image [Figure 1 (a)](#fig-orig), 178.7 KB, and
+optimized image [Figure 1 (b)](#fig-new), 45 KB (74.8% compression).
+Click to enlarge.
 
 Use the `qlty` argument to adjust the JPEG quality level. For best
 results, use values above `90`.
@@ -116,27 +116,28 @@ Several other **R** packages provide image optimization tools:
   - [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html):
     Compresses local files using **OptiPNG**. The program must be
     installed locally.
-- The [**tinieR**](https://jmablog.github.io/tinieR/) package: An **R**
-  interface to [**TinyPNG**](https://tinypng.com/).
+- The [**tinieR**](https://jmablog.github.io/tinieR/) package provides
+  an **R** interface to [**TinyPNG**](https://tinypng.com/).
 - The **tinyimg** package ([Xie 2026a](#ref-tinyimg)): Optimizes local
-  PNG and JPEG files using Rust libraries. It supports lossless PNG
+  PNG and JPEG files using **Rust** libraries. It supports lossless PNG
   optimization via **oxipng**, optional lossy PNG palette reduction and
   JPEG re-encoding via **mozjpeg**.
-- The [**optout**](https://github.com/coolbutuseless/optout) package:
-  Similar to
+- The [**optout**](https://github.com/coolbutuseless/optout) package is
+  similar to
   [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) but
-  with more options. It requires additional local software.
+  offers more options. It requires additional local software.
 
-| Tool | CRAN | Additional software | Online images | API key required | Limits |
+| Tool | **CRAN** | Additional software | Online images | API key required | Limits |
 |----|----|----|----|----|----|
 | [`xfun::tinify()`](https://rdrr.io/pkg/xfun/man/tinify.html) | Yes | No | Yes | Yes | 500 compressions per month (free tier) |
 | [`xfun::optipng()`](https://rdrr.io/pkg/xfun/man/optipng.html) | Yes | Yes | No | No | None |
 | **tinieR** | No | No | Yes | Yes | 500 compressions per month (free tier) |
-| **tinyimg** | Yes | Yes (Rust toolchain) | No | No | None |
+| **tinyimg** | Yes | Yes (**Rust** toolchain) | No | No | None |
 | **optout** | No | Yes | No | No | None |
 | **resmush** | Yes | No | Yes | No | Personal use only. Files smaller than 5 MB. |
 
-Table 1: **R** packages: comparison of image optimization alternatives.
+Table 1: Comparison of image optimization alternatives for **R**
+packages.
 
 | Tool | PNG | JPEG | GIF | BMP | TIFF | WebP | PDF |
 |----|----|----|----|----|----|----|----|
@@ -147,7 +148,7 @@ Table 1: **R** packages: comparison of image optimization alternatives.
 | **optout** | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ |
 | **resmush** | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 
-Table 2: **R** packages: supported formats.
+Table 2: Supported formats for **R** packages.
 
 In practice, **resmush** is designed for quick image optimization with
 minimal setup, including support for online image files and formats such

@@ -1,5 +1,12 @@
 # Articles
 
+### Get started
+
+Learn how to optimize local and online image files with **resmush**.
+
+- [Using
+  resmush](https://dieghernan.github.io/resmush/articles/resmush.md):
+
 ### From the blog
 
 Read external blog posts about **resmush**.

@@ -18,11 +18,3 @@ Remove suffixed output files from one or more directories.
 
 - [`resmush_clean_dir()`](https://dieghernan.github.io/resmush/reference/resmush_clean_dir.md)
   : Remove output files from directories
-
-## About the package
-
-Package overview and metadata.
-
-- [`resmush`](https://dieghernan.github.io/resmush/reference/resmush-package.md)
-  [`resmush-package`](https://dieghernan.github.io/resmush/reference/resmush-package.md)
-  : resmush: Optimize and Compress Image Files with 'reSmush.it'

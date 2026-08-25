@@ -1,8 +1,18 @@
 # Changelog
 
+## resmush 1.0.3
+
+- [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md)
+  and
+  [`resmush_url()`](https://dieghernan.github.io/resmush/reference/resmush_url.md)
+  now use stable, consistently punctuated API status notes and improve
+  reports for singular inputs and unknown file sizes.
+
 ## resmush 1.0.2
 
 CRAN release: 2026-07-02
+
+- Improved testing.
 
 ## resmush 1.0.1
 
