@@ -2,6 +2,8 @@
 
 ## resmush 1.0.3
 
+CRAN release: 2026-08-25
+
 - [`resmush_file()`](https://dieghernan.github.io/resmush/reference/resmush_file.md)
   and
   [`resmush_url()`](https://dieghernan.github.io/resmush/reference/resmush_url.md)
