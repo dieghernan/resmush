@@ -237,7 +237,7 @@ test_that("resmush_url() applies JPEG quality settings", {
 
   # Use qlty
   outf2 <- withr::local_tempfile(fileext = ".jpg")
-  dm2 <- resmush_url(jpg_url, outf2, qlty = 30)
+  resmush_url(jpg_url, outf2, qlty = 30)
 
   expect_true(file.exists(outf2))
   out2s <- file.size(outf2)
@@ -461,7 +461,7 @@ test_that("resmush_url() creates missing output directories", {
   outs <- file.path(outf, basename(png_url))
 
   # Call
-  suppressMessages(dm <- resmush_url(png_url, outs))
+  suppressMessages(resmush_url(png_url, outs))
 
   # Check that now exists
   expect_true(dir.exists(outf))

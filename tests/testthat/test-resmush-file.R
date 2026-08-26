@@ -221,7 +221,7 @@ test_that("resmush_file() applies JPEG quality settings", {
   resmush_clean_dir(test_dir, "_even_lower")
   outf2 <- add_suffix(test_jpg, "_even_lower")
   expect_false(file.exists(outf2))
-  dm2 <- resmush_file(test_jpg, suffix = "_even_lower", qlty = 30)
+  resmush_file(test_jpg, suffix = "_even_lower", qlty = 30)
 
   expect_true(file.exists(outf2))
   out2s <- file.size(outf2)

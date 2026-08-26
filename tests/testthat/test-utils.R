@@ -147,7 +147,7 @@ test_that("resmush_map() restores CLI options after worker errors", {
   error <- suppressMessages(tryCatch(
     resmush_map(
       "input",
-      worker = \(i) stop("Worker failed"),
+      worker = \(i) stop("Worker failed", call. = FALSE),
       progress = TRUE,
       progress_label = "file{?s}"
     ),

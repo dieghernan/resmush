@@ -283,14 +283,14 @@ make_unique_paths <- function(x, overwrite) {
 
   init_name <- x
 
-  if (!file.exists(init_name)) {
-    new_name <- init_name
-  } else {
+  if (file.exists(init_name)) {
     for (i in seq_len(200)) {
       new_name <- add_suffix(init_name, sprintf("_%002d", i))
 
       if (!file.exists(new_name)) break
     }
+  } else {
+    new_name <- init_name
   }
 
   new_name
