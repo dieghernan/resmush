@@ -60,11 +60,13 @@ resmush_url(
 
 ## Value
 
-An invisibly returned data frame with one row per result and columns
-containing source and destination paths, formatted and raw file sizes,
-compression ratios and status notes. Returns `NULL` if no result is
-available. Successful API calls also write the optimized files to disk.
-If `report = TRUE`, a summary is displayed in the console.
+An invisibly returned [data
+frame](https://rdrr.io/r/base/data.frame.html) with one row per result
+and columns containing source and destination paths, formatted file
+sizes, file sizes in bytes, compression ratios and status notes. Returns
+[`NULL`](https://rdrr.io/r/base/NULL.html) if no result is available.
+Successful API calls also write the optimized files to disk. If
+`report = TRUE`, a summary is displayed in the console.
 
 ## Details
 
@@ -92,20 +94,20 @@ png_url <- paste0(base_url, "/extimg/example.png")
 resmush_url(png_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 URL, 239.9 Kb total.
-#> ✔ Optimized 1 URL: size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
-#> Saved result in directory /tmp/RtmpukeboY.
+#> ✔ Optimized 1 URL: size is now 76.1 Kb (was 239.9 Kb). Saved 163.8 Kb (68.29%).
+#> Saved result in directory /tmp/Rtmpb00G9k.
 
 # Optimize multiple URLs.
 jpg_url <- paste0(base_url, "/extimg/example.jpg")
 
 summary <- resmush_url(c(png_url, jpg_url))
 #> 🕐  reSmushing | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 UR…
-#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.5s] | ETA:  0s (2/2 U…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [870ms] | ETA:  0s (2/2 …
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 URLs, 340.2 Kb total.
-#> ✔ Optimized 2 URLs: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> Saved results in directory /tmp/RtmpukeboY.
+#> ✔ Optimized 2 URLs: size is now 159.2 Kb (was 340.2 Kb). Saved 181 Kb (53.20%).
+#> Saved results in directory /tmp/Rtmpb00G9k.
 
 # Inspect the returned optimization summary.
 summary
@@ -113,10 +115,10 @@ summary
 #> 1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.png
 #> 2 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.jpg
 #>                         dest_img src_size dest_size compress_ratio notes
-#> 1 /tmp/RtmpukeboY/example_01.png 239.9 Kb   70.7 Kb         70.54%    OK
-#> 2    /tmp/RtmpukeboY/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK
+#> 1 /tmp/Rtmpb00G9k/example_01.png 239.9 Kb   76.1 Kb         68.29%    OK
+#> 2    /tmp/Rtmpb00G9k/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK
 #>   src_bytes dest_bytes
-#> 1    245618      72356
+#> 1    245618      77896
 #> 2    102796      85164
 
 # Display the PNG output.
@@ -131,11 +133,11 @@ resmush_url(jpg_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 URL, 100.4 Kb total.
 #> ✔ Optimized 1 URL: size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> Saved result in directory /tmp/RtmpukeboY.
+#> Saved result in directory /tmp/Rtmpb00G9k.
 resmush_url(jpg_url, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 URL, 100.4 Kb total.
 #> ✔ Optimized 1 URL: size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> Saved result in directory /tmp/RtmpukeboY.
+#> Saved result in directory /tmp/Rtmpb00G9k.
 # }
 ```

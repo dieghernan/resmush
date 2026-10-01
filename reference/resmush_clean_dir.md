@@ -32,7 +32,7 @@ resmush_clean_dir(dir, suffix = "_resmush", recursive = FALSE)
 
 ## Value
 
-An [`base::invisible()`](https://rdrr.io/r/base/invisible.html) `NULL`.
+An invisibly returned [`NULL`](https://rdrr.io/r/base/NULL.html).
 Messages list the files selected for removal.
 
 ## See also
@@ -64,7 +64,7 @@ file.exists(tmp_png)
 
 # Run with the default suffix. This should not remove the file.
 resmush_clean_dir(tempdir())
-#> ℹ No files with suffix "_resmush" were found in /tmp/RtmpukeboY.
+#> ℹ No files with suffix "_resmush" were found in /tmp/Rtmpb00G9k.
 
 file.exists(tmp_png)
 #> [1] TRUE
@@ -72,7 +72,7 @@ file.exists(tmp_png)
 # Use the matching suffix to remove the file.
 resmush_clean_dir(tempdir(), suffix = suffix)
 #> ℹ Removing 1 file:
-#> → /tmp/RtmpukeboY/example_would_be_removed.png
+#> → /tmp/Rtmpb00G9k/example_would_be_removed.png
 
 file.exists(tmp_png)
 #> [1] FALSE

@@ -58,16 +58,19 @@ resmush_url(
 #> Saved result in directory 'man/figures'.
 ```
 
-[![Original uncompressed JPEG
-image](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)
+[![Photograph of a river bordered by reeds and trees, with clouds
+reflected in the water. Fine detail is visible in the vegetation and
+clouds.](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)
 (a)
 
-[![Optimized JPEG
-image](./reference/figures/jpg_example_compress.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
+[![Optimized photograph of a river bordered by reeds and trees, with
+clouds reflected in the water. Vegetation and clouds retain fine detail,
+with little visible change after
+compression.](./reference/figures/jpg_example_compress.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 (b)
 
-Figure 1: Original image *(a)*, 178.7 KB, and optimized image *(b)*, 45
-KB (74.8% compression). Click to enlarge.
+Figure 1: Original image *(a)* (178.7 KB) and optimized image *(b)* (45
+KB), a 74.8% reduction in file size. Click to enlarge.
 
 Use the `qlty` argument to adjust the JPEG quality level. For best
 results, use values above `90`.
@@ -87,18 +90,20 @@ resmush_url(
 #> Saved result in directory 'man/figures'.
 ```
 
-[![JPEG image with visible compression
-artifacts](reference/figures/jpg_example_compress_low.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
+[![Heavily compressed photograph of a river bordered by reeds and trees,
+with clouds reflected in the water. Large pixel blocks obscure detail in
+the vegetation, clouds and
+reflections.](reference/figures/jpg_example_compress_low.jpg)](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
 Figure 2: Image with visible compression artifacts caused by high
 compression (`qlty = 3`).
 
-When results are available, all optimization functions invisibly return
-a data frame with one row per result and columns containing source and
-destination paths, formatted and raw file sizes, compression ratios and
-status notes. They return `NULL` otherwise. Successful API calls also
-write the optimized files to disk. The following example shows the
-result for a local image file:
+All optimization functions invisibly return a data frame with one row
+per result and columns containing source and destination paths,
+formatted file sizes, file sizes in bytes, compression ratios and status
+notes. They return `NULL` if no result is available. Successful API
+calls also write the optimized files to disk. The following example
+shows the result for a local image file:
 
 ``` r
 
@@ -115,7 +120,7 @@ tibble::as_tibble(summary[, -c(1, 2)])
 #> # A tibble: 1 × 6
 #>   src_size dest_size compress_ratio notes src_bytes dest_bytes
 #>   <chr>    <chr>     <chr>          <chr>     <dbl>      <dbl>
-#> 1 239.9 Kb 70.7 Kb   70.54%         OK       245618      72356
+#> 1 239.9 Kb 76.1 Kb   68.29%         OK       245618      77896
 ```
 
 ## Alternatives
@@ -133,7 +138,7 @@ Several other **R** packages provide image optimization tools:
     installed locally.
 - The [**tinieR**](https://jmablog.github.io/tinieR/) package provides
   an **R** interface to [**TinyPNG**](https://tinypng.com/).
-- The **tinyimg** package ([Xie 2026a](#ref-tinyimg)): Optimizes local
+- The **tinyimg** package ([Xie 2026a](#ref-tinyimg)) optimizes local
   PNG and JPEG files using **Rust** libraries. It supports lossless PNG
   optimization via **oxipng**, optional lossy PNG palette reduction and
   JPEG re-encoding via **mozjpeg**.

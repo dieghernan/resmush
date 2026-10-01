@@ -75,11 +75,13 @@ resmush_dir(
 
 ## Value
 
-An invisibly returned data frame with one row per result and columns
-containing source and destination paths, formatted and raw file sizes,
-compression ratios and status notes. Returns `NULL` if no result is
-available. Successful API calls also write the optimized files to disk.
-If `report = TRUE`, a summary is displayed in the console.
+An invisibly returned [data
+frame](https://rdrr.io/r/base/data.frame.html) with one row per result
+and columns containing source and destination paths, formatted file
+sizes, file sizes in bytes, compression ratios and status notes. Returns
+[`NULL`](https://rdrr.io/r/base/NULL.html) if no result is available.
+Successful API calls also write the optimized files to disk. If
+`report = TRUE`, a summary is displayed in the console.
 
 ## See also
 
@@ -108,38 +110,37 @@ dest_folder <- file.path(tempdir(), "extimg")
 resmush_dir(dest_folder)
 #> ℹ Optimizing 2 files.
 #> 🕐  reSmushing | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [3ms] | ETA:  0s (1/2 fi…
-#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2s] | ETA:  0s (2/2 fil…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.4s] | ETA:  0s (2/2 f…
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files, 340.2 Kb total.
-#> ✔ Optimized 2 files: size is now 153.8 Kb (was 340.2 Kb). Saved 186.4 Kb (54.79%).
-#> Saved results in directory /tmp/RtmpukeboY/extimg.
+#> ✔ Optimized 2 files: size is now 159.2 Kb (was 340.2 Kb). Saved 181 Kb (53.20%).
+#> Saved results in directory /tmp/Rtmpb00G9k/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Removing 2 files:
-#> → /tmp/RtmpukeboY/extimg/example_resmush.jpg
-#> → /tmp/RtmpukeboY/extimg/example_resmush.png
+#> → /tmp/Rtmpb00G9k/extimg/example_resmush.jpg
+#> → /tmp/Rtmpb00G9k/extimg/example_resmush.png
 
 # Optimize files recursively.
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Optimizing 5 files.
-#> 🕐  reSmushing | ■■■■■■■□□□□□□□□□□□□□□□□□□□□□□□□   20% [1ms] | ETA:  0s (1/5 fi…
-#> 🕑  reSmushing | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [2.7s] | ETA:  2s (3/5 f…
-#> 🕑  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [4s] | ETA:  0s (5/5 fil…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [1.5s] | ETA:  1s (3/5 f…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2.7s] | ETA:  0s (5/5 f…
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files, 401.7 Kb total.
-#> ✔ Optimized 5 files: size is now 173.5 Kb (was 401.7 Kb). Saved 228.2 Kb (56.81%).
-#> Saved results in directories /tmp/RtmpukeboY/extimg,
-#> /tmp/RtmpukeboY/extimg/top1/nested, /tmp/RtmpukeboY/extimg/top1, and
-#> /tmp/RtmpukeboY/extimg/top2.
+#> ✔ Optimized 5 files: size is now 179.6 Kb (was 401.7 Kb). Saved 222.1 Kb (55.30%).
+#> Saved results in directories /tmp/Rtmpb00G9k/extimg,
+#> /tmp/Rtmpb00G9k/extimg/top1/nested, /tmp/Rtmpb00G9k/extimg/top1, and
+#> /tmp/Rtmpb00G9k/extimg/top2.
 
 # Inspect the returned optimization summary.
 summary[, -c(1, 2)]
 #>   src_size dest_size compress_ratio notes src_bytes dest_bytes
 #> 1 100.4 Kb   83.2 Kb         17.15%    OK    102796      85164
-#> 2 239.9 Kb   70.7 Kb         70.54%    OK    245618      72356
+#> 2 239.9 Kb   76.1 Kb         68.29%    OK    245618      77896
 #> 3  17.8 Kb      6 Kb         66.48%    OK     18214       6105
-#> 4  25.9 Kb    7.7 Kb         70.09%    OK     26499       7926
+#> 4  25.9 Kb    8.4 Kb         67.53%    OK     26499       8605
 #> 5  17.8 Kb      6 Kb         66.48%    OK     18214       6105
 
 # Display the PNG output.

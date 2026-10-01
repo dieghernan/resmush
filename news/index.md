@@ -8,7 +8,7 @@ CRAN release: 2026-08-25
   and
   [`resmush_url()`](https://dieghernan.github.io/resmush/reference/resmush_url.md)
   now use stable, consistently punctuated API status notes and improve
-  reports for singular inputs and unknown file sizes.
+  reports for single inputs and unknown file sizes.
 
 ## resmush 1.0.2
 

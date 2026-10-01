@@ -136,9 +136,9 @@
 <figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-comp" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-orig" class="quarto-float quarto-figure quarto-figure-center" alt="Original uncompressed JPEG image">
+<div id="fig-orig" class="quarto-float quarto-figure quarto-figure-center" alt="Photograph of a river bordered by reeds and trees, with clouds reflected in the water. Fine detail is visible in the vegetation and clouds.">
 <figure class="quarto-float quarto-subfloat-fig"><div aria-describedby="fig-orig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"><img src="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg" style="width:100.0%" alt="Original uncompressed JPEG image" data-ref-parent="fig-comp"></a>
+<a href="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"><img src="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg" style="width:100.0%" alt="Photograph of a river bordered by reeds and trees, with clouds reflected in the water. Fine detail is visible in the vegetation and clouds." data-ref-parent="fig-comp"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-orig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a)
@@ -146,9 +146,9 @@
 </div>
 </div>
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-comp" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-new" class="quarto-float quarto-figure quarto-figure-center" alt="Optimized JPEG image">
+<div id="fig-new" class="quarto-float quarto-figure quarto-figure-center" alt="Optimized photograph of a river bordered by reeds and trees, with clouds reflected in the water. Vegetation and clouds retain fine detail, with little visible change after compression.">
 <figure class="quarto-float quarto-subfloat-fig"><div aria-describedby="fig-new-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg"><img src="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg" style="width:100.0%" alt="Optimized JPEG image" data-ref-parent="fig-comp"></a>
+<a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg"><img src="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg" style="width:100.0%" alt="Optimized photograph of a river bordered by reeds and trees, with clouds reflected in the water. Vegetation and clouds retain fine detail, with little visible change after compression." data-ref-parent="fig-comp"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-new-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b)
@@ -158,7 +158,7 @@
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 1: Original image <a href="#fig-orig" class="quarto-xref">Figure 1 (a)</a>, 178.7 KB, and optimized image <a href="#fig-new" class="quarto-xref">Figure 1 (b)</a>, 45 KB (74.8% compression). Click to enlarge.
+Figure 1: Original image <a href="#fig-orig" class="quarto-xref">Figure 1 (a)</a> (178.7 KB) and optimized image <a href="#fig-new" class="quarto-xref">Figure 1 (b)</a> (45 KB), a 74.8% reduction in file size. Click to enlarge.
 </figcaption></figure>
 </div>
 <p>Use the <code>qlty</code> argument to adjust the JPEG quality level. For best results, use values above <code>90</code>.</p>
@@ -177,13 +177,13 @@ Figure 1: Original image <a href="#fig-orig" class="quarto-xref">Figure 1 (a)<
 <span><span class="co">#&gt; Saved result in directory 'C:/user/john_doe/AppData/Local/Temp/'.</span></span></code></pre></div>
 <div id="fig-compresslow" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-compresslow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg"><img src="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg" style="width:100.0%" alt="JPEG image with visible compression artifacts"></a></p>
+<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg"><img src="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg" style="width:100.0%" alt="Heavily compressed photograph of a river bordered by reeds and trees, with clouds reflected in the water. Large pixel blocks obscure detail in the vegetation, clouds and reflections."></a></p>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-compresslow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure 2: Image with visible compression artifacts caused by high compression (<code>qlty = 3</code>), compared with <a href="#fig-new" class="quarto-xref">Figure 1 (b)</a>.
 </figcaption></figure>
 </div>
-<p>When results are available, all optimization functions invisibly return a data frame with one row per result and columns containing source and destination paths, formatted and raw file sizes, compression ratios and status notes. They return <code>NULL</code> otherwise. Successful API calls also write the optimized files to disk. The following example shows the result for a local image file:</p>
+<p>All optimization functions invisibly return a data frame with one row per result and columns containing source and destination paths, formatted file sizes, file sizes in bytes, compression ratios and status notes. They return <code>NULL</code> if no result is available. Successful API calls also write the optimized files to disk. The following example shows the result for a local image file:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">png_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extimg/example.png"</span>, package <span class="op">=</span> <span class="st">"resmush"</span><span class="op">)</span></span>
 <span></span>
@@ -212,7 +212,7 @@ Figure 2: Image with visible compression artifacts caused by high compression (
 </ul>
 </li>
 <li>The <a href="https://jmablog.github.io/tinieR/" class="external-link"><strong>tinieR</strong></a> package provides an <strong>R</strong> interface to <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a>.</li>
-<li>The <strong>tinyimg</strong> package <span class="citation" data-cites="tinyimg">(<a href="#ref-tinyimg" role="doc-biblioref">Xie 2026a</a>)</span>: Optimizes local PNG and JPEG files using <strong>Rust</strong> libraries. It supports lossless PNG optimization via <strong>oxipng</strong>, optional lossy PNG palette reduction and JPEG re-encoding via <strong>mozjpeg</strong>.</li>
+<li>The <strong>tinyimg</strong> package <span class="citation" data-cites="tinyimg">(<a href="#ref-tinyimg" role="doc-biblioref">Xie 2026a</a>)</span> optimizes local PNG and JPEG files using <strong>Rust</strong> libraries. It supports lossless PNG optimization via <strong>oxipng</strong>, optional lossy PNG palette reduction and JPEG re-encoding via <strong>mozjpeg</strong>.</li>
 <li>The <a href="https://github.com/coolbutuseless/optout" class="external-link"><strong>optout</strong></a> package is similar to <code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> but offers more options. It requires additional local software.</li>
 </ul>
 <div id="tbl-opts" class="quarto-float quarto-figure quarto-figure-center">

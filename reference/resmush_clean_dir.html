@@ -89,7 +89,8 @@ default is <code>"_resmush"</code>, which is also used by <code><a href="resmush
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An <code><a href="https://rdrr.io/r/base/invisible.html" class="external-link">base::invisible()</a></code> <code>NULL</code>. Messages list the files selected for removal.</p>
+    <p>An invisibly returned <code><a href="https://rdrr.io/r/base/NULL.html" class="external-link">NULL</a></code>. Messages list the files selected
+for removal.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -118,7 +119,7 @@ files that this function removes.</p></div>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Run with the default suffix. This should not remove the file.</span></span></span>
 <span class="r-in"><span><span class="fu">resmush_clean_dir</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> No files with suffix <span style="color: #0000BB;">"_resmush"</span> were found in <span style="color: #0000BB;">/tmp/RtmpukeboY</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> No files with suffix <span style="color: #0000BB;">"_resmush"</span> were found in <span style="color: #0000BB;">/tmp/Rtmpb00G9k</span>.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">tmp_png</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
@@ -126,7 +127,7 @@ files that this function removes.</p></div>
 <span class="r-in"><span><span class="co"># Use the matching suffix to remove the file.</span></span></span>
 <span class="r-in"><span><span class="fu">resmush_clean_dir</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, suffix <span class="op">=</span> <span class="va">suffix</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Removing <span style="color: #0000BB;">1</span> file:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> → <span style="color: #0000BB;">/tmp/RtmpukeboY/example_would_be_removed.png</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → <span style="color: #0000BB;">/tmp/Rtmpb00G9k/example_would_be_removed.png</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">tmp_png</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>

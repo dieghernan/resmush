@@ -162,10 +162,10 @@ Note
 <span><span class="co">#&gt; ✔ Optimized 1 URL: size is now 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).</span></span>
 <span><span class="co">#&gt; Saved result in directory 'man/figures'.</span></span></code></pre></div>
 <div class="figure">
-<p><a href="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"><img src="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg" style="width:100.0%" alt="Original uncompressed JPEG image"></a> <small class="caption fst-italic">(a)</small></p>
-<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg"><img src="./reference/figures/jpg_example_compress.jpg" style="width:100.0%" alt="Optimized JPEG image"></a> <small class="caption fst-italic">(b)</small></p>
+<p><a href="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"><img src="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg" style="width:100.0%" alt="Photograph of a river bordered by reeds and trees, with clouds reflected in the water. Fine detail is visible in the vegetation and clouds."></a> <small class="caption fst-italic">(a)</small></p>
+<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg"><img src="./reference/figures/jpg_example_compress.jpg" style="width:100.0%" alt="Optimized photograph of a river bordered by reeds and trees, with clouds reflected in the water. Vegetation and clouds retain fine detail, with little visible change after compression."></a> <small class="caption fst-italic">(b)</small></p>
 <figcaption>
-Figure 1: Original image <em>(a)</em>, 178.7 KB, and optimized image <em>(b)</em>, 45 KB (74.8% compression). Click to enlarge.
+Figure 1: Original image <em>(a)</em> (178.7 KB) and optimized image <em>(b)</em> (45 KB), a 74.8% reduction in file size. Click to enlarge.
 </figcaption>
 </div>
 <p>Use the <code>qlty</code> argument to adjust the JPEG quality level. For best results, use values above <code>90</code>.</p>
@@ -182,12 +182,12 @@ Figure 1: Original image <em>(a)</em>, 178.7 KB, and optimized image <em>(b)</em
 <span><span class="co">#&gt; ✔ Optimized 1 URL: size is now 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).</span></span>
 <span><span class="co">#&gt; Saved result in directory 'man/figures'.</span></span></code></pre></div>
 <div class="figure">
-<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg"><img src="reference/figures/jpg_example_compress_low.jpg" style="width:100.0%" alt="JPEG image with visible compression artifacts"></a></p>
+<p><a href="https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg"><img src="reference/figures/jpg_example_compress_low.jpg" style="width:100.0%" alt="Heavily compressed photograph of a river bordered by reeds and trees, with clouds reflected in the water. Large pixel blocks obscure detail in the vegetation, clouds and reflections."></a></p>
 <figcaption>
 Figure 2: Image with visible compression artifacts caused by high compression (<code>qlty = 3</code>).
 </figcaption>
 </div>
-<p>When results are available, all optimization functions invisibly return a data frame with one row per result and columns containing source and destination paths, formatted and raw file sizes, compression ratios and status notes. They return <code>NULL</code> otherwise. Successful API calls also write the optimized files to disk. The following example shows the result for a local image file:</p>
+<p>All optimization functions invisibly return a data frame with one row per result and columns containing source and destination paths, formatted file sizes, file sizes in bytes, compression ratios and status notes. They return <code>NULL</code> if no result is available. Successful API calls also write the optimized files to disk. The following example shows the result for a local image file:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">png_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extimg/example.png"</span>, package <span class="op">=</span> <span class="st">"resmush"</span><span class="op">)</span></span>
 <span></span>
@@ -202,7 +202,7 @@ Figure 2: Image with visible compression artifacts caused by high compression (<
 <span><span class="co">#&gt; # A tibble: 1 × 6</span></span>
 <span><span class="co">#&gt;   src_size dest_size compress_ratio notes src_bytes dest_bytes</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 239.9 Kb 70.7 Kb   70.54%         OK       245618      72356</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 239.9 Kb 76.1 Kb   68.29%         OK       245618      77896</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="alternatives">Alternatives<a class="anchor" aria-label="anchor" href="#alternatives"></a>
@@ -218,7 +218,7 @@ Figure 2: Image with visible compression artifacts caused by high compression (<
 </ul>
 </li>
 <li>The <a href="https://jmablog.github.io/tinieR/" class="external-link"><strong>tinieR</strong></a> package provides an <strong>R</strong> interface to <a href="https://tinypng.com/" class="external-link"><strong>TinyPNG</strong></a>.</li>
-<li>The <strong>tinyimg</strong> package (<a href="#ref-tinyimg">Xie 2026a</a>): Optimizes local PNG and JPEG files using <strong>Rust</strong> libraries. It supports lossless PNG optimization via <strong>oxipng</strong>, optional lossy PNG palette reduction and JPEG re-encoding via <strong>mozjpeg</strong>.</li>
+<li>The <strong>tinyimg</strong> package (<a href="#ref-tinyimg">Xie 2026a</a>) optimizes local PNG and JPEG files using <strong>Rust</strong> libraries. It supports lossless PNG optimization via <strong>oxipng</strong>, optional lossy PNG palette reduction and JPEG re-encoding via <strong>mozjpeg</strong>.</li>
 <li>The <a href="https://github.com/coolbutuseless/optout" class="external-link"><strong>optout</strong></a> package is similar to <code><a href="https://rdrr.io/pkg/xfun/man/optipng.html" class="external-link">xfun::optipng()</a></code> but offers more options. It requires additional local software.</li>
 </ul>
 <table style="width:100%;" class="table">
