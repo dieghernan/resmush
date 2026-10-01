@@ -31,7 +31,7 @@ show_report <- function(res_df, summary_type = "file") {
   nok <- res_df[res_df$notes != "OK", ]
   ok <- res_df[res_df$notes == "OK", ]
 
-  # jarl-ignore-start unused_object: Use on cli messages
+  # jarl-ignore-start unused_object: Used in cli messages
   nok_notes <- format_resmush_note(nok$notes) # nolint
   # jarl-ignore-end unused_object
 

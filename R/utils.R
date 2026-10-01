@@ -2,7 +2,7 @@
 #'
 #' Checks whether an internet connection is available.
 #'
-#' @returns A logical value.
+#' @returns A [logical][base::logical] value.
 #'
 #' @noRd
 resmush_is_online <- function() {
@@ -36,7 +36,7 @@ resmush_resp_status_desc <- function(resp) {
 #'
 #' @param x An integer.
 #'
-#' @returns A formatted character string.
+#' @returns A formatted [character][base::character] string.
 #'
 #' @noRd
 make_pretty_size <- function(x) {
@@ -53,7 +53,7 @@ make_pretty_size <- function(x) {
 #'
 #' @param src Input image path or URL.
 #'
-#' @returns A data frame with one row.
+#' @returns A [data frame][base::data.frame] with one row.
 #'
 #' @noRd
 new_resmush_result <- function(src) {
@@ -109,12 +109,13 @@ format_api_note <- function(error, error_long) {
 
 #' Add size and compression metadata to a result table
 #'
-#' Adds formatted and raw file sizes, the compression ratio and a success note.
+#' Adds formatted file sizes, file sizes in bytes, the compression ratio and a
+#' success note.
 #'
 #' @param res Result table created by `new_resmush_result()`.
 #' @param src_size,dest_size Source and destination sizes in bytes.
 #'
-#' @returns The updated result data frame.
+#' @returns The updated result [data frame][base::data.frame].
 #'
 #' @noRd
 add_size_summary <- function(res, src_size, dest_size) {
@@ -139,7 +140,8 @@ add_size_summary <- function(res, src_size, dest_size) {
 #' @param progress Logical. Should a progress bar be displayed?
 #' @param progress_label A label displayed after the progress counter.
 #'
-#' @returns A data frame or `NULL` if every worker result is `NULL`.
+#' @returns A [data frame][base::data.frame] or [`NULL`][base::NULL] if every
+#'   worker result is `NULL`.
 #'
 #' @noRd
 resmush_map <- function(inputs, worker, progress, progress_label) {
@@ -202,8 +204,8 @@ resmush_map <- function(inputs, worker, progress, progress_label) {
 #' @param src The original source used in error messages.
 #' @param source_type Either `"file"` or `"url"`.
 #'
-#' @returns An HTTP response object or `NULL` if the remote file is
-#'   unavailable.
+#' @returns An HTTP [response][httr2::response] object or [`NULL`][base::NULL]
+#'   if the remote file is unavailable.
 #'
 #' @noRd
 download_optimized_file <- function(url, outfile, src, source_type) {
@@ -249,7 +251,7 @@ download_optimized_file <- function(url, outfile, src, source_type) {
 #' @param suffix A suffix to add.
 #' @param overwrite Logical. Should the input paths be returned unchanged?
 #'
-#' @returns A character vector of file paths.
+#' @returns A [character][base::character] vector of file paths.
 #'
 #' @noRd
 add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
@@ -258,7 +260,7 @@ add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
     return(x)
   }
 
-  # Append suffix before file extensions.
+  # Append the suffix before file extensions.
   base_file <- tools::file_path_sans_ext(x)
   ext_file <- tools::file_ext(x)
 
@@ -273,7 +275,7 @@ add_suffix <- function(x, suffix = "_resmush", overwrite = FALSE) {
 #' @param x A file path.
 #' @param overwrite Logical. Should an existing file be overwritten?
 #'
-#' @returns A file path.
+#' @returns A [character][base::character] string containing a file path.
 #'
 #' @noRd
 make_unique_paths <- function(x, overwrite) {

@@ -13,7 +13,8 @@
 #' @param recursive Logical. Should the file search recurse into directories?
 #'
 #' @returns
-#' An [base::invisible()] `NULL`. Messages list the files selected for removal.
+#' An invisibly returned [`NULL`][base::NULL]. Messages list the files selected
+#' for removal.
 #'
 #' @seealso [resmush_file()] and [resmush_dir()] create the suffixed output
 #'   files that this function removes.

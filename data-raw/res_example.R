@@ -1,9 +1,9 @@
-## code to prepare `res_example` dataset goes here
+# Prepare the example optimization results.
 
-# No url
+# Use a URL that does not exist.
 turl <- "https://dieghernan.github.io/aaabbbccc.png"
 
-# Not valid
+# Use a URL that does not point to an image.
 notval <- paste0(
   "https://raw.githubusercontent.com/",
   "dieghernan/resmush/main/README.md"
@@ -25,7 +25,7 @@ all_in <- c(png_url, notval, jpg_url, turl)
 
 res_example <- resmush_url(all_in)
 
-# Anonimize folder
+# Anonymize the destination directory.
 
 res_example$dest_img <- basename(res_example$dest_img)
 
@@ -34,6 +34,5 @@ res_example$dest_img <- ifelse(
   NA,
   file.path("some_folder", res_example$dest_img)
 )
-
 
 usethis::use_data(res_example, overwrite = TRUE, internal = TRUE)

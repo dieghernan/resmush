@@ -23,10 +23,11 @@
 #'   default is `FALSE`, which removes it.
 #'
 #' @returns
-#' An invisibly returned data frame with one row per result and columns
-#' containing source and destination paths, formatted and raw file sizes,
-#' compression ratios and status notes. Returns `NULL` if no result is
-#' available. Successful API calls also write the optimized files to disk. If
+#' An invisibly returned [data frame][base::data.frame] with one row per result
+#' and columns containing source and destination paths, formatted file sizes,
+#' file sizes in bytes, compression ratios and status notes. Returns
+#' [`NULL`][base::NULL] if no result is available. Successful API calls also
+#' write the optimized files to disk. If
 #' `report = TRUE`, a summary is displayed in the console.
 #'
 #' @seealso [resmush_clean_dir()] removes output files created by previous runs.

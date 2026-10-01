@@ -16,7 +16,7 @@ test_that("add_suffix() inserts suffixes before file extensions", {
     "./test.jpg.png"
   )
 
-  # Default behaviour
+  # Default behavior.
   def <- add_suffix(nodups)
   expect_identical(
     c(

@@ -18,7 +18,8 @@ default is \code{"_resmush"}, which is also used by \code{\link[=resmush_file]{r
 \item{recursive}{Logical. Should the file search recurse into directories?}
 }
 \value{
-An \code{\link[base:invisible]{base::invisible()}} \code{NULL}. Messages list the files selected for removal.
+An invisibly returned \code{\link[base:NULL]{NULL}}. Messages list the files selected
+for removal.
 }
 \description{
 \strong{Use with caution.} Remove files that match \code{suffix} from one or more

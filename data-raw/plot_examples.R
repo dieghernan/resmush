@@ -1,5 +1,5 @@
-## code to prepare `plot_examples` dataset goes here
-# Get imgurl url for further examples
+# Prepare the example image data.
+# Get an Imgur URL for further examples.
 
 # img <- knitr::imgur_upload("inst/extimg/example.jpg")
 

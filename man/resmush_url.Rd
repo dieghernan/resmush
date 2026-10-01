@@ -41,10 +41,11 @@ affects JPEG files.}
 default is \code{FALSE}, which removes it.}
 }
 \value{
-An invisibly returned data frame with one row per result and columns
-containing source and destination paths, formatted and raw file sizes,
-compression ratios and status notes. Returns \code{NULL} if no result is
-available. Successful API calls also write the optimized files to disk. If
+An invisibly returned \link[base:data.frame]{data frame} with one row per result
+and columns containing source and destination paths, formatted file sizes,
+file sizes in bytes, compression ratios and status notes. Returns
+\code{\link[base:NULL]{NULL}} if no result is available. Successful API calls also
+write the optimized files to disk. If
 \code{report = TRUE}, a summary is displayed in the console.
 }
 \description{

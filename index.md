@@ -2,7 +2,7 @@
 
 <!-- index.md is generated from index.qmd. Please edit that file -->
 
-# resmush <a href="https://dieghernan.github.io/resmush/"><img src="man/figures/logo.png" alt="resmush website" align="right" height="139"/></a>
+# resmush <a href="https://dieghernan.github.io/resmush/"><img src="man/figures/logo.png" alt="resmush website: hexagonal package logo with four arrows pointing inward toward a small landscape icon." align="right" height="139"/></a>
 
 <!-- badges: start -->
 
@@ -123,17 +123,18 @@ resmush_url(
 
 [<img
 src="https://dieghernan.github.io/resmush/img/jpg_example_original.jpg"
-style="width:100.0%" alt="Original uncompressed JPEG image" />](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)
+style="width:100.0%"
+alt="Photograph of a river bordered by reeds and trees, with clouds reflected in the water. Fine detail is visible in the vegetation and clouds." />](https://dieghernan.github.io/resmush/img/jpg_example_original.jpg)
 <small class="caption fst-italic">(a)</small>
 
 [<img src="./man/figures/jpg_example_compress.jpg" style="width:100.0%"
-alt="Optimized JPEG image" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
+alt="Optimized photograph of a river bordered by reeds and trees, with clouds reflected in the water. Vegetation and clouds retain fine detail, with little visible change after compression." />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 <small class="caption fst-italic">(b)</small>
 
 <figcaption>
 
-Figure 1: Original image <em>(a)</em>, 178.7 KB, and optimized image
-<em>(b)</em>, 45 KB (74.8% compression). Click to enlarge.
+Figure 1: Original image <em>(a)</em> (178.7 KB) and optimized image
+<em>(b)</em> (45 KB), a 74.8% reduction in file size. Click to enlarge.
 </figcaption>
 
 </div>
@@ -158,7 +159,7 @@ resmush_url(
 <div class="figure">
 
 [<img src="man/figures/jpg_example_compress_low.jpg" style="width:100.0%"
-alt="JPEG image with visible compression artifacts" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
+alt="Heavily compressed photograph of a river bordered by reeds and trees, with clouds reflected in the water. Large pixel blocks obscure detail in the vegetation, clouds and reflections." />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
 <figcaption>
 
@@ -168,12 +169,12 @@ compression (`qlty = 3`).
 
 </div>
 
-When results are available, all optimization functions invisibly return
-a data frame with one row per result and columns containing source and
-destination paths, formatted and raw file sizes, compression ratios and
-status notes. They return `NULL` otherwise. Successful API calls also
-write the optimized files to disk. The following example shows the
-result for a local image file:
+All optimization functions invisibly return a data frame with one row
+per result and columns containing source and destination paths,
+formatted file sizes, file sizes in bytes, compression ratios and status
+notes. They return `NULL` if no result is available. Successful API
+calls also write the optimized files to disk. The following example
+shows the result for a local image file:
 
 ``` r
 png_file <- system.file("extimg/example.png", package = "resmush")
@@ -189,7 +190,7 @@ tibble::as_tibble(summary[, -c(1, 2)])
 #> # A tibble: 1 × 6
 #>   src_size dest_size compress_ratio notes src_bytes dest_bytes
 #>   <chr>    <chr>     <chr>          <chr>     <dbl>      <dbl>
-#> 1 239.9 Kb 70.7 Kb   70.54%         OK       245618      72356
+#> 1 239.9 Kb 76.1 Kb   68.29%         OK       245618      77896
 ```
 
 ## Alternatives
@@ -203,7 +204,7 @@ Several other **R** packages provide image optimization tools:
     program must be installed locally.
 - The [**tinieR**](https://jmablog.github.io/tinieR/) package provides
   an **R** interface to [**TinyPNG**](https://tinypng.com/).
-- The **tinyimg** package ([Xie 2026a](#ref-tinyimg)): Optimizes local
+- The **tinyimg** package ([Xie 2026a](#ref-tinyimg)) optimizes local
   PNG and JPEG files using **Rust** libraries. It supports lossless PNG
   optimization via **oxipng**, optional lossy PNG palette reduction and
   JPEG re-encoding via **mozjpeg**.

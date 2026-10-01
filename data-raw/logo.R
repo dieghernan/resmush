@@ -1,10 +1,10 @@
-## code to prepare `logo` dataset goes here
+# Prepare the package logo.
 rm(list = ls())
 
 library(hexSticker)
 
 library(showtext)
-## Loading Google fonts (http://www.google.com/fonts)
+# Load Google Fonts (http://www.google.com/fonts).
 font_add_google("Inter", "inter")
 
 showtext_auto()
