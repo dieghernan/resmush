@@ -71,6 +71,31 @@ test_that("resmush_url() reports API responses without destination URLs", {
   expect_false(file.exists(outfile))
 })
 
+test_that("resmush_url() reports size-limit errors from the API", {
+  url <- "https://example.com/oversized.png"
+  outfile <- withr::local_tempfile(fileext = ".png")
+
+  local_mocked_bindings(
+    resmush_is_online = function() TRUE,
+    smush_from_url = function(...) {
+      list(error = 502, error_long = "Uploaded file must be below 5MB")
+    }
+  )
+
+  expect_silent(
+    dm <- resmush_url(url, outfile, progress = FALSE, report = FALSE)
+  )
+
+  expect_s3_class(dm, "data.frame")
+  expect_identical(dm$src_img, url)
+  expect_identical(
+    dm$notes,
+    "502: The uploaded file must be smaller than 5 MB."
+  )
+  expect_all_true(is.na(dm$dest_img))
+  expect_length(Sys.glob(outfile), 0)
+})
+
 test_that("resmush_url() writes files from successful API results", {
   source_file <- local_inst_file("example.png")
   outfile <- withr::local_tempfile(fileext = ".png")

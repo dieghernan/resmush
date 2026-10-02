@@ -352,9 +352,6 @@ test_that("resmush_file() preserves EXIF metadata when requested", {
 })
 
 test_that("resmush_file() overwrites existing outputs when enabled", {
-  skip_on_cran()
-  skip_if_offline()
-
   test_png <- local_inst_file("example.png", "overr_file")
   expect_true(file.exists(test_png))
   ins <- file.size(test_png)
@@ -365,6 +362,17 @@ test_that("resmush_file() overwrites existing outputs when enabled", {
   # Make output
   theout <- add_suffix(test_png, suffix = "_resmush")
   expect_false(file.exists(theout))
+
+  local_mocked_bindings(
+    resmush_is_online = function() TRUE,
+    smush_from_local = function(...) {
+      list(dest = "https://example.com/optimized.png")
+    },
+    download_optimized_file = function(url, outfile, src, source_type) {
+      writeBin(raw(1024), outfile)
+      httr2::response(status_code = 200)
+    }
+  )
 
   expect_snapshot(
     dm <- resmush_file(
@@ -383,7 +391,9 @@ test_that("resmush_file() overwrites existing outputs when enabled", {
   expect_equal(dm$dest_img, dm$src_img)
 
   outs <- file.size(test_png)
-  expect_lt(outs, ins)
+  expect_equal(outs, 1024)
+  expect_identical(dm$src_bytes, ins)
+  expect_identical(dm$dest_bytes, outs)
 
   # No new files
   expect_length(list.files(out_dir, pattern = "png$"), 1)

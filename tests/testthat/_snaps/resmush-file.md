@@ -21,7 +21,7 @@
     Message
       == resmush summary =============================================================
       i Input: 1 file, 239.9 Kb total.
-      v Optimized 1 file: size is now 70.7 Kb (was 239.9 Kb). Saved 169.2 Kb (70.54%).
+      v Optimized 1 file: size is now 1 Kb (was 239.9 Kb). Saved 238.9 Kb (99.58%).
       Saved result in directory
       '<tempdir>/resmush-file-<id>/overr_file'.
 

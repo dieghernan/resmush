@@ -81,25 +81,6 @@ test_that("resmush_url() optimizes remote PNG images", {
   expect_identical(dm$notes, "OK")
 })
 
-test_that("resmush_url() reports size-limit errors for oversized PNG images", {
-  skip_on_cran()
-  skip_if_offline()
-
-  url <- paste0(
-    "https://dieghernan.github.io/resmush/",
-    "img/sample-png-10mb.png"
-  )
-
-  expect_silent(dm <- resmush_url(url, progress = FALSE, report = FALSE))
-
-  expect_s3_class(dm, "data.frame")
-  expect_identical(
-    dm$notes,
-    "502: The uploaded file must be smaller than 5 MB."
-  )
-  expect_all_true(is.na(dm$dest_img))
-})
-
 test_that("resmush_url() optimizes remote GIF images", {
   skip_on_cran()
   skip_if_offline()
