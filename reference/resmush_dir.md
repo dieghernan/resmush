@@ -110,30 +110,29 @@ dest_folder <- file.path(tempdir(), "extimg")
 resmush_dir(dest_folder)
 #> ℹ Optimizing 2 files.
 #> 🕐  reSmushing | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [2ms] | ETA:  0s (1/2 fi…
-#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.9s] | ETA:  0s (2/2 f…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.4s] | ETA:  0s (2/2 f…
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files, 340.2 Kb total.
 #> ✔ Optimized 2 files: size is now 159.2 Kb (was 340.2 Kb). Saved 181 Kb (53.20%).
-#> Saved results in directory /tmp/RtmpMqTm1O/extimg.
+#> Saved results in directory /tmp/RtmpNxKsgB/extimg.
 resmush_clean_dir(dest_folder)
 #> ℹ Removing 2 files:
-#> → /tmp/RtmpMqTm1O/extimg/example_resmush.jpg
-#> → /tmp/RtmpMqTm1O/extimg/example_resmush.png
+#> → /tmp/RtmpNxKsgB/extimg/example_resmush.jpg
+#> → /tmp/RtmpNxKsgB/extimg/example_resmush.png
 
 # Optimize files recursively.
 summary <- resmush_dir(dest_folder, recursive = TRUE)
 #> ℹ Optimizing 5 files.
-#> 🕐  reSmushing | ■■■■■■■□□□□□□□□□□□□□□□□□□□□□□□□   20% [1ms] | ETA:  0s (1/5 fi…
-#> 🕑  reSmushing | ■■■■■■■■■■■■■■■■■■■□□□□□□□□□□□□   60% [3.3s] | ETA:  2s (3/5 f…
-#> 🕑  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [4.9s] | ETA:  0s (5/5 f…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■□□□□□□□□□□□□□□□□□□   40% [834ms] | ETA:  1s (2/5 …
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [2.7s] | ETA:  0s (5/5 f…
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 5 files, 401.7 Kb total.
 #> ✔ Optimized 5 files: size is now 179.6 Kb (was 401.7 Kb). Saved 222.1 Kb (55.30%).
-#> Saved results in directories /tmp/RtmpMqTm1O/extimg,
-#> /tmp/RtmpMqTm1O/extimg/top1/nested, /tmp/RtmpMqTm1O/extimg/top1, and
-#> /tmp/RtmpMqTm1O/extimg/top2.
+#> Saved results in directories /tmp/RtmpNxKsgB/extimg,
+#> /tmp/RtmpNxKsgB/extimg/top1/nested, /tmp/RtmpNxKsgB/extimg/top1, and
+#> /tmp/RtmpNxKsgB/extimg/top2.
 
 # Inspect the returned optimization summary.
 summary[, -c(1, 2)]

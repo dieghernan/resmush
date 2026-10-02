@@ -95,19 +95,19 @@ resmush_url(png_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 URL, 239.9 Kb total.
 #> ✔ Optimized 1 URL: size is now 76.1 Kb (was 239.9 Kb). Saved 163.8 Kb (68.29%).
-#> Saved result in directory /tmp/RtmpMqTm1O.
+#> Saved result in directory /tmp/RtmpNxKsgB.
 
 # Optimize multiple URLs.
 jpg_url <- paste0(base_url, "/extimg/example.jpg")
 
 summary <- resmush_url(c(png_url, jpg_url))
 #> 🕐  reSmushing | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 UR…
-#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.3s] | ETA:  0s (2/2 U…
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [915ms] | ETA:  0s (2/2 …
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 URLs, 340.2 Kb total.
 #> ✔ Optimized 2 URLs: size is now 159.2 Kb (was 340.2 Kb). Saved 181 Kb (53.20%).
-#> Saved results in directory /tmp/RtmpMqTm1O.
+#> Saved results in directory /tmp/RtmpNxKsgB.
 
 # Inspect the returned optimization summary.
 summary
@@ -115,8 +115,8 @@ summary
 #> 1 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.png
 #> 2 https://raw.githubusercontent.com/dieghernan/resmush/main/inst//extimg/example.jpg
 #>                         dest_img src_size dest_size compress_ratio notes
-#> 1 /tmp/RtmpMqTm1O/example_01.png 239.9 Kb   76.1 Kb         68.29%    OK
-#> 2    /tmp/RtmpMqTm1O/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK
+#> 1 /tmp/RtmpNxKsgB/example_01.png 239.9 Kb   76.1 Kb         68.29%    OK
+#> 2    /tmp/RtmpNxKsgB/example.jpg 100.4 Kb   83.2 Kb         17.15%    OK
 #>   src_bytes dest_bytes
 #> 1    245618      77896
 #> 2    102796      85164
@@ -133,11 +133,11 @@ resmush_url(jpg_url)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 URL, 100.4 Kb total.
 #> ✔ Optimized 1 URL: size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> Saved result in directory /tmp/RtmpMqTm1O.
+#> Saved result in directory /tmp/RtmpNxKsgB.
 resmush_url(jpg_url, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 URL, 100.4 Kb total.
 #> ✔ Optimized 1 URL: size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> Saved result in directory /tmp/RtmpMqTm1O.
+#> Saved result in directory /tmp/RtmpNxKsgB.
 # }
 ```
