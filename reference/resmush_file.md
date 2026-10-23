@@ -93,7 +93,7 @@ resmush_file(tmp_png)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file, 239.9 Kb total.
 #> ✔ Optimized 1 file: size is now 76.1 Kb (was 239.9 Kb). Saved 163.8 Kb (68.29%).
-#> Saved result in directory /tmp/Rtmpn8Am3F.
+#> Saved result in directory /tmp/RtmpNjTpwz.
 
 # Optimize multiple files.
 jpg_file <- system.file("extimg/example.jpg", package = "resmush")
@@ -105,21 +105,21 @@ file.copy(jpg_file, tmp_jpg, overwrite = TRUE)
 # Display a summary in the console.
 summary <- resmush_file(c(tmp_png, tmp_jpg))
 #> 🕐  reSmushing | ■■■■■■■■■■■■■■■■□□□□□□□□□□□□□□□   50% [1ms] | ETA:  0s (1/2 fi…
-#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [943ms] | ETA:  0s (2/2 …
+#> 🕐  reSmushing | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% [1.2s] | ETA:  0s (2/2 f…
 #> 
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 2 files, 340.2 Kb total.
 #> ✔ Optimized 2 files: size is now 159.2 Kb (was 340.2 Kb). Saved 181 Kb (53.20%).
-#> Saved results in directory /tmp/Rtmpn8Am3F.
+#> Saved results in directory /tmp/RtmpNjTpwz.
 
 # Inspect the returned optimization summary.
 summary
 #>                                src_img
-#> 1 /tmp/Rtmpn8Am3F/file1ccd19e12fcf.png
-#> 2  /tmp/Rtmpn8Am3F/file1ccd684e97a.jpg
+#> 1 /tmp/RtmpNjTpwz/file1c4433eb16fd.png
+#> 2 /tmp/RtmpNjTpwz/file1c44254725e2.jpg
 #>                                       dest_img src_size dest_size
-#> 1 /tmp/Rtmpn8Am3F/file1ccd19e12fcf_resmush.png 239.9 Kb   76.1 Kb
-#> 2  /tmp/Rtmpn8Am3F/file1ccd684e97a_resmush.jpg 100.4 Kb   83.2 Kb
+#> 1 /tmp/RtmpNjTpwz/file1c4433eb16fd_resmush.png 239.9 Kb   76.1 Kb
+#> 2 /tmp/RtmpNjTpwz/file1c44254725e2_resmush.jpg 100.4 Kb   83.2 Kb
 #>   compress_ratio notes src_bytes dest_bytes
 #> 1         68.29%    OK    245618      77896
 #> 2         17.15%    OK    102796      85164
@@ -136,11 +136,11 @@ resmush_file(tmp_jpg)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file, 100.4 Kb total.
 #> ✔ Optimized 1 file: size is now 83.2 Kb (was 100.4 Kb). Saved 17.2 Kb (17.15%).
-#> Saved result in directory /tmp/Rtmpn8Am3F.
+#> Saved result in directory /tmp/RtmpNjTpwz.
 resmush_file(tmp_jpg, qlty = 10)
 #> ══ resmush summary ═════════════════════════════════════════════════════════════
 #> ℹ Input: 1 file, 100.4 Kb total.
 #> ✔ Optimized 1 file: size is now 6.4 Kb (was 100.4 Kb). Saved 94 Kb (93.61%).
-#> Saved result in directory /tmp/Rtmpn8Am3F.
+#> Saved result in directory /tmp/RtmpNjTpwz.
 # }
 ```
